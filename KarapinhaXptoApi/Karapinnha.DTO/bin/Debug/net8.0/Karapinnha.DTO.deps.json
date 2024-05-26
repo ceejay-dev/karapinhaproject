@@ -1,0 +1,23 @@
+{
+  "runtimeTarget": {
+    "name": ".NETCoreApp,Version=v8.0",
+    "signature": ""
+  },
+  "compilationOptions": {},
+  "targets": {
+    ".NETCoreApp,Version=v8.0": {
+      "Karapinnha.DTO/1.0.0": {
+        "runtime": {
+          "Karapinnha.DTO.dll": {}
+        }
+      }
+    }
+  },
+  "libraries": {
+    "Karapinnha.DTO/1.0.0": {
+      "type": "project",
+      "serviceable": false,
+      "sha512": ""
+    }
+  }
+}

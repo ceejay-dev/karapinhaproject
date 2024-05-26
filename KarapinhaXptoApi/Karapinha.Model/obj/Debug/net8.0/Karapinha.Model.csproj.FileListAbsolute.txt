@@ -1,0 +1,13 @@
+D:\karapinhaproject\KarapinhaXptoApi\Karapinha.Model\bin\Debug\net8.0\Karapinha.Model.deps.json
+D:\karapinhaproject\KarapinhaXptoApi\Karapinha.Model\bin\Debug\net8.0\Karapinha.Model.dll
+D:\karapinhaproject\KarapinhaXptoApi\Karapinha.Model\bin\Debug\net8.0\Karapinha.Model.pdb
+D:\karapinhaproject\KarapinhaXptoApi\Karapinha.Model\obj\Debug\net8.0\Karapinha.Model.csproj.AssemblyReference.cache
+D:\karapinhaproject\KarapinhaXptoApi\Karapinha.Model\obj\Debug\net8.0\Karapinha.Model.GeneratedMSBuildEditorConfig.editorconfig
+D:\karapinhaproject\KarapinhaXptoApi\Karapinha.Model\obj\Debug\net8.0\Karapinha.Model.AssemblyInfoInputs.cache
+D:\karapinhaproject\KarapinhaXptoApi\Karapinha.Model\obj\Debug\net8.0\Karapinha.Model.AssemblyInfo.cs
+D:\karapinhaproject\KarapinhaXptoApi\Karapinha.Model\obj\Debug\net8.0\Karapinha.Model.csproj.CoreCompileInputs.cache
+D:\karapinhaproject\KarapinhaXptoApi\Karapinha.Model\obj\Debug\net8.0\Karapinha.Model.sourcelink.json
+D:\karapinhaproject\KarapinhaXptoApi\Karapinha.Model\obj\Debug\net8.0\Karapinha.Model.dll
+D:\karapinhaproject\KarapinhaXptoApi\Karapinha.Model\obj\Debug\net8.0\refint\Karapinha.Model.dll
+D:\karapinhaproject\KarapinhaXptoApi\Karapinha.Model\obj\Debug\net8.0\Karapinha.Model.pdb
+D:\karapinhaproject\KarapinhaXptoApi\Karapinha.Model\obj\Debug\net8.0\ref\Karapinha.Model.dll
