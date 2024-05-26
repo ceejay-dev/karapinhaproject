@@ -13,11 +13,11 @@
   "project": {
     "version": "1.0.0",
     "restore": {
-      "projectUniqueName": "D:\\KARAPINHA PROJECT\\KarapinhaXpoto\\Karapinha.Services\\Karapinha.Services.csproj",
+      "projectUniqueName": "D:\\KARAPINHA PROJECT\\KarapinhaAPI\\Karapinha.Services\\Karapinha.Services.csproj",
       "projectName": "Karapinha.Services",
-      "projectPath": "D:\\KARAPINHA PROJECT\\KarapinhaXpoto\\Karapinha.Services\\Karapinha.Services.csproj",
+      "projectPath": "D:\\KARAPINHA PROJECT\\KarapinhaAPI\\Karapinha.Services\\Karapinha.Services.csproj",
       "packagesPath": "C:\\Users\\DELL ASPIRION GAMING\\.nuget\\packages\\",
-      "outputPath": "D:\\KARAPINHA PROJECT\\KarapinhaXpoto\\Karapinha.Services\\obj\\",
+      "outputPath": "D:\\KARAPINHA PROJECT\\KarapinhaAPI\\Karapinha.Services\\obj\\",
       "projectStyle": "PackageReference",
       "configFilePaths": [
         "C:\\Users\\DELL ASPIRION GAMING\\AppData\\Roaming\\NuGet\\NuGet.Config",

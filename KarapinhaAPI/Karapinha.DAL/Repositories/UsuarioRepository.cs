@@ -22,5 +22,7 @@ namespace Karapinha.DAL.Repositories
             var user = await karapinhaDb.AddAsync(usuario);
             return user.Entity;
         }
+
+        
     }
 }

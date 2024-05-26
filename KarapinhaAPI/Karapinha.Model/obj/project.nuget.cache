@@ -1,8 +1,8 @@
 {
   "version": 2,
-  "dgSpecHash": "yPua3oUc8Xo=",
+  "dgSpecHash": "BJk0xRSs9OQ=",
   "success": true,
-  "projectFilePath": "D:\\KARAPINHA PROJECT\\KarapinhaXpoto\\Karapinha.Model\\Karapinha.Model.csproj",
+  "projectFilePath": "D:\\KARAPINHA PROJECT\\KarapinhaAPI\\Karapinha.Model\\Karapinha.Model.csproj",
   "expectedPackageFiles": [
     "C:\\Users\\DELL ASPIRION GAMING\\.nuget\\packages\\servicestack.interfaces\\8.2.2\\servicestack.interfaces.8.2.2.nupkg.sha512"
   ],
