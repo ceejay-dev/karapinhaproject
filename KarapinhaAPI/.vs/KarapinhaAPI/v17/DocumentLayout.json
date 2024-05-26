@@ -1,0 +1,142 @@
+{
+  "Version": 1,
+  "WorkspaceRootPath": "D:\\KARAPINHA PROJECT\\KarapinhaXpoto\\",
+  "Documents": [
+    {
+      "AbsoluteMoniker": "D:0:0:{670B5293-3605-4939-9BD9-53758D2D51AC}|Karapinha.DAL\\Karapinha.DAL.csproj|d:\\karapinha project\\karapinhaxpoto\\karapinha.dal\\repositories\\usuariorepository.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{670B5293-3605-4939-9BD9-53758D2D51AC}|Karapinha.DAL\\Karapinha.DAL.csproj|solutionrelative:karapinha.dal\\repositories\\usuariorepository.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{BEEAAB2E-501D-45F3-B8C0-8BF9C59F663B}|Karapinha.Model\\Karapinha.Model.csproj|d:\\karapinha project\\karapinhaxpoto\\karapinha.model\\usuario.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{BEEAAB2E-501D-45F3-B8C0-8BF9C59F663B}|Karapinha.Model\\Karapinha.Model.csproj|solutionrelative:karapinha.model\\usuario.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{BEEAAB2E-501D-45F3-B8C0-8BF9C59F663B}|Karapinha.Model\\Karapinha.Model.csproj|d:\\karapinha project\\karapinhaxpoto\\karapinha.model\\servico.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{BEEAAB2E-501D-45F3-B8C0-8BF9C59F663B}|Karapinha.Model\\Karapinha.Model.csproj|solutionrelative:karapinha.model\\servico.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{BEEAAB2E-501D-45F3-B8C0-8BF9C59F663B}|Karapinha.Model\\Karapinha.Model.csproj|d:\\karapinha project\\karapinhaxpoto\\karapinha.model\\profissional.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{BEEAAB2E-501D-45F3-B8C0-8BF9C59F663B}|Karapinha.Model\\Karapinha.Model.csproj|solutionrelative:karapinha.model\\profissional.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{36FE19F1-3E0C-44AB-9494-1EE5A1BC728F}|Karapinha.Shared\\Karapinha.Shared.csproj|d:\\karapinha project\\karapinhaxpoto\\karapinha.shared\\irepositories\\iusuariorepository.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{36FE19F1-3E0C-44AB-9494-1EE5A1BC728F}|Karapinha.Shared\\Karapinha.Shared.csproj|solutionrelative:karapinha.shared\\irepositories\\iusuariorepository.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{BEEAAB2E-501D-45F3-B8C0-8BF9C59F663B}|Karapinha.Model\\Karapinha.Model.csproj|d:\\karapinha project\\karapinhaxpoto\\karapinha.model\\categoria.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{BEEAAB2E-501D-45F3-B8C0-8BF9C59F663B}|Karapinha.Model\\Karapinha.Model.csproj|solutionrelative:karapinha.model\\categoria.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{BEEAAB2E-501D-45F3-B8C0-8BF9C59F663B}|Karapinha.Model\\Karapinha.Model.csproj|d:\\karapinha project\\karapinhaxpoto\\karapinha.model\\marcacao.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{BEEAAB2E-501D-45F3-B8C0-8BF9C59F663B}|Karapinha.Model\\Karapinha.Model.csproj|solutionrelative:karapinha.model\\marcacao.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    }
+  ],
+  "DocumentGroupContainers": [
+    {
+      "Orientation": 0,
+      "VerticalTabListWidth": 256,
+      "DocumentGroups": [
+        {
+          "DockedWidth": 200,
+          "SelectedChildIndex": 4,
+          "Children": [
+            {
+              "$type": "Document",
+              "DocumentIndex": 1,
+              "Title": "Usuario.cs",
+              "DocumentMoniker": "D:\\KARAPINHA PROJECT\\KarapinhaXpoto\\Karapinha.Model\\Usuario.cs",
+              "RelativeDocumentMoniker": "Karapinha.Model\\Usuario.cs",
+              "ToolTip": "D:\\KARAPINHA PROJECT\\KarapinhaXpoto\\Karapinha.Model\\Usuario.cs",
+              "RelativeToolTip": "Karapinha.Model\\Usuario.cs",
+              "ViewState": "AQIAAAMAAAAAAAAAAIBJwB4AAAAAAAAA",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2024-05-21T01:38:10.653Z",
+              "IsPinned": true,
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 2,
+              "Title": "Servico.cs",
+              "DocumentMoniker": "D:\\KARAPINHA PROJECT\\KarapinhaXpoto\\Karapinha.Model\\Servico.cs",
+              "RelativeDocumentMoniker": "Karapinha.Model\\Servico.cs",
+              "ToolTip": "D:\\KARAPINHA PROJECT\\KarapinhaXpoto\\Karapinha.Model\\Servico.cs",
+              "RelativeToolTip": "Karapinha.Model\\Servico.cs",
+              "ViewState": "AQIAAAoAAAAAAAAAAAAAwA0AAAALAAAA",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2024-05-21T01:39:19.121Z",
+              "IsPinned": true,
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 3,
+              "Title": "Profissional.cs",
+              "DocumentMoniker": "D:\\KARAPINHA PROJECT\\KarapinhaXpoto\\Karapinha.Model\\Profissional.cs",
+              "RelativeDocumentMoniker": "Karapinha.Model\\Profissional.cs",
+              "ToolTip": "D:\\KARAPINHA PROJECT\\KarapinhaXpoto\\Karapinha.Model\\Profissional.cs",
+              "RelativeToolTip": "Karapinha.Model\\Profissional.cs",
+              "ViewState": "AQIAAA8AAAAAAAAAAAAxwA0AAAAKAAAA",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2024-05-21T01:45:09.02Z",
+              "IsPinned": true,
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 4,
+              "Title": "IUsuarioRepository.cs",
+              "DocumentMoniker": "D:\\KARAPINHA PROJECT\\KarapinhaXpoto\\Karapinha.Shared\\IRepositories\\IUsuarioRepository.cs",
+              "RelativeDocumentMoniker": "Karapinha.Shared\\IRepositories\\IUsuarioRepository.cs",
+              "ToolTip": "D:\\KARAPINHA PROJECT\\KarapinhaXpoto\\Karapinha.Shared\\IRepositories\\IUsuarioRepository.cs",
+              "RelativeToolTip": "Karapinha.Shared\\IRepositories\\IUsuarioRepository.cs",
+              "ViewState": "AQIAAAAAAAAAAAAAAAAAAAsAAAARAAAA",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2024-05-23T13:27:21.21Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 0,
+              "Title": "UsuarioRepository.cs",
+              "DocumentMoniker": "D:\\KARAPINHA PROJECT\\KarapinhaXpoto\\Karapinha.DAL\\Repositories\\UsuarioRepository.cs",
+              "RelativeDocumentMoniker": "Karapinha.DAL\\Repositories\\UsuarioRepository.cs",
+              "ToolTip": "D:\\KARAPINHA PROJECT\\KarapinhaXpoto\\Karapinha.DAL\\Repositories\\UsuarioRepository.cs",
+              "RelativeToolTip": "Karapinha.DAL\\Repositories\\UsuarioRepository.cs",
+              "ViewState": "AQIAAAAAAAAAAAAAAAAAABoAAAAAAAAA",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2024-05-23T13:15:19.591Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 5,
+              "Title": "Categoria.cs",
+              "DocumentMoniker": "D:\\KARAPINHA PROJECT\\KarapinhaXpoto\\Karapinha.Model\\Categoria.cs",
+              "RelativeDocumentMoniker": "Karapinha.Model\\Categoria.cs",
+              "ToolTip": "D:\\KARAPINHA PROJECT\\KarapinhaXpoto\\Karapinha.Model\\Categoria.cs",
+              "RelativeToolTip": "Karapinha.Model\\Categoria.cs",
+              "ViewState": "AQIAAAAAAAAAAAAAAAAAAA4AAAAmAAAA",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2024-05-21T03:38:21.752Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 6,
+              "Title": "Marcacao.cs",
+              "DocumentMoniker": "D:\\KARAPINHA PROJECT\\KarapinhaXpoto\\Karapinha.Model\\Marcacao.cs",
+              "RelativeDocumentMoniker": "Karapinha.Model\\Marcacao.cs",
+              "ToolTip": "D:\\KARAPINHA PROJECT\\KarapinhaXpoto\\Karapinha.Model\\Marcacao.cs",
+              "RelativeToolTip": "Karapinha.Model\\Marcacao.cs",
+              "ViewState": "AQIAAAEAAAAAAAAAAAAcwBYAAAAFAAAA",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2024-05-21T02:43:06.712Z",
+              "EditorCaption": ""
+            }
+          ]
+        }
+      ]
+    }
+  ]
+}

@@ -1,0 +1,11 @@
+C:\Users\DELL ASPIRION GAMING\source\repos\KarapinhaXpoto\Karapinha.Shared\bin\Debug\net8.0\Karapinha.Shared.deps.json
+C:\Users\DELL ASPIRION GAMING\source\repos\KarapinhaXpoto\Karapinha.Shared\bin\Debug\net8.0\Karapinha.Shared.dll
+C:\Users\DELL ASPIRION GAMING\source\repos\KarapinhaXpoto\Karapinha.Shared\bin\Debug\net8.0\Karapinha.Shared.pdb
+C:\Users\DELL ASPIRION GAMING\source\repos\KarapinhaXpoto\Karapinha.Shared\obj\Debug\net8.0\Karapinha.Shared.GeneratedMSBuildEditorConfig.editorconfig
+C:\Users\DELL ASPIRION GAMING\source\repos\KarapinhaXpoto\Karapinha.Shared\obj\Debug\net8.0\Karapinha.Shared.AssemblyInfoInputs.cache
+C:\Users\DELL ASPIRION GAMING\source\repos\KarapinhaXpoto\Karapinha.Shared\obj\Debug\net8.0\Karapinha.Shared.AssemblyInfo.cs
+C:\Users\DELL ASPIRION GAMING\source\repos\KarapinhaXpoto\Karapinha.Shared\obj\Debug\net8.0\Karapinha.Shared.csproj.CoreCompileInputs.cache
+C:\Users\DELL ASPIRION GAMING\source\repos\KarapinhaXpoto\Karapinha.Shared\obj\Debug\net8.0\Karapinha.Shared.dll
+C:\Users\DELL ASPIRION GAMING\source\repos\KarapinhaXpoto\Karapinha.Shared\obj\Debug\net8.0\refint\Karapinha.Shared.dll
+C:\Users\DELL ASPIRION GAMING\source\repos\KarapinhaXpoto\Karapinha.Shared\obj\Debug\net8.0\Karapinha.Shared.pdb
+C:\Users\DELL ASPIRION GAMING\source\repos\KarapinhaXpoto\Karapinha.Shared\obj\Debug\net8.0\ref\Karapinha.Shared.dll

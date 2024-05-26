@@ -1,0 +1,17 @@
+C:\Users\DELL ASPIRION GAMING\source\repos\KarapinhaXpoto\Karapinha.DAL\bin\Debug\net8.0\Karapinha.DAL.deps.json
+C:\Users\DELL ASPIRION GAMING\source\repos\KarapinhaXpoto\Karapinha.DAL\bin\Debug\net8.0\Karapinha.DAL.runtimeconfig.json
+C:\Users\DELL ASPIRION GAMING\source\repos\KarapinhaXpoto\Karapinha.DAL\bin\Debug\net8.0\Karapinha.DAL.dll
+C:\Users\DELL ASPIRION GAMING\source\repos\KarapinhaXpoto\Karapinha.DAL\bin\Debug\net8.0\Karapinha.DAL.pdb
+C:\Users\DELL ASPIRION GAMING\source\repos\KarapinhaXpoto\Karapinha.DAL\bin\Debug\net8.0\Karapinha.Model.dll
+C:\Users\DELL ASPIRION GAMING\source\repos\KarapinhaXpoto\Karapinha.DAL\bin\Debug\net8.0\Karapinha.Model.pdb
+C:\Users\DELL ASPIRION GAMING\source\repos\KarapinhaXpoto\Karapinha.DAL\obj\Debug\net8.0\Karapinha.DAL.csproj.AssemblyReference.cache
+C:\Users\DELL ASPIRION GAMING\source\repos\KarapinhaXpoto\Karapinha.DAL\obj\Debug\net8.0\Karapinha.DAL.GeneratedMSBuildEditorConfig.editorconfig
+C:\Users\DELL ASPIRION GAMING\source\repos\KarapinhaXpoto\Karapinha.DAL\obj\Debug\net8.0\Karapinha.DAL.AssemblyInfoInputs.cache
+C:\Users\DELL ASPIRION GAMING\source\repos\KarapinhaXpoto\Karapinha.DAL\obj\Debug\net8.0\Karapinha.DAL.AssemblyInfo.cs
+C:\Users\DELL ASPIRION GAMING\source\repos\KarapinhaXpoto\Karapinha.DAL\obj\Debug\net8.0\Karapinha.DAL.csproj.CoreCompileInputs.cache
+C:\Users\DELL ASPIRION GAMING\source\repos\KarapinhaXpoto\Karapinha.DAL\obj\Debug\net8.0\Karapinh.86E13795.Up2Date
+C:\Users\DELL ASPIRION GAMING\source\repos\KarapinhaXpoto\Karapinha.DAL\obj\Debug\net8.0\Karapinha.DAL.dll
+C:\Users\DELL ASPIRION GAMING\source\repos\KarapinhaXpoto\Karapinha.DAL\obj\Debug\net8.0\refint\Karapinha.DAL.dll
+C:\Users\DELL ASPIRION GAMING\source\repos\KarapinhaXpoto\Karapinha.DAL\obj\Debug\net8.0\Karapinha.DAL.pdb
+C:\Users\DELL ASPIRION GAMING\source\repos\KarapinhaXpoto\Karapinha.DAL\obj\Debug\net8.0\Karapinha.DAL.genruntimeconfig.cache
+C:\Users\DELL ASPIRION GAMING\source\repos\KarapinhaXpoto\Karapinha.DAL\obj\Debug\net8.0\ref\Karapinha.DAL.dll
