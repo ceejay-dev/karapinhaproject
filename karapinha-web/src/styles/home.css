@@ -5,11 +5,7 @@
     background-size: cover;
 }
 
-nav{
-    display: flex;
-    justify-content: center;
-    font-weight: bolder;
-}
+
 
 ul{
     list-style: none;
@@ -23,8 +19,8 @@ li{
 
 a{
     text-decoration: none;
-    color: black;
-}
+    color:#fff;
+ }
 
 a:hover{
     color: white;
@@ -38,4 +34,14 @@ a:hover{
 
 .img {
     object-fit: cover;
+}
+
+.nav{
+    position: absolute;
+    justify-content: center;
+    font-weight: bolder;
+    top: 0;
+    z-index: 2;
+    left: 0;
+    right: 0;
 }
