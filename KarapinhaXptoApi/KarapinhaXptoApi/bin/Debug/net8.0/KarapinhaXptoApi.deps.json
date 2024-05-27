@@ -9,6 +9,7 @@
       "KarapinhaXptoApi/1.0.0": {
         "dependencies": {
           "Karapinha.DAL": "1.0.0",
+          "Karapinha.Services": "1.0.0",
           "Microsoft.EntityFrameworkCore": "8.0.5",
           "Microsoft.EntityFrameworkCore.Design": "8.0.5",
           "Microsoft.EntityFrameworkCore.SqlServer": "8.0.5",
@@ -16,6 +17,25 @@
         },
         "runtime": {
           "KarapinhaXptoApi.dll": {}
+        }
+      },
+      "AWSSDK.Core/3.7.304.5": {
+        "runtime": {
+          "lib/net8.0/AWSSDK.Core.dll": {
+            "assemblyVersion": "3.3.0.0",
+            "fileVersion": "3.7.304.5"
+          }
+        }
+      },
+      "AWSSDK.Lambda/3.7.305.27": {
+        "dependencies": {
+          "AWSSDK.Core": "3.7.304.5"
+        },
+        "runtime": {
+          "lib/net8.0/AWSSDK.Lambda.dll": {
+            "assemblyVersion": "3.3.0.0",
+            "fileVersion": "3.7.305.27"
+          }
         }
       },
       "Azure.Core/1.35.0": {
@@ -58,6 +78,12 @@
             "assemblyVersion": "2.14.0.0",
             "fileVersion": "2.14.1.48190"
           }
+        }
+      },
+      "Microsoft.AspNetCore.Http.Features/5.0.17": {
+        "dependencies": {
+          "Microsoft.Extensions.Primitives": "8.0.0",
+          "System.IO.Pipelines": "6.0.3"
         }
       },
       "Microsoft.Bcl.AsyncInterfaces/6.0.0": {
@@ -913,7 +939,9 @@
         "dependencies": {
           "Karapinha.Model": "1.0.0",
           "Karapinha.Shared": "1.0.0",
-          "Microsoft.EntityFrameworkCore": "8.0.5"
+          "Microsoft.AspNetCore.Http.Features": "5.0.17",
+          "Microsoft.EntityFrameworkCore": "8.0.5",
+          "Microsoft.EntityFrameworkCore.SqlServer": "8.0.5"
         },
         "runtime": {
           "Karapinha.DAL.dll": {}
@@ -927,9 +955,19 @@
           "Karapinha.Model.dll": {}
         }
       },
+      "Karapinha.Services/1.0.0": {
+        "dependencies": {
+          "AWSSDK.Lambda": "3.7.305.27",
+          "Karapinha.DAL": "1.0.0"
+        },
+        "runtime": {
+          "Karapinha.Services.dll": {}
+        }
+      },
       "Karapinha.Shared/1.0.0": {
         "dependencies": {
-          "Karapinha.Model": "1.0.0"
+          "Karapinha.Model": "1.0.0",
+          "Microsoft.AspNetCore.Http.Features": "5.0.17"
         },
         "runtime": {
           "Karapinha.Shared.dll": {}
@@ -942,6 +980,20 @@
       "type": "project",
       "serviceable": false,
       "sha512": ""
+    },
+    "AWSSDK.Core/3.7.304.5": {
+      "type": "package",
+      "serviceable": true,
+      "sha512": "sha512-Tp6Bvbok1Ev55tCRlkTRzxj+QyfyXiFG3noptLtorZEF9Gn0jvdl2ixvkGGVyZFagd0kyJDdvyrfcmPvG49RwA==",
+      "path": "awssdk.core/3.7.304.5",
+      "hashPath": "awssdk.core.3.7.304.5.nupkg.sha512"
+    },
+    "AWSSDK.Lambda/3.7.305.27": {
+      "type": "package",
+      "serviceable": true,
+      "sha512": "sha512-nBrnB52GLbCmY4pArkqjlfnLm0yexsBQp8asi06ujtTLxY3818YRsJVn4dZYMGu2uF0qmC0xv65oY3z5ubpaDA==",
+      "path": "awssdk.lambda/3.7.305.27",
+      "hashPath": "awssdk.lambda.3.7.305.27.nupkg.sha512"
     },
     "Azure.Core/1.35.0": {
       "type": "package",
@@ -963,6 +1015,13 @@
       "sha512": "sha512-lQKvtaTDOXnoVJ20ibTuSIOf2i0uO0MPbDhd1jm238I+U/2ZnRENj0cktKZhtchBMtCUSRQ5v4xBCUbKNmyVMw==",
       "path": "humanizer.core/2.14.1",
       "hashPath": "humanizer.core.2.14.1.nupkg.sha512"
+    },
+    "Microsoft.AspNetCore.Http.Features/5.0.17": {
+      "type": "package",
+      "serviceable": true,
+      "sha512": "sha512-3jG2xS+dx8DDCGV/F+STdPTg89lX3ao3dF/VEPvJaz3wzBIjuadipTtYNEXDIVuOPZwb6jdmhrX9jkzOIBm5cw==",
+      "path": "microsoft.aspnetcore.http.features/5.0.17",
+      "hashPath": "microsoft.aspnetcore.http.features.5.0.17.nupkg.sha512"
     },
     "Microsoft.Bcl.AsyncInterfaces/6.0.0": {
       "type": "package",
@@ -1523,6 +1582,11 @@
       "sha512": ""
     },
     "Karapinha.Model/1.0.0": {
+      "type": "project",
+      "serviceable": false,
+      "sha512": ""
+    },
+    "Karapinha.Services/1.0.0": {
       "type": "project",
       "serviceable": false,
       "sha512": ""

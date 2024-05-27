@@ -32,5 +32,10 @@ namespace Karapinha.DAL
 
             base.OnModelCreating(modelBuilder);
         }
+
+        internal async Task<Usuario> FindAsync(int id)
+        {
+            throw new NotImplementedException();
+        }
     }
 }

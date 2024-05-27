@@ -2,6 +2,7 @@ import "../styles/home.css";
 import { useState } from "react";
 import { Link } from "react-router-dom";
 import Carousel from "react-bootstrap/Carousel";
+import { carrosel1, carrosel2, carrosel3 } from "../assets";
 
 export function Home() {
   const [index, setIndex] = useState(0);
@@ -12,8 +13,7 @@ export function Home() {
 
   return (
     <main>
-      <div className="main-container card">
-        <header>
+      <header>
           <nav>
             <ul>
               <li>
@@ -29,14 +29,13 @@ export function Home() {
             </ul>
           </nav>
         </header>
-      </div>
 
       <div className="carousel-container">
           <Carousel activeIndex={index} onSelect={handleSelect}>
             <Carousel.Item>
               <img
-                className="carousel-container"
-                src="../assets/carrosel1.jpeg"
+                className="img"
+                src= {carrosel1}
                 alt="Primeiro slide"
               />
               <Carousel.Caption>
@@ -48,8 +47,8 @@ export function Home() {
             </Carousel.Item>
             <Carousel.Item>
               <img
-                className="carousel-container"
-                src="../assets/carrosel2.jpeg"
+                className="carousel-container img"
+                src= {carrosel2}
                 alt="Segundo slide"
               />
               <Carousel.Caption>
@@ -59,8 +58,8 @@ export function Home() {
             </Carousel.Item>
             <Carousel.Item>
               <img
-                className="carousel-container"
-                src="../assets/carrosel3.jpeg"
+                className="carousel-container img"
+                src= {carrosel3}
                 alt="Terceiro slide"
               />
               <Carousel.Caption>

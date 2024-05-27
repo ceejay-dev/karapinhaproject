@@ -6,4 +6,12 @@
     <Nullable>enable</Nullable>
   </PropertyGroup>
 
+  <ItemGroup>
+    <PackageReference Include="AWSSDK.Lambda" Version="3.7.305.27" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <ProjectReference Include="..\Karapinha.DAL\Karapinha.DAL.csproj" />
+  </ItemGroup>
+
 </Project>

@@ -1,12 +1,15 @@
 {
   "version": 2,
-  "dgSpecHash": "z6Kh+7Krvgw=",
+  "dgSpecHash": "CxVMvMS2UeM=",
   "success": true,
   "projectFilePath": "D:\\karapinhaproject\\KarapinhaXptoApi\\KarapinhaXptoApi\\KarapinhaXptoApi.csproj",
   "expectedPackageFiles": [
+    "C:\\Users\\DELL ASPIRION GAMING\\.nuget\\packages\\awssdk.core\\3.7.304.5\\awssdk.core.3.7.304.5.nupkg.sha512",
+    "C:\\Users\\DELL ASPIRION GAMING\\.nuget\\packages\\awssdk.lambda\\3.7.305.27\\awssdk.lambda.3.7.305.27.nupkg.sha512",
     "C:\\Users\\DELL ASPIRION GAMING\\.nuget\\packages\\azure.core\\1.35.0\\azure.core.1.35.0.nupkg.sha512",
     "C:\\Users\\DELL ASPIRION GAMING\\.nuget\\packages\\azure.identity\\1.10.3\\azure.identity.1.10.3.nupkg.sha512",
     "C:\\Users\\DELL ASPIRION GAMING\\.nuget\\packages\\humanizer.core\\2.14.1\\humanizer.core.2.14.1.nupkg.sha512",
+    "C:\\Users\\DELL ASPIRION GAMING\\.nuget\\packages\\microsoft.aspnetcore.http.features\\5.0.17\\microsoft.aspnetcore.http.features.5.0.17.nupkg.sha512",
     "C:\\Users\\DELL ASPIRION GAMING\\.nuget\\packages\\microsoft.bcl.asyncinterfaces\\6.0.0\\microsoft.bcl.asyncinterfaces.6.0.0.nupkg.sha512",
     "C:\\Users\\DELL ASPIRION GAMING\\.nuget\\packages\\microsoft.codeanalysis.analyzers\\3.3.3\\microsoft.codeanalysis.analyzers.3.3.3.nupkg.sha512",
     "C:\\Users\\DELL ASPIRION GAMING\\.nuget\\packages\\microsoft.codeanalysis.common\\4.5.0\\microsoft.codeanalysis.common.4.5.0.nupkg.sha512",

@@ -1,4 +1,8 @@
 using Karapinha.DAL;
+using Karapinha.DAL.Repositories;
+using Karapinha.Services;
+using Karapinha.Shared.IRepositories;
+using Karapinha.Shared.IServices;
 using Microsoft.EntityFrameworkCore;
 
 var builder = WebApplication.CreateBuilder(args);
@@ -9,6 +13,7 @@ builder.Services.AddControllers();
 // Learn more about configuring Swagger/OpenAPI at https://aka.ms/aspnetcore/swashbuckle
 builder.Services.AddEndpointsApiExplorer();
 builder.Services.AddSwaggerGen();
+builder.Services.AddScoped<IUsuarioRepository, UsuarioRepository>();
 
 builder.Services.AddDbContext<KarapinhaDbContext>(con => con.UseSqlServer(builder.Configuration["ConnectionStrings:DefaultConnection"]));
 var app = builder.Build();

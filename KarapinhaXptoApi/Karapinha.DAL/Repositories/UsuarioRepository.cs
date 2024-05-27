@@ -1,5 +1,6 @@
 ﻿using Karapinha.Model;
 using Karapinha.Shared.IRepositories;
+using Microsoft.AspNetCore.Http;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -17,11 +18,41 @@ namespace Karapinha.DAL.Repositories
             karapinhaDb = context;
         }
 
-        public async Task<Usuario> Adicionar(Usuario usuario)
+        public async Task<Usuario> CreateUser(Usuario usuario, IFormFile foto)
         {
-            var user = await karapinhaDb.AddAsync(usuario);
-            return user.Entity;
+            try {
+                string imagePath = Path.Combine(Directory.GetCurrentDirectory(), "Storage");
+                string fileName = Path.GetFileName(foto.FileName);
+                string filePath = Path.Combine(imagePath, fileName);
+
+                using (var fileStream = new FileStream(filePath, FileMode.Create))
+                {
+                    await foto.CopyToAsync(fileStream);
+                }
+                usuario.FotoUsuario = fileName;
+
+                var user = await karapinhaDb.AddAsync(usuario);
+                await karapinhaDb.SaveChangesAsync();
+                return user.Entity;
+            } catch (Exception ex) {
+                Console.WriteLine(ex.Message, "Erro ao inserir o usuário na base de dados");
+            }
         }
+
+        public async Task<Usuario> GetUserById(int id)
+        {
+            try
+            {
+                return await karapinhaDb.FindAsync(id);
+            }
+            catch (Exception ex)
+            {
+                Console.WriteLine(ex.Message, "Erro ao pesquisar o usuário na base de dados");
+                // Retorne null ou uma exceção adequada
+                return null;
+            }
+        }
+
 
 
     }

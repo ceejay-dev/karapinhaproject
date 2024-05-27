@@ -18,6 +18,11 @@
 
   <ItemGroup>
     <ProjectReference Include="..\Karapinha.DAL\Karapinha.DAL.csproj" />
+    <ProjectReference Include="..\Karapinha.Services\Karapinha.Services.csproj" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <Folder Include="Storage\" />
   </ItemGroup>
 
 </Project>

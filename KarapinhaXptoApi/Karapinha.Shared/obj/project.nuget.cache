@@ -1,10 +1,13 @@
 {
   "version": 2,
-  "dgSpecHash": "mwHY7zdWcxU=",
+  "dgSpecHash": "PcJ+Npov4GI=",
   "success": true,
   "projectFilePath": "D:\\karapinhaproject\\KarapinhaXptoApi\\Karapinha.Shared\\Karapinha.Shared.csproj",
   "expectedPackageFiles": [
-    "C:\\Users\\DELL ASPIRION GAMING\\.nuget\\packages\\servicestack.interfaces\\8.2.2\\servicestack.interfaces.8.2.2.nupkg.sha512"
+    "C:\\Users\\DELL ASPIRION GAMING\\.nuget\\packages\\microsoft.aspnetcore.http.features\\5.0.17\\microsoft.aspnetcore.http.features.5.0.17.nupkg.sha512",
+    "C:\\Users\\DELL ASPIRION GAMING\\.nuget\\packages\\microsoft.extensions.primitives\\5.0.1\\microsoft.extensions.primitives.5.0.1.nupkg.sha512",
+    "C:\\Users\\DELL ASPIRION GAMING\\.nuget\\packages\\servicestack.interfaces\\8.2.2\\servicestack.interfaces.8.2.2.nupkg.sha512",
+    "C:\\Users\\DELL ASPIRION GAMING\\.nuget\\packages\\system.io.pipelines\\5.0.2\\system.io.pipelines.5.0.2.nupkg.sha512"
   ],
   "logs": []
 }

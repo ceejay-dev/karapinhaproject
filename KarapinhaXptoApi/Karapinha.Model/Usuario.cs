@@ -25,6 +25,6 @@ namespace Karapinha.Model
         public string? UsernameUsuario { get; set; }
         public string? PasswordUsuario { get; set; }
         public string? Estado { get; set; }
-        public string? TipoConta { get; set; }
+        public string? TipoConta {  get; set; }
     }
 }
