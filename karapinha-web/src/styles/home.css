@@ -57,6 +57,14 @@ a:hover{
     position: absolute;
 }
 
+.login-container:hover{
+    background-color: white;
+}
+
+.login-container a:hover{
+    color: black;
+}
+
 .botao-nav:hover{
     background-color: white;
     color: black;
@@ -76,3 +84,8 @@ a:hover{
     color: black;
 }
 
+.botao-nav2:hover{
+    background-color: white;
+    border-top-right-radius: 25px;
+    border-bottom-right-radius: 25px;
+}

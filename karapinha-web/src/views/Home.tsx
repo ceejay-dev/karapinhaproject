@@ -29,8 +29,8 @@ export function Home() {
           <li className="botao-nav">
             <Link to="/" className="link-signup">Signup</Link>
           </li>
-          <li className="">
-            <Link to="/">Login</Link>
+          <li className="botao-nav2">
+            <Link to="/login">Login</Link>
           </li>
           </div>
         </ul>
