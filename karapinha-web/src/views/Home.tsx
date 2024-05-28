@@ -3,6 +3,7 @@ import { useState } from "react";
 import { Link } from "react-router-dom";
 import Carousel from "react-bootstrap/Carousel";
 import { carrosel1, carrosel2, carrosel3 } from "../assets";
+import { Button } from "../components/Button";
 
 export function Home() {
   const [index, setIndex] = useState(0);
@@ -16,22 +17,24 @@ export function Home() {
       <div className="carousel-container">
         <ul className="nav">
           <li>
-            <Link to="/">Home</Link>
+            <Button route="/" text="Home" />
           </li>
+
           <li>
-            <Link to="/login">Serviços</Link>
+            <Button route="/" text="Serviços" />
           </li>
+
           <li>
-            <Link to="/">Sobre</Link>
+            <Button route="/" text="Sobre" />
           </li>
 
           <div className="login-container d-flex flex-row">
-          <li className="botao-nav">
-            <Link to="/" className="link-signup">Signup</Link>
-          </li>
-          <li className="botao-nav2">
-            <Link to="/login">Login</Link>
-          </li>
+            <li className="botao-nav">
+              <Button route="/" text="Signup" className="link-signup"/>
+            </li>
+            <li className="botao-nav2">
+            <Button route="/" text="Login"/>
+            </li>
           </div>
         </ul>
         <Carousel activeIndex={index} onSelect={handleSelect}>
@@ -58,7 +61,9 @@ export function Home() {
               <h3>
                 <Link to="/login">Cabelo</Link>
               </h3>
-              <p>Transforme seu visual com nossos cortes e estilos exclusivos.</p>
+              <p>
+                Transforme seu visual com nossos cortes e estilos exclusivos.
+              </p>
             </Carousel.Caption>
           </Carousel.Item>
           <Carousel.Item>
@@ -71,7 +76,10 @@ export function Home() {
               <h3>
                 <Link to="/login">Estética</Link>
               </h3>
-              <p>Cuide de sua pele com nossos tratamentos estéticos personalizados</p>
+              <p>
+                Cuide de sua pele com nossos tratamentos estéticos
+                personalizados
+              </p>
             </Carousel.Caption>
           </Carousel.Item>
         </Carousel>
