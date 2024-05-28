@@ -40,8 +40,39 @@ a:hover{
     position: absolute;
     justify-content: center;
     font-weight: bolder;
-    top: 0;
+    top: 10px;
     z-index: 2;
     left: 0;
     right: 0;
 }
+
+a:hover{
+    color: wheat;
+}
+
+.login-container{
+    border: 1px solid white;
+    border-radius: 25px;
+    right: 7%;
+    position: absolute;
+}
+
+.botao-nav:hover{
+    background-color: white;
+    color: black;
+}
+
+.botao-nav{
+    background-color: white;
+    border-radius: 25px;
+    color: black;
+}
+
+.link-signup:hover{
+    color: black;
+}
+
+.link-signup{
+    color: black;
+}
+

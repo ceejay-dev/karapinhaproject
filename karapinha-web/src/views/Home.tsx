@@ -24,6 +24,15 @@ export function Home() {
           <li>
             <Link to="/">Sobre</Link>
           </li>
+
+          <div className="login-container d-flex flex-row">
+          <li className="botao-nav">
+            <Link to="/" className="link-signup">Signup</Link>
+          </li>
+          <li className="">
+            <Link to="/">Login</Link>
+          </li>
+          </div>
         </ul>
         <Carousel activeIndex={index} onSelect={handleSelect}>
           <Carousel.Item>
@@ -33,8 +42,10 @@ export function Home() {
               alt="Primeiro slide"
             />
             <Carousel.Caption>
-              <h3>First slide label</h3>
-              <p>Nulla vitae elit libero, a pharetra augue mollis interdum.</p>
+              <h3>
+                <Link to="/login">Makeup</Link>
+              </h3>
+              <p>Realce sua beleza com nossa maquiagem profissional.</p>
             </Carousel.Caption>
           </Carousel.Item>
           <Carousel.Item>
@@ -44,8 +55,10 @@ export function Home() {
               alt="Segundo slide"
             />
             <Carousel.Caption>
-              <h3>Second slide label</h3>
-              <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit.</p>
+              <h3>
+                <Link to="/login">Cabelo</Link>
+              </h3>
+              <p>Transforme seu visual com nossos cortes e estilos exclusivos.</p>
             </Carousel.Caption>
           </Carousel.Item>
           <Carousel.Item>
@@ -55,10 +68,10 @@ export function Home() {
               alt="Terceiro slide"
             />
             <Carousel.Caption>
-              <h3>Third slide label</h3>
-              <p>
-                Praesent commodo cursus magna, vel scelerisque nisl consectetur.
-              </p>
+              <h3>
+                <Link to="/login">Estética</Link>
+              </h3>
+              <p>Cuide de sua pele com nossos tratamentos estéticos personalizados</p>
             </Carousel.Caption>
           </Carousel.Item>
         </Carousel>
