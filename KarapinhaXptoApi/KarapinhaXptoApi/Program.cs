@@ -13,7 +13,9 @@ builder.Services.AddControllers();
 // Learn more about configuring Swagger/OpenAPI at https://aka.ms/aspnetcore/swashbuckle
 builder.Services.AddEndpointsApiExplorer();
 builder.Services.AddSwaggerGen();
-builder.Services.AddScoped<IUsuarioRepository, UsuarioRepository>();
+
+builder.Services.AddTransient<IUsuarioService, UsuarioService>();
+builder.Services.AddTransient<IUsuarioRepository, UsuarioRepository>();
 
 builder.Services.AddDbContext<KarapinhaDbContext>(con => con.UseSqlServer(builder.Configuration["ConnectionStrings:DefaultConnection"]));
 var app = builder.Build();

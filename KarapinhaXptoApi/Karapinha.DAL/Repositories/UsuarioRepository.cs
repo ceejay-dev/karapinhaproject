@@ -4,6 +4,7 @@ using Microsoft.AspNetCore.Http;
 using System;
 using System.Collections.Generic;
 using System.Linq;
+using System.Net;
 using System.Text;
 using System.Threading.Tasks;
 
@@ -20,7 +21,6 @@ namespace Karapinha.DAL.Repositories
 
         public async Task<Usuario> CreateUser(Usuario usuario, IFormFile foto)
         {
-            try {
                 string imagePath = Path.Combine(Directory.GetCurrentDirectory(), "Storage");
                 string fileName = Path.GetFileName(foto.FileName);
                 string filePath = Path.Combine(imagePath, fileName);
@@ -34,26 +34,28 @@ namespace Karapinha.DAL.Repositories
                 var user = await karapinhaDb.AddAsync(usuario);
                 await karapinhaDb.SaveChangesAsync();
                 return user.Entity;
-            } catch (Exception ex) {
-                Console.WriteLine(ex.Message, "Erro ao inserir o usuário na base de dados");
-            }
         }
 
         public async Task<Usuario> GetUserById(int id)
         {
             try
             {
-                return await karapinhaDb.FindAsync(id);
+                var user = await karapinhaDb.FindAsync<Usuario>(id);
+                return user;
             }
             catch (Exception ex)
             {
-                Console.WriteLine(ex.Message, "Erro ao pesquisar o usuário na base de dados");
-                // Retorne null ou uma exceção adequada
-                return null;
+                // Qualquer exceção é encapsulada em uma DatabaseException e relançada.
+                throw new Exception("Erro ao buscar usuário por ID no banco de dados.", ex);
             }
         }
 
 
+        public List <Usuario> GetAllUsers()
+        {
+           var users = karapinhaDb.Usuarios.ToList();
+            return users;
+        }
 
     }
 }

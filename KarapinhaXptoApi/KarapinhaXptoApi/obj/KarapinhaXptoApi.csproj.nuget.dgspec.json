@@ -214,6 +214,10 @@
             "AWSSDK.Lambda": {
               "target": "Package",
               "version": "[3.7.305.27, )"
+            },
+            "Selenium.WebDriver": {
+              "target": "Package",
+              "version": "[4.21.0, )"
             }
           },
           "imports": [
@@ -337,6 +341,9 @@
               },
               "D:\\karapinhaproject\\KarapinhaXptoApi\\Karapinha.Services\\Karapinha.Services.csproj": {
                 "projectPath": "D:\\karapinhaproject\\KarapinhaXptoApi\\Karapinha.Services\\Karapinha.Services.csproj"
+              },
+              "D:\\karapinhaproject\\KarapinhaXptoApi\\Karapinha.Shared\\Karapinha.Shared.csproj": {
+                "projectPath": "D:\\karapinhaproject\\KarapinhaXptoApi\\Karapinha.Shared\\Karapinha.Shared.csproj"
               }
             }
           }

@@ -1,4 +1,5 @@
-﻿using Karapinha.Model;
+﻿using Amazon.Lambda.Model;
+using Karapinha.Model;
 using Karapinha.Shared.IRepositories;
 using Karapinha.Shared.IServices;
 using Microsoft.AspNetCore.Mvc;
@@ -7,9 +8,9 @@ namespace KarapinhaXptoApi.Controllers
 {
     public class UsuarioController : ControllerBase
     {
-        private readonly IUsuarioRepository _usuarioService;
+        private readonly IUsuarioService _usuarioService;
 
-        public UsuarioController(IUsuarioRepository usuarioService)
+        public UsuarioController(IUsuarioService usuarioService)
         {
             _usuarioService = usuarioService;
         }
@@ -34,16 +35,28 @@ namespace KarapinhaXptoApi.Controllers
 
         [HttpGet]
         [Route("/GetUser")]
-        public async Task<Usuario> GetUserById(int id)
+        public async Task<ActionResult<Usuario>> GetUserById(int id)
         {
             try
             {
-                return await _usuarioService.GetUserById(id);
+                var user = await _usuarioService.GetUserById(id);
+                return Ok(user); // Retorna 200 OK com o usuário encontrado
             }
             catch (Exception ex)
             {
-                Console.WriteLine(ex.Message);
-                //return StatusCode(500, "Erro interno ao adicionar usuário.");
+                return NotFound(ex.Message); // Retorna 404 Not Found com a mensagem de erro específica
+            }
+        }
+
+
+        [HttpGet]
+        [Route("/GetUsers")]
+        public List<Usuario> GetUsers() { 
+            try { 
+                return _usuarioService.GetAllUsers();
+            
+            } catch { 
+                throw new Exception();
             }
         }
     }

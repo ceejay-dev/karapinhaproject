@@ -214,6 +214,10 @@
             "AWSSDK.Lambda": {
               "target": "Package",
               "version": "[3.7.305.27, )"
+            },
+            "Selenium.WebDriver": {
+              "target": "Package",
+              "version": "[4.21.0, )"
             }
           },
           "imports": [
