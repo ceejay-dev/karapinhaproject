@@ -20,6 +20,7 @@
     <ProjectReference Include="..\Karapinha.DAL\Karapinha.DAL.csproj" />
     <ProjectReference Include="..\Karapinha.Services\Karapinha.Services.csproj" />
     <ProjectReference Include="..\Karapinha.Shared\Karapinha.Shared.csproj" />
+    <ProjectReference Include="..\Karapinnha.DTO\Karapinnha.DTO.csproj" />
   </ItemGroup>
 
   <ItemGroup>

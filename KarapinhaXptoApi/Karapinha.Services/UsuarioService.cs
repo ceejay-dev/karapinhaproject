@@ -3,6 +3,7 @@ using Karapinha.DAL.Repositories;
 using Karapinha.Model;
 using Karapinha.Shared.IRepositories;
 using Karapinha.Shared.IServices;
+using Karapinnha.DTO;
 using Microsoft.AspNetCore.Http;
 using OpenQA.Selenium;
 using System;

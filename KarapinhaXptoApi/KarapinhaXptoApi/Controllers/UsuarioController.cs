@@ -1,7 +1,6 @@
-﻿using Amazon.Lambda.Model;
-using Karapinha.Model;
-using Karapinha.Shared.IRepositories;
+﻿using Karapinha.DAL.Converters;
 using Karapinha.Shared.IServices;
+using Karapinnha.DTO;
 using Microsoft.AspNetCore.Mvc;
 
 namespace KarapinhaXptoApi.Controllers
@@ -17,11 +16,11 @@ namespace KarapinhaXptoApi.Controllers
 
         [HttpPost]
         [Route("/AddUser")]
-        public async Task<ActionResult> CreateUser([FromForm] Usuario usuario, IFormFile foto)
+        public async Task<ActionResult> CreateUser([FromForm] UsuarioDTO usuario, IFormFile foto)
         {
             try
             {
-                var userAdded = await _usuarioService.CreateUser(usuario, foto);
+                var userAdded = UsuarioConverter.ToUsuarioDTO( await _usuarioService.CreateUser(UsuarioConverter.ToUsuario(usuario), foto));
                 return Ok(userAdded);
             }
             catch (Exception ex)
@@ -35,7 +34,7 @@ namespace KarapinhaXptoApi.Controllers
 
         [HttpGet]
         [Route("/GetUser")]
-        public async Task<ActionResult<Usuario>> GetUserById(int id)
+        public async Task<ActionResult<UsuarioDTO>> GetUserById(int id)
         {
             try
             {
@@ -51,12 +50,11 @@ namespace KarapinhaXptoApi.Controllers
 
         [HttpGet]
         [Route("/GetUsers")]
-        public List<Usuario> GetUsers()
+        public List<UsuarioDTO> GetUsers()
         {
             try
             {
                 return _usuarioService.GetAllUsers();
-
             }
             catch
             {
@@ -81,11 +79,11 @@ namespace KarapinhaXptoApi.Controllers
 
         [HttpPut]
         [Route("/UpdateUser")]
-        public async Task<ActionResult> UpdateUser(Usuario usuario, int id)
+        public async Task<ActionResult> UpdateUser(UsuarioDTO usuario, int id)
         {
             try
             {
-                var userUpdated = await _usuarioService.UpdateUser(usuario, id);
+                var userUpdated = UsuarioConverter.ToUsuarioDTO(await _usuarioService.UpdateUser(UsuarioConverter.ToUsuario(usuario)));
                 return Ok(userUpdated);
 
             }

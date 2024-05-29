@@ -1,6 +1,8 @@
 ﻿using Karapinha.Model;
 using Karapinha.Shared.IRepositories;
+using Karapinnha.DTO;
 using Microsoft.AspNetCore.Http;
+using Microsoft.EntityFrameworkCore;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -12,11 +14,11 @@ namespace Karapinha.DAL.Repositories
 {
     public class UsuarioRepository : IUsuarioRepository
     {
-        public readonly KarapinhaDbContext karapinhaDb;
+        public readonly KarapinhaDbContext dbContext;
 
         public UsuarioRepository(KarapinhaDbContext context)
         {
-            karapinhaDb = context;
+            dbContext = context;
         }
 
         public async Task<Usuario> CreateUser(Usuario usuario, IFormFile foto)
@@ -31,8 +33,8 @@ namespace Karapinha.DAL.Repositories
             }
             usuario.FotoUsuario = fileName;
 
-            var user = await karapinhaDb.AddAsync(usuario);
-            await karapinhaDb.SaveChangesAsync();
+            var user = await dbContext.AddAsync(usuario);
+            await dbContext.SaveChangesAsync();
             return user.Entity;
         }
 
@@ -40,7 +42,7 @@ namespace Karapinha.DAL.Repositories
         {
             try
             {
-                var user = await karapinhaDb.Usuarios.FindAsync(id);
+                var user = await dbContext.Usuarios.FindAsync(id);
                 if (user != null)
                     return user;
 
@@ -56,7 +58,7 @@ namespace Karapinha.DAL.Repositories
 
         public List<Usuario> GetAllUsers()
         {
-            var users = karapinhaDb.Usuarios.ToList();
+            var users = dbContext.Usuarios.ToList();
             return users;
         }
 
@@ -65,8 +67,9 @@ namespace Karapinha.DAL.Repositories
             var user = await GetUserById(id);
             if (user != null)
             {
-                karapinhaDb.Usuarios.Remove(user);
-                await karapinhaDb.SaveChangesAsync();
+                //trocar a tabela pelo dto ?
+                dbContext.Usuarios.Remove(user);
+                await dbContext.SaveChangesAsync();
                 return true;
             }
             else
@@ -83,7 +86,7 @@ namespace Karapinha.DAL.Repositories
             taskToUpdate.Done = task.Done;
             _context.Entry(taskToUpdate).State = EntityState.Modified;
             _context.SaveChanges();*/
-            var user = await karapinhaDb.Usuarios.FindAsync(id);
+            var user = await dbContext.Usuarios.FindAsync(id);
             if (user != null)
             {
                 if(usuario.NomeUsuario != null)
@@ -102,8 +105,8 @@ namespace Karapinha.DAL.Repositories
                 {
                     user.PasswordUsuario = usuario.PasswordUsuario;
                 }
-                karapinhaDb.Usuarios.Update(user);
-                await karapinhaDb.SaveChangesAsync();
+                dbContext.Usuarios.Update(user);
+                await dbContext.SaveChangesAsync();
                 return user;
             } else
             {

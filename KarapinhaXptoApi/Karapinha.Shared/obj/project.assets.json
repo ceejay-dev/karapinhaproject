@@ -66,6 +66,16 @@
         "runtime": {
           "bin/placeholder/Karapinha.Model.dll": {}
         }
+      },
+      "Karapinnha.DTO/1.0.0": {
+        "type": "project",
+        "framework": ".NETCoreApp,Version=v8.0",
+        "compile": {
+          "bin/placeholder/Karapinnha.DTO.dll": {}
+        },
+        "runtime": {
+          "bin/placeholder/Karapinnha.DTO.dll": {}
+        }
       }
     }
   },
@@ -156,11 +166,17 @@
       "type": "project",
       "path": "../Karapinha.Model/Karapinha.Model.csproj",
       "msbuildProject": "../Karapinha.Model/Karapinha.Model.csproj"
+    },
+    "Karapinnha.DTO/1.0.0": {
+      "type": "project",
+      "path": "../Karapinnha.DTO/Karapinnha.DTO.csproj",
+      "msbuildProject": "../Karapinnha.DTO/Karapinnha.DTO.csproj"
     }
   },
   "projectFileDependencyGroups": {
     "net8.0": [
       "Karapinha.Model >= 1.0.0",
+      "Karapinnha.DTO >= 1.0.0",
       "Microsoft.AspNetCore.Http.Features >= 5.0.17"
     ]
   },
@@ -194,6 +210,9 @@
           "projectReferences": {
             "D:\\karapinhaproject\\KarapinhaXptoApi\\Karapinha.Model\\Karapinha.Model.csproj": {
               "projectPath": "D:\\karapinhaproject\\KarapinhaXptoApi\\Karapinha.Model\\Karapinha.Model.csproj"
+            },
+            "D:\\karapinhaproject\\KarapinhaXptoApi\\Karapinnha.DTO\\Karapinnha.DTO.csproj": {
+              "projectPath": "D:\\karapinhaproject\\KarapinhaXptoApi\\Karapinnha.DTO\\Karapinnha.DTO.csproj"
             }
           }
         }

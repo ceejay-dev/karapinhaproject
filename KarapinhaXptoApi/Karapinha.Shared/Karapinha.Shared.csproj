@@ -12,6 +12,7 @@
 
   <ItemGroup>
     <ProjectReference Include="..\Karapinha.Model\Karapinha.Model.csproj" />
+    <ProjectReference Include="..\Karapinnha.DTO\Karapinnha.DTO.csproj" />
   </ItemGroup>
 
 </Project>
