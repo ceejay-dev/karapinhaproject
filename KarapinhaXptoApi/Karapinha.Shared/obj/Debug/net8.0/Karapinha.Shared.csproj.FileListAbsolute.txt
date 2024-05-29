@@ -8,7 +8,6 @@ D:\karapinhaproject\KarapinhaXptoApi\Karapinha.Shared\obj\Debug\net8.0\Karapinha
 D:\karapinhaproject\KarapinhaXptoApi\Karapinha.Shared\obj\Debug\net8.0\Karapinha.Shared.AssemblyInfoInputs.cache
 D:\karapinhaproject\KarapinhaXptoApi\Karapinha.Shared\obj\Debug\net8.0\Karapinha.Shared.AssemblyInfo.cs
 D:\karapinhaproject\KarapinhaXptoApi\Karapinha.Shared\obj\Debug\net8.0\Karapinha.Shared.csproj.CoreCompileInputs.cache
-D:\karapinhaproject\KarapinhaXptoApi\Karapinha.Shared\obj\Debug\net8.0\Karapinha.Shared.sourcelink.json
 D:\karapinhaproject\KarapinhaXptoApi\Karapinha.Shared\obj\Debug\net8.0\Karapinh.13899777.Up2Date
 D:\karapinhaproject\KarapinhaXptoApi\Karapinha.Shared\obj\Debug\net8.0\Karapinha.Shared.dll
 D:\karapinhaproject\KarapinhaXptoApi\Karapinha.Shared\obj\Debug\net8.0\refint\Karapinha.Shared.dll

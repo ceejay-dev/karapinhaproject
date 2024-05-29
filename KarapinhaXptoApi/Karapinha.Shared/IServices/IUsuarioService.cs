@@ -13,5 +13,7 @@ namespace Karapinha.Shared.IServices
         Task<Usuario> CreateUser(Usuario usuario, IFormFile foto);
         Task<Usuario> GetUserById(int id);
         List<Usuario> GetAllUsers();
+        Task<bool> DeleteUser(int id);
+        Task<Usuario> UpdateUser(Usuario usuario, int id);
     }
 }

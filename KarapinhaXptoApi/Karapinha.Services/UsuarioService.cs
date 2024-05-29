@@ -26,8 +26,8 @@ namespace Karapinha.Services
         {
             try
             {
-                var usuarioAdicionado = await _usuarioRepository.CreateUser(usuario, foto);
-                return usuarioAdicionado;
+                var usuarioAdded = await _usuarioRepository.CreateUser(usuario, foto);
+                return usuarioAdded;
             }
             catch (Exception ex)
             {
@@ -62,6 +62,32 @@ namespace Karapinha.Services
             try
             {
                 return _usuarioRepository.GetAllUsers();
+            }
+            catch (Exception ex)
+            {
+                throw new ServiceException(ex.Message, ex);
+            }
+        }
+
+        public async Task<bool> DeleteUser(int id)
+        {
+            try
+            {
+                await _usuarioRepository.DeleteUser(id);
+                return true;
+            }
+            catch (Exception ex)
+            {
+                throw new ServiceException(ex.Message, ex);
+            }
+        }
+
+        public async Task<Usuario> UpdateUser(Usuario usuario, int id)
+        {
+            try
+            {
+                var userUpdated = await _usuarioRepository.UpdateUser(usuario, id);
+                return userUpdated;
             }
             catch (Exception ex)
             {

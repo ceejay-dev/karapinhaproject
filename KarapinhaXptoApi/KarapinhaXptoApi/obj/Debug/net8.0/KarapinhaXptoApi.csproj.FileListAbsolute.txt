@@ -131,7 +131,6 @@ D:\karapinhaproject\KarapinhaXptoApi\KarapinhaXptoApi\obj\Debug\net8.0\Karapinha
 D:\karapinhaproject\KarapinhaXptoApi\KarapinhaXptoApi\obj\Debug\net8.0\KarapinhaXptoApi.csproj.CoreCompileInputs.cache
 D:\karapinhaproject\KarapinhaXptoApi\KarapinhaXptoApi\obj\Debug\net8.0\KarapinhaXptoApi.MvcApplicationPartsAssemblyInfo.cs
 D:\karapinhaproject\KarapinhaXptoApi\KarapinhaXptoApi\obj\Debug\net8.0\KarapinhaXptoApi.MvcApplicationPartsAssemblyInfo.cache
-D:\karapinhaproject\KarapinhaXptoApi\KarapinhaXptoApi\obj\Debug\net8.0\KarapinhaXptoApi.sourcelink.json
 D:\karapinhaproject\KarapinhaXptoApi\KarapinhaXptoApi\obj\Debug\net8.0\staticwebassets.build.json
 D:\karapinhaproject\KarapinhaXptoApi\KarapinhaXptoApi\obj\Debug\net8.0\staticwebassets.development.json
 D:\karapinhaproject\KarapinhaXptoApi\KarapinhaXptoApi\obj\Debug\net8.0\staticwebassets\msbuild.KarapinhaXptoApi.Microsoft.AspNetCore.StaticWebAssets.props

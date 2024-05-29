@@ -21,8 +21,8 @@ namespace KarapinhaXptoApi.Controllers
         {
             try
             {
-                var usuarioAdicionado = await _usuarioService.CreateUser(usuario, foto);
-                return Ok(usuarioAdicionado);
+                var userAdded = await _usuarioService.CreateUser(usuario, foto);
+                return Ok(userAdded);
             }
             catch (Exception ex)
             {
@@ -51,12 +51,47 @@ namespace KarapinhaXptoApi.Controllers
 
         [HttpGet]
         [Route("/GetUsers")]
-        public List<Usuario> GetUsers() { 
-            try { 
+        public List<Usuario> GetUsers()
+        {
+            try
+            {
                 return _usuarioService.GetAllUsers();
-            
-            } catch { 
+
+            }
+            catch
+            {
                 throw new Exception();
+            }
+        }
+
+        [HttpDelete]
+        [Route("/DeleteUser")]
+        public async Task<ActionResult> DeleteUser(int id)
+        {
+            try
+            {
+                await _usuarioService.DeleteUser(id);
+                return Ok();
+            }
+            catch
+            {
+                return StatusCode(StatusCodes.Status500InternalServerError, "Error deleting an user!");
+            }
+        }
+
+        [HttpPut]
+        [Route("/UpdateUser")]
+        public async Task<ActionResult> UpdateUser(Usuario usuario, int id)
+        {
+            try
+            {
+                var userUpdated = await _usuarioService.UpdateUser(usuario, id);
+                return Ok(userUpdated);
+
+            }
+            catch
+            {
+                return StatusCode(StatusCodes.Status500InternalServerError, "Error deleting an user!,");
             }
         }
     }

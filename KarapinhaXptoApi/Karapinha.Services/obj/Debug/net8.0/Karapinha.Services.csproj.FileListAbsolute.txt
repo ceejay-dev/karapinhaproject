@@ -12,7 +12,6 @@ D:\karapinhaproject\KarapinhaXptoApi\Karapinha.Services\obj\Debug\net8.0\Karapin
 D:\karapinhaproject\KarapinhaXptoApi\Karapinha.Services\obj\Debug\net8.0\Karapinha.Services.AssemblyInfoInputs.cache
 D:\karapinhaproject\KarapinhaXptoApi\Karapinha.Services\obj\Debug\net8.0\Karapinha.Services.AssemblyInfo.cs
 D:\karapinhaproject\KarapinhaXptoApi\Karapinha.Services\obj\Debug\net8.0\Karapinha.Services.csproj.CoreCompileInputs.cache
-D:\karapinhaproject\KarapinhaXptoApi\Karapinha.Services\obj\Debug\net8.0\Karapinha.Services.sourcelink.json
 D:\karapinhaproject\KarapinhaXptoApi\Karapinha.Services\obj\Debug\net8.0\Karapinh.41B19ADC.Up2Date
 D:\karapinhaproject\KarapinhaXptoApi\Karapinha.Services\obj\Debug\net8.0\Karapinha.Services.dll
 D:\karapinhaproject\KarapinhaXptoApi\Karapinha.Services\obj\Debug\net8.0\refint\Karapinha.Services.dll

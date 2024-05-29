@@ -11,7 +11,6 @@ D:\karapinhaproject\KarapinhaXptoApi\Karapinha.DAL\obj\Debug\net8.0\Karapinha.DA
 D:\karapinhaproject\KarapinhaXptoApi\Karapinha.DAL\obj\Debug\net8.0\Karapinha.DAL.AssemblyInfoInputs.cache
 D:\karapinhaproject\KarapinhaXptoApi\Karapinha.DAL\obj\Debug\net8.0\Karapinha.DAL.AssemblyInfo.cs
 D:\karapinhaproject\KarapinhaXptoApi\Karapinha.DAL\obj\Debug\net8.0\Karapinha.DAL.csproj.CoreCompileInputs.cache
-D:\karapinhaproject\KarapinhaXptoApi\Karapinha.DAL\obj\Debug\net8.0\Karapinha.DAL.sourcelink.json
 D:\karapinhaproject\KarapinhaXptoApi\Karapinha.DAL\obj\Debug\net8.0\Karapinh.86E13795.Up2Date
 D:\karapinhaproject\KarapinhaXptoApi\Karapinha.DAL\obj\Debug\net8.0\Karapinha.DAL.dll
 D:\karapinhaproject\KarapinhaXptoApi\Karapinha.DAL\obj\Debug\net8.0\refint\Karapinha.DAL.dll
