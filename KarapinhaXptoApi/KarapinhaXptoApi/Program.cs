@@ -4,20 +4,23 @@ using Karapinha.Services;
 using Karapinha.Shared.IRepositories;
 using Karapinha.Shared.IServices;
 using Microsoft.EntityFrameworkCore;
+using Microsoft.Extensions.Configuration;
 
 var builder = WebApplication.CreateBuilder(args);
 
 // Add services to the container.
-
 builder.Services.AddControllers();
-// Learn more about configuring Swagger/OpenAPI at https://aka.ms/aspnetcore/swashbuckle
 builder.Services.AddEndpointsApiExplorer();
 builder.Services.AddSwaggerGen();
 
-builder.Services.AddTransient<IUsuarioService, UsuarioService>();
-builder.Services.AddTransient<IUsuarioRepository, UsuarioRepository>();
+// Add DbContext with migrations assembly configuration
+builder.Services.AddDbContext<KarapinhaDbContext>(options =>
+    options.UseSqlServer(builder.Configuration.GetConnectionString("DefaultConnection")));
 
-builder.Services.AddDbContext<KarapinhaDbContext>(con => con.UseSqlServer(builder.Configuration["ConnectionStrings:DefaultConnection"]));
+// Add repository and service dependencies
+builder.Services.AddTransient<IUtilizadorRepository, UtilizadorRepository>();
+builder.Services.AddTransient<IUtilizadorService, UtilizadorService>();
+
 var app = builder.Build();
 
 // Configure the HTTP request pipeline.

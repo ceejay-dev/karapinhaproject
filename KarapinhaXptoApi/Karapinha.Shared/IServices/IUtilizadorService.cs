@@ -9,12 +9,12 @@ using System.Threading.Tasks;
 
 namespace Karapinha.Shared.IServices
 {
-    public interface IUsuarioService
+    public interface IUtilizadorService
     {
-        Task<Usuario> CreateUser(Usuario usuario, IFormFile foto);
-        Task<UsuarioDTO> GetUserById(int id);
-        List<UsuarioDTO> GetAllUsers();
+        Task<UtilizadorDTO> CreateUser(UtilizadorDTO Utilizador, IFormFile foto);
+        Task<UtilizadorDTO> GetUserById(int id);
+        Task<IEnumerable<UtilizadorDTO>> GetAllUsers();
         Task<bool> DeleteUser(int id);
-        Task<Usuario> UpdateUser(Usuario usuario, int id);
+        Task UpdateUser(UtilizadorUpdateDTO Utilizador);
     }
 }

@@ -12,7 +12,7 @@ using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 namespace Karapinha.DAL.Migrations
 {
     [DbContext(typeof(KarapinhaDbContext))]
-    [Migration("20240526214150_KarapinhaMigration")]
+    [Migration("20240601155403_KarapinhaMigration")]
     partial class KarapinhaMigration
     {
         /// <inheritdoc />
@@ -41,6 +41,27 @@ namespace Karapinha.DAL.Migrations
                     b.ToTable("categorias");
                 });
 
+            modelBuilder.Entity("Karapinha.Model.Horario", b =>
+                {
+                    b.Property<int>("IdHorario")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("int");
+
+                    SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("IdHorario"));
+
+                    b.Property<string>("Descricao")
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<int?>("ProfissionalIdProfissional")
+                        .HasColumnType("int");
+
+                    b.HasKey("IdHorario");
+
+                    b.HasIndex("ProfissionalIdProfissional");
+
+                    b.ToTable("horarios");
+                });
+
             modelBuilder.Entity("Karapinha.Model.Marcacao", b =>
                 {
                     b.Property<int>("IdMarcacao")
@@ -55,7 +76,7 @@ namespace Karapinha.DAL.Migrations
                     b.Property<string>("Estado")
                         .HasColumnType("nvarchar(max)");
 
-                    b.Property<int>("FkUsuario")
+                    b.Property<int>("FkUtilizador")
                         .HasColumnType("int");
 
                     b.Property<DateTime>("HoraMarcacao")
@@ -63,7 +84,7 @@ namespace Karapinha.DAL.Migrations
 
                     b.HasKey("IdMarcacao");
 
-                    b.HasIndex("FkUsuario");
+                    b.HasIndex("FkUtilizador");
 
                     b.ToTable("marcacoes");
                 });
@@ -92,9 +113,6 @@ namespace Karapinha.DAL.Migrations
                         .HasColumnType("nvarchar(max)");
 
                     b.Property<string>("TelemovelProfissional")
-                        .HasColumnType("nvarchar(max)");
-
-                    b.Property<string>("horarios")
                         .HasColumnType("nvarchar(max)");
 
                     b.HasKey("IdProfissional");
@@ -131,53 +149,60 @@ namespace Karapinha.DAL.Migrations
                     b.ToTable("servicos");
                 });
 
-            modelBuilder.Entity("Karapinha.Model.Usuario", b =>
+            modelBuilder.Entity("Karapinha.Model.Utilizador", b =>
                 {
-                    b.Property<int>("IdUsuario")
+                    b.Property<int>("IdUtilizador")
                         .ValueGeneratedOnAdd()
                         .HasColumnType("int");
 
-                    SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("IdUsuario"));
+                    SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("IdUtilizador"));
 
-                    b.Property<string>("EmailUsuario")
+                    b.Property<string>("EmailUtilizador")
                         .HasColumnType("nvarchar(max)");
 
                     b.Property<string>("Estado")
                         .HasColumnType("nvarchar(max)");
 
-                    b.Property<string>("FotoUsuario")
+                    b.Property<string>("FotoUtilizador")
                         .HasColumnType("nvarchar(max)");
 
-                    b.Property<string>("NomeUsuario")
+                    b.Property<string>("NomeUtilizador")
                         .HasColumnType("nvarchar(max)");
 
-                    b.Property<string>("PasswordUsuario")
+                    b.Property<string>("PasswordUtilizador")
                         .HasColumnType("nvarchar(max)");
 
-                    b.Property<string>("TelemovelUsuario")
+                    b.Property<string>("TelemovelUtilizador")
                         .HasMaxLength(9)
                         .HasColumnType("nvarchar(9)");
 
                     b.Property<string>("TipoConta")
                         .HasColumnType("nvarchar(max)");
 
-                    b.Property<string>("UsernameUsuario")
+                    b.Property<string>("UsernameUtilizador")
                         .HasColumnType("nvarchar(max)");
 
-                    b.HasKey("IdUsuario");
+                    b.HasKey("IdUtilizador");
 
-                    b.ToTable("usuarios");
+                    b.ToTable("Utilizadores");
+                });
+
+            modelBuilder.Entity("Karapinha.Model.Horario", b =>
+                {
+                    b.HasOne("Karapinha.Model.Profissional", null)
+                        .WithMany("Horarios")
+                        .HasForeignKey("ProfissionalIdProfissional");
                 });
 
             modelBuilder.Entity("Karapinha.Model.Marcacao", b =>
                 {
-                    b.HasOne("Karapinha.Model.Usuario", "Usuario")
+                    b.HasOne("Karapinha.Model.Utilizador", "Utilizador")
                         .WithMany()
-                        .HasForeignKey("FkUsuario")
+                        .HasForeignKey("FkUtilizador")
                         .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
 
-                    b.Navigation("Usuario");
+                    b.Navigation("Utilizador");
                 });
 
             modelBuilder.Entity("Karapinha.Model.Servico", b =>
@@ -202,6 +227,11 @@ namespace Karapinha.DAL.Migrations
             modelBuilder.Entity("Karapinha.Model.Marcacao", b =>
                 {
                     b.Navigation("Servicos");
+                });
+
+            modelBuilder.Entity("Karapinha.Model.Profissional", b =>
+                {
+                    b.Navigation("Horarios");
                 });
 #pragma warning restore 612, 618
         }

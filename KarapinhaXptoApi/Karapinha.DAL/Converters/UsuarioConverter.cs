@@ -8,36 +8,68 @@ using System.Threading.Tasks;
 
 namespace Karapinha.DAL.Converters
 {
-    public abstract class UsuarioConverter
+    public abstract class UtilizadorConverter
     {
-        public static Usuario ToUsuario(UsuarioDTO usuario) {
-            var user = new Usuario();
-            user.NomeUsuario = usuario.NomeUsuario;
-            user.EmailUsuario = usuario.EmailUsuario;
-            user.TelemovelUsuario = usuario.TelemovelUsuario;
-            user.FotoUsuario = usuario.FotoUsuario;
-            user.UsernameUsuario = usuario.UsernameUsuario;
-            user.PasswordUsuario = usuario.PasswordUsuario;
-            user.Estado = usuario.Estado;
-            user.TipoConta = usuario.TipoConta;
-
-            return user;
-        }
-
-        public static UsuarioDTO ToUsuarioDTO(Usuario usuario)
+        public static Utilizador ToUtilizador(UtilizadorDTO dto)
         {
-            var user = new UsuarioDTO();
-            user.NomeUsuario = usuario.NomeUsuario;
-            user.EmailUsuario = usuario.EmailUsuario;
-            user.TelemovelUsuario = usuario.TelemovelUsuario;
-            user.FotoUsuario = usuario.FotoUsuario;
-            user.UsernameUsuario = usuario.UsernameUsuario;
-            user.PasswordUsuario = usuario.PasswordUsuario;
-            user.Estado = usuario.Estado;
-            user.TipoConta = usuario.TipoConta;
+            return new Utilizador
+            {
+                IdUtilizador = dto.IdUtilizador,
+                NomeUtilizador = dto.NomeUtilizador,
+                EmailUtilizador = dto.EmailUtilizador,
+                TelemovelUtilizador = dto.TelemovelUtilizador,
+                FotoUtilizador = dto.FotoUtilizador,
+                UsernameUtilizador = dto.UsernameUtilizador,
+                PasswordUtilizador = dto.PasswordUtilizador,
+                Estado = dto.Estado,
+                TipoConta = dto.TipoConta
+            };
+        }
 
+        public static UtilizadorDTO ToUtilizadorDTO(Utilizador utilizador)
+        {
+            return new UtilizadorDTO
+            {
+                IdUtilizador = utilizador.IdUtilizador,
+                NomeUtilizador = utilizador.NomeUtilizador,
+                EmailUtilizador = utilizador.EmailUtilizador,
+                TelemovelUtilizador = utilizador.TelemovelUtilizador,
+                FotoUtilizador = utilizador.FotoUtilizador,
+                UsernameUtilizador = utilizador.UsernameUtilizador,
+                PasswordUtilizador = utilizador.PasswordUtilizador,
+                Estado = utilizador.Estado,
+                TipoConta = utilizador.TipoConta
+            };
+
+        }
+
+        public static Utilizador UpdateUtilizador(UtilizadorUpdateDTO utilizador,Utilizador user)
+        {
+            user.NomeUtilizador = utilizador.NomeUtilizador;
+            user.EmailUtilizador = utilizador.EmailUtilizador;
+            user.TelemovelUtilizador = utilizador.TelemovelUtilizador;
+            user.FotoUtilizador = utilizador.FotoUtilizador;
+            user.UsernameUtilizador = utilizador.UsernameUtilizador;
+            user.PasswordUtilizador = utilizador.PasswordUtilizador;
             return user;
         }
-        
+
+        public static Utilizador ToUtilizador_(UtilizadorUpdateDTO utilizador)
+        {
+            return new Utilizador
+            {
+                IdUtilizador = utilizador.IdUtilizador,
+                NomeUtilizador = utilizador.NomeUtilizador,
+                EmailUtilizador = utilizador.EmailUtilizador,
+                TelemovelUtilizador = utilizador.TelemovelUtilizador,
+                FotoUtilizador = utilizador.FotoUtilizador,
+                UsernameUtilizador = utilizador.UsernameUtilizador,
+                PasswordUtilizador = utilizador.PasswordUtilizador,
+            };
+
+        }
+
+
+
     }
 }

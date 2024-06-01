@@ -20,3 +20,5 @@ D:\karapinhaproject\KarapinhaXptoApi\Karapinha.Services\obj\Debug\net8.0\ref\Kar
 D:\karapinhaproject\KarapinhaXptoApi\Karapinha.Services\bin\Debug\net8.0\selenium-manager\linux\selenium-manager
 D:\karapinhaproject\KarapinhaXptoApi\Karapinha.Services\bin\Debug\net8.0\selenium-manager\macos\selenium-manager
 D:\karapinhaproject\KarapinhaXptoApi\Karapinha.Services\bin\Debug\net8.0\selenium-manager\windows\selenium-manager.exe
+D:\karapinhaproject\KarapinhaXptoApi\Karapinha.Services\bin\Debug\net8.0\Karapinnha.DTO.dll
+D:\karapinhaproject\KarapinhaXptoApi\Karapinha.Services\bin\Debug\net8.0\Karapinnha.DTO.pdb

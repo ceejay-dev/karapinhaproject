@@ -1,4 +1,5 @@
 ﻿using Amazon.Lambda.Model;
+using Karapinha.DAL.Converters;
 using Karapinha.DAL.Repositories;
 using Karapinha.Model;
 using Karapinha.Shared.IRepositories;
@@ -14,20 +15,20 @@ using System.Threading.Tasks;
 
 namespace Karapinha.Services
 {
-    public class UsuarioService : IUsuarioService
+    public class UtilizadorService : IUtilizadorService
     {
-        private readonly IUsuarioRepository _usuarioRepository;
+        private readonly IUtilizadorRepository _UtilizadorRepository;
 
-        public UsuarioService(IUsuarioRepository usuarioRepository)
+        public UtilizadorService(IUtilizadorRepository usuarioRepository)
         {
-            _usuarioRepository = usuarioRepository;
+            _UtilizadorRepository = usuarioRepository;
         }
 
-        public async Task<Usuario> CreateUser(Usuario usuario, IFormFile foto)
+        public async Task<UtilizadorDTO> CreateUser(UtilizadorDTO Utilizador, IFormFile foto)
         {
             try
             {
-                var usuarioAdded = await _usuarioRepository.CreateUser(usuario, foto);
+                var usuarioAdded = UtilizadorConverter.ToUtilizadorDTO(await _UtilizadorRepository.CreateUser(UtilizadorConverter.ToUtilizador(Utilizador), foto));
                 return usuarioAdded;
             }
             catch (Exception ex)
@@ -36,16 +37,17 @@ namespace Karapinha.Services
             }
         }
 
-        public async Task<Usuario> GetUserById(int id)
+        public async Task<UtilizadorDTO> GetUserById(int id)
         {
             try
             {
-                var user = await _usuarioRepository.GetUserById(id);
+                var user = await _UtilizadorRepository.GetUserById(id);
                 if (user == null)
                 {
-                    throw new NotFoundException($"Usuário com ID {id} não encontrado.");
+                    throw new NotFoundException();
                 }
-                return user;
+
+                return UtilizadorConverter.ToUtilizadorDTO(user);
             }
             catch (NotFoundException)
             {
@@ -58,11 +60,12 @@ namespace Karapinha.Services
         }
 
 
-        public List<Usuario> GetAllUsers()
+        public async Task<IEnumerable<UtilizadorDTO>> GetAllUsers()
         {
             try
             {
-                return _usuarioRepository.GetAllUsers();
+                var utilizadores = await _UtilizadorRepository.GetAllUsers();
+                return utilizadores.Select(UtilizadorConverter.ToUtilizadorDTO);
             }
             catch (Exception ex)
             {
@@ -74,7 +77,7 @@ namespace Karapinha.Services
         {
             try
             {
-                await _usuarioRepository.DeleteUser(id);
+                await _UtilizadorRepository.DeleteUser(id);
                 return true;
             }
             catch (Exception ex)
@@ -83,12 +86,14 @@ namespace Karapinha.Services
             }
         }
 
-        public async Task<Usuario> UpdateUser(Usuario usuario, int id)
+        public async Task UpdateUser(UtilizadorUpdateDTO utilizador)
         {
             try
             {
-                var userUpdated = await _usuarioRepository.UpdateUser(usuario, id);
-                return userUpdated;
+                var user = await _UtilizadorRepository.GetUserById(utilizador.IdUtilizador);
+                if (user == null) return;
+
+                await _UtilizadorRepository.UpdateUser(UtilizadorConverter.UpdateUtilizador(utilizador, user));
             }
             catch (Exception ex)
             {

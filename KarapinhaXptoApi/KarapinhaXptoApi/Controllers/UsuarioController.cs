@@ -5,22 +5,22 @@ using Microsoft.AspNetCore.Mvc;
 
 namespace KarapinhaXptoApi.Controllers
 {
-    public class UsuarioController : ControllerBase
+    public class UtilizadorController : ControllerBase
     {
-        private readonly IUsuarioService _usuarioService;
+        private readonly IUtilizadorService _UtilizadorService;
 
-        public UsuarioController(IUsuarioService usuarioService)
+        public UtilizadorController(IUtilizadorService UtilizadorService)
         {
-            _usuarioService = usuarioService;
+            _UtilizadorService = UtilizadorService;
         }
 
         [HttpPost]
         [Route("/AddUser")]
-        public async Task<ActionResult> CreateUser([FromForm] UsuarioDTO usuario, IFormFile foto)
+        public async Task<ActionResult> CreateUser([FromForm] UtilizadorDTO Utilizador, IFormFile foto)
         {
             try
             {
-                var userAdded = UsuarioConverter.ToUsuarioDTO( await _usuarioService.CreateUser(UsuarioConverter.ToUsuario(usuario), foto));
+                var userAdded = await _UtilizadorService.CreateUser(Utilizador, foto);
                 return Ok(userAdded);
             }
             catch (Exception ex)
@@ -34,11 +34,11 @@ namespace KarapinhaXptoApi.Controllers
 
         [HttpGet]
         [Route("/GetUser")]
-        public async Task<ActionResult<UsuarioDTO>> GetUserById(int id)
+        public async Task<ActionResult<UtilizadorDTO>> GetUserById(int id)
         {
             try
             {
-                var user = await _usuarioService.GetUserById(id);
+                var user = await _UtilizadorService.GetUserById(id);
                 return Ok(user); // Retorna 200 OK com o usuário encontrado
             }
             catch (Exception ex)
@@ -50,11 +50,11 @@ namespace KarapinhaXptoApi.Controllers
 
         [HttpGet]
         [Route("/GetUsers")]
-        public List<UsuarioDTO> GetUsers()
+        public Task<IEnumerable<UtilizadorDTO>> GetAllUsers()
         {
             try
             {
-                return _usuarioService.GetAllUsers();
+                return _UtilizadorService.GetAllUsers();
             }
             catch
             {
@@ -68,7 +68,7 @@ namespace KarapinhaXptoApi.Controllers
         {
             try
             {
-                await _usuarioService.DeleteUser(id);
+                await _UtilizadorService.DeleteUser(id);
                 return Ok();
             }
             catch
@@ -79,17 +79,16 @@ namespace KarapinhaXptoApi.Controllers
 
         [HttpPut]
         [Route("/UpdateUser")]
-        public async Task<ActionResult> UpdateUser(UsuarioDTO usuario, int id)
+        public async Task<ActionResult> UpdateUser([FromBody] UtilizadorUpdateDTO Utilizador)
         {
             try
             {
-                var userUpdated = UsuarioConverter.ToUsuarioDTO(await _usuarioService.UpdateUser(UsuarioConverter.ToUsuario(usuario)));
-                return Ok(userUpdated);
-
+                await _UtilizadorService.UpdateUser(Utilizador);
+                return NoContent();
             }
             catch
             {
-                return StatusCode(StatusCodes.Status500InternalServerError, "Error deleting an user!,");
+                return StatusCode(StatusCodes.Status500InternalServerError, "Error updating an user!,");
             }
         }
     }

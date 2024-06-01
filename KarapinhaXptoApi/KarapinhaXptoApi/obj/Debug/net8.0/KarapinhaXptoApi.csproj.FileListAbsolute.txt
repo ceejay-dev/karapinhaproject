@@ -150,3 +150,5 @@ D:\karapinhaproject\KarapinhaXptoApi\KarapinhaXptoApi\bin\Debug\net8.0\selenium-
 D:\karapinhaproject\KarapinhaXptoApi\KarapinhaXptoApi\bin\Debug\net8.0\selenium-manager\windows\selenium-manager.exe
 D:\karapinhaproject\KarapinhaXptoApi\KarapinhaXptoApi\bin\Debug\net8.0\Newtonsoft.Json.dll
 D:\karapinhaproject\KarapinhaXptoApi\KarapinhaXptoApi\bin\Debug\net8.0\WebDriver.dll
+D:\karapinhaproject\KarapinhaXptoApi\KarapinhaXptoApi\bin\Debug\net8.0\Karapinnha.DTO.dll
+D:\karapinhaproject\KarapinhaXptoApi\KarapinhaXptoApi\bin\Debug\net8.0\Karapinnha.DTO.pdb

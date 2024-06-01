@@ -17,3 +17,5 @@ D:\karapinhaproject\KarapinhaXptoApi\Karapinha.DAL\obj\Debug\net8.0\refint\Karap
 D:\karapinhaproject\KarapinhaXptoApi\Karapinha.DAL\obj\Debug\net8.0\Karapinha.DAL.pdb
 D:\karapinhaproject\KarapinhaXptoApi\Karapinha.DAL\obj\Debug\net8.0\Karapinha.DAL.genruntimeconfig.cache
 D:\karapinhaproject\KarapinhaXptoApi\Karapinha.DAL\obj\Debug\net8.0\ref\Karapinha.DAL.dll
+D:\karapinhaproject\KarapinhaXptoApi\Karapinha.DAL\bin\Debug\net8.0\Karapinnha.DTO.dll
+D:\karapinhaproject\KarapinhaXptoApi\Karapinha.DAL\bin\Debug\net8.0\Karapinnha.DTO.pdb

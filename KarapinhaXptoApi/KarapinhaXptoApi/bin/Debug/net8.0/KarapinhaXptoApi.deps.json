@@ -11,6 +11,7 @@
           "Karapinha.DAL": "1.0.0",
           "Karapinha.Services": "1.0.0",
           "Karapinha.Shared": "1.0.0",
+          "Karapinnha.DTO": "1.0.0",
           "Microsoft.EntityFrameworkCore": "8.0.5",
           "Microsoft.EntityFrameworkCore.Design": "8.0.5",
           "Microsoft.EntityFrameworkCore.SqlServer": "8.0.5",
@@ -988,10 +989,16 @@
       "Karapinha.Shared/1.0.0": {
         "dependencies": {
           "Karapinha.Model": "1.0.0",
+          "Karapinnha.DTO": "1.0.0",
           "Microsoft.AspNetCore.Http.Features": "5.0.17"
         },
         "runtime": {
           "Karapinha.Shared.dll": {}
+        }
+      },
+      "Karapinnha.DTO/1.0.0": {
+        "runtime": {
+          "Karapinnha.DTO.dll": {}
         }
       }
     }
@@ -1627,6 +1634,11 @@
       "sha512": ""
     },
     "Karapinha.Shared/1.0.0": {
+      "type": "project",
+      "serviceable": false,
+      "sha512": ""
+    },
+    "Karapinnha.DTO/1.0.0": {
       "type": "project",
       "serviceable": false,
       "sha512": ""

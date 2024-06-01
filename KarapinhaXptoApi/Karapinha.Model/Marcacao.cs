@@ -18,8 +18,8 @@ namespace Karapinha.Model
         public DateTime DataMarcacao { get; set; }
         public DateTime HoraMarcacao { get; set; }
         public string? Estado { get; set; }
-        public int FkUsuario { get; set; }
-        [ForeignKey(nameof(FkUsuario))]
-        public Usuario? Usuario { get; set; }
+        public int FkUtilizador { get; set; }
+        [ForeignKey(nameof(FkUtilizador))]
+        public Utilizador? Utilizador { get; set; }
     }
 }

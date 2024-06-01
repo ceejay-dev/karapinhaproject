@@ -3,17 +3,17 @@ Microsoft Visual Studio Solution File, Format Version 12.00
 # Visual Studio Version 17
 VisualStudioVersion = 17.10.34916.146
 MinimumVisualStudioVersion = 10.0.40219.1
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "KarapinhaXptoApi", "KarapinhaXptoApi\KarapinhaXptoApi.csproj", "{681334B5-0B5A-4554-B088-4D2AD2DCCCF5}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "KarapinhaXptoApi", "KarapinhaXptoApi\KarapinhaXptoApi.csproj", "{681334B5-0B5A-4554-B088-4D2AD2DCCCF5}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Karapinha.DAL", "Karapinha.DAL\Karapinha.DAL.csproj", "{220243E3-9456-48C8-983E-B3D233EC0989}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Karapinha.DAL", "Karapinha.DAL\Karapinha.DAL.csproj", "{220243E3-9456-48C8-983E-B3D233EC0989}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Karapinnha.DTO", "Karapinnha.DTO\Karapinnha.DTO.csproj", "{DCE2769B-6E2C-46A8-B322-CBA0585B20D5}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Karapinnha.DTO", "Karapinnha.DTO\Karapinnha.DTO.csproj", "{DCE2769B-6E2C-46A8-B322-CBA0585B20D5}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Karapinha.Services", "Karapinha.Services\Karapinha.Services.csproj", "{F33CC080-53F0-4BBD-9619-219BA2C6F0E7}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Karapinha.Services", "Karapinha.Services\Karapinha.Services.csproj", "{F33CC080-53F0-4BBD-9619-219BA2C6F0E7}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Karapinha.Shared", "Karapinha.Shared\Karapinha.Shared.csproj", "{A8A0A425-5EDF-4C3D-8F0F-53C5D8684F76}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Karapinha.Shared", "Karapinha.Shared\Karapinha.Shared.csproj", "{A8A0A425-5EDF-4C3D-8F0F-53C5D8684F76}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Karapinha.Model", "Karapinha.Model\Karapinha.Model.csproj", "{042E2487-382D-475B-A77B-29A1A6C99243}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Karapinha.Model", "Karapinha.Model\Karapinha.Model.csproj", "{042E2487-382D-475B-A77B-29A1A6C99243}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution

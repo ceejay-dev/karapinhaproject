@@ -9,12 +9,12 @@ using System.Threading.Tasks;
 
 namespace Karapinha.Shared.IRepositories
 {
-    public interface IUsuarioRepository
+    public interface IUtilizadorRepository
     {
-        Task<Usuario> CreateUser(Usuario usuario, IFormFile foto);
-        Task<Usuario> GetUserById(int id);
-        List<Usuario> GetAllUsers();
+        Task<Utilizador> CreateUser(Utilizador Utilizador, IFormFile foto);
+        Task<Utilizador> GetUserById(int id);
+        Task<List<Utilizador>> GetAllUsers();
         Task<bool> DeleteUser(int id);
-        Task<Usuario> UpdateUser(Usuario usuario, int id);
+        Task UpdateUser(Utilizador Utilizador);
     }
 }

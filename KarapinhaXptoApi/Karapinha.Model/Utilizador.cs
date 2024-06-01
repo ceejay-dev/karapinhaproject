@@ -9,21 +9,21 @@ using System.Threading.Tasks;
 
 namespace Karapinha.Model
 {
-    [Table("usuarios")]
-    public class Usuario
+    [Table("Utilizadores")]
+    public class Utilizador
     {
         [Key]
-        public int IdUsuario { get; set; }
-        public string? NomeUsuario { get; set; }
+        public int IdUtilizador { get; set; }
+        public string? NomeUtilizador { get; set; }
         [Unique]
-        public string? EmailUsuario { get; set; }
+        public string? EmailUtilizador { get; set; }
 
         [MaxLength(9)]
-        public string? TelemovelUsuario { get; set; }
-        public string? FotoUsuario { get; set; }
+        public string? TelemovelUtilizador { get; set; }
+        public string? FotoUtilizador { get; set; }
         [Unique]
-        public string? UsernameUsuario { get; set; }
-        public string? PasswordUsuario { get; set; }
+        public string? UsernameUtilizador { get; set; }
+        public string? PasswordUtilizador { get; set; }
         public string? Estado { get; set; }
         public string? TipoConta {  get; set; }
     }

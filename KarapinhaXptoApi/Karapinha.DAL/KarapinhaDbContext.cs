@@ -15,11 +15,12 @@ namespace Karapinha.DAL
         : base(options)
         {
         }
-        public DbSet<Usuario>? Usuarios { get; set; }
+        public DbSet<Utilizador>? Utilizadores { get; set; }
         public DbSet<Servico> Servicos { get; set; }
         public DbSet<Profissional> Profissionais { get; set; }
         public DbSet<Categoria> Categorias { get; set; }
         public DbSet<Marcacao> Marcacoes { get; set; }
+        public DbSet<Horario> Horarios { get; set; }
 
         protected override void OnModelCreating(ModelBuilder modelBuilder)
         {

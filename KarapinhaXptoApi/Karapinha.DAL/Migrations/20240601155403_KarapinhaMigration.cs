@@ -35,8 +35,7 @@ namespace Karapinha.DAL.Migrations
                     EmailProfissional = table.Column<string>(type: "nvarchar(max)", nullable: true),
                     FotoProfissional = table.Column<string>(type: "nvarchar(max)", nullable: true),
                     BilheteProfissional = table.Column<string>(type: "nvarchar(max)", nullable: true),
-                    TelemovelProfissional = table.Column<string>(type: "nvarchar(max)", nullable: true),
-                    horarios = table.Column<string>(type: "nvarchar(max)", nullable: true)
+                    TelemovelProfissional = table.Column<string>(type: "nvarchar(max)", nullable: true)
                 },
                 constraints: table =>
                 {
@@ -44,23 +43,42 @@ namespace Karapinha.DAL.Migrations
                 });
 
             migrationBuilder.CreateTable(
-                name: "usuarios",
+                name: "Utilizadores",
                 columns: table => new
                 {
-                    IdUsuario = table.Column<int>(type: "int", nullable: false)
+                    IdUtilizador = table.Column<int>(type: "int", nullable: false)
                         .Annotation("SqlServer:Identity", "1, 1"),
-                    NomeUsuario = table.Column<string>(type: "nvarchar(max)", nullable: true),
-                    EmailUsuario = table.Column<string>(type: "nvarchar(max)", nullable: true),
-                    TelemovelUsuario = table.Column<string>(type: "nvarchar(9)", maxLength: 9, nullable: true),
-                    FotoUsuario = table.Column<string>(type: "nvarchar(max)", nullable: true),
-                    UsernameUsuario = table.Column<string>(type: "nvarchar(max)", nullable: true),
-                    PasswordUsuario = table.Column<string>(type: "nvarchar(max)", nullable: true),
+                    NomeUtilizador = table.Column<string>(type: "nvarchar(max)", nullable: true),
+                    EmailUtilizador = table.Column<string>(type: "nvarchar(max)", nullable: true),
+                    TelemovelUtilizador = table.Column<string>(type: "nvarchar(9)", maxLength: 9, nullable: true),
+                    FotoUtilizador = table.Column<string>(type: "nvarchar(max)", nullable: true),
+                    UsernameUtilizador = table.Column<string>(type: "nvarchar(max)", nullable: true),
+                    PasswordUtilizador = table.Column<string>(type: "nvarchar(max)", nullable: true),
                     Estado = table.Column<string>(type: "nvarchar(max)", nullable: true),
                     TipoConta = table.Column<string>(type: "nvarchar(max)", nullable: true)
                 },
                 constraints: table =>
                 {
-                    table.PrimaryKey("PK_usuarios", x => x.IdUsuario);
+                    table.PrimaryKey("PK_Utilizadores", x => x.IdUtilizador);
+                });
+
+            migrationBuilder.CreateTable(
+                name: "horarios",
+                columns: table => new
+                {
+                    IdHorario = table.Column<int>(type: "int", nullable: false)
+                        .Annotation("SqlServer:Identity", "1, 1"),
+                    Descricao = table.Column<string>(type: "nvarchar(max)", nullable: true),
+                    ProfissionalIdProfissional = table.Column<int>(type: "int", nullable: true)
+                },
+                constraints: table =>
+                {
+                    table.PrimaryKey("PK_horarios", x => x.IdHorario);
+                    table.ForeignKey(
+                        name: "FK_horarios_profissionais_ProfissionalIdProfissional",
+                        column: x => x.ProfissionalIdProfissional,
+                        principalTable: "profissionais",
+                        principalColumn: "IdProfissional");
                 });
 
             migrationBuilder.CreateTable(
@@ -72,16 +90,16 @@ namespace Karapinha.DAL.Migrations
                     DataMarcacao = table.Column<DateTime>(type: "datetime2", nullable: false),
                     HoraMarcacao = table.Column<DateTime>(type: "datetime2", nullable: false),
                     Estado = table.Column<string>(type: "nvarchar(max)", nullable: true),
-                    FkUsuario = table.Column<int>(type: "int", nullable: false)
+                    FkUtilizador = table.Column<int>(type: "int", nullable: false)
                 },
                 constraints: table =>
                 {
                     table.PrimaryKey("PK_marcacoes", x => x.IdMarcacao);
                     table.ForeignKey(
-                        name: "FK_marcacoes_usuarios_FkUsuario",
-                        column: x => x.FkUsuario,
-                        principalTable: "usuarios",
-                        principalColumn: "IdUsuario",
+                        name: "FK_marcacoes_Utilizadores_FkUtilizador",
+                        column: x => x.FkUtilizador,
+                        principalTable: "Utilizadores",
+                        principalColumn: "IdUtilizador",
                         onDelete: ReferentialAction.Cascade);
                 });
 
@@ -114,9 +132,14 @@ namespace Karapinha.DAL.Migrations
                 });
 
             migrationBuilder.CreateIndex(
-                name: "IX_marcacoes_FkUsuario",
+                name: "IX_horarios_ProfissionalIdProfissional",
+                table: "horarios",
+                column: "ProfissionalIdProfissional");
+
+            migrationBuilder.CreateIndex(
+                name: "IX_marcacoes_FkUtilizador",
                 table: "marcacoes",
-                column: "FkUsuario");
+                column: "FkUtilizador");
 
             migrationBuilder.CreateIndex(
                 name: "IX_servicos_FkCategoria",
@@ -133,10 +156,13 @@ namespace Karapinha.DAL.Migrations
         protected override void Down(MigrationBuilder migrationBuilder)
         {
             migrationBuilder.DropTable(
-                name: "profissionais");
+                name: "horarios");
 
             migrationBuilder.DropTable(
                 name: "servicos");
+
+            migrationBuilder.DropTable(
+                name: "profissionais");
 
             migrationBuilder.DropTable(
                 name: "categorias");
@@ -145,7 +171,7 @@ namespace Karapinha.DAL.Migrations
                 name: "marcacoes");
 
             migrationBuilder.DropTable(
-                name: "usuarios");
+                name: "Utilizadores");
         }
     }
 }

@@ -9,6 +9,7 @@
       "Karapinha.Shared/1.0.0": {
         "dependencies": {
           "Karapinha.Model": "1.0.0",
+          "Karapinnha.DTO": "1.0.0",
           "Microsoft.AspNetCore.Http.Features": "5.0.17"
         },
         "runtime": {
@@ -58,6 +59,11 @@
         "runtime": {
           "Karapinha.Model.dll": {}
         }
+      },
+      "Karapinnha.DTO/1.0.0": {
+        "runtime": {
+          "Karapinnha.DTO.dll": {}
+        }
       }
     }
   },
@@ -96,6 +102,11 @@
       "hashPath": "system.io.pipelines.5.0.2.nupkg.sha512"
     },
     "Karapinha.Model/1.0.0": {
+      "type": "project",
+      "serviceable": false,
+      "sha512": ""
+    },
+    "Karapinnha.DTO/1.0.0": {
       "type": "project",
       "serviceable": false,
       "sha512": ""
