@@ -9,7 +9,7 @@ using System.Threading.Tasks;
 
 namespace Karapinha.Model
 {
-    [Table("Utilizadores")]
+    [Table("utilizadores")]
     public class Utilizador
     {
         [Key]
@@ -17,7 +17,6 @@ namespace Karapinha.Model
         public string? NomeUtilizador { get; set; }
         [Unique]
         public string? EmailUtilizador { get; set; }
-
         [MaxLength(9)]
         public string? TelemovelUtilizador { get; set; }
         public string? FotoUtilizador { get; set; }

@@ -13,13 +13,15 @@ namespace Karapinha.Model
     {
         [Key]
         public int IdServico { get; set; }
+        [Required]
         public string? NomeServico { get; set; }
+        [Required]
         public double Preco { get; set; }
-
         public int FkCategoria { get; set; }
         [ForeignKey(nameof(FkCategoria))]
         public Categoria? Categoria { get; set; }
         public int IdMarcacao { get; set; }
+        [ForeignKey(nameof(IdMarcacao))]
         public Marcacao Marcacao { get; set; } = null!;
 
     }

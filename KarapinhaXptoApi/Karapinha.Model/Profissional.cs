@@ -14,15 +14,19 @@ namespace Karapinha.Model
     {
         [Key]
         public int IdProfissional { get; set; }
+        [Required]
         public string? NomeProfissional { get; set; }
         [ForeignKey(nameof(Servico))]
         public int FkServico { get; set; }
         [ServiceStack.DataAnnotations.Unique]
+        [Required]
         public string? EmailProfissional { get; set; }
         public string? FotoProfissional { get; set; }
         [ServiceStack.DataAnnotations.Unique]
+        [Required]
         public string? BilheteProfissional { get; set; }
         [ServiceStack.DataAnnotations.Unique]
+        [Required]
         public string? TelemovelProfissional { get; set; }
         public List<Horario>? Horarios { get; set; }
     }

@@ -15,8 +15,8 @@ namespace Karapinha.Model
         [Key]
         public int IdMarcacao { get; set; }
         public ICollection<Servico> Servicos { get; set; } = new List<Servico>();
-        public DateTime DataMarcacao { get; set; }
-        public DateTime HoraMarcacao { get; set; }
+        public DateOnly DataMarcacao { get; set; }
+        public TimeOnly HoraMarcacao { get; set; }
         public string? Estado { get; set; }
         public int FkUtilizador { get; set; }
         [ForeignKey(nameof(FkUtilizador))]

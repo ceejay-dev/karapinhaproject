@@ -10,13 +10,13 @@ namespace KarapinhaXptoApi.Controllers
         private readonly IUtilizadorService _UtilizadorService;
 
         public UtilizadorController(IUtilizadorService UtilizadorService)
-        {
+        {   
             _UtilizadorService = UtilizadorService;
         }
 
         [HttpPost]
         [Route("/AddUser")]
-        public async Task<ActionResult> CreateUser([FromForm] UtilizadorDTO Utilizador, IFormFile foto)
+        public async Task<ActionResult> CreateUser([FromForm] UtilizadorCreateDTO Utilizador, IFormFile foto)
         {
             try
             {
@@ -27,19 +27,19 @@ namespace KarapinhaXptoApi.Controllers
             {
                 {
                     Console.WriteLine(ex.Message);
-                    return StatusCode(500, "Erro interno ao adicionar usuário.");
+                    return StatusCode(500, "Error adding the user.");
                 }
             }
         }
 
         [HttpGet]
         [Route("/GetUser")]
-        public async Task<ActionResult<UtilizadorDTO>> GetUserById(int id)
+        public async Task<ActionResult<UtilizadorCreateDTO>> GetUserById(int id)
         {
             try
             {
                 var user = await _UtilizadorService.GetUserById(id);
-                return Ok(user); // Retorna 200 OK com o usuário encontrado
+                return Ok(user); // Retorna Ok/200 usuário encontrado
             }
             catch (Exception ex)
             {
@@ -50,7 +50,7 @@ namespace KarapinhaXptoApi.Controllers
 
         [HttpGet]
         [Route("/GetUsers")]
-        public Task<IEnumerable<UtilizadorDTO>> GetAllUsers()
+        public Task<IEnumerable<UtilizadorCreateDTO>> GetAllUsers()
         {
             try
             {

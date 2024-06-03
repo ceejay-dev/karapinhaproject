@@ -24,7 +24,7 @@ namespace Karapinha.Services
             _UtilizadorRepository = usuarioRepository;
         }
 
-        public async Task<UtilizadorDTO> CreateUser(UtilizadorDTO Utilizador, IFormFile foto)
+        public async Task<UtilizadorCreateDTO> CreateUser(UtilizadorCreateDTO Utilizador, IFormFile foto)
         {
             try
             {
@@ -37,7 +37,7 @@ namespace Karapinha.Services
             }
         }
 
-        public async Task<UtilizadorDTO> GetUserById(int id)
+        public async Task<UtilizadorCreateDTO> GetUserById(int id)
         {
             try
             {
@@ -60,7 +60,7 @@ namespace Karapinha.Services
         }
 
 
-        public async Task<IEnumerable<UtilizadorDTO>> GetAllUsers()
+        public async Task<IEnumerable<UtilizadorCreateDTO>> GetAllUsers()
         {
             try
             {

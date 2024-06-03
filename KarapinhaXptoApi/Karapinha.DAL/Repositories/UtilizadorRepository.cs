@@ -43,7 +43,6 @@ namespace Karapinha.DAL.Repositories
             return await dbContext.Utilizadores.FindAsync(id);
         }
 
-
         public async Task<List<Utilizador>> GetAllUsers()
         {
             return await dbContext.Utilizadores.ToListAsync();

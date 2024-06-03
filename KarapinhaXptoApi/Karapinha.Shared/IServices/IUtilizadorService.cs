@@ -11,9 +11,9 @@ namespace Karapinha.Shared.IServices
 {
     public interface IUtilizadorService
     {
-        Task<UtilizadorDTO> CreateUser(UtilizadorDTO Utilizador, IFormFile foto);
-        Task<UtilizadorDTO> GetUserById(int id);
-        Task<IEnumerable<UtilizadorDTO>> GetAllUsers();
+        Task<UtilizadorCreateDTO> CreateUser(UtilizadorCreateDTO Utilizador, IFormFile foto);
+        Task<UtilizadorCreateDTO> GetUserById(int id);
+        Task<IEnumerable<UtilizadorCreateDTO>> GetAllUsers();
         Task<bool> DeleteUser(int id);
         Task UpdateUser(UtilizadorUpdateDTO Utilizador);
     }
