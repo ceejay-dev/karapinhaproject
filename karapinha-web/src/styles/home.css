@@ -1,11 +1,9 @@
 .main-container{
-    background-image: url('../assets/homepage_image.jpeg');
+    background-image: url('../assets/carrosel2.jpeg');
     height: 100vh;
     width: 100%;
     background-size: cover;
 }
-
-
 
 ul{
     list-style: none;

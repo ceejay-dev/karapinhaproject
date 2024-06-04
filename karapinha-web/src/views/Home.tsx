@@ -10,7 +10,7 @@ export function Home() {
 
   const handleSelect = (selectedIndex: any) => {
     setIndex(selectedIndex);
-  };
+  };  
 
   return (
     <main>
@@ -33,7 +33,7 @@ export function Home() {
               <Button route="/" text="Signup" className="link-signup"/>
             </li>
             <li className="botao-nav2">
-            <Button route="/" text="Login"/>
+            <Button route="/Login" text="Login"/>
             </li>
           </div>
         </ul>

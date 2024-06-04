@@ -20,7 +20,7 @@
 
 .imagem-container{
     width: 50%;
-    background-image: url("../assets/login.jpeg");
+    background-image: url("../assets/login-black.jpeg");
     background-size: cover;
     border-bottom-left-radius: 12px;
     border-top-left-radius: 12px;
@@ -31,4 +31,33 @@ form {
  flex-direction: column;
  gap: 12px;
  width: 50%
+}
+
+.btn-outline-dark{
+    --bs-btn-hover-bg: #000000 !important;
+    width: 150px;
+    margin-right: 4px;
+}
+
+.btn-dark{
+    background-color: #000000 !important;
+    width: 150px;
+    margin-left: 4px;
+}
+
+.botao {
+    display: flex;
+    justify-content: center;
+}
+
+input {
+    height: 40px;
+    border-radius: 7px;
+}
+
+.button-container{
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+    margin: 10px;
 }
