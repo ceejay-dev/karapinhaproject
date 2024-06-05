@@ -24,8 +24,8 @@ namespace Karapinha.Services
         {
             try
             {
-                var categoryAdded = CategoriaConverter.ToCategoriaDTO(await _categoriaRepository.CreateCategory(CategoriaConverter.ToCategoria(dto)));
-                return categoryAdded;
+                var category = CategoriaConverter.ToCategoriaDTO(await _categoriaRepository.CreateCategory(CategoriaConverter.ToCategoria(dto)));
+                return category;
             }
             catch (Exception ex)
             {
@@ -71,7 +71,7 @@ namespace Karapinha.Services
             }
         }
 
-        public async Task UpdateCategory(CategoriaDTO dto)
+        public async Task UpdateCategory(CategoriaUpdateDTO dto)
         {
             try
             {

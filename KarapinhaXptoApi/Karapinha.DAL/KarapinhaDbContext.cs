@@ -21,6 +21,7 @@ namespace Karapinha.DAL
         public DbSet<Categoria> Categorias { get; set; }
         public DbSet<Marcacao> Marcacoes { get; set; }
         public DbSet<Horario> Horarios { get; set; }
+        public DbSet<ProfissionalHorario> ProfissionalHorarios { get; set; }
 
         protected override void OnModelCreating(ModelBuilder modelBuilder)
         {
@@ -29,6 +30,13 @@ namespace Karapinha.DAL
                 .HasMany(s => s.Servicos)
                 .WithOne(s => s.Marcacao)
                 .HasForeignKey(s => s.IdMarcacao)
+                .IsRequired();
+
+            //uma categoria pode ter muitos servicos
+            modelBuilder.Entity<Categoria>()
+                .HasMany(c => c.Servicos)
+                .WithOne(c => c.Categoria)
+                .HasForeignKey(p => p.FkCategoria)
                 .IsRequired();
 
             base.OnModelCreating(modelBuilder);

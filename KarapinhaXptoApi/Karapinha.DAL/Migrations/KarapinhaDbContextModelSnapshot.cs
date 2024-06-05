@@ -51,12 +51,7 @@ namespace Karapinha.DAL.Migrations
                         .IsRequired()
                         .HasColumnType("nvarchar(max)");
 
-                    b.Property<int?>("ProfissionalIdProfissional")
-                        .HasColumnType("int");
-
                     b.HasKey("IdHorario");
-
-                    b.HasIndex("ProfissionalIdProfissional");
 
                     b.ToTable("horarios");
                 });
@@ -80,6 +75,9 @@ namespace Karapinha.DAL.Migrations
 
                     b.Property<TimeOnly>("HoraMarcacao")
                         .HasColumnType("time");
+
+                    b.Property<int>("Marcacoes")
+                        .HasColumnType("int");
 
                     b.HasKey("IdMarcacao");
 
@@ -121,6 +119,29 @@ namespace Karapinha.DAL.Migrations
                     b.HasKey("IdProfissional");
 
                     b.ToTable("profissionais");
+                });
+
+            modelBuilder.Entity("Karapinha.Model.ProfissionalHorario", b =>
+                {
+                    b.Property<int>("Id")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("int");
+
+                    SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("Id"));
+
+                    b.Property<int>("FkHorario")
+                        .HasColumnType("int");
+
+                    b.Property<int>("FkProfissional")
+                        .HasColumnType("int");
+
+                    b.HasKey("Id");
+
+                    b.HasIndex("FkHorario");
+
+                    b.HasIndex("FkProfissional");
+
+                    b.ToTable("ProfissionalHorarios");
                 });
 
             modelBuilder.Entity("Karapinha.Model.Servico", b =>
@@ -180,7 +201,7 @@ namespace Karapinha.DAL.Migrations
                         .HasMaxLength(9)
                         .HasColumnType("nvarchar(9)");
 
-                    b.Property<string>("TipoConta")
+                    b.Property<string>("TipoPerfil")
                         .HasColumnType("nvarchar(max)");
 
                     b.Property<string>("UsernameUtilizador")
@@ -189,13 +210,6 @@ namespace Karapinha.DAL.Migrations
                     b.HasKey("IdUtilizador");
 
                     b.ToTable("utilizadores");
-                });
-
-            modelBuilder.Entity("Karapinha.Model.Horario", b =>
-                {
-                    b.HasOne("Karapinha.Model.Profissional", null)
-                        .WithMany("Horarios")
-                        .HasForeignKey("ProfissionalIdProfissional");
                 });
 
             modelBuilder.Entity("Karapinha.Model.Marcacao", b =>
@@ -209,10 +223,29 @@ namespace Karapinha.DAL.Migrations
                     b.Navigation("Utilizador");
                 });
 
+            modelBuilder.Entity("Karapinha.Model.ProfissionalHorario", b =>
+                {
+                    b.HasOne("Karapinha.Model.Horario", "Horario")
+                        .WithMany()
+                        .HasForeignKey("FkHorario")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
+
+                    b.HasOne("Karapinha.Model.Profissional", "Profissional")
+                        .WithMany()
+                        .HasForeignKey("FkProfissional")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
+
+                    b.Navigation("Horario");
+
+                    b.Navigation("Profissional");
+                });
+
             modelBuilder.Entity("Karapinha.Model.Servico", b =>
                 {
                     b.HasOne("Karapinha.Model.Categoria", "Categoria")
-                        .WithMany()
+                        .WithMany("Servicos")
                         .HasForeignKey("FkCategoria")
                         .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
@@ -228,14 +261,14 @@ namespace Karapinha.DAL.Migrations
                     b.Navigation("Marcacao");
                 });
 
-            modelBuilder.Entity("Karapinha.Model.Marcacao", b =>
+            modelBuilder.Entity("Karapinha.Model.Categoria", b =>
                 {
                     b.Navigation("Servicos");
                 });
 
-            modelBuilder.Entity("Karapinha.Model.Profissional", b =>
+            modelBuilder.Entity("Karapinha.Model.Marcacao", b =>
                 {
-                    b.Navigation("Horarios");
+                    b.Navigation("Servicos");
                 });
 #pragma warning restore 612, 618
         }

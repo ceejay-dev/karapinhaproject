@@ -14,7 +14,6 @@ namespace Karapinha.DAL.Converters
         {
             return new Categoria
             {
-                IdCategoria = category.IdCategoria,
                 NomeCategoria = category.NomeCategoria
             };
         }
@@ -23,12 +22,11 @@ namespace Karapinha.DAL.Converters
         {
             return new CategoriaDTO
             {
-                IdCategoria = category.IdCategoria,
                 NomeCategoria = category.NomeCategoria
             };
         }
 
-        public static Categoria UpdateCategoria(CategoriaDTO update, Categoria categoria)
+        public static Categoria UpdateCategoria(CategoriaUpdateDTO update, Categoria categoria)
         {
             categoria.NomeCategoria = update.NomeCategoria;
             return categoria;

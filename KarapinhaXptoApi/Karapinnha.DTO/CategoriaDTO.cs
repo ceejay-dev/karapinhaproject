@@ -8,7 +8,6 @@ namespace Karapinnha.DTO
 {
     public class CategoriaDTO
     {
-        public int IdCategoria { get; set; }
         public string ? NomeCategoria { get; set; }
     }
 }

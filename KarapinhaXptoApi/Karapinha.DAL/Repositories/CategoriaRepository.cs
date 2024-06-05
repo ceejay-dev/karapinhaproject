@@ -11,7 +11,7 @@ namespace Karapinha.DAL.Repositories
 {
     public class CategoriaRepository : ICategoriaRepository
     {
-        public KarapinhaDbContext dbContext { get; set; }
+        private readonly KarapinhaDbContext dbContext;
 
         public CategoriaRepository(KarapinhaDbContext context)
         {

@@ -14,6 +14,6 @@ namespace Karapinha.Shared.IServices
         Task<CategoriaDTO> GetCategoryById(int id);
         Task<IEnumerable<CategoriaDTO>> GetAllCategories();
         Task<bool> DeleteCategory(int id);
-        Task UpdateCategory(CategoriaDTO categoria);
+        Task UpdateCategory(CategoriaUpdateDTO categoria);
     }
 }

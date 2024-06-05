@@ -1,5 +1,8 @@
 D:\karapinhaproject\KarapinhaXptoApi\KarapinhaXptoApi\bin\Debug\net8.0\appsettings.Development.json
 D:\karapinhaproject\KarapinhaXptoApi\KarapinhaXptoApi\bin\Debug\net8.0\appsettings.json
+D:\karapinhaproject\KarapinhaXptoApi\KarapinhaXptoApi\bin\Debug\net8.0\selenium-manager\linux\selenium-manager
+D:\karapinhaproject\KarapinhaXptoApi\KarapinhaXptoApi\bin\Debug\net8.0\selenium-manager\macos\selenium-manager
+D:\karapinhaproject\KarapinhaXptoApi\KarapinhaXptoApi\bin\Debug\net8.0\selenium-manager\windows\selenium-manager.exe
 D:\karapinhaproject\KarapinhaXptoApi\KarapinhaXptoApi\bin\Debug\net8.0\KarapinhaXptoApi.exe
 D:\karapinhaproject\KarapinhaXptoApi\KarapinhaXptoApi\bin\Debug\net8.0\KarapinhaXptoApi.deps.json
 D:\karapinhaproject\KarapinhaXptoApi\KarapinhaXptoApi\bin\Debug\net8.0\KarapinhaXptoApi.runtimeconfig.json
@@ -34,6 +37,8 @@ D:\karapinhaproject\KarapinhaXptoApi\KarapinhaXptoApi\bin\Debug\net8.0\Microsoft
 D:\karapinhaproject\KarapinhaXptoApi\KarapinhaXptoApi\bin\Debug\net8.0\Microsoft.SqlServer.Server.dll
 D:\karapinhaproject\KarapinhaXptoApi\KarapinhaXptoApi\bin\Debug\net8.0\Microsoft.Win32.SystemEvents.dll
 D:\karapinhaproject\KarapinhaXptoApi\KarapinhaXptoApi\bin\Debug\net8.0\Mono.TextTemplating.dll
+D:\karapinhaproject\KarapinhaXptoApi\KarapinhaXptoApi\bin\Debug\net8.0\Newtonsoft.Json.dll
+D:\karapinhaproject\KarapinhaXptoApi\KarapinhaXptoApi\bin\Debug\net8.0\WebDriver.dll
 D:\karapinhaproject\KarapinhaXptoApi\KarapinhaXptoApi\bin\Debug\net8.0\ServiceStack.Interfaces.dll
 D:\karapinhaproject\KarapinhaXptoApi\KarapinhaXptoApi\bin\Debug\net8.0\Swashbuckle.AspNetCore.Swagger.dll
 D:\karapinhaproject\KarapinhaXptoApi\KarapinhaXptoApi\bin\Debug\net8.0\Swashbuckle.AspNetCore.SwaggerGen.dll
@@ -120,10 +125,12 @@ D:\karapinhaproject\KarapinhaXptoApi\KarapinhaXptoApi\bin\Debug\net8.0\Karapinha
 D:\karapinhaproject\KarapinhaXptoApi\KarapinhaXptoApi\bin\Debug\net8.0\Karapinha.Model.dll
 D:\karapinhaproject\KarapinhaXptoApi\KarapinhaXptoApi\bin\Debug\net8.0\Karapinha.Services.dll
 D:\karapinhaproject\KarapinhaXptoApi\KarapinhaXptoApi\bin\Debug\net8.0\Karapinha.Shared.dll
+D:\karapinhaproject\KarapinhaXptoApi\KarapinhaXptoApi\bin\Debug\net8.0\Karapinnha.DTO.dll
 D:\karapinhaproject\KarapinhaXptoApi\KarapinhaXptoApi\bin\Debug\net8.0\Karapinha.DAL.pdb
 D:\karapinhaproject\KarapinhaXptoApi\KarapinhaXptoApi\bin\Debug\net8.0\Karapinha.Services.pdb
-D:\karapinhaproject\KarapinhaXptoApi\KarapinhaXptoApi\bin\Debug\net8.0\Karapinha.Model.pdb
 D:\karapinhaproject\KarapinhaXptoApi\KarapinhaXptoApi\bin\Debug\net8.0\Karapinha.Shared.pdb
+D:\karapinhaproject\KarapinhaXptoApi\KarapinhaXptoApi\bin\Debug\net8.0\Karapinnha.DTO.pdb
+D:\karapinhaproject\KarapinhaXptoApi\KarapinhaXptoApi\bin\Debug\net8.0\Karapinha.Model.pdb
 D:\karapinhaproject\KarapinhaXptoApi\KarapinhaXptoApi\obj\Debug\net8.0\KarapinhaXptoApi.csproj.AssemblyReference.cache
 D:\karapinhaproject\KarapinhaXptoApi\KarapinhaXptoApi\obj\Debug\net8.0\KarapinhaXptoApi.GeneratedMSBuildEditorConfig.editorconfig
 D:\karapinhaproject\KarapinhaXptoApi\KarapinhaXptoApi\obj\Debug\net8.0\KarapinhaXptoApi.AssemblyInfoInputs.cache
@@ -145,10 +152,3 @@ D:\karapinhaproject\KarapinhaXptoApi\KarapinhaXptoApi\obj\Debug\net8.0\refint\Ka
 D:\karapinhaproject\KarapinhaXptoApi\KarapinhaXptoApi\obj\Debug\net8.0\KarapinhaXptoApi.pdb
 D:\karapinhaproject\KarapinhaXptoApi\KarapinhaXptoApi\obj\Debug\net8.0\KarapinhaXptoApi.genruntimeconfig.cache
 D:\karapinhaproject\KarapinhaXptoApi\KarapinhaXptoApi\obj\Debug\net8.0\ref\KarapinhaXptoApi.dll
-D:\karapinhaproject\KarapinhaXptoApi\KarapinhaXptoApi\bin\Debug\net8.0\selenium-manager\linux\selenium-manager
-D:\karapinhaproject\KarapinhaXptoApi\KarapinhaXptoApi\bin\Debug\net8.0\selenium-manager\macos\selenium-manager
-D:\karapinhaproject\KarapinhaXptoApi\KarapinhaXptoApi\bin\Debug\net8.0\selenium-manager\windows\selenium-manager.exe
-D:\karapinhaproject\KarapinhaXptoApi\KarapinhaXptoApi\bin\Debug\net8.0\Newtonsoft.Json.dll
-D:\karapinhaproject\KarapinhaXptoApi\KarapinhaXptoApi\bin\Debug\net8.0\WebDriver.dll
-D:\karapinhaproject\KarapinhaXptoApi\KarapinhaXptoApi\bin\Debug\net8.0\Karapinnha.DTO.dll
-D:\karapinhaproject\KarapinhaXptoApi\KarapinhaXptoApi\bin\Debug\net8.0\Karapinnha.DTO.pdb

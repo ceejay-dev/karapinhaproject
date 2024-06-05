@@ -1,12 +1,17 @@
+D:\karapinhaproject\KarapinhaXptoApi\Karapinha.Services\bin\Debug\net8.0\selenium-manager\linux\selenium-manager
+D:\karapinhaproject\KarapinhaXptoApi\Karapinha.Services\bin\Debug\net8.0\selenium-manager\macos\selenium-manager
+D:\karapinhaproject\KarapinhaXptoApi\Karapinha.Services\bin\Debug\net8.0\selenium-manager\windows\selenium-manager.exe
 D:\karapinhaproject\KarapinhaXptoApi\Karapinha.Services\bin\Debug\net8.0\Karapinha.Services.deps.json
 D:\karapinhaproject\KarapinhaXptoApi\Karapinha.Services\bin\Debug\net8.0\Karapinha.Services.dll
 D:\karapinhaproject\KarapinhaXptoApi\Karapinha.Services\bin\Debug\net8.0\Karapinha.Services.pdb
 D:\karapinhaproject\KarapinhaXptoApi\Karapinha.Services\bin\Debug\net8.0\Karapinha.DAL.dll
 D:\karapinhaproject\KarapinhaXptoApi\Karapinha.Services\bin\Debug\net8.0\Karapinha.Model.dll
 D:\karapinhaproject\KarapinhaXptoApi\Karapinha.Services\bin\Debug\net8.0\Karapinha.Shared.dll
+D:\karapinhaproject\KarapinhaXptoApi\Karapinha.Services\bin\Debug\net8.0\Karapinnha.DTO.dll
 D:\karapinhaproject\KarapinhaXptoApi\Karapinha.Services\bin\Debug\net8.0\Karapinha.DAL.pdb
 D:\karapinhaproject\KarapinhaXptoApi\Karapinha.Services\bin\Debug\net8.0\Karapinha.Model.pdb
 D:\karapinhaproject\KarapinhaXptoApi\Karapinha.Services\bin\Debug\net8.0\Karapinha.Shared.pdb
+D:\karapinhaproject\KarapinhaXptoApi\Karapinha.Services\bin\Debug\net8.0\Karapinnha.DTO.pdb
 D:\karapinhaproject\KarapinhaXptoApi\Karapinha.Services\obj\Debug\net8.0\Karapinha.Services.csproj.AssemblyReference.cache
 D:\karapinhaproject\KarapinhaXptoApi\Karapinha.Services\obj\Debug\net8.0\Karapinha.Services.GeneratedMSBuildEditorConfig.editorconfig
 D:\karapinhaproject\KarapinhaXptoApi\Karapinha.Services\obj\Debug\net8.0\Karapinha.Services.AssemblyInfoInputs.cache
@@ -17,8 +22,3 @@ D:\karapinhaproject\KarapinhaXptoApi\Karapinha.Services\obj\Debug\net8.0\Karapin
 D:\karapinhaproject\KarapinhaXptoApi\Karapinha.Services\obj\Debug\net8.0\refint\Karapinha.Services.dll
 D:\karapinhaproject\KarapinhaXptoApi\Karapinha.Services\obj\Debug\net8.0\Karapinha.Services.pdb
 D:\karapinhaproject\KarapinhaXptoApi\Karapinha.Services\obj\Debug\net8.0\ref\Karapinha.Services.dll
-D:\karapinhaproject\KarapinhaXptoApi\Karapinha.Services\bin\Debug\net8.0\selenium-manager\linux\selenium-manager
-D:\karapinhaproject\KarapinhaXptoApi\Karapinha.Services\bin\Debug\net8.0\selenium-manager\macos\selenium-manager
-D:\karapinhaproject\KarapinhaXptoApi\Karapinha.Services\bin\Debug\net8.0\selenium-manager\windows\selenium-manager.exe
-D:\karapinhaproject\KarapinhaXptoApi\Karapinha.Services\bin\Debug\net8.0\Karapinnha.DTO.dll
-D:\karapinhaproject\KarapinhaXptoApi\Karapinha.Services\bin\Debug\net8.0\Karapinnha.DTO.pdb

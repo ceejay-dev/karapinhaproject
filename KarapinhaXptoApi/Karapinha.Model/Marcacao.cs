@@ -21,5 +21,6 @@ namespace Karapinha.Model
         public int FkUtilizador { get; set; }
         [ForeignKey(nameof(FkUtilizador))]
         public Utilizador? Utilizador { get; set; }
+        public int Marcacoes { get; set; }
     }
 }

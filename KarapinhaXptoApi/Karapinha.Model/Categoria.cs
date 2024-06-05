@@ -15,5 +15,6 @@ namespace Karapinha.Model
         public int IdCategoria { get; set; }
         [Required]
         public string? NomeCategoria { get; set; }
+        public ICollection <Servico> Servicos { get; set; }
     }
 }

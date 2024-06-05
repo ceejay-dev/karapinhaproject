@@ -2,7 +2,9 @@ D:\karapinhaproject\KarapinhaXptoApi\Karapinha.Shared\bin\Debug\net8.0\Karapinha
 D:\karapinhaproject\KarapinhaXptoApi\Karapinha.Shared\bin\Debug\net8.0\Karapinha.Shared.dll
 D:\karapinhaproject\KarapinhaXptoApi\Karapinha.Shared\bin\Debug\net8.0\Karapinha.Shared.pdb
 D:\karapinhaproject\KarapinhaXptoApi\Karapinha.Shared\bin\Debug\net8.0\Karapinha.Model.dll
+D:\karapinhaproject\KarapinhaXptoApi\Karapinha.Shared\bin\Debug\net8.0\Karapinnha.DTO.dll
 D:\karapinhaproject\KarapinhaXptoApi\Karapinha.Shared\bin\Debug\net8.0\Karapinha.Model.pdb
+D:\karapinhaproject\KarapinhaXptoApi\Karapinha.Shared\bin\Debug\net8.0\Karapinnha.DTO.pdb
 D:\karapinhaproject\KarapinhaXptoApi\Karapinha.Shared\obj\Debug\net8.0\Karapinha.Shared.csproj.AssemblyReference.cache
 D:\karapinhaproject\KarapinhaXptoApi\Karapinha.Shared\obj\Debug\net8.0\Karapinha.Shared.GeneratedMSBuildEditorConfig.editorconfig
 D:\karapinhaproject\KarapinhaXptoApi\Karapinha.Shared\obj\Debug\net8.0\Karapinha.Shared.AssemblyInfoInputs.cache
@@ -13,5 +15,3 @@ D:\karapinhaproject\KarapinhaXptoApi\Karapinha.Shared\obj\Debug\net8.0\Karapinha
 D:\karapinhaproject\KarapinhaXptoApi\Karapinha.Shared\obj\Debug\net8.0\refint\Karapinha.Shared.dll
 D:\karapinhaproject\KarapinhaXptoApi\Karapinha.Shared\obj\Debug\net8.0\Karapinha.Shared.pdb
 D:\karapinhaproject\KarapinhaXptoApi\Karapinha.Shared\obj\Debug\net8.0\ref\Karapinha.Shared.dll
-D:\karapinhaproject\KarapinhaXptoApi\Karapinha.Shared\bin\Debug\net8.0\Karapinnha.DTO.dll
-D:\karapinhaproject\KarapinhaXptoApi\Karapinha.Shared\bin\Debug\net8.0\Karapinnha.DTO.pdb

@@ -14,7 +14,7 @@ namespace Karapinha.DAL.Repositories
 {
     public class UtilizadorRepository : IUtilizadorRepository
     {
-        public readonly KarapinhaDbContext dbContext;
+        private readonly KarapinhaDbContext dbContext;
 
         public UtilizadorRepository(KarapinhaDbContext context)
         {
@@ -69,5 +69,20 @@ namespace Karapinha.DAL.Repositories
             await dbContext.SaveChangesAsync();
         }
 
+        public async Task ActivateOrDesactivateClient(int id)
+        {
+            //Por terminar
+            var cliente = await GetUserById(id);
+            if (cliente != null)
+            {
+                if(cliente.Estado == "inactivo")
+                {
+                    cliente.Estado = "activo";
+                } else if ( cliente.Estado == "activo")
+                {
+                    cliente.Estado = "inactivo";
+                }
+            }
+        }
     }
 }

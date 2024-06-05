@@ -16,6 +16,6 @@ namespace Karapinnha.DTO
         public string? UsernameUtilizador { get; set; }
         public string? PasswordUtilizador { get; set; }
         public string? Estado { get; set; }
-        public string? TipoConta { get; set; }
+        public string? TipoPerfil { get; set; }
     }
 }

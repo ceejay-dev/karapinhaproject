@@ -21,7 +21,7 @@ namespace Karapinha.DAL.Converters
                 UsernameUtilizador = dto.UsernameUtilizador,
                 PasswordUtilizador = dto.PasswordUtilizador,
                 Estado = dto.Estado,
-                TipoConta = dto.TipoConta
+                TipoPerfil = dto.TipoPerfil
             };
         }
 
@@ -36,7 +36,7 @@ namespace Karapinha.DAL.Converters
                 UsernameUtilizador = utilizador.UsernameUtilizador,
                 PasswordUtilizador = utilizador.PasswordUtilizador,
                 Estado = utilizador.Estado,
-                TipoConta = utilizador.TipoConta
+                TipoPerfil = utilizador.TipoPerfil
             };
 
         }

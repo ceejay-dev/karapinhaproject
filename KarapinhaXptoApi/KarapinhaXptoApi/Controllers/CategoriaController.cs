@@ -6,11 +6,11 @@ namespace KarapinhaXptoApi.Controllers
 {
     public class CategoriaController : ControllerBase
     {
-        private readonly ICategoriaService _categoriaService;
+        private readonly ICategoriaService CategoriaService;
 
         public CategoriaController(ICategoriaService service)
         {
-            _categoriaService = service;
+            CategoriaService = service;
         }
 
         [HttpPost]
@@ -19,7 +19,7 @@ namespace KarapinhaXptoApi.Controllers
         {
             try
             {
-                var categoryAdded = await _categoriaService.CreateCategory(dto);
+                var categoryAdded = await CategoriaService.CreateCategory(dto);
                 return Ok(categoryAdded);
             }
             catch (Exception ex)
@@ -37,7 +37,7 @@ namespace KarapinhaXptoApi.Controllers
         {
             try
             {
-                var category = await _categoriaService.GetCategoryById(id);
+                var category = await CategoriaService.GetCategoryById(id);
                 return Ok(category);
 
             }
@@ -53,7 +53,7 @@ namespace KarapinhaXptoApi.Controllers
         {
             try
             {
-                return _categoriaService.GetAllCategories();
+                return CategoriaService.GetAllCategories();
             }
             catch (Exception ex)
             {
@@ -67,27 +67,27 @@ namespace KarapinhaXptoApi.Controllers
         {
             try
             {
-                await _categoriaService.DeleteCategory(id);
+                await CategoriaService.DeleteCategory(id);
                 return Ok();
             }
             catch 
             {
-                return StatusCode(StatusCodes.Status500InternalServerError, "Error deleting a category!");
+                return StatusCode(StatusCodes.Status500InternalServerError, "Erro apagandoa a categoria!");
             }
         }
 
         [HttpPut]
         [Route("/UpdateCategory")]
-        public async Task<ActionResult> UpdateCategory(CategoriaDTO dto)
+        public async Task<ActionResult> UpdateCategory(CategoriaUpdateDTO dto)
         {
             try
             {
-                await _categoriaService.UpdateCategory(dto);
+                await CategoriaService.UpdateCategory(dto);
                 return NoContent();
             }
             catch
             {
-                return StatusCode(StatusCodes.Status500InternalServerError, "Error updating a category!");
+                return StatusCode(StatusCodes.Status500InternalServerError, "Erro actualizando a categoria!");
             }
         }
 

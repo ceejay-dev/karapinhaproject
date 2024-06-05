@@ -6,7 +6,7 @@ using Microsoft.EntityFrameworkCore.Migrations;
 namespace Karapinha.DAL.Migrations
 {
     /// <inheritdoc />
-    public partial class KarapinhaMigration : Migration
+    public partial class FirstMigration : Migration
     {
         /// <inheritdoc />
         protected override void Up(MigrationBuilder migrationBuilder)
@@ -17,11 +17,24 @@ namespace Karapinha.DAL.Migrations
                 {
                     IdCategoria = table.Column<int>(type: "int", nullable: false)
                         .Annotation("SqlServer:Identity", "1, 1"),
-                    NomeCategoria = table.Column<string>(type: "nvarchar(max)", nullable: true)
+                    NomeCategoria = table.Column<string>(type: "nvarchar(max)", nullable: false)
                 },
                 constraints: table =>
                 {
                     table.PrimaryKey("PK_categorias", x => x.IdCategoria);
+                });
+
+            migrationBuilder.CreateTable(
+                name: "horarios",
+                columns: table => new
+                {
+                    IdHorario = table.Column<int>(type: "int", nullable: false)
+                        .Annotation("SqlServer:Identity", "1, 1"),
+                    Descricao = table.Column<string>(type: "nvarchar(max)", nullable: false)
+                },
+                constraints: table =>
+                {
+                    table.PrimaryKey("PK_horarios", x => x.IdHorario);
                 });
 
             migrationBuilder.CreateTable(
@@ -30,12 +43,12 @@ namespace Karapinha.DAL.Migrations
                 {
                     IdProfissional = table.Column<int>(type: "int", nullable: false)
                         .Annotation("SqlServer:Identity", "1, 1"),
-                    NomeProfissional = table.Column<string>(type: "nvarchar(max)", nullable: true),
+                    NomeProfissional = table.Column<string>(type: "nvarchar(max)", nullable: false),
                     FkServico = table.Column<int>(type: "int", nullable: false),
-                    EmailProfissional = table.Column<string>(type: "nvarchar(max)", nullable: true),
+                    EmailProfissional = table.Column<string>(type: "nvarchar(max)", nullable: false),
                     FotoProfissional = table.Column<string>(type: "nvarchar(max)", nullable: true),
-                    BilheteProfissional = table.Column<string>(type: "nvarchar(max)", nullable: true),
-                    TelemovelProfissional = table.Column<string>(type: "nvarchar(max)", nullable: true)
+                    BilheteProfissional = table.Column<string>(type: "nvarchar(max)", nullable: false),
+                    TelemovelProfissional = table.Column<string>(type: "nvarchar(max)", nullable: false)
                 },
                 constraints: table =>
                 {
@@ -43,7 +56,7 @@ namespace Karapinha.DAL.Migrations
                 });
 
             migrationBuilder.CreateTable(
-                name: "Utilizadores",
+                name: "utilizadores",
                 columns: table => new
                 {
                     IdUtilizador = table.Column<int>(type: "int", nullable: false)
@@ -55,30 +68,37 @@ namespace Karapinha.DAL.Migrations
                     UsernameUtilizador = table.Column<string>(type: "nvarchar(max)", nullable: true),
                     PasswordUtilizador = table.Column<string>(type: "nvarchar(max)", nullable: true),
                     Estado = table.Column<string>(type: "nvarchar(max)", nullable: true),
-                    TipoConta = table.Column<string>(type: "nvarchar(max)", nullable: true)
+                    TipoPerfil = table.Column<string>(type: "nvarchar(max)", nullable: true)
                 },
                 constraints: table =>
                 {
-                    table.PrimaryKey("PK_Utilizadores", x => x.IdUtilizador);
+                    table.PrimaryKey("PK_utilizadores", x => x.IdUtilizador);
                 });
 
             migrationBuilder.CreateTable(
-                name: "horarios",
+                name: "ProfissionalHorarios",
                 columns: table => new
                 {
-                    IdHorario = table.Column<int>(type: "int", nullable: false)
+                    Id = table.Column<int>(type: "int", nullable: false)
                         .Annotation("SqlServer:Identity", "1, 1"),
-                    Descricao = table.Column<string>(type: "nvarchar(max)", nullable: true),
-                    ProfissionalIdProfissional = table.Column<int>(type: "int", nullable: true)
+                    FkProfissional = table.Column<int>(type: "int", nullable: false),
+                    FkHorario = table.Column<int>(type: "int", nullable: false)
                 },
                 constraints: table =>
                 {
-                    table.PrimaryKey("PK_horarios", x => x.IdHorario);
+                    table.PrimaryKey("PK_ProfissionalHorarios", x => x.Id);
                     table.ForeignKey(
-                        name: "FK_horarios_profissionais_ProfissionalIdProfissional",
-                        column: x => x.ProfissionalIdProfissional,
+                        name: "FK_ProfissionalHorarios_horarios_FkHorario",
+                        column: x => x.FkHorario,
+                        principalTable: "horarios",
+                        principalColumn: "IdHorario",
+                        onDelete: ReferentialAction.Cascade);
+                    table.ForeignKey(
+                        name: "FK_ProfissionalHorarios_profissionais_FkProfissional",
+                        column: x => x.FkProfissional,
                         principalTable: "profissionais",
-                        principalColumn: "IdProfissional");
+                        principalColumn: "IdProfissional",
+                        onDelete: ReferentialAction.Cascade);
                 });
 
             migrationBuilder.CreateTable(
@@ -87,18 +107,19 @@ namespace Karapinha.DAL.Migrations
                 {
                     IdMarcacao = table.Column<int>(type: "int", nullable: false)
                         .Annotation("SqlServer:Identity", "1, 1"),
-                    DataMarcacao = table.Column<DateTime>(type: "datetime2", nullable: false),
-                    HoraMarcacao = table.Column<DateTime>(type: "datetime2", nullable: false),
+                    DataMarcacao = table.Column<DateOnly>(type: "date", nullable: false),
+                    HoraMarcacao = table.Column<TimeOnly>(type: "time", nullable: false),
                     Estado = table.Column<string>(type: "nvarchar(max)", nullable: true),
-                    FkUtilizador = table.Column<int>(type: "int", nullable: false)
+                    FkUtilizador = table.Column<int>(type: "int", nullable: false),
+                    Marcacoes = table.Column<int>(type: "int", nullable: false)
                 },
                 constraints: table =>
                 {
                     table.PrimaryKey("PK_marcacoes", x => x.IdMarcacao);
                     table.ForeignKey(
-                        name: "FK_marcacoes_Utilizadores_FkUtilizador",
+                        name: "FK_marcacoes_utilizadores_FkUtilizador",
                         column: x => x.FkUtilizador,
-                        principalTable: "Utilizadores",
+                        principalTable: "utilizadores",
                         principalColumn: "IdUtilizador",
                         onDelete: ReferentialAction.Cascade);
                 });
@@ -109,7 +130,7 @@ namespace Karapinha.DAL.Migrations
                 {
                     IdServico = table.Column<int>(type: "int", nullable: false)
                         .Annotation("SqlServer:Identity", "1, 1"),
-                    NomeServico = table.Column<string>(type: "nvarchar(max)", nullable: true),
+                    NomeServico = table.Column<string>(type: "nvarchar(max)", nullable: false),
                     Preco = table.Column<double>(type: "float", nullable: false),
                     FkCategoria = table.Column<int>(type: "int", nullable: false),
                     IdMarcacao = table.Column<int>(type: "int", nullable: false)
@@ -132,14 +153,19 @@ namespace Karapinha.DAL.Migrations
                 });
 
             migrationBuilder.CreateIndex(
-                name: "IX_horarios_ProfissionalIdProfissional",
-                table: "horarios",
-                column: "ProfissionalIdProfissional");
-
-            migrationBuilder.CreateIndex(
                 name: "IX_marcacoes_FkUtilizador",
                 table: "marcacoes",
                 column: "FkUtilizador");
+
+            migrationBuilder.CreateIndex(
+                name: "IX_ProfissionalHorarios_FkHorario",
+                table: "ProfissionalHorarios",
+                column: "FkHorario");
+
+            migrationBuilder.CreateIndex(
+                name: "IX_ProfissionalHorarios_FkProfissional",
+                table: "ProfissionalHorarios",
+                column: "FkProfissional");
 
             migrationBuilder.CreateIndex(
                 name: "IX_servicos_FkCategoria",
@@ -156,10 +182,13 @@ namespace Karapinha.DAL.Migrations
         protected override void Down(MigrationBuilder migrationBuilder)
         {
             migrationBuilder.DropTable(
-                name: "horarios");
+                name: "ProfissionalHorarios");
 
             migrationBuilder.DropTable(
                 name: "servicos");
+
+            migrationBuilder.DropTable(
+                name: "horarios");
 
             migrationBuilder.DropTable(
                 name: "profissionais");
@@ -171,7 +200,7 @@ namespace Karapinha.DAL.Migrations
                 name: "marcacoes");
 
             migrationBuilder.DropTable(
-                name: "Utilizadores");
+                name: "utilizadores");
         }
     }
 }

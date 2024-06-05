@@ -17,18 +17,18 @@ namespace Karapinha.Services
 {
     public class UtilizadorService : IUtilizadorService
     {
-        private readonly IUtilizadorRepository _UtilizadorRepository;
+        private readonly IUtilizadorRepository UtilizadorRepository;
 
         public UtilizadorService(IUtilizadorRepository usuarioRepository)
         {
-            _UtilizadorRepository = usuarioRepository;
+            UtilizadorRepository = usuarioRepository;
         }
 
         public async Task<UtilizadorCreateDTO> CreateUser(UtilizadorCreateDTO Utilizador, IFormFile foto)
         {
             try
             {
-                var usuarioAdded = UtilizadorConverter.ToUtilizadorDTO(await _UtilizadorRepository.CreateUser(UtilizadorConverter.ToUtilizador(Utilizador), foto));
+                var usuarioAdded = UtilizadorConverter.ToUtilizadorDTO(await UtilizadorRepository.CreateUser(UtilizadorConverter.ToUtilizador(Utilizador), foto));
                 return usuarioAdded;
             }
             catch (Exception ex)
@@ -41,7 +41,7 @@ namespace Karapinha.Services
         {
             try
             {
-                var user = await _UtilizadorRepository.GetUserById(id);
+                var user = await UtilizadorRepository.GetUserById(id);
                 if (user == null)
                 {
                     throw new NotFoundException();
@@ -64,7 +64,7 @@ namespace Karapinha.Services
         {
             try
             {
-                var utilizadores = await _UtilizadorRepository.GetAllUsers();
+                var utilizadores = await UtilizadorRepository.GetAllUsers();
                 return utilizadores.Select(UtilizadorConverter.ToUtilizadorDTO);
             }
             catch (Exception ex)
@@ -77,7 +77,7 @@ namespace Karapinha.Services
         {
             try
             {
-                await _UtilizadorRepository.DeleteUser(id);
+                await UtilizadorRepository.DeleteUser(id);
                 return true;
             }
             catch (Exception ex)
@@ -90,10 +90,10 @@ namespace Karapinha.Services
         {
             try
             {
-                var user = await _UtilizadorRepository.GetUserById(utilizador.IdUtilizador);
+                var user = await UtilizadorRepository.GetUserById(utilizador.IdUtilizador);
                 if (user == null) return;
 
-                await _UtilizadorRepository.UpdateUser(UtilizadorConverter.UpdateUtilizador(utilizador, user));
+                await UtilizadorRepository.UpdateUser(UtilizadorConverter.UpdateUtilizador(utilizador, user));
             }
             catch (Exception ex)
             {

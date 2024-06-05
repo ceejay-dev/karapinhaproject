@@ -24,6 +24,9 @@ builder.Services.AddTransient<IUtilizadorService, UtilizadorService>();
 builder.Services.AddTransient<ICategoriaRepository, CategoriaRepository>();
 builder.Services.AddTransient<ICategoriaService, CategoriaService>();
 
+builder.Services.AddTransient<IHorarioRepository, HorarioRepository>();
+builder.Services.AddTransient<IHorarioService, HorarioService>();
+
 var app = builder.Build();
 
 // Configure the HTTP request pipeline.

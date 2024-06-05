@@ -22,7 +22,7 @@ namespace Karapinha.Model
         public Categoria? Categoria { get; set; }
         public int IdMarcacao { get; set; }
         [ForeignKey(nameof(IdMarcacao))]
-        public Marcacao Marcacao { get; set; } = null!;
+        public Marcacao ? Marcacao { get; set; }
 
     }
 }
