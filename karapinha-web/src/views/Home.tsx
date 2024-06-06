@@ -2,7 +2,7 @@ import "../styles/home.css";
 import { useState } from "react";
 import { Link } from "react-router-dom";
 import Carousel from "react-bootstrap/Carousel";
-import { carrosel1, carrosel2, carrosel3 } from "../assets";
+import { carrosel1, carrosel2, carrosel3 } from "../components/Images";
 import { Button } from "../components/Button";
 
 export function Home() {
@@ -30,7 +30,7 @@ export function Home() {
 
           <div className="login-container d-flex flex-row">
             <li className="botao-nav">
-              <Button route="/" text="Signup" className="link-signup"/>
+              <Button route="/signup" text="Signup" className="link-signup"/>
             </li>
             <li className="botao-nav2">
             <Button route="/Login" text="Login"/>

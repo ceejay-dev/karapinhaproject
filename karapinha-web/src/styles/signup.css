@@ -1,0 +1,54 @@
+.container-main {
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    justify-content: center;
+    background-image: url('../assets/carrosel2.jpeg');
+    height: 100vh;
+    width: 100%;
+    background-size: cover;
+    padding: 80px;
+}
+
+.container-image {
+    width: 40%;
+    background-image: url("../assets/login2-black.jpeg");
+    height: 80vh;
+    background-size: cover;
+    border-bottom-left-radius: 12px;
+    border-top-left-radius: 12px;
+}
+
+.container-form {
+    width: 60%; 
+    height: 80vh;
+    background-color: white;
+    border-bottom-right-radius: 12px;
+    border-top-right-radius: 12px;
+    display: flex;
+    align-items: center; 
+    justify-content: center; 
+}
+
+.container-form form {
+    width: 100%; 
+    display: flex;
+    flex-direction: row;
+}
+
+.input-container1, .input-container2 {
+    display: flex;
+    flex-direction: column;
+    width: 50%; 
+    padding: 10px; 
+}
+
+input {
+    margin-bottom: 10px;
+}
+
+.image-icon{
+    width: 150px;
+    height: 150px;
+    margin-bottom: 10px;
+}
