@@ -3,6 +3,7 @@ import { Login } from "../views/Login";
 import { Home } from "../views/Home";
 import { Signup } from "../views/Signup";
 import { AdminHome } from "../views/AdminHome";
+import { GestorHome } from "../views/GestorHome";
 
 export function AppRoutes() {
   return (
@@ -10,8 +11,9 @@ export function AppRoutes() {
       <Routes>
         <Route path="/" element={<Home />} />
         <Route path="/login" element={<Login />} />
-        <Route path="/signup" element={<Signup />}></Route>
-        <Route path="/adminhome" element={<AdminHome />}></Route>
+        <Route path="/signup" element={<Signup />} />
+        <Route path="/adminHome" element={<AdminHome />} />
+        <Route path="/gestorHome" element={<GestorHome />} />
       </Routes>
     </BrowserRouter>
   );

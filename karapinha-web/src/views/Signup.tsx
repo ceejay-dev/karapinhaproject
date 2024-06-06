@@ -25,19 +25,19 @@ export function Signup() {
         </div>
         <form action="" className="d-flex justify-content-center formulario">
           <div className="d-flex flex-row">
-          <div className="input-container1">
-            <input type="text"/>
-            <input type="text" />
-            <input type="text" />
-            <input type="text" />
-          </div>
+            <div className="input-container1">
+              <input type="text" placeholder="Nome" className="m-1"/>
+              <input type="text" placeholder="Email" className="m-1"/>
+              <input type="text" placeholder="Telemóvel" className="m-1"/>
+              <input type="text" placeholder="Foto" className="m-1"/>
+            </div>
 
-          <div className="input-container2">
-            <input type="text" />
-            <input type="text" />
-            <input type="text" />
-            <input type="text" />
-          </div>
+            <div className="input-container2">
+              <input type="text" placeholder="BI" className="m-1"/>
+              <input type="text" placeholder="Username" className="m-1"/>
+              <input type="text" placeholder="Password" className="m-1"/>
+              <input type="text" placeholder="Confirmar password" className="m-1"/>
+            </div>
           </div>
 
           <div className="d-flex justify-content-center">
