@@ -1,7 +1,40 @@
 {
   "Version": 1,
   "WorkspaceRootPath": "D:\\karapinhaproject\\KarapinhaXptoApi\\",
-  "Documents": [],
+  "Documents": [
+    {
+      "AbsoluteMoniker": "D:0:0:{220243E3-9456-48C8-983E-B3D233EC0989}|Karapinha.DAL\\Karapinha.DAL.csproj|d:\\karapinhaproject\\karapinhaxptoapi\\karapinha.dal\\repositories\\categoriarepository.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{220243E3-9456-48C8-983E-B3D233EC0989}|Karapinha.DAL\\Karapinha.DAL.csproj|solutionrelative:karapinha.dal\\repositories\\categoriarepository.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{220243E3-9456-48C8-983E-B3D233EC0989}|Karapinha.DAL\\Karapinha.DAL.csproj|d:\\karapinhaproject\\karapinhaxptoapi\\karapinha.dal\\karapinhadbcontext.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{220243E3-9456-48C8-983E-B3D233EC0989}|Karapinha.DAL\\Karapinha.DAL.csproj|solutionrelative:karapinha.dal\\karapinhadbcontext.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{042E2487-382D-475B-A77B-29A1A6C99243}|Karapinha.Model\\Karapinha.Model.csproj|d:\\karapinhaproject\\karapinhaxptoapi\\karapinha.model\\categoria.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{042E2487-382D-475B-A77B-29A1A6C99243}|Karapinha.Model\\Karapinha.Model.csproj|solutionrelative:karapinha.model\\categoria.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{681334B5-0B5A-4554-B088-4D2AD2DCCCF5}|KarapinhaXptoApi\\KarapinhaXptoApi.csproj|d:\\karapinhaproject\\karapinhaxptoapi\\karapinhaxptoapi\\controllers\\categoriacontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{681334B5-0B5A-4554-B088-4D2AD2DCCCF5}|KarapinhaXptoApi\\KarapinhaXptoApi.csproj|solutionrelative:karapinhaxptoapi\\controllers\\categoriacontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{F33CC080-53F0-4BBD-9619-219BA2C6F0E7}|Karapinha.Services\\Karapinha.Services.csproj|d:\\karapinhaproject\\karapinhaxptoapi\\karapinha.services\\categoriaservice.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{F33CC080-53F0-4BBD-9619-219BA2C6F0E7}|Karapinha.Services\\Karapinha.Services.csproj|solutionrelative:karapinha.services\\categoriaservice.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{DCE2769B-6E2C-46A8-B322-CBA0585B20D5}|Karapinnha.DTO\\Karapinnha.DTO.csproj|d:\\karapinhaproject\\karapinhaxptoapi\\karapinnha.dto\\horariodto.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{DCE2769B-6E2C-46A8-B322-CBA0585B20D5}|Karapinnha.DTO\\Karapinnha.DTO.csproj|solutionrelative:karapinnha.dto\\horariodto.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{DCE2769B-6E2C-46A8-B322-CBA0585B20D5}|Karapinnha.DTO\\Karapinnha.DTO.csproj|d:\\karapinhaproject\\karapinhaxptoapi\\karapinnha.dto\\categoriaupdatedto.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{DCE2769B-6E2C-46A8-B322-CBA0585B20D5}|Karapinnha.DTO\\Karapinnha.DTO.csproj|solutionrelative:karapinnha.dto\\categoriaupdatedto.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{DCE2769B-6E2C-46A8-B322-CBA0585B20D5}|Karapinnha.DTO\\Karapinnha.DTO.csproj|d:\\karapinhaproject\\karapinhaxptoapi\\karapinnha.dto\\categoriadto.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{DCE2769B-6E2C-46A8-B322-CBA0585B20D5}|Karapinnha.DTO\\Karapinnha.DTO.csproj|solutionrelative:karapinnha.dto\\categoriadto.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    }
+  ],
   "DocumentGroupContainers": [
     {
       "Orientation": 0,
@@ -9,11 +42,108 @@
       "DocumentGroups": [
         {
           "DockedWidth": 200,
-          "SelectedChildIndex": -1,
+          "SelectedChildIndex": 7,
           "Children": [
             {
               "$type": "Bookmark",
               "Name": "ST:128:0:{75188d03-9892-4ae2-abf1-207126247ce5}"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 2,
+              "Title": "Categoria.cs",
+              "DocumentMoniker": "D:\\karapinhaproject\\KarapinhaXptoApi\\Karapinha.Model\\Categoria.cs",
+              "RelativeDocumentMoniker": "Karapinha.Model\\Categoria.cs",
+              "ToolTip": "D:\\karapinhaproject\\KarapinhaXptoApi\\Karapinha.Model\\Categoria.cs",
+              "RelativeToolTip": "Karapinha.Model\\Categoria.cs",
+              "ViewState": "AQIAAAAAAAAAAAAAAAAAABQAAAAAAAAA",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2024-06-06T12:57:25.38Z"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 3,
+              "Title": "CategoriaController.cs",
+              "DocumentMoniker": "D:\\karapinhaproject\\KarapinhaXptoApi\\KarapinhaXptoApi\\Controllers\\CategoriaController.cs",
+              "RelativeDocumentMoniker": "KarapinhaXptoApi\\Controllers\\CategoriaController.cs",
+              "ToolTip": "D:\\karapinhaproject\\KarapinhaXptoApi\\KarapinhaXptoApi\\Controllers\\CategoriaController.cs",
+              "RelativeToolTip": "KarapinhaXptoApi\\Controllers\\CategoriaController.cs",
+              "ViewState": "AQIAAAAAAAAAAAAAAAAAAAAAAAAAAAAA",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2024-06-06T12:44:44.766Z"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 4,
+              "Title": "CategoriaService.cs",
+              "DocumentMoniker": "D:\\karapinhaproject\\KarapinhaXptoApi\\Karapinha.Services\\CategoriaService.cs",
+              "RelativeDocumentMoniker": "Karapinha.Services\\CategoriaService.cs",
+              "ToolTip": "D:\\karapinhaproject\\KarapinhaXptoApi\\Karapinha.Services\\CategoriaService.cs",
+              "RelativeToolTip": "Karapinha.Services\\CategoriaService.cs",
+              "ViewState": "AQIAAAAAAAAAAAAAAAAAAAAAAAAAAAAA",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2024-06-06T12:44:32.253Z"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 5,
+              "Title": "HorarioDTO.cs",
+              "DocumentMoniker": "D:\\karapinhaproject\\KarapinhaXptoApi\\Karapinnha.DTO\\HorarioDTO.cs",
+              "RelativeDocumentMoniker": "Karapinnha.DTO\\HorarioDTO.cs",
+              "ToolTip": "D:\\karapinhaproject\\KarapinhaXptoApi\\Karapinnha.DTO\\HorarioDTO.cs",
+              "RelativeToolTip": "Karapinnha.DTO\\HorarioDTO.cs",
+              "ViewState": "AQIAAAAAAAAAAAAAAAAAAAoAAAAAAAAA",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2024-06-06T12:44:02.602Z"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 6,
+              "Title": "CategoriaUpdateDTO.cs",
+              "DocumentMoniker": "D:\\karapinhaproject\\KarapinhaXptoApi\\Karapinnha.DTO\\CategoriaUpdateDTO.cs",
+              "RelativeDocumentMoniker": "Karapinnha.DTO\\CategoriaUpdateDTO.cs",
+              "ToolTip": "D:\\karapinhaproject\\KarapinhaXptoApi\\Karapinnha.DTO\\CategoriaUpdateDTO.cs",
+              "RelativeToolTip": "Karapinnha.DTO\\CategoriaUpdateDTO.cs",
+              "ViewState": "AQIAAAAAAAAAAAAAAAAAAAAAAAAAAAAA",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2024-06-06T12:43:49.562Z"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 1,
+              "Title": "KarapinhaDbContext.cs",
+              "DocumentMoniker": "D:\\karapinhaproject\\KarapinhaXptoApi\\Karapinha.DAL\\KarapinhaDbContext.cs",
+              "RelativeDocumentMoniker": "Karapinha.DAL\\KarapinhaDbContext.cs",
+              "ToolTip": "D:\\karapinhaproject\\KarapinhaXptoApi\\Karapinha.DAL\\KarapinhaDbContext.cs",
+              "RelativeToolTip": "Karapinha.DAL\\KarapinhaDbContext.cs",
+              "ViewState": "AQIAABIAAAAAAAAAAAAYwBIAAAAoAAAA",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2024-06-06T12:26:19.983Z"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 0,
+              "Title": "CategoriaRepository.cs",
+              "DocumentMoniker": "D:\\karapinhaproject\\KarapinhaXptoApi\\Karapinha.DAL\\Repositories\\CategoriaRepository.cs",
+              "RelativeDocumentMoniker": "Karapinha.DAL\\Repositories\\CategoriaRepository.cs",
+              "ToolTip": "D:\\karapinhaproject\\KarapinhaXptoApi\\Karapinha.DAL\\Repositories\\CategoriaRepository.cs",
+              "RelativeToolTip": "Karapinha.DAL\\Repositories\\CategoriaRepository.cs",
+              "ViewState": "AQIAAAAAAAAAAAAAAAAAABMAAAAAAAAA",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2024-06-06T12:22:44.543Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 7,
+              "Title": "CategoriaDTO.cs",
+              "DocumentMoniker": "D:\\karapinhaproject\\KarapinhaXptoApi\\Karapinnha.DTO\\CategoriaDTO.cs",
+              "RelativeDocumentMoniker": "Karapinnha.DTO\\CategoriaDTO.cs",
+              "ToolTip": "D:\\karapinhaproject\\KarapinhaXptoApi\\Karapinnha.DTO\\CategoriaDTO.cs",
+              "RelativeToolTip": "Karapinnha.DTO\\CategoriaDTO.cs",
+              "ViewState": "AQIAAAAAAAAAAAAAAAAAAAAAAAAAAAAA",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2024-06-06T12:43:45.474Z"
             }
           ]
         }

@@ -25,7 +25,7 @@ export function Home() {
           </li>
 
           <li>
-            <Button route="/" text="Sobre" />
+            <Button route="/adminhome" text="Sobre" />
           </li>
 
           <div className="login-container d-flex flex-row">

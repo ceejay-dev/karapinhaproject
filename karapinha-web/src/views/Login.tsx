@@ -28,14 +28,14 @@ export function Login() {
           <input type="password" placeholder="Password" />
 
           <div className="button-container">
-            <div className="botao">
-              <Button variant="outline-dark" onClick={handleLoginClick}>
+            <div className="m-1">
+              <Button variant="dark" onClick={handleLoginClick}>
                 Login
               </Button>
             </div>
 
-            <div className="botao">
-              <Button variant="dark" onClick={handleRegisterClick}>
+            <div className="m-1">
+              <Button variant="outline-dark" onClick={handleRegisterClick}>
                 Registar
               </Button>
             </div>

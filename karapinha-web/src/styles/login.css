@@ -46,19 +46,10 @@ form {
     margin-left: 4px;
 }
 
-.btn-dark:hover{
-    background-color: #FFFFFF !important;
-    color: #000000;
-}
-
-.botao {
-    display: flex;
-    justify-content: center;
-}
-
 input {
     height: 40px;
     border-radius: 7px;
+    padding: 10px;
 }
 
 .button-container{
