@@ -3,17 +3,17 @@ import { logo } from "../components/Images";
 import "../styles/signup.css";
 import { Button } from "react-bootstrap";
 
-export function Signup() {
+export function UpdateUser() {
   const navigate = useNavigate();
 
-  const handleLoginClick = (event: { preventDefault: () => void }) => {
+  const handleHomeClick = (event: { preventDefault: () => void }) => {
     event.preventDefault();
-    navigate("/login");
+    navigate("/");
   };
 
-  const handleRegisterClick = (event: { preventDefault: () => void }) => {
+  const handleEditedClick = (event: { preventDefault: () => void }) => {
     event.preventDefault();
-    navigate("/signup");
+    navigate("/");
   };
   return (
     <div className="container-main">
@@ -42,14 +42,14 @@ export function Signup() {
 
           <div className="d-flex justify-content-center">
             <div className="m-1">
-              <Button variant="outline-dark" onClick={handleLoginClick}>
-                Login
+              <Button variant="danger" onClick={handleHomeClick} className="botao">
+                Sair
               </Button>
             </div>
 
             <div className="m-1">
-              <Button variant="dark" onClick={handleRegisterClick}>
-                Registar
+              <Button variant="success" onClick={handleEditedClick} className="botao">
+                Confirmar
               </Button>
             </div>
           </div>

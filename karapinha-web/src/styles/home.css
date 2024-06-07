@@ -5,6 +5,7 @@
     background-size: cover;
 }
 
+
 ul{
     list-style: none;
     display: flex;
@@ -48,6 +49,31 @@ a:hover{
     color: wheat;
 }
 
+.link-signup:hover{
+    color: black;
+}
+
+.link-signup{
+    color: black;
+}
+
+.botao-nav2:hover{
+    background-color: white;
+    border-top-right-radius: 25px;
+    border-bottom-right-radius: 25px;
+}
+
+.botao-nav:hover{
+    background-color: white;
+    color: black;
+}
+
+.botao-nav{
+    background-color: white;
+    border-radius: 25px;
+    color: black;
+}
+
 .login-container{
     border: 1px solid white;
     border-radius: 25px;
@@ -63,27 +89,19 @@ a:hover{
     color: black;
 }
 
-.botao-nav:hover{
-    background-color: white;
-    color: black;
-}
-
-.botao-nav{
-    background-color: white;
+/*This styles are being applied in home page when the user is logged */
+.navegacao {
+    border: 1px solid white;
     border-radius: 25px;
-    color: black;
-}
-
-.link-signup:hover{
-    color: black;
-}
-
-.link-signup{
-    color: black;
-}
-
-.botao-nav2:hover{
+    right: 7%;
+    position: absolute;
     background-color: white;
-    border-top-right-radius: 25px;
-    border-bottom-right-radius: 25px;
+}
+
+.navegacao:hover {
+    background-color: white;
+}
+
+.button-image{
+    width: 25px;
 }

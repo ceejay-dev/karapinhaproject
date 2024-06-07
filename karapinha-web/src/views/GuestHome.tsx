@@ -2,10 +2,10 @@ import "../styles/home.css";
 import { useState } from "react";
 import { Link } from "react-router-dom";
 import Carousel from "react-bootstrap/Carousel";
-import { carrosel1, carrosel2, carrosel3, sair, userLogo } from "../components/Images";
+import { carrosel1, carrosel2, carrosel3 } from "../components/Images";
 import { Button } from "../components/Button";
 
-export function Home() {
+export function GuestHome() {
   const [index, setIndex] = useState(0);
 
   const handleSelect = (selectedIndex: any) => {
@@ -25,15 +25,15 @@ export function Home() {
           </li>
 
           <li>
-            <Button route="/" text="Sobre" />
+            <Button route="/gestorHome" text="Sobre" />
           </li>
 
-          <div className="navegacao d-flex flex-row">
-            <li className="nav1">
-              <Button route="/editUser" imageSrc={userLogo} className="link-signup"/>
+          <div className="login-container d-flex flex-row">
+            <li className="botao-nav">
+              <Button route="/signup" text="Signup" className="link-signup"/>
             </li>
-            <li className="nav2">
-            <Button route="/guest" imageSrc={sair}/>
+            <li className="botao-nav2">
+            <Button route="/Login" text="Login"/>
             </li>
           </div>
         </ul>

@@ -8,12 +8,12 @@ export function Login() {
 
   const handleLoginClick = (event: { preventDefault: () => void; }) => {
     event.preventDefault(); 
-    navigate('/Login'); 
+    navigate('/login'); 
   };
 
   const handleRegisterClick = (event: { preventDefault: () => void; }) => {
     event.preventDefault();
-    navigate('/Signup'); 
+    navigate('/signup'); 
   };
 
   return (
