@@ -16,10 +16,10 @@ namespace Karapinha.Model
         public int IdProfissional { get; set; }
         [Required]
         public string? NomeProfissional { get; set; }
-        [ForeignKey(nameof(Servico))]
-        public int FkServico { get; set; }
+        [ForeignKey(nameof(Categoria))]
+        public int FkCategoria { get; set; }
         [ServiceStack.DataAnnotations.Unique]
-        [Required]
+        [Required] 
         public string? EmailProfissional { get; set; }
         public string? FotoProfissional { get; set; }
         [ServiceStack.DataAnnotations.Unique]

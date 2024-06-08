@@ -1,6 +1,8 @@
 ﻿using Karapinha.Shared.IServices;
 using Karapinnha.DTO;
 using Microsoft.AspNetCore.Mvc;
+using OpenQA.Selenium.DevTools.V123.Page;
+using OpenQA.Selenium.DevTools.V123.Runtime;
 
 namespace KarapinhaXptoApi.Controllers
 {
@@ -17,8 +19,44 @@ namespace KarapinhaXptoApi.Controllers
         [Route("/AddSchedule")]
         public async Task<ActionResult> CreateSchedule(HorarioDTO dto)
         {
-            var horario = await HorarioService.CreateSchedule(dto);
-            return Ok(horario);
+            try
+            {
+                var horario = await HorarioService.CreateSchedule(dto);
+                return Ok(horario);
+            }
+            catch (Exception ex)
+            {
+                return BadRequest(ex);
+            }
+        }
+
+        [HttpGet]
+        [Route("/GetAllSchedules")]
+        public async Task<IEnumerable<HorarioDTO>> GetAllSchedules()
+        {
+            try
+            {
+                return await HorarioService.GetAllSchedules();
+            }
+            catch (Exception ex)
+            {
+                throw new Exception(ex.Message);
+            }
+
+        }
+
+        [HttpGet]
+        [Route("/GetSchedule")]
+        public async Task<ActionResult<HorarioDTO>> GetScheduleById(int id)
+        {
+            try
+            {
+                return await HorarioService.GetScheduleById(id);
+            }
+            catch (Exception ex)
+            {
+                throw new Exception(ex.Message);
+            }
         }
     }
 }

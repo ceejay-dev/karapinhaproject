@@ -14,7 +14,7 @@ export function AdminHome() {
         </li>
 
         <li>
-          <Button route="/guest" text="Sair" />
+          <Button route="/" text="Sair" />
         </li>
       </ul>
     </div>

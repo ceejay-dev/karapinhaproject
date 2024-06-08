@@ -8,12 +8,12 @@ export function UpdateUser() {
 
   const handleHomeClick = (event: { preventDefault: () => void }) => {
     event.preventDefault();
-    navigate("/");
+    navigate("/logged");
   };
 
   const handleEditedClick = (event: { preventDefault: () => void }) => {
     event.preventDefault();
-    navigate("/");
+    navigate("/logged");
   };
   return (
     <div className="container-main">

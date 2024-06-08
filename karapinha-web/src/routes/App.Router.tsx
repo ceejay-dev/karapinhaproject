@@ -18,8 +18,8 @@ export function AppRoutes() {
     <BrowserRouter>
       <Routes>
         
-        <Route path="/" element={<Home />} />
-        <Route path="/guest" element={<GuestHome />} />
+      <Route path="/" element={<GuestHome />} />
+        <Route path="/logged" element={<Home />} />
         <Route path="/login" element={<Login />} />
         <Route path="/signup" element={<Signup />} />
         <Route path="/adminHome" element={<AdminHome />} />

@@ -30,5 +30,10 @@ namespace Karapinha.DAL.Repositories
         {
             return await DbContext.Horarios.ToListAsync();
         }
+
+        public async Task <Horario> GetScheduleById (int id)
+        {
+            return await DbContext.Horarios.FindAsync(id);
+        }
     }
 }

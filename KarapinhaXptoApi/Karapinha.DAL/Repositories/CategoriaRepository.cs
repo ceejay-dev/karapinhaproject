@@ -43,7 +43,7 @@ namespace Karapinha.DAL.Repositories
             if (category != null) {
                  dbContext.Categorias.Remove(category);
                  await dbContext.SaveChangesAsync();
-                return true;
+                return true;    
             }
             return false;
         }

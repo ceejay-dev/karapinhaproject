@@ -10,5 +10,7 @@ namespace Karapinha.Shared.IServices
     public interface IHorarioService
     {
         Task<HorarioDTO> CreateSchedule(HorarioDTO dto);
+        Task<IEnumerable<HorarioDTO>> GetAllSchedules();
+        Task<HorarioDTO> GetScheduleById(int id);
     }
 }

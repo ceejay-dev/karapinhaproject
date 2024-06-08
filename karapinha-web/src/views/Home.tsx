@@ -17,7 +17,7 @@ export function Home() {
       <div className="carousel-container">
         <ul className="nav">
           <li>
-            <Button route="/" text="Home" />
+            <Button route="/logged" text="Home" />
           </li>
 
           <li>
@@ -25,7 +25,7 @@ export function Home() {
           </li>
 
           <li>
-            <Button route="/" text="Sobre" />
+            <Button route="/logged" text="Sobre" />
           </li>
 
           <div className="navegacao d-flex flex-row">
@@ -33,7 +33,7 @@ export function Home() {
               <Button route="/editUser" imageSrc={userLogo} className="link-signup"/>
             </li>
             <li className="nav2">
-            <Button route="/guest" imageSrc={sair}/>
+            <Button route="/" imageSrc={sair}/>
             </li>
           </div>
         </ul>

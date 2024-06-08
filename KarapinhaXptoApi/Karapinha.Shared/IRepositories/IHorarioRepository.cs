@@ -11,5 +11,6 @@ namespace Karapinha.Shared.IRepositories
     {
         Task<Horario> CreateSchedule(Horario horario);
         Task<IEnumerable<Horario>> GetAllSchedules();
+        Task<Horario> GetScheduleById(int id);
     }
 }
