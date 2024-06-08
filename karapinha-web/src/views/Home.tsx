@@ -2,7 +2,7 @@ import "../styles/home.css";
 import { useState } from "react";
 import { Link } from "react-router-dom";
 import Carousel from "react-bootstrap/Carousel";
-import { carrosel1, carrosel2, carrosel3, sair, userLogo } from "../components/Images";
+import { carrosel4, carrosel2, carrosel3, sair, userLogo } from "../components/Images";
 import { Button } from "../components/Button";
 
 export function Home() {
@@ -21,7 +21,7 @@ export function Home() {
           </li>
 
           <li>
-            <Button route="/" text="Serviços" />
+            <Button route="/servicos" text="Serviços" />
           </li>
 
           <li>
@@ -41,12 +41,12 @@ export function Home() {
           <Carousel.Item>
             <img
               className="carousel-container img"
-              src={carrosel1}
+              src={carrosel4}
               alt="Primeiro slide"
             />
             <Carousel.Caption>
               <h3>
-                <Link to="/login">Makeup</Link>
+                <Link to="/servicos">Makeup</Link>
               </h3>
               <p>Realce sua beleza com nossa maquiagem profissional.</p>
             </Carousel.Caption>
@@ -59,7 +59,7 @@ export function Home() {
             />
             <Carousel.Caption>
               <h3>
-                <Link to="/login">Cabelo</Link>
+                <Link to="/servicos">Cabelo</Link>
               </h3>
               <p>
                 Transforme seu visual com nossos cortes e estilos exclusivos.
@@ -74,7 +74,7 @@ export function Home() {
             />
             <Carousel.Caption>
               <h3>
-                <Link to="/login">Estética</Link>
+                <Link to="/servicos">Estética</Link>
               </h3>
               <p>
                 Cuide de sua pele com nossos tratamentos estéticos

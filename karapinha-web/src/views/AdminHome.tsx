@@ -6,15 +6,15 @@ export function AdminHome() {
     <div className="principal-container">
       <ul className="nav">
         <li>
-          <Button route="/" text="Clientes" />
+          <Button route="/clientes" text="Clientes" />
         </li>
 
         <li>
-          <Button route="/" text="Administrativos" />
+          <Button route="/administrativos" text="Administrativos" />
         </li>
 
         <li>
-          <Button route="/" text="Sair" />
+          <Button route="/guest" text="Sair" />
         </li>
       </ul>
     </div>

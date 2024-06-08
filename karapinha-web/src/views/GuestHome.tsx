@@ -21,11 +21,11 @@ export function GuestHome() {
           </li>
 
           <li>
-            <Button route="/" text="Serviços" />
+            <Button route="/login" text="Serviços" />
           </li>
 
           <li>
-            <Button route="/gestorHome" text="Sobre" />
+            <Button route="/login" text="Sobre" />
           </li>
 
           <div className="login-container d-flex flex-row">

@@ -6,7 +6,12 @@ import { GestorHome } from "../views/GestorHome";
 import { Home } from "../views/Home";
 import { UpdateUser } from "../views/UpdateUser";
 import { GuestHome } from "../views/GuestHome";
-import { Services } from "../views/Services";
+import { AddServicos } from "../views/AddServicos";
+import { AddProfissionais } from "../views/AddProfissionais";
+import { AddAdministrativos } from "../views/AddAdministrativos";
+import { ClientsList } from "../views/ClientsList";
+import { CreateServicos } from "../views/CreateServicos";
+import { ScheduleList } from "../views/ScheduleList";
 
 export function AppRoutes() {
   return (
@@ -20,8 +25,13 @@ export function AppRoutes() {
         <Route path="/adminHome" element={<AdminHome />} />
         <Route path="/gestorHome" element={<GestorHome />} />
         <Route path="/editUser" element={<UpdateUser />} />
-        <Route path="/services" element={<Services />} />
-        
+        <Route path="/servicos" element={<AddServicos />} />
+        <Route path="/profissionais" element={<AddProfissionais />} />
+        <Route path="/administrativos" element={<AddAdministrativos />} />
+        <Route path="/clientes" element={<ClientsList />} />
+        <Route path="/createServicos" element={<CreateServicos />} />
+        <Route path="/marcacoes" element={<ScheduleList />} />
+
       </Routes>
     </BrowserRouter>
   );

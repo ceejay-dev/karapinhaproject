@@ -6,19 +6,19 @@ export function GestorHome (){
         <div className="principal-container">
             <ul className="nav">
         <li>
-          <Button route="/" text="Profissionais" />
+          <Button route="/profissionais" text="Profissionais" />
         </li>
 
         <li>
-          <Button route="/" text="Serviços" />
+          <Button route="/createServicos" text="Serviços" />
         </li>
 
         <li>
-          <Button route="/" text="Marcações" />
+          <Button route="/marcacoes" text="Marcações" />
         </li>
 
         <li>
-          <Button route="/" text="Sair" />
+          <Button route="/guest" text="Sair" />
         </li>
       </ul>
         </div>
