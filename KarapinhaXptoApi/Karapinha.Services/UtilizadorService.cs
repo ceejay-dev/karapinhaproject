@@ -10,7 +10,6 @@ using OpenQA.Selenium;
 using System;
 using System.Collections.Generic;
 using System.Linq;
-using System.Text;
 using System.Threading.Tasks;
 
 namespace Karapinha.Services
@@ -24,20 +23,39 @@ namespace Karapinha.Services
             UtilizadorRepository = usuarioRepository;
         }
 
-        public async Task<UtilizadorCreateDTO> CreateUser(UtilizadorCreateDTO Utilizador, IFormFile foto)
+        public async Task<UtilizadorDTO> CreateUser(UtilizadorDTO Utilizador, IFormFile foto)
         {
             try
             {
+                var utilizador = UtilizadorConverter.ToUtilizador(Utilizador);
+                utilizador.EncriptarPassword(Utilizador.PasswordUtilizador);
+
                 var usuarioAdded = UtilizadorConverter.ToUtilizadorDTO(await UtilizadorRepository.CreateUser(UtilizadorConverter.ToUtilizador(Utilizador), foto));
                 return usuarioAdded;
             }
-            catch (Exception ex)
-            {
-                throw new ServiceException(ex.Message, ex);
+            catch (Exception ex) { 
+                throw new ServiceException(ex.Message);
             }
         }
 
-        public async Task<UtilizadorCreateDTO> GetUserById(int id)
+        public async Task<UtilizadorDTO> Login(string username, string password)
+        {
+            try
+            {
+                var user = await UtilizadorRepository.GetUserByUsername(username);
+                if (user == null || !user.VerificarPassword(password) || !UtilizadorRepository.VerifyState(user))
+                {
+                    throw new NotFoundException();
+                }
+                return UtilizadorConverter.ToUtilizadorDTO(user);
+            }
+            catch (Exception ex)
+            {
+                throw new ServiceException(ex.ToString());
+            }
+        }
+
+        public async Task<UtilizadorDTO> GetUserById(int id)
         {
             try
             {
@@ -46,7 +64,6 @@ namespace Karapinha.Services
                 {
                     throw new NotFoundException();
                 }
-
                 return UtilizadorConverter.ToUtilizadorDTO(user);
             }
             catch (NotFoundException)
@@ -59,12 +76,37 @@ namespace Karapinha.Services
             }
         }
 
-
-        public async Task<IEnumerable<UtilizadorCreateDTO>> GetAllUsers()
+        public async Task<IEnumerable<UtilizadorDTO>> GetAllUsers()
         {
             try
             {
                 var utilizadores = await UtilizadorRepository.GetAllUsers();
+                return utilizadores.Select(UtilizadorConverter.ToUtilizadorDTO);
+            }
+            catch (Exception ex)
+            {
+                throw new ServiceException(ex.Message, ex);
+            }
+        }
+
+        public async Task<IEnumerable<UtilizadorDTO>> GetAllClientes()
+        {
+            try
+            {
+                var utilizadores = await UtilizadorRepository.GetAllClientes();
+                return utilizadores.Select(UtilizadorConverter.ToUtilizadorDTO);
+            }
+            catch (Exception ex)
+            {
+                throw new ServiceException(ex.Message, ex);
+            }
+        }
+
+        public async Task<IEnumerable<UtilizadorDTO>> GetAllAdministratives()
+        {
+            try
+            {
+                var utilizadores = await UtilizadorRepository.GetAllAdministratives();
                 return utilizadores.Select(UtilizadorConverter.ToUtilizadorDTO);
             }
             catch (Exception ex)
@@ -100,5 +142,37 @@ namespace Karapinha.Services
                 throw new ServiceException(ex.Message, ex);
             }
         }
+
+        public async Task ActivateOrDesactivateClient(int id)
+        {
+            try
+            {
+                var userFound = await UtilizadorRepository.GetUserById(id);
+
+                if (userFound == null) throw new NotFoundException();
+
+                userFound.Estado = userFound.Estado == "inactivo" ? "activo" : "inactivo";
+                await UtilizadorRepository.UpdateUser(userFound);
+            }
+            catch (Exception ex)
+            {
+                throw new ServiceException(ex.Message);
+            }
+        }
+
+        public async Task<string> GetUserRole(string username)
+        {
+            try
+            {
+                var userRole = await UtilizadorRepository.GetUserRole(username);
+                return userRole;
+            }
+            catch (Exception ex)
+            {
+                throw new ServiceException(ex.Message);
+            }
+        }
     }
 }
+//var activationLink = $"https://localhost:7209/ActivateOrDesactivate?id={usuarioAdded.IdUtilizador}";
+//await emailService.SendActivationEmail("candidojoao12@gmail.com", "Ativação de Conta", $"Ative a sua conta clicando no link: {activationLink}");

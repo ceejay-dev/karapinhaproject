@@ -42,7 +42,7 @@ namespace Karapinha.DAL.Repositories
 
         public async Task<IEnumerable<Profissional>> GetAllProfissionals()
         {
-            return await DbContext.Profissionais.ToListAsync();
+            return await DbContext.Profissionais.Include(p=>p.Horarios).ThenInclude(p=>p.Horario).ToListAsync();
         }
 
         public async Task<bool> DeleteProfissional(int id)

@@ -12,7 +12,14 @@ D:\karapinhaproject\KarapinhaXptoApi\KarapinhaXptoApi\bin\Debug\net8.0\AWSSDK.Co
 D:\karapinhaproject\KarapinhaXptoApi\KarapinhaXptoApi\bin\Debug\net8.0\AWSSDK.Lambda.dll
 D:\karapinhaproject\KarapinhaXptoApi\KarapinhaXptoApi\bin\Debug\net8.0\Azure.Core.dll
 D:\karapinhaproject\KarapinhaXptoApi\KarapinhaXptoApi\bin\Debug\net8.0\Azure.Identity.dll
+D:\karapinhaproject\KarapinhaXptoApi\KarapinhaXptoApi\bin\Debug\net8.0\BCrypt.Net.dll
+D:\karapinhaproject\KarapinhaXptoApi\KarapinhaXptoApi\bin\Debug\net8.0\BouncyCastle.Cryptography.dll
 D:\karapinhaproject\KarapinhaXptoApi\KarapinhaXptoApi\bin\Debug\net8.0\Humanizer.dll
+D:\karapinhaproject\KarapinhaXptoApi\KarapinhaXptoApi\bin\Debug\net8.0\MailKit.dll
+D:\karapinhaproject\KarapinhaXptoApi\KarapinhaXptoApi\bin\Debug\net8.0\Microsoft.AspNetCore.Authentication.JwtBearer.dll
+D:\karapinhaproject\KarapinhaXptoApi\KarapinhaXptoApi\bin\Debug\net8.0\Microsoft.AspNetCore.Cryptography.Internal.dll
+D:\karapinhaproject\KarapinhaXptoApi\KarapinhaXptoApi\bin\Debug\net8.0\Microsoft.AspNetCore.Cryptography.KeyDerivation.dll
+D:\karapinhaproject\KarapinhaXptoApi\KarapinhaXptoApi\bin\Debug\net8.0\Microsoft.AspNetCore.Identity.EntityFrameworkCore.dll
 D:\karapinhaproject\KarapinhaXptoApi\KarapinhaXptoApi\bin\Debug\net8.0\Microsoft.Bcl.AsyncInterfaces.dll
 D:\karapinhaproject\KarapinhaXptoApi\KarapinhaXptoApi\bin\Debug\net8.0\Microsoft.CodeAnalysis.dll
 D:\karapinhaproject\KarapinhaXptoApi\KarapinhaXptoApi\bin\Debug\net8.0\Microsoft.CodeAnalysis.CSharp.dll
@@ -25,6 +32,9 @@ D:\karapinhaproject\KarapinhaXptoApi\KarapinhaXptoApi\bin\Debug\net8.0\Microsoft
 D:\karapinhaproject\KarapinhaXptoApi\KarapinhaXptoApi\bin\Debug\net8.0\Microsoft.EntityFrameworkCore.Relational.dll
 D:\karapinhaproject\KarapinhaXptoApi\KarapinhaXptoApi\bin\Debug\net8.0\Microsoft.EntityFrameworkCore.SqlServer.dll
 D:\karapinhaproject\KarapinhaXptoApi\KarapinhaXptoApi\bin\Debug\net8.0\Microsoft.Extensions.DependencyModel.dll
+D:\karapinhaproject\KarapinhaXptoApi\KarapinhaXptoApi\bin\Debug\net8.0\Microsoft.Extensions.Identity.Core.dll
+D:\karapinhaproject\KarapinhaXptoApi\KarapinhaXptoApi\bin\Debug\net8.0\Microsoft.Extensions.Identity.Stores.dll
+D:\karapinhaproject\KarapinhaXptoApi\KarapinhaXptoApi\bin\Debug\net8.0\Microsoft.Extensions.Options.dll
 D:\karapinhaproject\KarapinhaXptoApi\KarapinhaXptoApi\bin\Debug\net8.0\Microsoft.Identity.Client.dll
 D:\karapinhaproject\KarapinhaXptoApi\KarapinhaXptoApi\bin\Debug\net8.0\Microsoft.Identity.Client.Extensions.Msal.dll
 D:\karapinhaproject\KarapinhaXptoApi\KarapinhaXptoApi\bin\Debug\net8.0\Microsoft.IdentityModel.Abstractions.dll
@@ -36,7 +46,9 @@ D:\karapinhaproject\KarapinhaXptoApi\KarapinhaXptoApi\bin\Debug\net8.0\Microsoft
 D:\karapinhaproject\KarapinhaXptoApi\KarapinhaXptoApi\bin\Debug\net8.0\Microsoft.OpenApi.dll
 D:\karapinhaproject\KarapinhaXptoApi\KarapinhaXptoApi\bin\Debug\net8.0\Microsoft.SqlServer.Server.dll
 D:\karapinhaproject\KarapinhaXptoApi\KarapinhaXptoApi\bin\Debug\net8.0\Microsoft.Win32.SystemEvents.dll
+D:\karapinhaproject\KarapinhaXptoApi\KarapinhaXptoApi\bin\Debug\net8.0\MimeKit.dll
 D:\karapinhaproject\KarapinhaXptoApi\KarapinhaXptoApi\bin\Debug\net8.0\Mono.TextTemplating.dll
+D:\karapinhaproject\KarapinhaXptoApi\KarapinhaXptoApi\bin\Debug\net8.0\NETCore.MailKit.dll
 D:\karapinhaproject\KarapinhaXptoApi\KarapinhaXptoApi\bin\Debug\net8.0\Newtonsoft.Json.dll
 D:\karapinhaproject\KarapinhaXptoApi\KarapinhaXptoApi\bin\Debug\net8.0\WebDriver.dll
 D:\karapinhaproject\KarapinhaXptoApi\KarapinhaXptoApi\bin\Debug\net8.0\ServiceStack.Interfaces.dll

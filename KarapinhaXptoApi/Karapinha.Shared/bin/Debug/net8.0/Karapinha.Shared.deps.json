@@ -17,6 +17,14 @@
           "Karapinha.Shared.dll": {}
         }
       },
+      "BCrypt.Net/0.1.0": {
+        "runtime": {
+          "lib/net35/BCrypt.Net.dll": {
+            "assemblyVersion": "0.1.4141.31969",
+            "fileVersion": "0.1.0.0"
+          }
+        }
+      },
       "Microsoft.AspNetCore.Http.Features/5.0.17": {
         "dependencies": {
           "Microsoft.Extensions.Primitives": "5.0.1",
@@ -148,6 +156,7 @@
       },
       "Karapinha.Model/1.0.0": {
         "dependencies": {
+          "BCrypt.Net": "0.1.0",
           "ServiceStack.Interfaces": "8.2.2"
         },
         "runtime": {
@@ -166,6 +175,13 @@
       "type": "project",
       "serviceable": false,
       "sha512": ""
+    },
+    "BCrypt.Net/0.1.0": {
+      "type": "package",
+      "serviceable": true,
+      "sha512": "sha512-sST2w361Dxt9GGMfpOTiK50wXGV64Ybb1hiX3xjEWnhVYZNF43NuySGwADJa7X1R+bA53NsFR+tuDxcYiJeIOA==",
+      "path": "bcrypt.net/0.1.0",
+      "hashPath": "bcrypt.net.0.1.0.nupkg.sha512"
     },
     "Microsoft.AspNetCore.Http.Features/5.0.17": {
       "type": "package",

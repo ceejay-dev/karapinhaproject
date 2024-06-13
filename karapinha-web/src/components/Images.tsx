@@ -6,6 +6,8 @@ import logo from '../assets/logo-karapinha.png'
 import plus from '../assets/plus.png'
 import sair from '../assets/sair.png'
 import userLogo from '../assets/user.png'
+import edit from '../assets/editar.png'
+import trash from '../assets/trash.png'
 
 export {
     carrosel1,
@@ -15,5 +17,7 @@ export {
     logo,
     plus,
     sair,
-    userLogo
+    userLogo,
+    edit,
+    trash,
 }

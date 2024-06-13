@@ -2,7 +2,13 @@ import "../styles/home.css";
 import { useState } from "react";
 import { Link } from "react-router-dom";
 import Carousel from "react-bootstrap/Carousel";
-import { carrosel4, carrosel2, carrosel3, sair, userLogo } from "../components/Images";
+import {
+  carrosel4,
+  carrosel2,
+  carrosel3,
+  sair,
+  userLogo,
+} from "../components/Images";
 import { Button } from "../components/Button";
 
 export function Home() {
@@ -10,7 +16,7 @@ export function Home() {
 
   const handleSelect = (selectedIndex: any) => {
     setIndex(selectedIndex);
-  };  
+  };
 
   return (
     <main>
@@ -21,7 +27,7 @@ export function Home() {
           </li>
 
           <li>
-            <Button route="/servicos" text="Serviços" />
+            <Button route="/marcacoes" text="Serviços" />
           </li>
 
           <li>
@@ -30,10 +36,14 @@ export function Home() {
 
           <div className="navegacao d-flex flex-row">
             <li className="nav1">
-              <Button route="/editUser" imageSrc={userLogo} className="link-signup"/>
+              <Button
+                route="/editUser"
+                imageSrc={userLogo}
+                className="link-signup"
+              />
             </li>
             <li className="nav2">
-            <Button route="/" imageSrc={sair}/>
+              <Button route="/" imageSrc={sair} />
             </li>
           </div>
         </ul>
@@ -46,7 +56,7 @@ export function Home() {
             />
             <Carousel.Caption>
               <h3>
-                <Link to="/servicos">Makeup</Link>
+                <Link to="/marcacoes">Makeup</Link>
               </h3>
               <p>Realce sua beleza com nossa maquiagem profissional.</p>
             </Carousel.Caption>
@@ -59,7 +69,7 @@ export function Home() {
             />
             <Carousel.Caption>
               <h3>
-                <Link to="/servicos">Cabelo</Link>
+                <Link to="/marcacoes">Cabelo</Link>
               </h3>
               <p>
                 Transforme seu visual com nossos cortes e estilos exclusivos.
@@ -74,7 +84,7 @@ export function Home() {
             />
             <Carousel.Caption>
               <h3>
-                <Link to="/servicos">Estética</Link>
+                <Link to="/marcacoes">Estética</Link>
               </h3>
               <p>
                 Cuide de sua pele com nossos tratamentos estéticos

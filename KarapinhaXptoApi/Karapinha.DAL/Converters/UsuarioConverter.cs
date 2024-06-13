@@ -10,12 +10,14 @@ namespace Karapinha.DAL.Converters
 {
     public abstract class UtilizadorConverter
     {
-        public static Utilizador ToUtilizador(UtilizadorCreateDTO dto)
+
+        public static Utilizador ToUtilizador(UtilizadorDTO dto)
         {
             return new Utilizador
             {
                 NomeUtilizador = dto.NomeUtilizador,
                 EmailUtilizador = dto.EmailUtilizador,
+                BilheteUtilizador = dto.BilheteUtilizador,
                 TelemovelUtilizador = dto.TelemovelUtilizador,
                 FotoUtilizador = dto.FotoUtilizador,
                 UsernameUtilizador = dto.UsernameUtilizador,
@@ -25,12 +27,13 @@ namespace Karapinha.DAL.Converters
             };
         }
 
-        public static UtilizadorCreateDTO ToUtilizadorDTO(Utilizador utilizador)
+        public static UtilizadorDTO ToUtilizadorDTO(Utilizador utilizador)
         {
-            return new UtilizadorCreateDTO
+            return new UtilizadorDTO
             {
                 NomeUtilizador = utilizador.NomeUtilizador,
                 EmailUtilizador = utilizador.EmailUtilizador,
+                BilheteUtilizador = utilizador.BilheteUtilizador,
                 TelemovelUtilizador = utilizador.TelemovelUtilizador,
                 FotoUtilizador = utilizador.FotoUtilizador,
                 UsernameUtilizador = utilizador.UsernameUtilizador,
@@ -38,7 +41,6 @@ namespace Karapinha.DAL.Converters
                 Estado = utilizador.Estado,
                 TipoPerfil = utilizador.TipoPerfil
             };
-
         }
 
         public static Utilizador UpdateUtilizador(UtilizadorUpdateDTO utilizador,Utilizador user)

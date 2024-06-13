@@ -11,6 +11,7 @@ namespace Karapinnha.DTO
         public int IdUtilizador { get; set; }
         public string? NomeUtilizador { get; set; }
         public string? EmailUtilizador { get; set; }
+        public string? BilheteUtilizador { get; set; }
         public string? TelemovelUtilizador { get; set; }
         public string? FotoUtilizador { get; set; }
         public string? UsernameUtilizador { get; set; }

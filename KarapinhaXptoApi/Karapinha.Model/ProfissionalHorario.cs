@@ -12,11 +12,11 @@ namespace Karapinha.Model
     {
         [Key]
         public int Id { get; set; }
-        public int FkProfissional { get; set; }
-        public int FkHorario { get; set; }
-        [ForeignKey(nameof(FkProfissional))]
-        public Profissional ? Profissional { get; set; }
-        [ForeignKey(nameof(FkHorario))]
-        public Horario ? Horario { get; set; }
+        public int IdProfissional { get; set; }
+        [ForeignKey(nameof(IdProfissional))]
+        public Profissional Profissional { get; set; }
+        public int IdHorario { get; set; }
+        [ForeignKey(nameof(IdHorario))]
+        public Horario  Horario { get; set; }
     }
 }

@@ -14,7 +14,12 @@ namespace Karapinha.Shared.IRepositories
         Task<Utilizador> CreateUser(Utilizador Utilizador, IFormFile foto);
         Task<Utilizador> GetUserById(int id);
         Task<List<Utilizador>> GetAllUsers();
+        Task<List<Utilizador>> GetAllClientes();
+        Task<List<Utilizador>> GetAllAdministratives();
         Task<bool> DeleteUser(int id);
         Task UpdateUser(Utilizador Utilizador);
+        Task<Utilizador> GetUserByUsername(string username);
+        bool VerifyState(Utilizador utilizador);
+        Task<string> GetUserRole(string username);
     }
 }

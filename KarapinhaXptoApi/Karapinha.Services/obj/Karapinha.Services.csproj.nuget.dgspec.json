@@ -57,25 +57,29 @@
               "target": "Package",
               "version": "[5.0.17, )"
             },
+            "Microsoft.AspNetCore.Identity.EntityFrameworkCore": {
+              "target": "Package",
+              "version": "[8.0.6, )"
+            },
             "Microsoft.EntityFrameworkCore": {
               "target": "Package",
-              "version": "[8.0.5, )"
+              "version": "[8.0.6, )"
             },
             "Microsoft.EntityFrameworkCore.Design": {
               "include": "Runtime, Build, Native, ContentFiles, Analyzers, BuildTransitive",
               "suppressParent": "All",
               "target": "Package",
-              "version": "[8.0.5, )"
+              "version": "[8.0.6, )"
             },
             "Microsoft.EntityFrameworkCore.SqlServer": {
               "target": "Package",
-              "version": "[8.0.5, )"
+              "version": "[8.0.6, )"
             },
             "Microsoft.EntityFrameworkCore.Tools": {
               "include": "Runtime, Build, Native, ContentFiles, Analyzers, BuildTransitive",
               "suppressParent": "All",
               "target": "Package",
-              "version": "[8.0.5, )"
+              "version": "[8.0.6, )"
             }
           },
           "imports": [
@@ -140,6 +144,10 @@
         "net8.0": {
           "targetAlias": "net8.0",
           "dependencies": {
+            "BCrypt.Net": {
+              "target": "Package",
+              "version": "[0.1.0, )"
+            },
             "ServiceStack.Interfaces": {
               "target": "Package",
               "version": "[8.2.2, )"
@@ -213,7 +221,19 @@
           "dependencies": {
             "AWSSDK.Lambda": {
               "target": "Package",
-              "version": "[3.7.305.27, )"
+              "version": "[3.7.305.36, )"
+            },
+            "MailKit": {
+              "target": "Package",
+              "version": "[4.6.0, )"
+            },
+            "MimeKit": {
+              "target": "Package",
+              "version": "[4.6.0, )"
+            },
+            "NETCore.MailKit": {
+              "target": "Package",
+              "version": "[2.1.0, )"
             },
             "Selenium.WebDriver": {
               "target": "Package",

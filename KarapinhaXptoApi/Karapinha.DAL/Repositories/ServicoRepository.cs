@@ -53,5 +53,20 @@ namespace Karapinha.DAL.Repositories
             DbContext.Servicos.Update(servico);
             await DbContext.SaveChangesAsync();
         }
+
+        public IEnumerable<dynamic> GetAllServicosByIdCategoria()
+        {
+            var result = from servico in DbContext.Servicos
+                         join categoria in DbContext.Categorias
+                         on servico.FkCategoria equals categoria.IdCategoria
+                         select new
+                         {
+                             NomeServico = servico.NomeServico,
+                             Preco = servico.Preco,
+                             NomeCategoria = categoria.NomeCategoria
+                         };
+
+            return result.ToList();
+        }
     }
 }

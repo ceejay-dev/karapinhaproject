@@ -48,6 +48,20 @@ namespace Karapinha.DAL.Repositories
             return await dbContext.Utilizadores.ToListAsync();
         }
 
+        public async Task<List<Utilizador>> GetAllClientes()
+        {
+            return await dbContext.Utilizadores
+                .Where(u => u.TipoPerfil == "cliente")
+                .ToListAsync();
+        }
+
+        public async Task<List<Utilizador>> GetAllAdministratives()
+        {
+            return await dbContext.Utilizadores
+                .Where(u => u.TipoPerfil == "administrativo")
+                .ToListAsync();
+        }
+
         public async Task<bool> DeleteUser(int id)
         {
             var user = await GetUserById(id);
@@ -69,20 +83,30 @@ namespace Karapinha.DAL.Repositories
             await dbContext.SaveChangesAsync();
         }
 
-        public async Task ActivateOrDesactivateClient(int id)
+        public async Task<Utilizador> GetUserByUsername(string username)
         {
-            //Por terminar
-            var cliente = await GetUserById(id);
-            if (cliente != null)
-            {
-                if(cliente.Estado == "inactivo")
-                {
-                    cliente.Estado = "activo";
-                } else if ( cliente.Estado == "activo")
-                {
-                    cliente.Estado = "inactivo";
-                }
-            }
+            return await dbContext.Utilizadores.SingleOrDefaultAsync(u => u.UsernameUtilizador == username);
         }
+
+        public bool VerifyState (Utilizador utilizador)
+        {
+            if (utilizador.Estado == "activo")
+            {
+                return true;
+            } 
+            return false;
+        }
+
+        public async Task <string> GetUserRole (string username)
+        {
+            var tipoPerfil = dbContext.Utilizadores
+            .Where(u => u.UsernameUtilizador == username)
+            .Select(u => u.TipoPerfil)
+            .FirstOrDefault();
+
+            return tipoPerfil;
+        }
+
+       
     }
 }

@@ -2,7 +2,7 @@ import { useState } from "react";
 import { Button as BootstrapButton, Modal } from "react-bootstrap";
 import { Button } from "../components/Button";
 import { logo, plus } from "../components/Images";
-import "../styles/servicos.css";
+import "../styles/marcacao.css";
 
 export function AddProfissionais() {
   const [show, setShow] = useState(false);
@@ -46,22 +46,34 @@ export function AddProfissionais() {
               <div className="d-flex justify-content-center">
                 <img className="image-icon" src={logo} alt="Logo" />
               </div>
-              <form action="" className="d-flex justify-content-center formulario"
+              <form
+                action=""
+                className="d-flex justify-content-center formulario"
               >
                 <div className="d-flex flex-row">
                   <div className="input-container1">
-                    <input type="text" placeholder="Nome do profissional" className="m-1" />
+                    <input
+                      type="text"
+                      placeholder="Nome do profissional"
+                      className="m-1"
+                    />
                     <input type="text" placeholder="Email" className="m-1" />
                     <input type="text" placeholder="Foto" className="m-1" />
-                    
                   </div>
 
                   <div className="input-container2">
-                    <input type="text" placeholder="Categoria" className="m-1" />
+                    <input
+                      type="text"
+                      placeholder="Categoria"
+                      className="m-1"
+                    />
                     <input type="text" placeholder="Username" className="m-1" />
-                    <input type="text" placeholder="Telemóvel" className="m-1" />
+                    <input
+                      type="text"
+                      placeholder="Telemóvel"
+                      className="m-1"
+                    />
                     <input type="text" placeholder="Horários" className="m-1" />
-                    
                   </div>
                 </div>
                 <div className="d-flex justify-content-center">

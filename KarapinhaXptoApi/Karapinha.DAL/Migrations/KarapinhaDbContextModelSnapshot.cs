@@ -17,7 +17,7 @@ namespace Karapinha.DAL.Migrations
         {
 #pragma warning disable 612, 618
             modelBuilder
-                .HasAnnotation("ProductVersion", "8.0.5")
+                .HasAnnotation("ProductVersion", "8.0.6")
                 .HasAnnotation("Relational:MaxIdentifierLength", 128);
 
             SqlServerModelBuilderExtensions.UseIdentityColumns(modelBuilder);
@@ -70,20 +70,65 @@ namespace Karapinha.DAL.Migrations
                     b.Property<string>("Estado")
                         .HasColumnType("nvarchar(max)");
 
+                    b.Property<int>("FkHorario")
+                        .HasColumnType("int");
+
                     b.Property<int>("FkUtilizador")
                         .HasColumnType("int");
 
-                    b.Property<TimeOnly>("HoraMarcacao")
-                        .HasColumnType("time");
-
-                    b.Property<int>("Marcacoes")
-                        .HasColumnType("int");
+                    b.Property<double>("PrecoMarcacao")
+                        .HasColumnType("float");
 
                     b.HasKey("IdMarcacao");
 
                     b.HasIndex("FkUtilizador");
 
                     b.ToTable("marcacoes");
+                });
+
+            modelBuilder.Entity("Karapinha.Model.MarcacaoServico", b =>
+                {
+                    b.Property<int>("Id")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("int");
+
+                    SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("Id"));
+
+                    b.Property<int?>("BookingIdMarcacao")
+                        .HasColumnType("int");
+
+                    b.Property<int?>("CategoryIdCategoria")
+                        .HasColumnType("int");
+
+                    b.Property<int>("FkCategoria")
+                        .HasColumnType("int");
+
+                    b.Property<int>("FkMarcacao")
+                        .HasColumnType("int");
+
+                    b.Property<int>("FkProfissional")
+                        .HasColumnType("int");
+
+                    b.Property<int>("FkServico")
+                        .HasColumnType("int");
+
+                    b.Property<int?>("ProfissionalsIdProfissional")
+                        .HasColumnType("int");
+
+                    b.Property<int?>("ServiceIdServico")
+                        .HasColumnType("int");
+
+                    b.HasKey("Id");
+
+                    b.HasIndex("BookingIdMarcacao");
+
+                    b.HasIndex("CategoryIdCategoria");
+
+                    b.HasIndex("ProfissionalsIdProfissional");
+
+                    b.HasIndex("ServiceIdServico");
+
+                    b.ToTable("MarcacoesServicos");
                 });
 
             modelBuilder.Entity("Karapinha.Model.Profissional", b =>
@@ -129,17 +174,17 @@ namespace Karapinha.DAL.Migrations
 
                     SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("Id"));
 
-                    b.Property<int>("FkHorario")
+                    b.Property<int>("IdHorario")
                         .HasColumnType("int");
 
-                    b.Property<int>("FkProfissional")
+                    b.Property<int>("IdProfissional")
                         .HasColumnType("int");
 
                     b.HasKey("Id");
 
-                    b.HasIndex("FkHorario");
+                    b.HasIndex("IdHorario");
 
-                    b.HasIndex("FkProfissional");
+                    b.HasIndex("IdProfissional");
 
                     b.ToTable("ProfissionalHorarios");
                 });
@@ -155,9 +200,6 @@ namespace Karapinha.DAL.Migrations
                     b.Property<int>("FkCategoria")
                         .HasColumnType("int");
 
-                    b.Property<int>("IdMarcacao")
-                        .HasColumnType("int");
-
                     b.Property<string>("NomeServico")
                         .IsRequired()
                         .HasColumnType("nvarchar(max)");
@@ -169,8 +211,6 @@ namespace Karapinha.DAL.Migrations
 
                     b.HasIndex("FkCategoria");
 
-                    b.HasIndex("IdMarcacao");
-
                     b.ToTable("servicos");
                 });
 
@@ -181,6 +221,9 @@ namespace Karapinha.DAL.Migrations
                         .HasColumnType("int");
 
                     SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("IdUtilizador"));
+
+                    b.Property<string>("BilheteUtilizador")
+                        .HasColumnType("nvarchar(max)");
 
                     b.Property<string>("EmailUtilizador")
                         .HasColumnType("nvarchar(max)");
@@ -212,6 +255,204 @@ namespace Karapinha.DAL.Migrations
                     b.ToTable("utilizadores");
                 });
 
+            modelBuilder.Entity("Microsoft.AspNetCore.Identity.IdentityRole", b =>
+                {
+                    b.Property<string>("Id")
+                        .HasColumnType("nvarchar(450)");
+
+                    b.Property<string>("ConcurrencyStamp")
+                        .IsConcurrencyToken()
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<string>("Name")
+                        .HasMaxLength(256)
+                        .HasColumnType("nvarchar(256)");
+
+                    b.Property<string>("NormalizedName")
+                        .HasMaxLength(256)
+                        .HasColumnType("nvarchar(256)");
+
+                    b.HasKey("Id");
+
+                    b.HasIndex("NormalizedName")
+                        .IsUnique()
+                        .HasDatabaseName("RoleNameIndex")
+                        .HasFilter("[NormalizedName] IS NOT NULL");
+
+                    b.ToTable("AspNetRoles", (string)null);
+                });
+
+            modelBuilder.Entity("Microsoft.AspNetCore.Identity.IdentityRoleClaim<string>", b =>
+                {
+                    b.Property<int>("Id")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("int");
+
+                    SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("Id"));
+
+                    b.Property<string>("ClaimType")
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<string>("ClaimValue")
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<string>("RoleId")
+                        .IsRequired()
+                        .HasColumnType("nvarchar(450)");
+
+                    b.HasKey("Id");
+
+                    b.HasIndex("RoleId");
+
+                    b.ToTable("AspNetRoleClaims", (string)null);
+                });
+
+            modelBuilder.Entity("Microsoft.AspNetCore.Identity.IdentityUser", b =>
+                {
+                    b.Property<string>("Id")
+                        .HasColumnType("nvarchar(450)");
+
+                    b.Property<int>("AccessFailedCount")
+                        .HasColumnType("int");
+
+                    b.Property<string>("ConcurrencyStamp")
+                        .IsConcurrencyToken()
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<string>("Email")
+                        .HasMaxLength(256)
+                        .HasColumnType("nvarchar(256)");
+
+                    b.Property<bool>("EmailConfirmed")
+                        .HasColumnType("bit");
+
+                    b.Property<bool>("LockoutEnabled")
+                        .HasColumnType("bit");
+
+                    b.Property<DateTimeOffset?>("LockoutEnd")
+                        .HasColumnType("datetimeoffset");
+
+                    b.Property<string>("NormalizedEmail")
+                        .HasMaxLength(256)
+                        .HasColumnType("nvarchar(256)");
+
+                    b.Property<string>("NormalizedUserName")
+                        .HasMaxLength(256)
+                        .HasColumnType("nvarchar(256)");
+
+                    b.Property<string>("PasswordHash")
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<string>("PhoneNumber")
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<bool>("PhoneNumberConfirmed")
+                        .HasColumnType("bit");
+
+                    b.Property<string>("SecurityStamp")
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<bool>("TwoFactorEnabled")
+                        .HasColumnType("bit");
+
+                    b.Property<string>("UserName")
+                        .HasMaxLength(256)
+                        .HasColumnType("nvarchar(256)");
+
+                    b.HasKey("Id");
+
+                    b.HasIndex("NormalizedEmail")
+                        .HasDatabaseName("EmailIndex");
+
+                    b.HasIndex("NormalizedUserName")
+                        .IsUnique()
+                        .HasDatabaseName("UserNameIndex")
+                        .HasFilter("[NormalizedUserName] IS NOT NULL");
+
+                    b.ToTable("AspNetUsers", (string)null);
+                });
+
+            modelBuilder.Entity("Microsoft.AspNetCore.Identity.IdentityUserClaim<string>", b =>
+                {
+                    b.Property<int>("Id")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("int");
+
+                    SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("Id"));
+
+                    b.Property<string>("ClaimType")
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<string>("ClaimValue")
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<string>("UserId")
+                        .IsRequired()
+                        .HasColumnType("nvarchar(450)");
+
+                    b.HasKey("Id");
+
+                    b.HasIndex("UserId");
+
+                    b.ToTable("AspNetUserClaims", (string)null);
+                });
+
+            modelBuilder.Entity("Microsoft.AspNetCore.Identity.IdentityUserLogin<string>", b =>
+                {
+                    b.Property<string>("LoginProvider")
+                        .HasColumnType("nvarchar(450)");
+
+                    b.Property<string>("ProviderKey")
+                        .HasColumnType("nvarchar(450)");
+
+                    b.Property<string>("ProviderDisplayName")
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<string>("UserId")
+                        .IsRequired()
+                        .HasColumnType("nvarchar(450)");
+
+                    b.HasKey("LoginProvider", "ProviderKey");
+
+                    b.HasIndex("UserId");
+
+                    b.ToTable("AspNetUserLogins", (string)null);
+                });
+
+            modelBuilder.Entity("Microsoft.AspNetCore.Identity.IdentityUserRole<string>", b =>
+                {
+                    b.Property<string>("UserId")
+                        .HasColumnType("nvarchar(450)");
+
+                    b.Property<string>("RoleId")
+                        .HasColumnType("nvarchar(450)");
+
+                    b.HasKey("UserId", "RoleId");
+
+                    b.HasIndex("RoleId");
+
+                    b.ToTable("AspNetUserRoles", (string)null);
+                });
+
+            modelBuilder.Entity("Microsoft.AspNetCore.Identity.IdentityUserToken<string>", b =>
+                {
+                    b.Property<string>("UserId")
+                        .HasColumnType("nvarchar(450)");
+
+                    b.Property<string>("LoginProvider")
+                        .HasColumnType("nvarchar(450)");
+
+                    b.Property<string>("Name")
+                        .HasColumnType("nvarchar(450)");
+
+                    b.Property<string>("Value")
+                        .HasColumnType("nvarchar(max)");
+
+                    b.HasKey("UserId", "LoginProvider", "Name");
+
+                    b.ToTable("AspNetUserTokens", (string)null);
+                });
+
             modelBuilder.Entity("Karapinha.Model.Marcacao", b =>
                 {
                     b.HasOne("Karapinha.Model.Utilizador", "Utilizador")
@@ -223,17 +464,44 @@ namespace Karapinha.DAL.Migrations
                     b.Navigation("Utilizador");
                 });
 
+            modelBuilder.Entity("Karapinha.Model.MarcacaoServico", b =>
+                {
+                    b.HasOne("Karapinha.Model.Marcacao", "Booking")
+                        .WithMany()
+                        .HasForeignKey("BookingIdMarcacao");
+
+                    b.HasOne("Karapinha.Model.Categoria", "Category")
+                        .WithMany()
+                        .HasForeignKey("CategoryIdCategoria");
+
+                    b.HasOne("Karapinha.Model.Profissional", "Profissionals")
+                        .WithMany()
+                        .HasForeignKey("ProfissionalsIdProfissional");
+
+                    b.HasOne("Karapinha.Model.Servico", "Service")
+                        .WithMany()
+                        .HasForeignKey("ServiceIdServico");
+
+                    b.Navigation("Booking");
+
+                    b.Navigation("Category");
+
+                    b.Navigation("Profissionals");
+
+                    b.Navigation("Service");
+                });
+
             modelBuilder.Entity("Karapinha.Model.ProfissionalHorario", b =>
                 {
                     b.HasOne("Karapinha.Model.Horario", "Horario")
                         .WithMany()
-                        .HasForeignKey("FkHorario")
+                        .HasForeignKey("IdHorario")
                         .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
 
                     b.HasOne("Karapinha.Model.Profissional", "Profissional")
-                        .WithMany()
-                        .HasForeignKey("FkProfissional")
+                        .WithMany("Horarios")
+                        .HasForeignKey("IdProfissional")
                         .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
 
@@ -250,15 +518,58 @@ namespace Karapinha.DAL.Migrations
                         .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
 
-                    b.HasOne("Karapinha.Model.Marcacao", "Marcacao")
-                        .WithMany("Servicos")
-                        .HasForeignKey("IdMarcacao")
+                    b.Navigation("Categoria");
+                });
+
+            modelBuilder.Entity("Microsoft.AspNetCore.Identity.IdentityRoleClaim<string>", b =>
+                {
+                    b.HasOne("Microsoft.AspNetCore.Identity.IdentityRole", null)
+                        .WithMany()
+                        .HasForeignKey("RoleId")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
+                });
+
+            modelBuilder.Entity("Microsoft.AspNetCore.Identity.IdentityUserClaim<string>", b =>
+                {
+                    b.HasOne("Microsoft.AspNetCore.Identity.IdentityUser", null)
+                        .WithMany()
+                        .HasForeignKey("UserId")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
+                });
+
+            modelBuilder.Entity("Microsoft.AspNetCore.Identity.IdentityUserLogin<string>", b =>
+                {
+                    b.HasOne("Microsoft.AspNetCore.Identity.IdentityUser", null)
+                        .WithMany()
+                        .HasForeignKey("UserId")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
+                });
+
+            modelBuilder.Entity("Microsoft.AspNetCore.Identity.IdentityUserRole<string>", b =>
+                {
+                    b.HasOne("Microsoft.AspNetCore.Identity.IdentityRole", null)
+                        .WithMany()
+                        .HasForeignKey("RoleId")
                         .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
 
-                    b.Navigation("Categoria");
+                    b.HasOne("Microsoft.AspNetCore.Identity.IdentityUser", null)
+                        .WithMany()
+                        .HasForeignKey("UserId")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
+                });
 
-                    b.Navigation("Marcacao");
+            modelBuilder.Entity("Microsoft.AspNetCore.Identity.IdentityUserToken<string>", b =>
+                {
+                    b.HasOne("Microsoft.AspNetCore.Identity.IdentityUser", null)
+                        .WithMany()
+                        .HasForeignKey("UserId")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
                 });
 
             modelBuilder.Entity("Karapinha.Model.Categoria", b =>
@@ -266,9 +577,9 @@ namespace Karapinha.DAL.Migrations
                     b.Navigation("Servicos");
                 });
 
-            modelBuilder.Entity("Karapinha.Model.Marcacao", b =>
+            modelBuilder.Entity("Karapinha.Model.Profissional", b =>
                 {
-                    b.Navigation("Servicos");
+                    b.Navigation("Horarios");
                 });
 #pragma warning restore 612, 618
         }

@@ -6,6 +6,7 @@ using System.ComponentModel.DataAnnotations;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using System.Collections.ObjectModel;
 
 namespace Karapinha.Model
 {
@@ -28,5 +29,7 @@ namespace Karapinha.Model
         [ServiceStack.DataAnnotations.Unique]
         [Required]
         public string? TelemovelProfissional { get; set; }
+
+        public Collection<ProfissionalHorario> Horarios { get; set; }
     }
 }

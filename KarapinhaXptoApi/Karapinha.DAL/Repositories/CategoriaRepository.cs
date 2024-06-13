@@ -21,7 +21,6 @@ namespace Karapinha.DAL.Repositories
         public async Task<Categoria> CreateCategory(Categoria categoria)
         {
             var category = await dbContext.AddAsync(categoria);
-            
             await dbContext.SaveChangesAsync();
             return category.Entity;
         }

@@ -1,11 +1,5 @@
-
-import "../styles/servicos.css";
+import "../styles/marcacao.css";
 
 export function ScheduleList() {
- 
-  return (
-    <main className="container-service">
-      
-    </main>
-  );
+  return <main className="container-service"></main>;
 }

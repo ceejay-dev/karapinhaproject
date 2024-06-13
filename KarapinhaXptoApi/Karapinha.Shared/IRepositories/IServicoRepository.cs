@@ -14,5 +14,6 @@ namespace Karapinha.Shared.IRepositories
         Task<List<Servico>> GetAllTreatments();
         Task<bool> DeleteTreatment(int id);
         Task UpdateTreatment(Servico servico);
+        IEnumerable<dynamic> GetAllServicosByIdCategoria();
     }
 }
