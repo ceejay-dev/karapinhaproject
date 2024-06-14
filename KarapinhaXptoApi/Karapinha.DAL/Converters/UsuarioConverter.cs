@@ -15,6 +15,7 @@ namespace Karapinha.DAL.Converters
         {
             return new Utilizador
             {
+                IdUtilizador = dto.IdUtilizador,
                 NomeUtilizador = dto.NomeUtilizador,
                 EmailUtilizador = dto.EmailUtilizador,
                 BilheteUtilizador = dto.BilheteUtilizador,
@@ -31,6 +32,7 @@ namespace Karapinha.DAL.Converters
         {
             return new UtilizadorDTO
             {
+                IdUtilizador = utilizador.IdUtilizador,
                 NomeUtilizador = utilizador.NomeUtilizador,
                 EmailUtilizador = utilizador.EmailUtilizador,
                 BilheteUtilizador = utilizador.BilheteUtilizador,

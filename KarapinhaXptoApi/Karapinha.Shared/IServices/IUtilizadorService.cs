@@ -19,7 +19,9 @@ namespace Karapinha.Shared.IServices
         Task<bool> DeleteUser(int id);
         Task UpdateUser(UtilizadorUpdateDTO Utilizador);
         Task ActivateOrDesactivateClient(int cliente);
-        Task<UtilizadorDTO> Login(string username, string password);
+        Task<UtilizadorDTO> Login(LoginDTO login);
         Task<string> GetUserRole(string username);
+        Task<bool> VerifyAdministrativeStatus(UtilizadorDTO dto);
+        Task ActivateAndChangePassword(int id, string password);
     }
 }

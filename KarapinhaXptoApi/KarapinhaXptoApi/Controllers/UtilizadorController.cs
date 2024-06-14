@@ -19,15 +19,13 @@ namespace KarapinhaXptoApi.Controllers
         private readonly SignInManager<IdentityUser> _signInManager;
         private readonly IConfiguration _configuration;
         private readonly IUtilizadorService _UtilizadorService;
-        private readonly IEmailSender _EmailSender;
 
-        public UtilizadorController(UserManager<IdentityUser> userManager, SignInManager<IdentityUser> signInManager, IConfiguration configuration, IUtilizadorService UtilizadorService, IEmailSender emailSender)
+        public UtilizadorController(UserManager<IdentityUser> userManager, SignInManager<IdentityUser> signInManager, IConfiguration configuration, IUtilizadorService UtilizadorService)
         {
             _userManager = userManager;
             _signInManager = signInManager;
             _configuration = configuration;
             _UtilizadorService = UtilizadorService;
-            _EmailSender = emailSender;
         }
 
         [HttpPost]
@@ -41,7 +39,6 @@ namespace KarapinhaXptoApi.Controllers
             {
                 //Utilizador.PasswordUtilizador = ;
                 await _UtilizadorService.CreateUser(Utilizador, foto);
-                _EmailSender.SendEmail(Utilizador.EmailUtilizador, "Utilizador criado com sucesso!!");
                 return Ok(new { Result = "Utilizador criado com sucesso!!" });
             }
             else
@@ -54,14 +51,7 @@ namespace KarapinhaXptoApi.Controllers
         [Route("/Login")]
         public async Task<ActionResult> Login([FromBody] LoginDTO loginDto)
         {
-            if (!ModelState.IsValid)
-                return BadRequest(ModelState);
-
-            var user = await _UtilizadorService.Login(loginDto.usernameUtilizador, loginDto.passwordUtilizador);
-            if (user == null)
-            {
-                return Unauthorized("Username ou password invalida.");
-            }
+            var user = await _UtilizadorService.Login(loginDto);
             return Ok(user);
         }
 
@@ -204,6 +194,22 @@ namespace KarapinhaXptoApi.Controllers
                 return NotFound(ex.Message);
             }
         }
+
+        [HttpPut]
+        [Route("/ActivateAndChangePassword")]
+        public async Task<ActionResult> ActivateAndChangePassword(int id, string password)
+        {
+            try
+            {
+                await _UtilizadorService.ActivateAndChangePassword(id, password);
+                return Ok();
+            }
+            catch (Exception ex)
+            {
+                throw new Exception(ex.Message);
+            }
+        }
+
 
         /*[HttpPost]
         [Route("/Login")]

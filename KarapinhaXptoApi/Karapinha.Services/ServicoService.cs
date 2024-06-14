@@ -1,5 +1,6 @@
 ﻿using Amazon.Lambda.Model;
 using Karapinha.DAL.Converters;
+using Karapinha.Model;
 using Karapinha.Shared.IRepositories;
 using Karapinha.Shared.IServices;
 using Karapinnha.DTO;

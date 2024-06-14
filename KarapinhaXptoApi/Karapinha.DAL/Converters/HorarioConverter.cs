@@ -15,6 +15,7 @@ namespace Karapinha.DAL.Converters
         {
             return new Horario
             {
+                IdHorario = dto.IdHorario,
                 Descricao = dto.Descricao
             };
         }
@@ -23,6 +24,7 @@ namespace Karapinha.DAL.Converters
         {
             return new HorarioDTO
             {
+                IdHorario = horario.IdHorario,
                 Descricao = horario.Descricao
             };
         }

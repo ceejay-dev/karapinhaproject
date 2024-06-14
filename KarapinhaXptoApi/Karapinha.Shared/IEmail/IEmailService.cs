@@ -1,13 +1,14 @@
-﻿using System;
+﻿using Karapinnha.DTO;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace Karapinha.Shared.IServices
+namespace Karapinha.Shared.IEmail
 {
     public interface IEmailService
     {
-        Task SendActivationEmail(string toEmail, string subject, string message);
+        Task SendEmailAdminOrCliente(string message, UtilizadorDTO utilizador);
     }
 }

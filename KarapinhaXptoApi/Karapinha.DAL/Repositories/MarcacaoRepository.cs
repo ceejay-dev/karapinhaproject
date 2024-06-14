@@ -24,6 +24,8 @@ namespace Karapinha.DAL.Repositories
             await DbContext.SaveChangesAsync();
             return booking.Entity;
         }
+
+
         public async Task<Marcacao> GetBookingById(int id)
         {
             return await DbContext.Marcacoes.FindAsync(id);

@@ -164,3 +164,6 @@ D:\karapinhaproject\KarapinhaXptoApi\KarapinhaXptoApi\obj\Debug\net8.0\refint\Ka
 D:\karapinhaproject\KarapinhaXptoApi\KarapinhaXptoApi\obj\Debug\net8.0\KarapinhaXptoApi.pdb
 D:\karapinhaproject\KarapinhaXptoApi\KarapinhaXptoApi\obj\Debug\net8.0\KarapinhaXptoApi.genruntimeconfig.cache
 D:\karapinhaproject\KarapinhaXptoApi\KarapinhaXptoApi\obj\Debug\net8.0\ref\KarapinhaXptoApi.dll
+D:\karapinhaproject\KarapinhaXptoApi\KarapinhaXptoApi\bin\Debug\net8.0\System.Net.Http.Formatting.dll
+D:\karapinhaproject\KarapinhaXptoApi\KarapinhaXptoApi\bin\Debug\net8.0\System.Web.Http.dll
+D:\karapinhaproject\KarapinhaXptoApi\KarapinhaXptoApi\bin\Debug\net8.0\Newtonsoft.Json.Bson.dll

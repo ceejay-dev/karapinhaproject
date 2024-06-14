@@ -62,5 +62,21 @@ namespace Karapinha.DAL.Repositories
              DbContext.Profissionais.Update(profissional);
              await DbContext.SaveChangesAsync();
         }
+
+        public IEnumerable<dynamic> GetAllProfissionaisByIdCategoria()
+        {
+            var result = from profissional in DbContext.Profissionais
+                         join categoria in DbContext.Categorias
+                         on profissional.FkCategoria equals categoria.IdCategoria
+                         select new
+                         {
+                             NomeProfissional = profissional.NomeProfissional,
+                             EmailProfissional = profissional.EmailProfissional,
+                             NomeCategoria = categoria.NomeCategoria,
+                             TelemovelProfissional = profissional.TelemovelProfissional
+                         };
+
+            return result.ToList();
+        }
     }
 }

@@ -2,6 +2,7 @@
 using Karapinnha.DTO;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore.Metadata.Internal;
+using OpenQA.Selenium;
 
 namespace KarapinhaXptoApi.Controllers
 {
@@ -50,7 +51,7 @@ namespace KarapinhaXptoApi.Controllers
         {
             try
             {
-                return await Servico.GetTreatementById(id);
+                 return await Servico.GetTreatementById(id);
             }
             catch (Exception ex)
             {

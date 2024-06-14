@@ -19,7 +19,8 @@ namespace Karapinha.Shared.IRepositories
         Task<bool> DeleteUser(int id);
         Task UpdateUser(Utilizador Utilizador);
         Task<Utilizador> GetUserByUsername(string username);
-        bool VerifyState(Utilizador utilizador);
+        bool VerifyStatus(Utilizador utilizador);
         Task<string> GetUserRole(string username);
+        Task<bool> VerifyAdministrativeStatus(Utilizador user);
     }
 }

@@ -26,7 +26,7 @@ export function AppRoutes() {
         <Route path="/marcacoes" element={<AddMarcacoes />} />
         <Route path="/adminHome" element={<AdminHome />} />
         <Route path="/gestorHome" element={<GestorHome />} />
-        <Route path="/categorias" element={<AddCategorias/>} />
+        <Route path="/categorias" element={<AddCategorias />} />
         <Route path="/servicos" element={<AddServicos />} />
         <Route path="/profissionais" element={<AddProfissionais />} />
         <Route path="/administrativos" element={<AddAdministrativos />} />

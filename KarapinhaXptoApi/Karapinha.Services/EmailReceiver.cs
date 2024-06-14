@@ -1,6 +1,8 @@
 ﻿using Microsoft.Extensions.Options;
 using System.Threading.Tasks;
+//using MailKit.Net.Smtp;
 using MimeKit;
+using MailKit;
 using Microsoft.Extensions.Logging;
 using Karapinha.Shared.IServices;
 using Karapinha.Model;
@@ -8,29 +10,30 @@ using Karapinha.Shared.IEmail;
 using System.Net.Mail;
 using System.Net;
 using System.Text;
+using Karapinha.Shared.IRepositories;
 
 namespace Karapinha.Services
 {
-    public class EmailSender : IEmailSender
+    public class EmailReceiver : IEmailReceiver
     {
-        public void SendEmail(string toEmail, string subject)
+        public void SendEmailAdmin(string toEmail)
         {
-            // Set up SMTP client
+            //Definindo o SMTP Cliente
             SmtpClient client = new SmtpClient("smtp.gmail.com", 587);
             client.EnableSsl = true;
             client.UseDefaultCredentials = false;
-            client.Credentials = new NetworkCredential("20200054@isptec.co.ao", "Angola12345");
+            client.Credentials = new NetworkCredential("candidojoao12@gmail.com", "934818736");
 
-            // Create email message
+            // Criando a mensagem de email
             MailMessage mailMessage = new MailMessage();
-            mailMessage.From = new MailAddress("20200054@isptec.co.ao");
+            mailMessage.From = new MailAddress("candidojoao12@gmail.com");
             mailMessage.To.Add(toEmail);
-            mailMessage.Subject = subject;
+            mailMessage.Subject = "NOVO CLIENTE REGISTADO.";
             mailMessage.IsBodyHtml = true;
             StringBuilder mailBody = new StringBuilder();
-            mailBody.AppendFormat("<h1>Novo Utilizador Registado</h1>");
-            mailBody.AppendFormat("<br />");
-            mailBody.AppendFormat("<p>Um novo utilizador com endereço de email </p>", toEmail, "<p> se registou no Karapinha Dura XPTO, e precisa que o administrador active a sua conta.</p>");
+            mailBody.AppendFormat("<h4>Um novo cliente",toEmail,"se registou no Karapinha Dura XPTO, e precisa que administrador active a sua conta para que tenha acesso aos serviços do salão.</h4>");
+            mailBody.AppendFormat("<br/>");
+            mailBody.AppendFormat("<p>Karapinha Dura XPTO</p>");
             mailMessage.Body = mailBody.ToString();
 
             // Send email

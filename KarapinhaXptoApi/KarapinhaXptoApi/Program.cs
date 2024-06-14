@@ -13,6 +13,7 @@ using Newtonsoft;
 using System.Text.Json.Serialization;
 using System.Text.Json;
 using Karapinha.Shared.IEmail;
+using Karapinha.Model;
 
 var builder = WebApplication.CreateBuilder(args);
 
@@ -66,21 +67,25 @@ builder.Services.AddScoped<IHorarioService, HorarioService>();
 builder.Services.AddScoped<IProfissionalRepository, ProfissionalRepository>();
 builder.Services.AddScoped<IProfissionalService, ProfissionalService>();
 
+builder.Services.AddScoped<IProfissionalHorarioRepository, ProfissionalHorarioRepository>();
+
 builder.Services.AddScoped<IServicoRepository, ServicoRepository>();
 builder.Services.AddScoped<IServicoService, ServicoService>();
 
 builder.Services.AddScoped<IMarcacaoRepository, MarcacaoRepository>();
 builder.Services.AddScoped<IMarcacaoService, MarcacaoService>();
 
-builder.Services.AddScoped<IProfissionalHorarioRepository, ProfissionalHorarioRepository>();
-
-builder.Services.AddScoped<IEmailSender, EmailSender>();
+builder.Services.AddScoped<IMarcacaoServicosRepository, MarcacaoServicosRepository>();
 
 builder.Services.AddControllers().AddJsonOptions(options =>
 {
     options.JsonSerializerOptions.ReferenceHandler = ReferenceHandler.IgnoreCycles;
     options.JsonSerializerOptions.WriteIndented = true;
 });
+
+builder.Services.AddScoped<IEmailReceiver, EmailReceiver>();
+builder.Services.Configure<EmailSender>(builder.Configuration.GetSection("Email"));
+builder.Services.AddScoped<IEmailService, EmailService>();
 
 builder.Services.AddCors(options =>
 {

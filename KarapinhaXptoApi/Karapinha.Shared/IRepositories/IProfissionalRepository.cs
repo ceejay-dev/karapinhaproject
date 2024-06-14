@@ -15,5 +15,6 @@ namespace Karapinha.Shared.IRepositories
         Task<IEnumerable<Profissional>> GetAllProfissionals();
         Task<bool> DeleteProfissional(int id);
         Task UpdateProfissional(Profissional profissional);
+        IEnumerable<dynamic> GetAllProfissionaisByIdCategoria();
     }
 }

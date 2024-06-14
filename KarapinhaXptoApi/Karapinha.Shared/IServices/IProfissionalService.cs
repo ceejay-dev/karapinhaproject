@@ -15,5 +15,6 @@ namespace Karapinha.Shared.IServices
         Task<ProfissionalDTO> GetProfissionalById(int id);
         Task<IEnumerable<Profissional>> GetAllProfissionals();
         Task<bool> DeleteProfissional(int id);
+        IEnumerable<dynamic> GetAllProfissionaisByIdCategoria();
     }
 }

@@ -9,7 +9,7 @@ namespace Karapinnha.DTO
 {
     public class UtilizadorDTO
     {
-        //public int IdUtilizador { get; set; }
+        public int IdUtilizador { get; set; }
         public string? NomeUtilizador { get; set; }
         public string? EmailUtilizador { get; set; }
         public string? BilheteUtilizador { get; set; }

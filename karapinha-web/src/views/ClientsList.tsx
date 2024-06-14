@@ -39,19 +39,20 @@ export function ClientsList() {
 
   const handleActivation = async (cliente: clientesProps, activate: boolean) => {
     try {
-      console.log("Activando cliente:", cliente.nomeUtilizador, "Ativar:", activate); // Verifica se a função de ativação é chamada corretamente
+      console.log("Activando cliente:", cliente); // Verifique se o cliente tem idUtilizador
+      console.log("Ativar:", activate); // Verifique se a função de ativação é chamada corretamente
 
       const response = await fetch(`https://localhost:7209/ActivateOrDesactivate?id=${cliente.idUtilizador}`, {
         method: "PUT",
         headers: {
           "Content-Type": "application/json",
         },
-        body: JSON.stringify(activate),
+        body: JSON.stringify({ activate }), // Corrigido para enviar um objeto JSON válido
       });
 
       if (response.ok) {
         const updatedClientes = clientes.map((c) =>
-          c.nomeUtilizador === cliente.nomeUtilizador ? { ...c, estado: activate ? "activo" : "inactivo" } : c
+          c.idUtilizador === cliente.idUtilizador ? { ...c, estado: activate ? "activo" : "inactivo" } : c
         );
         setClientes(updatedClientes);
         console.log("Clientes atualizados:", updatedClientes); // Verifica se o estado dos clientes é atualizado corretamente
@@ -67,7 +68,7 @@ export function ClientsList() {
     <main className="container-service">
       <h4 className="text-center text-info">Clientes</h4>
       {clientes.map((cliente, index) => (
-        <div key={`${cliente.nomeUtilizador}-${index}`} className="bg-white border border-2 border-black">
+        <div key={`${cliente.idUtilizador}-${index}`} className="bg-white border border-2 border-black">
           <div>
             <h3>Nome: {cliente.nomeUtilizador}</h3>
             <h5>Email: {cliente.emailUtilizador} </h5>

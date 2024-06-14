@@ -74,6 +74,18 @@ namespace Karapinha.Services
             }
         }
 
+        public IEnumerable<dynamic> GetAllProfissionaisByIdCategoria()
+        {
+            try
+            {
+                return Repository.GetAllProfissionaisByIdCategoria();
+            }
+            catch (Exception ex)
+            {
+                throw new ServiceException(ex);
+            }
+        }
+
         public async Task<bool> DeleteProfissional(int id)
         {
             try

@@ -88,13 +88,14 @@ namespace Karapinha.DAL.Repositories
             return await dbContext.Utilizadores.SingleOrDefaultAsync(u => u.UsernameUtilizador == username);
         }
 
-        public bool VerifyState (Utilizador utilizador)
+        public bool VerifyStatus (Utilizador utilizador)
         {
-            if (utilizador.Estado == "activo")
-            {
-                return true;
-            } 
-            return false;
+            return (utilizador.Estado == "activo");
+        }
+
+        public async Task<bool> VerifyAdministrativeStatus(Utilizador user)
+        {
+            return (user.TipoPerfil == "administrativo" && user.Estado == "activo");
         }
 
         public async Task <string> GetUserRole (string username)

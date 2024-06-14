@@ -48,3 +48,26 @@
     padding: 10px;
     margin-bottom: 5px;
 }
+
+.select{
+    border: 2px solid black;
+    height: 43px;
+    width: 45vh;
+
+}
+
+.select:focus{
+    outline: none; /* Remove o contorno padrão do navegador */
+    border-color: #0066cc; /* Altera a cor da borda quando em foco */
+    box-shadow: 0 0 5px rgba(0, 102, 204, 0.5); 
+}
+
+input[type=number]::-webkit-inner-spin-button, 
+input[type=number]::-webkit-outer-spin-button { 
+  -webkit-appearance: none;
+  margin: 0; 
+}
+
+input[type=number] {
+  -moz-appearance: textfield;
+}

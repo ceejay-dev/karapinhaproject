@@ -6,8 +6,8 @@ using System.Threading.Tasks;
 
 namespace Karapinha.Shared.IEmail
 {
-    public interface IEmailSender
+    public interface IEmailReceiver
     {
-        void SendEmail(string toEmail, string subject);
+        void SendEmailAdmin(string toEmail);
     }
 }

@@ -1,4 +1,5 @@
-﻿using Karapinnha.DTO;
+﻿using Karapinha.Model;
+using Karapinnha.DTO;
 using System;
 using System.Collections.Generic;
 using System.Linq;

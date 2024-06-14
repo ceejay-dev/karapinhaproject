@@ -2,25 +2,31 @@
 using Karapinha.DAL.Converters;
 using Karapinha.DAL.Repositories;
 using Karapinha.Model;
+using Karapinha.Shared.IEmail;
 using Karapinha.Shared.IRepositories;
 using Karapinha.Shared.IServices;
 using Karapinnha.DTO;
 using Microsoft.AspNetCore.Http;
+using MimeKit;
 using OpenQA.Selenium;
 using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
+using System.Web.Http.ModelBinding;
 
 namespace Karapinha.Services
 {
     public class UtilizadorService : IUtilizadorService
     {
         private readonly IUtilizadorRepository UtilizadorRepository;
-
-        public UtilizadorService(IUtilizadorRepository usuarioRepository)
+        private readonly IEmailService emailService;
+        private readonly IEmailReceiver emailReceiver;
+        public UtilizadorService(IUtilizadorRepository usuarioRepository, IEmailService emailService, IEmailReceiver emailReceiver)
         {
             UtilizadorRepository = usuarioRepository;
+            this.emailService = emailService;
+            this.emailReceiver = emailReceiver;
         }
 
         public async Task<UtilizadorDTO> CreateUser(UtilizadorDTO Utilizador, IFormFile foto)
@@ -30,20 +36,37 @@ namespace Karapinha.Services
                 var utilizador = UtilizadorConverter.ToUtilizador(Utilizador);
                 utilizador.EncriptarPassword(Utilizador.PasswordUtilizador);
 
-                var usuarioAdded = UtilizadorConverter.ToUtilizadorDTO(await UtilizadorRepository.CreateUser(UtilizadorConverter.ToUtilizador(Utilizador), foto));
-                return usuarioAdded;
+                var userAdded = UtilizadorConverter.ToUtilizadorDTO(await UtilizadorRepository.CreateUser(UtilizadorConverter.ToUtilizador(Utilizador), foto));
+                var userRole = await UtilizadorRepository.GetUserRole(Utilizador.UsernameUtilizador);
+                if (userRole == "cliente")
+                {
+                    //Enviando email para o admin ativar conta
+                    emailReceiver.SendEmailAdmin(userAdded.EmailUtilizador);
+                }
+                else if (userRole == "administrativo")
+                {
+                    //Enviando email para o administrativos com as suas credenciais
+                    string mensagem = "Bem-vindo à Karapinha Dura XPTO" +
+                       "Acabou de ser registado como administrativo da aplicação." +
+                       "Eis os dados as credenciais de acesso:" +
+                       "Nome de utilizador :" + userAdded.UsernameUtilizador + "" +
+                       "Palavra-passe    :" + userAdded.PasswordUtilizador;
+                    emailService.SendEmailAdminOrCliente(mensagem, userAdded);
+                }
+                return userAdded;
             }
-            catch (Exception ex) { 
+            catch (Exception ex)
+            {
                 throw new ServiceException(ex.Message);
             }
         }
 
-        public async Task<UtilizadorDTO> Login(string username, string password)
+        public async Task<UtilizadorDTO> Login(LoginDTO login)
         {
             try
             {
-                var user = await UtilizadorRepository.GetUserByUsername(username);
-                if (user == null || !user.VerificarPassword(password) || !UtilizadorRepository.VerifyState(user))
+                var user = await UtilizadorRepository.GetUserByUsername(login.usernameUtilizador);
+                if (user == null || !user.VerificarPassword(login.passwordUtilizador) || !UtilizadorRepository.VerifyStatus(user))
                 {
                     throw new NotFoundException();
                 }
@@ -51,7 +74,7 @@ namespace Karapinha.Services
             }
             catch (Exception ex)
             {
-                throw new ServiceException(ex.ToString());
+                throw new ServiceException(ex.Message);
             }
         }
 
@@ -72,7 +95,7 @@ namespace Karapinha.Services
             }
             catch (Exception ex)
             {
-                throw new ServiceException("Erro ao obter usuário por ID.", ex);
+                throw new ServiceException("Erro ao obter utilizador por ID.", ex);
             }
         }
 
@@ -160,6 +183,35 @@ namespace Karapinha.Services
             }
         }
 
+        public async Task<bool> VerifyAdministrativeStatus(UtilizadorDTO dto)
+        {
+            try
+            {
+                return (await UtilizadorRepository.VerifyAdministrativeStatus(UtilizadorConverter.ToUtilizador(dto)));
+            }
+            catch (Exception ex) {
+                throw new ServiceException(ex.Message);
+            }
+        }
+
+        public async Task ActivateAndChangePassword(int id, string password)
+        {
+            try
+            {
+                var userFound = await UtilizadorRepository.GetUserById(id);
+                if (userFound == null) throw new NotFoundException();
+
+                userFound.Estado = "activo";
+                userFound.PasswordUtilizador = password;
+
+                await UtilizadorRepository.UpdateUser(userFound);
+            }
+            catch (Exception ex) { 
+                throw new ServiceException(ex.Message);
+            }
+
+        }
+
         public async Task<string> GetUserRole(string username)
         {
             try
@@ -174,5 +226,3 @@ namespace Karapinha.Services
         }
     }
 }
-//var activationLink = $"https://localhost:7209/ActivateOrDesactivate?id={usuarioAdded.IdUtilizador}";
-//await emailService.SendActivationEmail("candidojoao12@gmail.com", "Ativação de Conta", $"Ative a sua conta clicando no link: {activationLink}");

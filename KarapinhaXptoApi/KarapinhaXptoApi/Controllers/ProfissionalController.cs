@@ -18,7 +18,7 @@ namespace KarapinhaXptoApi.Controllers
 
         [HttpPost]
         [Route("/CreateProfissional")]
-        public async Task<ActionResult> CreateProfissional([FromBody] ProfissionalDTO dto, IFormFile foto)
+        public async Task<ActionResult> CreateProfissional([FromForm] ProfissionalDTO dto, IFormFile foto)
         {
             try
             {
@@ -75,5 +75,20 @@ namespace KarapinhaXptoApi.Controllers
                 throw new Exception(ex.Message);
             }
         }
+
+        [HttpGet]
+        [Route("/GetProfissinalsByIdCategoria")]
+        public IEnumerable<dynamic> GetAllProfissionaisByIdCategoria()
+        {
+            try
+            {
+                return Service.GetAllProfissionaisByIdCategoria();
+            }
+            catch (Exception ex)
+            {
+                throw new Exception(ex.Message);
+            }
+        }
     }
 }
+

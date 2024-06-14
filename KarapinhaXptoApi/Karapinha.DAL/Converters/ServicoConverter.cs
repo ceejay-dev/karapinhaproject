@@ -14,6 +14,7 @@ namespace Karapinha.DAL.Converters
         {
             return new Servico
             {
+                IdServico = dto.IdServico,
                 NomeServico = dto.NomeServico,
                 Preco = dto.Preco,
                 FkCategoria = dto.FkCategoria,
@@ -22,8 +23,14 @@ namespace Karapinha.DAL.Converters
 
         public static ServicoDTO ToServicoDTO(Servico model)
         {
+            if (model == null)
+            {
+                throw new ArgumentNullException(nameof(model), "O modelo de serviço é nulo.");
+            }
+
             return new ServicoDTO
             {
+                IdServico = model.IdServico,
                 NomeServico = model.NomeServico,
                 Preco = model.Preco,
                 FkCategoria = model.FkCategoria,
