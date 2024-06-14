@@ -5,6 +5,7 @@ using Karapinha.Shared.IRepositories;
 using Karapinha.Shared.IServices;
 using Karapinnha.DTO;
 using Microsoft.AspNetCore.Http;
+using ServiceStack;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -61,12 +62,12 @@ namespace Karapinha.Services
             }
         }
 
-        public async Task<IEnumerable<Profissional>> GetAllProfissionals()
+        public async Task<IEnumerable<ProfissionalDTO>> GetAllProfissionals()
         {
             try
             {
-                return await Repository.GetAllProfissionals();
-               // return profissionals.Select(ProfissionalConverter.ToProfissionalDTO);
+                var profissionals = await Repository.GetAllProfissionals();
+                return profissionals.Select(ProfissionalConverter.ToProfissionalDTO);
             }
             catch (Exception ex)
             {
@@ -91,7 +92,9 @@ namespace Karapinha.Services
             try
             {
                 var prof = await GetProfissionalById(id);
-                if (prof != null) {
+                var profHorario = await HorarioRepository.GetProfissionalById(id);
+                if (prof != null && profHorario!=null) {
+                    await HorarioRepository.DeleteProfissionalHorario(id);
                     await Repository.DeleteProfissional(id);
                     return true;
                 }

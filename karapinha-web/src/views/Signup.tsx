@@ -6,7 +6,8 @@ import { Button, Alert } from "react-bootstrap";
 
 export function Signup() {
   const navigate = useNavigate();
-  const [showAlert, setShowAlert] = useState(false);
+  const [showAlert, setShowAlert] = useState({ success: false, failure: false });
+  const [validationError, setValidationError] = useState("");
   
   const [formData, setFormData] = useState({
     idUtilizador: '0',
@@ -17,6 +18,7 @@ export function Signup() {
     BilheteUtilizador: '',
     UsernameUtilizador: '',
     PasswordUtilizador: '',
+    ConfirmPasswordUtilizador: ''
   });
 
   const handleChange = (event:any) => {
@@ -42,6 +44,25 @@ export function Signup() {
   const handleRegisterClick = async (event:any) => {
     event.preventDefault();
     
+    // Validation
+    if (
+      !formData.NomeUtilizador ||
+      !formData.EmailUtilizador ||
+      !formData.TelemovelUtilizador ||
+      !formData.BilheteUtilizador ||
+      !formData.UsernameUtilizador ||
+      !formData.PasswordUtilizador ||
+      !formData.ConfirmPasswordUtilizador
+    ) {
+      setValidationError("Todos os campos são obrigatórios.");
+      return;
+    }
+
+    if (formData.PasswordUtilizador !== formData.ConfirmPasswordUtilizador) {
+      setValidationError("As senhas não coincidem.");
+      return;
+    }
+
     const form = new FormData();
     form.append('TipoPerfil', 'cliente');
     if (formData.FotoUtilizador !== null) {
@@ -63,14 +84,16 @@ export function Signup() {
       });
       
       if (response.ok) {
-        setShowAlert(true);
+        setShowAlert({ success: true, failure: false });
         setTimeout(() => {
           navigate("/");
-        }, 3000);
+        }, 2000);
       } else {
-        console.error("Failed to register user.");
+        setShowAlert({ success: false, failure: true });
+        console.error("Falha ao registar utilizador.");
       }
     } catch (error) {
+      setShowAlert({ success: false, failure: true });
       console.error("Error:", error);
     }
   };
@@ -80,7 +103,7 @@ export function Signup() {
       <div className="container-image"></div>
 
       <div className="container-form">
-        <div className=" d-flex justify-content-center">
+        <div className="d-flex justify-content-center">
           <img className="image-icon" src={logo} alt="Logo" />
         </div>
         <form
@@ -109,7 +132,7 @@ export function Signup() {
                 value={formData.TelemovelUtilizador}
                 onChange={handleChange}
                 name="TelemovelUtilizador"
-                type="text"
+                type="number"
                 placeholder="Telemóvel"
                 className="m-1"
               />
@@ -142,8 +165,16 @@ export function Signup() {
                 value={formData.PasswordUtilizador}
                 onChange={handleChange}
                 name="PasswordUtilizador"
-                type="text"
+                type="password"
                 placeholder="Password"
+                className="m-1"
+              />
+              <input
+                value={formData.ConfirmPasswordUtilizador}
+                onChange={handleChange}
+                name="ConfirmPasswordUtilizador"
+                type="password"
+                placeholder="Confirmar Password"
                 className="m-1"
               />
             </div>
@@ -163,9 +194,19 @@ export function Signup() {
             </div>
           </div>
         </form>
-        {showAlert && (
+        {validationError && (
+          <Alert variant="danger" className="mt-3">
+            {validationError}
+          </Alert>
+        )}
+        {showAlert.success && (
           <Alert variant="info" className="mt-3">
             Administrador precisa ativar a sua conta para fazer login.
+          </Alert>
+        )}
+        {showAlert.failure && (
+          <Alert variant="danger" className="mt-3">
+            Falha ao registar o utilizador.
           </Alert>
         )}
       </div>

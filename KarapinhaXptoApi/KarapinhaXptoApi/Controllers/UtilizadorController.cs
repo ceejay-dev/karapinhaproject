@@ -210,6 +210,20 @@ namespace KarapinhaXptoApi.Controllers
             }
         }
 
+        [HttpGet]
+        [Route("/VerifyAdministrativeStatus")]
+        public async Task<ActionResult> VerifyAdministrativeStatus(UtilizadorDTO dto)
+        {
+            try
+            {
+                await _UtilizadorService.VerifyAdministrativeStatus(dto);
+                return Ok();
+            }
+            catch (Exception ex) { 
+                throw new Exception(ex.Message);
+            }
+        }
+
 
         /*[HttpPost]
         [Route("/Login")]

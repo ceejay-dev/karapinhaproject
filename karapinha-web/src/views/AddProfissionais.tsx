@@ -7,6 +7,7 @@ import { useNavigate } from "react-router-dom";
 
 // preparando as listas que virão de cada requisição GET
 type profissionaisProps = {
+  idProfissional: number;
   nomeProfissional: string;
   emailProfissional: string;
   nomeCategoria: string;
@@ -44,13 +45,18 @@ export function AddProfissionais() {
     horarios: [] as number[],
   });
 
-  const handleChange = (event: any) => {
-    const { name, value, type, files } = event.target;
+  const handleChange = (
+    event: React.ChangeEvent<HTMLInputElement | HTMLSelectElement>
+  ) => {
+    const { name, value, type } = event.target;
+
     if (type === "file") {
-      setFormData((prevData) => ({
-        ...prevData,
-        [name]: files[0],
-      }));
+      if ((event.target as HTMLInputElement).files) {
+        setFormData((prevData) => ({
+          ...prevData,
+          [name]: (event.target as HTMLInputElement).files![0], 
+        }));
+      }
     } else {
       setFormData((prevData) => ({
         ...prevData,
@@ -59,7 +65,9 @@ export function AddProfissionais() {
     }
   };
 
-  const handleConfirmedClick = async (event: any) => {
+  const handleConfirmedClick = async (
+    event: React.FormEvent<HTMLFormElement>
+  ) => {
     event.preventDefault();
 
     // Validando os dados antes de enviar
@@ -85,9 +93,18 @@ export function AddProfissionais() {
       formDataToSend.append("NomeProfissional", formData.nomeProfissional);
       formDataToSend.append("FkCategoria", formData.fkCategoria);
       formDataToSend.append("EmailProfissional", formData.emailProfissional);
-      formDataToSend.append("FotoProfissional", formData.fotoProfissional as File);
-      formDataToSend.append("BilheteProfissional", formData.bilheteProfissional);
-      formDataToSend.append("TelemovelProfissional", formData.telemovelProfissional);
+      formDataToSend.append(
+        "FotoProfissional",
+        formData.fotoProfissional as File
+      );
+      formDataToSend.append(
+        "BilheteProfissional",
+        formData.bilheteProfissional
+      );
+      formDataToSend.append(
+        "TelemovelProfissional",
+        formData.telemovelProfissional
+      );
       formDataToSend.append("Horarios", JSON.stringify(formData.horarios));
 
       const response = await fetch(url, {
@@ -144,7 +161,9 @@ export function AddProfissionais() {
   useEffect(() => {
     const fetchProfissionais = async () => {
       try {
-        const response = await fetch("https://localhost:7209/GetProfissinalsByIdCategoria");
+        const response = await fetch(
+          "https://localhost:7209/GetProfissinalsByIdCategoria"
+        );
         if (response.ok) {
           const data = await response.json();
           setProfissionais(data);
@@ -181,6 +200,36 @@ export function AddProfissionais() {
     fetchHorarios();
   }, []);
 
+  const handleDelete = async (id: number) => {
+    const url = `https://localhost:7209/DeleteProfissional?id=${id}`;
+    try {
+      const response = await fetch(url, {
+        method: "DELETE",
+      });
+      if (response.ok) {
+        setAlertMessage("Profissional apagado com sucesso!");
+        setAlertVariant("success");
+        setShowAlert(true);
+        // Remover o profissional da lista
+        setProfissionais((prevProfissionais) =>
+          prevProfissionais.filter((prof) => prof.idProfissional !== id)
+        );
+      } else {
+        const errorData = await response.json();
+        console.error("Falha ao apagar profissional", errorData);
+        setAlertMessage("Falha ao apagar o profissional.");
+        setAlertVariant("danger");
+        setShowAlert(true);
+      }
+    } catch (error) {
+      console.error("Erro ao apagar profissional:", error);
+      setAlertMessage("Erro ao apagar o profissional.");
+      setAlertVariant("danger");
+      setShowAlert(true);
+    }
+  };
+  
+
   return (
     <main className="container-service">
       <div className="bg-white p-2 container-service-added">
@@ -203,7 +252,11 @@ export function AddProfissionais() {
             </div>
 
             <div className="m-1">
-              <BootstrapButton variant="danger" className="me-2">
+              <BootstrapButton
+                variant="danger"
+                className="me-2"
+                onClick={() => handleDelete(profissional.idProfissional)} 
+              >
                 Apagar
               </BootstrapButton>
             </div>
@@ -211,7 +264,11 @@ export function AddProfissionais() {
         ))}
       </div>
 
-      <Modal show={show} onHide={handleClose} dialogClassName="custom-modal-width">
+      <Modal
+        show={show}
+        onHide={handleClose}
+        dialogClassName="custom-modal-width"
+      >
         <Modal.Header closeButton>
           <Modal.Title>Registo de Profissionais</Modal.Title>
         </Modal.Header>
@@ -222,7 +279,11 @@ export function AddProfissionais() {
               <div className="d-flex justify-content-center">
                 <img className="image-icon" src={logo} alt="Logo" />
               </div>
-              <form action="" className="d-flex justify-content-center formulario">
+              <form
+                action=""
+                className="d-flex justify-content-center formulario"
+                onSubmit={handleConfirmedClick}
+              >
                 <div className="d-flex flex-row">
                   <div className="input-container1">
                     <input
@@ -242,6 +303,7 @@ export function AddProfissionais() {
                       placeholder="Email"
                       className="m-1"
                     />
+
                     <input
                       name="bilheteProfissional"
                       value={formData.bilheteProfissional}
@@ -256,6 +318,7 @@ export function AddProfissionais() {
                       onChange={handleChange}
                       type="file"
                       className="m-1"
+                      required
                     />
                   </div>
 
@@ -268,7 +331,10 @@ export function AddProfissionais() {
                     >
                       <option value="0">Selecione a categoria:</option>
                       {categorias.map((categoria) => (
-                        <option key={categoria.idCategoria} value={categoria.idCategoria}>
+                        <option
+                          key={categoria.idCategoria}
+                          value={categoria.idCategoria}
+                        >
                           {categoria.nomeCategoria}
                         </option>
                       ))}
@@ -294,26 +360,29 @@ export function AddProfissionais() {
                           horarios: value,
                         }));
                       }}
-                     // multiple
                       className="select"
                     >
-                      <option value="0">Selecione o horario:</option>
+                      <option value="0">Selecione o horário:</option>
                       {horarios.map((horario) => (
-                        <option key={horario.idHorario} value={horario.idHorario}>
+                        <option
+                          key={horario.idHorario}
+                          value={horario.idHorario}
+                        >
                           {horario.descricao}
                         </option>
                       ))}
                     </Form.Select>
                   </div>
                 </div>
+
                 <div className="d-flex justify-content-center">
                   <div className="m-1">
-                    <BootstrapButton variant="danger" onClick={handleClose} className="">
+                    <BootstrapButton variant="danger" onClick={handleClose}>
                       Cancelar
                     </BootstrapButton>
                   </div>
                   <div className="m-1">
-                    <BootstrapButton variant="success" onClick={handleConfirmedClick} className="">
+                    <BootstrapButton variant="success" type="submit">
                       Confirmar
                     </BootstrapButton>
                   </div>

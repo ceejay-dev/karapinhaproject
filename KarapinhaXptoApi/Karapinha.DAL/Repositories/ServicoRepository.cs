@@ -61,6 +61,7 @@ namespace Karapinha.DAL.Repositories
                          on servico.FkCategoria equals categoria.IdCategoria
                          select new
                          {
+                             IdServico = servico.IdServico,
                              NomeServico = servico.NomeServico,
                              Preco = servico.Preco,
                              NomeCategoria = categoria.NomeCategoria

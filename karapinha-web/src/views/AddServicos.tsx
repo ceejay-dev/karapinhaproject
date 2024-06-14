@@ -6,7 +6,7 @@ import { logo, plus } from "../components/Images";
 import "../styles/marcacao.css";
 
 type servicosProps = {
-  idServico: number; // Adicione um identificador único para cada serviço
+  idServico: number; 
   nomeServico: string;
   preco: number;
   nomeCategoria: string;
@@ -41,18 +41,51 @@ export function AddServicos() {
     }));
   };
 
+  const handleDelete = async (id: number) => {
+    const url = `https://localhost:7209/DeleteTreatment?id=${id}`;
+    try {
+      const response = await fetch(url, {
+        method: "DELETE",
+      });
+      if (response.ok) {
+        setAlertMessage("Servico apagado com sucesso!");
+        setAlertVariant("success");
+        setShowAlert(true);
+        // Remover o servico da lista
+        setServicos((prevProfissionais) =>
+          prevProfissionais.filter((service) => service.idServico !== id)
+        );
+      } else {
+        const errorData = await response.json();
+        console.error("Falha ao apagar servico", errorData);
+        setAlertMessage("Falha ao apagar o servico.");
+        setAlertVariant("danger");
+        setShowAlert(true);
+      }
+    } catch (error) {
+      console.error("Erro ao apagar servico:", error);
+      setAlertMessage("Erro ao apagar o servico.");
+      setAlertVariant("danger");
+      setShowAlert(true);
+    }
+  };
+
   const handleConfirmedClick = async (event: any) => {
     event.preventDefault();
 
     // Valide os dados antes de enviar
-    if (formData.fkCategoria === "0" || !formData.nomeServico || !formData.preco) {
+    if (
+      formData.fkCategoria === "0" ||
+      !formData.nomeServico ||
+      !formData.preco
+    ) {
       setAlertMessage("Por favor, preencha todos os campos.");
       setAlertVariant("danger");
       setShowAlert(true);
       return;
     }
 
-    const url = `https://localhost:7209/CreateTreatment?NomeServico=${(formData.nomeServico)}&Preco=${(formData.preco)}&FkCategoria=${(formData.fkCategoria)}`;
+    const url = `https://localhost:7209/CreateTreatment?NomeServico=${formData.nomeServico}&Preco=${formData.preco}&FkCategoria=${formData.fkCategoria}`;
 
     try {
       const response = await fetch(url, {
@@ -142,15 +175,23 @@ export function AddServicos() {
           </div>
 
           {servicos.map((servico, index) => (
-            <div key={servico.idServico || index} className="bg-white border border-2 border-black">
+            <div
+              key={servico.idServico || index}
+              className="bg-white border border-2 border-black"
+            >
               <div>
+                <h3>Id: {servico.idServico}</h3>
                 <h3>Descrição: {servico.nomeServico}</h3>
                 <h5>Preço: {servico.preco} kz</h5>
                 <h5>Categoria: {servico.nomeCategoria}</h5>
               </div>
 
               <div className="m-1">
-                <BootstrapButton variant="danger" className="me-2">
+                <BootstrapButton
+                  variant="danger"
+                  className="m-2"
+                  onClick={() => handleDelete(servico.idServico)}
+                >
                   Apagar
                 </BootstrapButton>
                 <BootstrapButton variant="info">Alterar</BootstrapButton>
@@ -181,10 +222,18 @@ export function AddServicos() {
               >
                 <div className="d-flex flex-row">
                   <div className="input-container1">
-                    <Form.Select name="fkCategoria" value={formData.fkCategoria} onChange={handleChange} className="select">
+                    <Form.Select
+                      name="fkCategoria"
+                      value={formData.fkCategoria}
+                      onChange={handleChange}
+                      className="select"
+                    >
                       <option value="0">Selecione a categoria:</option>
                       {categorias.map((categoria) => (
-                        <option key={categoria.idCategoria} value={categoria.idCategoria}>
+                        <option
+                          key={categoria.idCategoria}
+                          value={categoria.idCategoria}
+                        >
                           {categoria.nomeCategoria}
                         </option>
                       ))}
@@ -231,7 +280,11 @@ export function AddServicos() {
                     </BootstrapButton>
                   </div>
                 </div>
-                {showAlert && <Alert variant={alertVariant} className="mt-3">{alertMessage}</Alert>}
+                {showAlert && (
+                  <Alert variant={alertVariant} className="mt-3">
+                    {alertMessage}
+                  </Alert>
+                )}
               </form>
             </div>
           </div>

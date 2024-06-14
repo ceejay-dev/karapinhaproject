@@ -70,6 +70,7 @@ namespace Karapinha.DAL.Repositories
                          on profissional.FkCategoria equals categoria.IdCategoria
                          select new
                          {
+                             IdProfissional = profissional.IdProfissional,
                              NomeProfissional = profissional.NomeProfissional,
                              EmailProfissional = profissional.EmailProfissional,
                              NomeCategoria = categoria.NomeCategoria,

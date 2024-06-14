@@ -12,7 +12,7 @@ import { AddAdministrativos } from "../views/AddAdministrativos";
 import { ClientsList } from "../views/ClientsList";
 import { AddServicos } from "../views/AddServicos";
 import { ScheduleList } from "../views/ScheduleList";
-import { AddCategorias } from "../views/AddCategorias";
+
 
 export function AppRoutes() {
   return (
@@ -26,7 +26,6 @@ export function AppRoutes() {
         <Route path="/marcacoes" element={<AddMarcacoes />} />
         <Route path="/adminHome" element={<AdminHome />} />
         <Route path="/gestorHome" element={<GestorHome />} />
-        <Route path="/categorias" element={<AddCategorias />} />
         <Route path="/servicos" element={<AddServicos />} />
         <Route path="/profissionais" element={<AddProfissionais />} />
         <Route path="/administrativos" element={<AddAdministrativos />} />

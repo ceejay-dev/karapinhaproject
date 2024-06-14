@@ -45,13 +45,14 @@ namespace Karapinha.Services
                 }
                 else if (userRole == "administrativo")
                 {
+                    string assunto = "Criação de nova conta administrativo";
                     //Enviando email para o administrativos com as suas credenciais
                     string mensagem = "Bem-vindo à Karapinha Dura XPTO" +
                        "Acabou de ser registado como administrativo da aplicação." +
                        "Eis os dados as credenciais de acesso:" +
-                       "Nome de utilizador :" + userAdded.UsernameUtilizador + "" +
+                       "Nome de utilizador :" + userAdded.UsernameUtilizador + "\n" +
                        "Palavra-passe    :" + userAdded.PasswordUtilizador;
-                    emailService.SendEmailAdminOrCliente(mensagem, userAdded);
+                    emailService.SendEmailAdminOrCliente(mensagem, assunto,userAdded);
                 }
                 return userAdded;
             }
@@ -66,9 +67,12 @@ namespace Karapinha.Services
             try
             {
                 var user = await UtilizadorRepository.GetUserByUsername(login.usernameUtilizador);
-                if (user == null || !user.VerificarPassword(login.passwordUtilizador) || !UtilizadorRepository.VerifyStatus(user))
+                if (user == null || !user.VerificarPassword(login.passwordUtilizador))
                 {
                     throw new NotFoundException();
+                } else if (user.TipoPerfil=="cliente" && !UtilizadorRepository.VerifyStatus(user))
+                {
+                    throw new Exception();
                 }
                 return UtilizadorConverter.ToUtilizadorDTO(user);
             }
@@ -175,6 +179,19 @@ namespace Karapinha.Services
                 if (userFound == null) throw new NotFoundException();
 
                 userFound.Estado = userFound.Estado == "inactivo" ? "activo" : "inactivo";
+                string mensagem = "";
+                string subject = "";
+                if (userFound.Estado == "activo")
+                {
+                    subject = "Activação de conta";
+                    mensagem = "A sua conta foi activada com sucesso";
+                } else if (userFound.Estado == "inactivo")
+                {
+                    subject = "Desactivação de conta";
+                    mensagem = "A sua conta foi desactivada. Aguarde a activação do administrador.";
+                }
+
+                emailService.SendEmailAdminOrCliente(mensagem, subject,UtilizadorConverter.ToUtilizadorDTO(userFound));
                 await UtilizadorRepository.UpdateUser(userFound);
             }
             catch (Exception ex)

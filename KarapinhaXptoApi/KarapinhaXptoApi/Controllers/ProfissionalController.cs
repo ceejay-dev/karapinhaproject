@@ -35,7 +35,7 @@ namespace KarapinhaXptoApi.Controllers
 
         [HttpGet]
         [Route("/GetAllProfissional")]
-        public async Task<IEnumerable<Profissional>> GetAllProfissionals()
+        public async Task<IEnumerable<ProfissionalDTO>> GetAllProfissionals()
         {
             try
             {

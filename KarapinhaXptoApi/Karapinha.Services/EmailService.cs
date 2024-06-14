@@ -19,23 +19,25 @@ namespace Karapinha.Services
         {
             this.emailSender = emailSender.Value;
         }
-        public async Task SendEmailAdminOrCliente(string message, UtilizadorDTO utilizador)
+        public async Task SendEmailAdminOrCliente(string message, string subject,UtilizadorDTO utilizador)
         {
             var emailMessage = new MimeMessage();
             emailMessage.From.Add(new MailboxAddress(emailSender.SenderName, emailSender.SenderEmail));
             emailMessage.To.Add(new MailboxAddress(utilizador.EmailUtilizador, utilizador.EmailUtilizador));
-            emailMessage.Subject = "Criação de conta Administrativo";
+            emailMessage.Subject = subject;
             emailMessage.Body = new TextPart("plain") { Text = message };
 
-            using (var client = new SmtpClient())
+            using (var client = new MailKit.Net.Smtp.SmtpClient())
             {
                 client.CheckCertificateRevocation = false;
                 client.ServerCertificateValidationCallback = (s, c, h, e) => true;
+
                 await client.ConnectAsync(emailSender.SmtpServer, emailSender.SmtpPort, MailKit.Security.SecureSocketOptions.Auto);
                 await client.AuthenticateAsync(emailSender.SmtpUser, emailSender.SmtpPass);
                 await client.SendAsync(emailMessage);
                 await client.DisconnectAsync(true);
             }
         }
+
     }
 }

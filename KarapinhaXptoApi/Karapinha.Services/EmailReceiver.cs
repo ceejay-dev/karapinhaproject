@@ -18,26 +18,32 @@ namespace Karapinha.Services
     {
         public void SendEmailAdmin(string toEmail)
         {
-            //Definindo o SMTP Cliente
-            SmtpClient client = new SmtpClient("smtp.gmail.com", 587);
-            client.EnableSsl = true;
-            client.UseDefaultCredentials = false;
-            client.Credentials = new NetworkCredential("candidojoao12@gmail.com", "934818736");
+            // Definindo o SMTP Cliente
+            SmtpClient client = new SmtpClient("smtp.gmail.com", 587)
+            {
+                EnableSsl = true,
+                UseDefaultCredentials = false,
+                Credentials = new NetworkCredential("candidojoao12@gmail.com", "hkck izvj jrns zrmk")
+            };
 
             // Criando a mensagem de email
-            MailMessage mailMessage = new MailMessage();
-            mailMessage.From = new MailAddress("candidojoao12@gmail.com");
+            MailMessage mailMessage = new MailMessage
+            {
+                From = new MailAddress("candidojoao12@gmail.com"),
+                Subject = "O SEU REGISTO FOI REALIZADO COM SUCESSO.",
+                IsBodyHtml = true
+            };
             mailMessage.To.Add(toEmail);
-            mailMessage.Subject = "NOVO CLIENTE REGISTADO.";
-            mailMessage.IsBodyHtml = true;
+
             StringBuilder mailBody = new StringBuilder();
-            mailBody.AppendFormat("<h4>Um novo cliente",toEmail,"se registou no Karapinha Dura XPTO, e precisa que administrador active a sua conta para que tenha acesso aos serviços do salão.</h4>");
-            mailBody.AppendFormat("<br/>");
-            mailBody.AppendFormat("<p>Karapinha Dura XPTO</p>");
+            mailBody.AppendFormat("<h4>Seja bem vindo à Karapinha Dura XPTO, a sua conta será activada pelo administrador para que tenhas acesso aos serviços do salão.</h4>", toEmail);
+            mailBody.Append("<br/>");
+            mailBody.Append("<p>Karapinha Dura XPTO -- Baixera Sempre Vence!</p>");
             mailMessage.Body = mailBody.ToString();
 
-            // Send email
+            // Enviar email
             client.Send(mailMessage);
         }
+
     }
 }

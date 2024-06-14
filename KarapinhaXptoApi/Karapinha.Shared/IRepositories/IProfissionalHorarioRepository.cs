@@ -10,5 +10,7 @@ namespace Karapinha.Shared.IRepositories
     public interface IProfissionalHorarioRepository
     {
         Task<ProfissionalHorario> CreateProfissionalHorario(ProfissionalHorario profissionalHorario);
+        Task<ProfissionalHorario> GetProfissionalById(int id);
+        Task<bool> DeleteProfissionalHorario(int id);
     }
 }

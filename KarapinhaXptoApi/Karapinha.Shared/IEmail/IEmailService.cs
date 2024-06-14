@@ -9,6 +9,6 @@ namespace Karapinha.Shared.IEmail
 {
     public interface IEmailService
     {
-        Task SendEmailAdminOrCliente(string message, UtilizadorDTO utilizador);
+        Task SendEmailAdminOrCliente(string message, string subject,UtilizadorDTO utilizador);
     }
 }
