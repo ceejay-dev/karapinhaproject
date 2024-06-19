@@ -10,6 +10,10 @@ export function GestorHome (){
         </li>
 
         <li>
+          <Button route="/categorias" text="Categorias" />
+        </li>
+
+        <li>
           <Button route="/servicos" text="Serviços" />
         </li>
         

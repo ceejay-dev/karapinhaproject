@@ -15,19 +15,18 @@ export function Login() {
 
   const navigate = useNavigate();
 
-  const handleLoginClick = (event:any) => {
+  const handleLoginClick = (event: any) => {
     event.preventDefault();
     verifyLogin();
   };
 
-  const handleRegisterClick = (event:any) => {
+  const handleRegisterClick = (event: any) => {
     event.preventDefault();
     navigate("/signup");
   };
 
-  const handlePasswordChange = (event:any) => {
+  const handlePasswordChange = (event: any) => {
     event.preventDefault();
-    // Implementar a lógica para trocar a senha
     changePassword();
   };
 
@@ -69,19 +68,25 @@ export function Login() {
   }
 
   function changePassword() {
-    fetch("https://localhost:7209/ChangePassword", {
+    if (!usernameUtilizador || !newPassword) {
+      setErrorMessage("Por favor, preencha todos os campos.");
+      return;
+    }
+
+    fetch(`https://localhost:7209/ActivateAndChangePassword?username=${usernameUtilizador}&password=${newPassword}`, {
       headers: {
         Accept: "application/json",
         "Content-Type": "application/json",
       },
-      method: "POST",
-      body: JSON.stringify({ usernameUtilizador, newPassword }),
+      method: "PUT",
     })
       .then((res) => {
         if (res.ok) {
           setShowModal(false);
           setSuccessMessage("Senha alterada com sucesso. Você será redirecionado.");
-          navigate("/gestorHome");
+          setTimeout(() => {
+            navigate("/gestorHome");
+          }, 3000);
         } else {
           setErrorMessage("Erro ao alterar a senha. Tente novamente.");
         }

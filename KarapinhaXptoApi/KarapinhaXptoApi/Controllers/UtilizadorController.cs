@@ -213,11 +213,11 @@ namespace KarapinhaXptoApi.Controllers
 
         [HttpPut]
         [Route("/ActivateAndChangePassword")]
-        public async Task<ActionResult> ActivateAndChangePassword(int id, string password)
+        public async Task<ActionResult> ActivateAndChangePassword(string username, string password)
         {
             try
             {
-                await _UtilizadorService.ActivateAndChangePassword(id, password);
+                await _UtilizadorService.ActivateAndChangePassword(username, password);
                 return Ok();
             }
             catch (Exception ex)

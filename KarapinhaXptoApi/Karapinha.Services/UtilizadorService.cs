@@ -238,11 +238,11 @@ namespace Karapinha.Services
             }
         }
 
-        public async Task ActivateAndChangePassword(int id, string password)
+        public async Task ActivateAndChangePassword(string username, string password)
         {
             try
             {
-                var userFound = await UtilizadorRepository.GetUserById(id);
+                var userFound = await UtilizadorRepository.GetUserByUsername(username);
                 if (userFound == null) throw new NotFoundException();
 
                 userFound.Estado = "activo";

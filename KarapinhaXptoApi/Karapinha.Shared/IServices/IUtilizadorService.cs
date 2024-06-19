@@ -22,7 +22,7 @@ namespace Karapinha.Shared.IServices
         Task<UtilizadorDTO> Login(LoginDTO login);
         Task<string> GetUserRole(string username);
         Task<bool> VerifyAdministrativeStatus(UtilizadorDTO dto);
-        Task ActivateAndChangePassword(int id, string password);
+        Task ActivateAndChangePassword(string username, string password);
         Task<int> GetUserIdByUsername(string username);
         Task<UtilizadorDTO> GetUserByUsername(string username);
     }
