@@ -241,7 +241,7 @@ export function AddAdministrativos() {
                       value={formData.PasswordUtilizador}
                       onChange={handleChange}
                       name="PasswordUtilizador"
-                      type="text"
+                      type="password"
                       placeholder="Password"
                       className="m-1"
                     />
@@ -249,7 +249,7 @@ export function AddAdministrativos() {
                       value={formData.ConfirmarPassword}
                       onChange={handleChange}
                       name="ConfirmarPassword"
-                      type="text"
+                      type="password"
                       placeholder="Confirmar password"
                       className="m-1"
                     />
