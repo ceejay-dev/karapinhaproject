@@ -21,11 +21,11 @@ export function GuestHome() {
           </li>
 
           <li>
-            <Button route="/login" text="Serviços" />
+            <Button route="/marcacoes" text="Serviços" />
           </li>
 
           <li>
-            <Button route="/login" text="Sobre" />
+            <Button route="/" text="Sobre" />
           </li>
 
           <div className="login-container d-flex flex-row">
@@ -46,7 +46,7 @@ export function GuestHome() {
             />
             <Carousel.Caption>
               <h3>
-                <Link to="/login">Makeup</Link>
+                <Link to="/marcacoes">Makeup</Link>
               </h3>
               <p>Realce sua beleza com nossa maquiagem profissional.</p>
             </Carousel.Caption>
@@ -59,7 +59,7 @@ export function GuestHome() {
             />
             <Carousel.Caption>
               <h3>
-                <Link to="/login">Cabelo</Link>
+                <Link to="/marcacoes">Cabelo</Link>
               </h3>
               <p>
                 Transforme seu visual com nossos cortes e estilos exclusivos.
@@ -74,7 +74,7 @@ export function GuestHome() {
             />
             <Carousel.Caption>
               <h3>
-                <Link to="/login">Estética</Link>
+                <Link to="/marcacoes">Estética</Link>
               </h3>
               <p>
                 Cuide de sua pele com nossos tratamentos estéticos

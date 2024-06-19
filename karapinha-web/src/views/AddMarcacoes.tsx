@@ -5,8 +5,10 @@ import { logo, plus } from "../components/Images";
 import "../styles/marcacao.css";
 
 type servicosProps = {
+  idServico: number;
   nomeServico: string;
   preco: number;
+  nomeCategoria: string;
   fkCategoria: number;
 };
 
@@ -17,7 +19,7 @@ export function AddMarcacoes() {
   const handleShow = () => setShow(true);
 
   const handleCanceledClick = () => {
-    // Adicione a lógica de login aqui
+    handleClose;
   };
 
   const handleConfirmedClick = () => {
@@ -29,16 +31,18 @@ export function AddMarcacoes() {
   useEffect(() => {
     const fetchServicos = async () => {
       try {
-        const response = await fetch("https://localhost:7209/GetAllTreatments");
+        const response = await fetch(
+          "https://localhost:7209/GetAllServicosByIdCategoria"
+        );
         if (response.ok) {
           const data = await response.json();
           setServicos(data);
           console.log(data);
         } else {
-          console.error("Failed to fetch servicos");
+          console.error("Failed to fetch serviços");
         }
       } catch (error) {
-        console.error("Error fetching servicos:", error);
+        console.error("Error fetching serviços:", error);
       }
     };
 
@@ -60,12 +64,12 @@ export function AddMarcacoes() {
         {servicos.map((servico) => (
           <div className="pt-4 bg-white border border-3 border-black">
             <div>
-              <h2>Descrição: {servico.nomeServico}</h2>
-              <h5>Preço: {servico.preco} kz</h5>
-              <h5>Categoria: {servico.fkCategoria}</h5>
+              <div>
+                <h3>Descrição: {servico.nomeServico}</h3>
+                <h5>Preço: {servico.preco} kz</h5>
+                <h5>Categoria: {servico.nomeCategoria}</h5>
+              </div>
             </div>
-
-            <div></div>
           </div>
         ))}
       </div>
