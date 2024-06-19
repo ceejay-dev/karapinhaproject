@@ -14,8 +14,8 @@ namespace KarapinhaXptoApi.Controllers
         }
 
         [HttpPost]
-        [Route("/AddCategory")]
-        public async Task<ActionResult> CreateCategory([FromForm] CategoriaDTO dto)
+        [Route("/CreateCategory")]
+        public async Task<ActionResult> CreateCategory([FromBody] CategoriaDTO dto)
         {
             try
             {
@@ -24,10 +24,8 @@ namespace KarapinhaXptoApi.Controllers
             }
             catch (Exception ex)
             {
-                {
-                    Console.WriteLine(ex.Message);
-                    return StatusCode(500, "Erro interno ao adicionar a categoria.");
-                }
+                Console.WriteLine(ex.Message);
+                return StatusCode(500, "Erro interno ao adicionar a categoria.");
             }
         }
 
@@ -70,7 +68,7 @@ namespace KarapinhaXptoApi.Controllers
                 await CategoriaService.DeleteCategory(id);
                 return Ok();
             }
-            catch 
+            catch
             {
                 return StatusCode(StatusCodes.Status500InternalServerError, "Erro apagandoa a categoria!");
             }
