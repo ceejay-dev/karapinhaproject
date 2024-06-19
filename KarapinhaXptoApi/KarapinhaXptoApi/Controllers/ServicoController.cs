@@ -26,8 +26,7 @@ namespace KarapinhaXptoApi.Controllers
             }
             catch (Exception ex)
             {
-                Console.WriteLine(ex.Message);
-                return StatusCode(500, ex.ToString());
+                throw new Exception("Ocorreu um erro ao criar um serviço." + ex.Message);
             }
         }
 
@@ -41,7 +40,7 @@ namespace KarapinhaXptoApi.Controllers
             }
             catch (Exception ex)
             {
-                throw new Exception(ex.Message);
+                throw new Exception("Ocorreu um erro recuperando todos os serviços." + ex.Message);
             }
         }
 
@@ -51,11 +50,11 @@ namespace KarapinhaXptoApi.Controllers
         {
             try
             {
-                 return await Servico.GetTreatementById(id);
+                return await Servico.GetTreatementById(id);
             }
             catch (Exception ex)
             {
-                throw new Exception(ex.Message);
+                throw new Exception("Ocorreu um erro recuperando um determinado serviço, o mesmo não foi encontrado" + ex.Message);
             }
         }
 
@@ -70,7 +69,7 @@ namespace KarapinhaXptoApi.Controllers
             }
             catch (Exception ex)
             {
-                throw new Exception(ex.Message);
+                throw new Exception("Ocorreu um erro apagando o serviço." + ex.Message);
             }
         }
 
@@ -78,11 +77,14 @@ namespace KarapinhaXptoApi.Controllers
         [Route("/UpdateTreatment")]
         public async Task<ActionResult> UpdatTreatment(ServicoUpdateDTO dto)
         {
-            try {
+            try
+            {
                 await Servico.UpdateTreatment(dto);
                 return NoContent();
-            } catch (Exception ex) { 
-                throw new Exception(ex.ToString());
+            }
+            catch (Exception ex)
+            {
+                throw new Exception("Ocorreu um erro actualizando o serviço." + ex);
             }
         }
 
@@ -94,8 +96,9 @@ namespace KarapinhaXptoApi.Controllers
             {
                 return Servico.GetAllServicosByIdCategoria();
             }
-            catch (Exception ex) {
-                throw new Exception (ex.Message);
+            catch (Exception ex)
+            {
+                throw new Exception("Ocorreu um erro recuperando um determinado serviço." + ex.Message);
             }
         }
     }

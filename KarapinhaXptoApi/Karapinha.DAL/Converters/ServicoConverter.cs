@@ -39,9 +39,9 @@ namespace Karapinha.DAL.Converters
 
         public static Servico UpdateServico(ServicoUpdateDTO update, Servico servico)
         {
+            servico.IdServico = update.IdServico;
             servico.NomeServico = update.NomeServico;
             servico.Preco = update.Preco;
-            servico.FkCategoria = update.FkCategoria;
 
             return servico;
         }

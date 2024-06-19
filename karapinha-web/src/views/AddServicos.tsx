@@ -6,10 +6,11 @@ import { logo, plus } from "../components/Images";
 import "../styles/marcacao.css";
 
 type servicosProps = {
-  idServico: number; 
+  idServico: number;
   nomeServico: string;
   preco: number;
   nomeCategoria: string;
+  fkCategoria: number;
 };
 
 type categoriaProps = {
@@ -23,14 +24,38 @@ export function AddServicos() {
   const [alertMessage, setAlertMessage] = useState("");
   const [alertVariant, setAlertVariant] = useState("success");
   const [show, setShow] = useState(false);
+  const [isEditMode, setIsEditMode] = useState(false);
 
   const handleClose = () => setShow(false);
-  const handleShow = () => setShow(true);
+  const handleShow = (servico?: servicosProps) => {
+    if (servico) {
+      setFormData({
+        idServico: servico.idServico,
+        fkCategoria: servico.fkCategoria.toString(),
+        nomeServico: servico.nomeServico,
+        preco: servico.preco.toString(),
+        nomeCategoria: servico.nomeCategoria,
+      });
+      setIsEditMode(true);
+    } else {
+      setFormData({
+        idServico:0,
+        fkCategoria: "0",
+        nomeServico: "",
+        preco: "",
+        nomeCategoria: "",
+      });
+      setIsEditMode(false);
+    }
+    setShow(true);
+  };
 
   const [formData, setFormData] = useState({
+    idServico:0,
     fkCategoria: "0",
     nomeServico: "",
     preco: "",
+    nomeCategoria: "",
   });
 
   const handleChange = (event: any) => {
@@ -48,23 +73,23 @@ export function AddServicos() {
         method: "DELETE",
       });
       if (response.ok) {
-        setAlertMessage("Servico apagado com sucesso!");
+        setAlertMessage("Serviço apagado com sucesso!");
         setAlertVariant("success");
         setShowAlert(true);
-        // Remover o servico da lista
-        setServicos((prevProfissionais) =>
-          prevProfissionais.filter((service) => service.idServico !== id)
+        // Remover o serviço da lista
+        setServicos((prevServicos) =>
+          prevServicos.filter((service) => service.idServico !== id)
         );
       } else {
         const errorData = await response.json();
-        console.error("Falha ao apagar servico", errorData);
-        setAlertMessage("Falha ao apagar o servico.");
+        console.error("Falha ao apagar serviço", errorData);
+        setAlertMessage("Falha ao apagar o serviço.");
         setAlertVariant("danger");
         setShowAlert(true);
       }
     } catch (error) {
-      console.error("Erro ao apagar servico:", error);
-      setAlertMessage("Erro ao apagar o servico.");
+      console.error("Erro ao apagar serviço:", error);
+      setAlertMessage("Erro ao apagar o serviço.");
       setAlertVariant("danger");
       setShowAlert(true);
     }
@@ -74,26 +99,24 @@ export function AddServicos() {
     event.preventDefault();
 
     // Valide os dados antes de enviar
-    if (
-      formData.fkCategoria === "0" ||
-      !formData.nomeServico ||
-      !formData.preco
-    ) {
+    if (!formData.nomeServico || !formData.preco || (formData.fkCategoria === "0" && !isEditMode)) {
       setAlertMessage("Por favor, preencha todos os campos.");
       setAlertVariant("danger");
       setShowAlert(true);
       return;
     }
 
-    const url = `https://localhost:7209/CreateTreatment?NomeServico=${formData.nomeServico}&Preco=${formData.preco}&FkCategoria=${formData.fkCategoria}`;
+    const url = isEditMode
+      ? `https://localhost:7209/UpdateTreatment?IdServico=${formData.idServico}&NomeServico=${formData.nomeServico}&Preco=${formData.preco}`
+      : `https://localhost:7209/CreateTreatment?NomeServico=${formData.nomeServico}&Preco=${formData.preco}&FkCategoria=${formData.fkCategoria}`;
 
     try {
       const response = await fetch(url, {
-        method: "POST",
+        method: isEditMode ? "PUT" : "POST",
       });
 
       if (response.ok) {
-        setAlertMessage("Serviço criado com sucesso!");
+        setAlertMessage(isEditMode ? "Serviço atualizado com sucesso!" : "Serviço criado com sucesso!");
         setAlertVariant("success");
         setShowAlert(true);
         setTimeout(() => {
@@ -102,16 +125,30 @@ export function AddServicos() {
         }, 3000);
       } else {
         const errorData = await response.json();
-        console.error("Falha ao criar serviço", errorData);
-        setAlertMessage("Falha ao criar o serviço.");
+        console.error(isEditMode ? "Falha ao atualizar serviço" : "Falha ao criar serviço", errorData);
+        setAlertMessage(isEditMode ? "Falha ao atualizar o serviço." : "Falha ao criar o serviço.");
         setAlertVariant("danger");
         setShowAlert(true);
       }
     } catch (error) {
-      console.error("Error creating service:", error);
-      setAlertMessage("Erro ao criar o serviço.");
+      console.error(isEditMode ? "Error updating service:" : "Error creating service:", error);
+      setAlertMessage(isEditMode ? "Erro ao atualizar o serviço." : "Erro ao criar o serviço.");
       setAlertVariant("danger");
       setShowAlert(true);
+    }
+  };
+
+  const handleEdit = async (id: number) => {
+    try {
+      const response = await fetch(`https://localhost:7209/GetTreatmentById?id=${id}`);
+      if (response.ok) {
+        const servico: servicosProps = await response.json();
+        handleShow(servico);
+      } else {
+        console.error("Failed to fetch serviço");
+      }
+    } catch (error) {
+      console.error("Error fetching serviço:", error);
     }
   };
 
@@ -129,10 +166,10 @@ export function AddServicos() {
           setServicos(data);
           console.log(data);
         } else {
-          console.error("Failed to fetch servicos");
+          console.error("Failed to fetch serviços");
         }
       } catch (error) {
-        console.error("Error fetching servicos:", error);
+        console.error("Error fetching serviços:", error);
       }
     };
 
@@ -170,7 +207,7 @@ export function AddServicos() {
               route="#"
               imageSrc={plus}
               className="link-signup pb-5"
-              onClick={handleShow}
+              onClick={() => handleShow()}
             />
           </div>
 
@@ -180,7 +217,6 @@ export function AddServicos() {
               className="bg-white border border-2 border-black"
             >
               <div>
-                <h3>Id: {servico.idServico}</h3>
                 <h3>Descrição: {servico.nomeServico}</h3>
                 <h5>Preço: {servico.preco} kz</h5>
                 <h5>Categoria: {servico.nomeCategoria}</h5>
@@ -194,7 +230,12 @@ export function AddServicos() {
                 >
                   Apagar
                 </BootstrapButton>
-                <BootstrapButton variant="info">Alterar</BootstrapButton>
+                <BootstrapButton
+                  variant="info"
+                  onClick={() => handleEdit(servico.idServico)}
+                >
+                  Alterar
+                </BootstrapButton>
               </div>
             </div>
           ))}
@@ -207,7 +248,7 @@ export function AddServicos() {
         dialogClassName="custom-modal-width"
       >
         <Modal.Header closeButton>
-          <Modal.Title>Registo de Serviços</Modal.Title>
+          <Modal.Title>{isEditMode ? "Editar Serviço" : "Registo de Serviços"}</Modal.Title>
         </Modal.Header>
         <Modal.Body>
           <div className="modal-content-container">
@@ -222,29 +263,37 @@ export function AddServicos() {
               >
                 <div className="d-flex flex-row">
                   <div className="input-container1">
-                    <Form.Select
-                      name="fkCategoria"
-                      value={formData.fkCategoria}
-                      onChange={handleChange}
-                      className="select"
-                    >
-                      <option value="0">Selecione a categoria:</option>
-                      {categorias.map((categoria) => (
-                        <option
-                          key={categoria.idCategoria}
-                          value={categoria.idCategoria}
-                        >
-                          {categoria.nomeCategoria}
-                        </option>
-                      ))}
-                    </Form.Select>
+                    {isEditMode ? (
+                      <input
+                        value={formData.nomeCategoria}
+                        disabled
+                        className="form-control m-1"
+                      />
+                    ) : (
+                      <Form.Select
+                        name="fkCategoria"
+                        value={formData.fkCategoria}
+                        onChange={handleChange}
+                        className="select"
+                      >
+                        <option value="0">Selecione a categoria:</option>
+                        {categorias.map((categoria) => (
+                          <option
+                            key={categoria.idCategoria}
+                            value={categoria.idCategoria}
+                          >
+                            {categoria.nomeCategoria}
+                          </option>
+                        ))}
+                      </Form.Select>
+                    )}
                     <input
                       value={formData.preco}
                       onChange={handleChange}
                       name="preco"
                       type="number"
                       placeholder="Preço"
-                      className="m-1"
+                      className="form-control m-1"
                     />
                   </div>
 
@@ -255,7 +304,7 @@ export function AddServicos() {
                       name="nomeServico"
                       type="text"
                       placeholder="Descrição do serviço"
-                      className="m-1"
+                      className="form-control m-1"
                     />
                   </div>
                 </div>
