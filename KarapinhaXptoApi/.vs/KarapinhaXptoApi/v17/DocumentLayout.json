@@ -1,7 +1,28 @@
 {
   "Version": 1,
   "WorkspaceRootPath": "D:\\karapinhaproject\\KarapinhaXptoApi\\",
-  "Documents": [],
+  "Documents": [
+    {
+      "AbsoluteMoniker": "D:0:0:{681334B5-0B5A-4554-B088-4D2AD2DCCCF5}|KarapinhaXptoApi\\KarapinhaXptoApi.csproj|d:\\karapinhaproject\\karapinhaxptoapi\\karapinhaxptoapi\\controllers\\utilizadorcontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{681334B5-0B5A-4554-B088-4D2AD2DCCCF5}|KarapinhaXptoApi\\KarapinhaXptoApi.csproj|solutionrelative:karapinhaxptoapi\\controllers\\utilizadorcontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{F33CC080-53F0-4BBD-9619-219BA2C6F0E7}|Karapinha.Services\\Karapinha.Services.csproj|d:\\karapinhaproject\\karapinhaxptoapi\\karapinha.services\\utilizadorservice.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{F33CC080-53F0-4BBD-9619-219BA2C6F0E7}|Karapinha.Services\\Karapinha.Services.csproj|solutionrelative:karapinha.services\\utilizadorservice.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{220243E3-9456-48C8-983E-B3D233EC0989}|Karapinha.DAL\\Karapinha.DAL.csproj|d:\\karapinhaproject\\karapinhaxptoapi\\karapinha.dal\\converters\\utilizadorconverter.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{220243E3-9456-48C8-983E-B3D233EC0989}|Karapinha.DAL\\Karapinha.DAL.csproj|solutionrelative:karapinha.dal\\converters\\utilizadorconverter.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{DCE2769B-6E2C-46A8-B322-CBA0585B20D5}|Karapinnha.DTO\\Karapinnha.DTO.csproj|d:\\karapinhaproject\\karapinhaxptoapi\\karapinnha.dto\\utilizadorupdatedto.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{DCE2769B-6E2C-46A8-B322-CBA0585B20D5}|Karapinnha.DTO\\Karapinnha.DTO.csproj|solutionrelative:karapinnha.dto\\utilizadorupdatedto.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{220243E3-9456-48C8-983E-B3D233EC0989}|Karapinha.DAL\\Karapinha.DAL.csproj|d:\\karapinhaproject\\karapinhaxptoapi\\karapinha.dal\\repositories\\utilizadorrepository.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{220243E3-9456-48C8-983E-B3D233EC0989}|Karapinha.DAL\\Karapinha.DAL.csproj|solutionrelative:karapinha.dal\\repositories\\utilizadorrepository.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    }
+  ],
   "DocumentGroupContainers": [
     {
       "Orientation": 0,
@@ -9,11 +30,76 @@
       "DocumentGroups": [
         {
           "DockedWidth": 200,
-          "SelectedChildIndex": -1,
+          "SelectedChildIndex": 5,
           "Children": [
             {
               "$type": "Bookmark",
               "Name": "ST:128:0:{75188d03-9892-4ae2-abf1-207126247ce5}"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 2,
+              "Title": "UtilizadorConverter.cs",
+              "DocumentMoniker": "D:\\karapinhaproject\\KarapinhaXptoApi\\Karapinha.DAL\\Converters\\UtilizadorConverter.cs",
+              "RelativeDocumentMoniker": "Karapinha.DAL\\Converters\\UtilizadorConverter.cs",
+              "ToolTip": "D:\\karapinhaproject\\KarapinhaXptoApi\\Karapinha.DAL\\Converters\\UtilizadorConverter.cs",
+              "RelativeToolTip": "Karapinha.DAL\\Converters\\UtilizadorConverter.cs",
+              "ViewState": "AQIAACcAAAAAAAAAAAAYwC8AAABeAAAA",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2024-06-19T00:31:03.935Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 3,
+              "Title": "UtilizadorUpdateDTO.cs",
+              "DocumentMoniker": "D:\\karapinhaproject\\KarapinhaXptoApi\\Karapinnha.DTO\\UtilizadorUpdateDTO.cs",
+              "RelativeDocumentMoniker": "Karapinnha.DTO\\UtilizadorUpdateDTO.cs",
+              "ToolTip": "D:\\karapinhaproject\\KarapinhaXptoApi\\Karapinnha.DTO\\UtilizadorUpdateDTO.cs",
+              "RelativeToolTip": "Karapinnha.DTO\\UtilizadorUpdateDTO.cs",
+              "ViewState": "AQIAAAYAAAAAAAAAAAAAAA8AAAAKAAAA",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2024-06-19T00:26:38.98Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 1,
+              "Title": "UtilizadorService.cs",
+              "DocumentMoniker": "D:\\karapinhaproject\\KarapinhaXptoApi\\Karapinha.Services\\UtilizadorService.cs",
+              "RelativeDocumentMoniker": "Karapinha.Services\\UtilizadorService.cs",
+              "ToolTip": "D:\\karapinhaproject\\KarapinhaXptoApi\\Karapinha.Services\\UtilizadorService.cs",
+              "RelativeToolTip": "Karapinha.Services\\UtilizadorService.cs",
+              "ViewState": "AQIAALIAAAAAAAAAAAAQwMQAAAANAAAA",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2024-06-18T15:58:06.897Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 4,
+              "Title": "UtilizadorRepository.cs",
+              "DocumentMoniker": "D:\\karapinhaproject\\KarapinhaXptoApi\\Karapinha.DAL\\Repositories\\UtilizadorRepository.cs",
+              "RelativeDocumentMoniker": "Karapinha.DAL\\Repositories\\UtilizadorRepository.cs",
+              "ToolTip": "D:\\karapinhaproject\\KarapinhaXptoApi\\Karapinha.DAL\\Repositories\\UtilizadorRepository.cs",
+              "RelativeToolTip": "Karapinha.DAL\\Repositories\\UtilizadorRepository.cs",
+              "ViewState": "AQIAAEoAAAAAAAAAAAAewF4AAABIAAAA",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2024-06-18T12:56:04.705Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 0,
+              "Title": "UtilizadorController.cs",
+              "DocumentMoniker": "D:\\karapinhaproject\\KarapinhaXptoApi\\KarapinhaXptoApi\\Controllers\\UtilizadorController.cs",
+              "RelativeDocumentMoniker": "KarapinhaXptoApi\\Controllers\\UtilizadorController.cs",
+              "ToolTip": "D:\\karapinhaproject\\KarapinhaXptoApi\\KarapinhaXptoApi\\Controllers\\UtilizadorController.cs",
+              "RelativeToolTip": "KarapinhaXptoApi\\Controllers\\UtilizadorController.cs",
+              "ViewState": "AQIAAOMAAAAAAAAAAAAIwAgBAAAAAAAA",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2024-06-18T00:40:00.467Z",
+              "EditorCaption": ""
             }
           ]
         }

@@ -22,5 +22,6 @@ namespace Karapinha.Shared.IRepositories
         bool VerifyStatus(Utilizador utilizador);
         Task<string> GetUserRole(string username);
         Task<bool> VerifyAdministrativeStatus(Utilizador user);
+        Task<int> GetUserIdByUsername(string username);
     }
 }

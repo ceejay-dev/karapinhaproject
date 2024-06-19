@@ -50,7 +50,6 @@ namespace Karapinha.DAL.Converters
             user.NomeUtilizador = utilizador.NomeUtilizador;
             user.EmailUtilizador = utilizador.EmailUtilizador;
             user.TelemovelUtilizador = utilizador.TelemovelUtilizador;
-            user.FotoUtilizador = utilizador.FotoUtilizador;
             user.UsernameUtilizador = utilizador.UsernameUtilizador;
             user.PasswordUtilizador = utilizador.PasswordUtilizador;
             return user;

@@ -44,6 +44,7 @@ export function Login() {
       .then((data) => {
         if (data) {
           const { tipoPerfil, estado } = data;
+          localStorage.setItem('usernameUtilizador', usernameUtilizador);
           if (tipoPerfil === "cliente") {
             navigate("/logged");
           } else if (tipoPerfil === "administrador") {

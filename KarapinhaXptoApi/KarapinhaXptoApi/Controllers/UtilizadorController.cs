@@ -7,6 +7,7 @@ using Karapinnha.DTO;
 using Microsoft.AspNetCore.Identity;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.IdentityModel.Tokens;
+using OpenQA.Selenium;
 using System.IdentityModel.Tokens.Jwt;
 using System.Security.Claims;
 using System.Text;
@@ -51,8 +52,15 @@ namespace KarapinhaXptoApi.Controllers
         [Route("/Login")]
         public async Task<ActionResult> Login([FromBody] LoginDTO loginDto)
         {
-            var user = await _UtilizadorService.Login(loginDto);
-            return Ok(user);
+            try
+            {
+                var user = await _UtilizadorService.Login(loginDto);
+                return Ok(user);
+            }
+            catch (NotFoundException ex)
+            {
+                throw new NotFoundException("Utilizador não encontrado || Credenciais Erradas", ex);
+            }
         }
 
         [HttpGet]
@@ -69,6 +77,36 @@ namespace KarapinhaXptoApi.Controllers
                 return NotFound(ex.Message);
             }
         }
+
+        [HttpGet]
+        [Route("/GetUserByUsername")]
+        public async Task<ActionResult<UtilizadorDTO>> GetUserByUsername(string username)
+        {
+            try
+            {
+                return await _UtilizadorService.GetUserByUsername(username);
+            }
+            catch (Exception ex)
+            {
+                throw new Exception(ex.Message);
+            }
+        }
+
+        [HttpGet]
+        [Route("/GetIdByUsername")]
+        public async Task<ActionResult> GetUserIdByUsername(string username)
+        {
+            try
+            {
+                var userId = await _UtilizadorService.GetUserIdByUsername(username);
+                return Ok(userId);
+            }
+            catch (Exception ex)
+            {
+                throw new Exception(ex.Message);
+            }
+        }
+
 
 
         [HttpGet]
@@ -139,30 +177,8 @@ namespace KarapinhaXptoApi.Controllers
             }
             catch
             {
-                return StatusCode(StatusCodes.Status500InternalServerError, "Error actualizado os dados do utilizadpr!,");
+                return StatusCode(StatusCodes.Status500InternalServerError, "Erro actualizando os dados do utilizador.");
             }
-        }
-
-        //Por terminar
-        private string GenerateJwtToken(IdentityUser user)
-        {
-            var claims = new[]
-            {
-                new Claim(JwtRegisteredClaimNames.Sub, user.UserName),
-                new Claim(JwtRegisteredClaimNames.Jti, Guid.NewGuid().ToString())
-            };
-
-            var key = new SymmetricSecurityKey(Encoding.UTF8.GetBytes(_configuration["Jwt:Key"]));
-            var creds = new SigningCredentials(key, SecurityAlgorithms.HmacSha256);
-
-            var token = new JwtSecurityToken(
-                issuer: _configuration["Jwt:Issuer"],
-                audience: _configuration["Jwt:Issuer"],
-                claims: claims,
-                expires: DateTime.Now.AddMinutes(30),
-                signingCredentials: creds);
-
-            return new JwtSecurityTokenHandler().WriteToken(token);
         }
 
         [HttpPut]
@@ -219,11 +235,33 @@ namespace KarapinhaXptoApi.Controllers
                 await _UtilizadorService.VerifyAdministrativeStatus(dto);
                 return Ok();
             }
-            catch (Exception ex) { 
+            catch (Exception ex)
+            {
                 throw new Exception(ex.Message);
             }
         }
 
+        //Por terminar
+        private string GenerateJwtToken(IdentityUser user)
+        {
+            var claims = new[]
+            {
+                new Claim(JwtRegisteredClaimNames.Sub, user.UserName),
+                new Claim(JwtRegisteredClaimNames.Jti, Guid.NewGuid().ToString())
+            };
+
+            var key = new SymmetricSecurityKey(Encoding.UTF8.GetBytes(_configuration["Jwt:Key"]));
+            var creds = new SigningCredentials(key, SecurityAlgorithms.HmacSha256);
+
+            var token = new JwtSecurityToken(
+                issuer: _configuration["Jwt:Issuer"],
+                audience: _configuration["Jwt:Issuer"],
+                claims: claims,
+                expires: DateTime.Now.AddMinutes(30),
+                signingCredentials: creds);
+
+            return new JwtSecurityTokenHandler().WriteToken(token);
+        }
 
         /*[HttpPost]
         [Route("/Login")]

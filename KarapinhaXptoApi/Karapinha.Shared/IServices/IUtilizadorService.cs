@@ -23,5 +23,7 @@ namespace Karapinha.Shared.IServices
         Task<string> GetUserRole(string username);
         Task<bool> VerifyAdministrativeStatus(UtilizadorDTO dto);
         Task ActivateAndChangePassword(int id, string password);
+        Task<int> GetUserIdByUsername(string username);
+        Task<UtilizadorDTO> GetUserByUsername(string username);
     }
 }

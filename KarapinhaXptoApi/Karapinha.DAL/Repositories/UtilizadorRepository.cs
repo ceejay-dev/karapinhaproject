@@ -43,6 +43,15 @@ namespace Karapinha.DAL.Repositories
             return await dbContext.Utilizadores.FindAsync(id);
         }
 
+        public async Task<int> GetUserIdByUsername(string username)
+        {
+            var user = await dbContext.Utilizadores
+                      .Where(u => u.UsernameUtilizador == username)
+                      .Select(u => u.IdUtilizador)
+                      .FirstOrDefaultAsync();
+            return user;
+        }
+
         public async Task<List<Utilizador>> GetAllUsers()
         {
             return await dbContext.Utilizadores.ToListAsync();

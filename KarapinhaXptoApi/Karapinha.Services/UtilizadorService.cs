@@ -45,10 +45,10 @@ namespace Karapinha.Services
                 }
                 else if (userRole == "administrativo")
                 {
-                    string assunto = "Criação de nova conta administrativo";
+                    string assunto = "Criação de nova conta administradpra";
                     //Enviando email para o administrativos com as suas credenciais
-                    string mensagem = "Bem-vindo à Karapinha Dura XPTO" +
-                       "Acabou de ser registado como administrativo da aplicação." +
+                    string mensagem = "Bem-vindo ao Coração do Ceejay" +
+                       "Acabou de ser registrada como administradora do mesmo." +
                        "Eis os dados as credenciais de acesso:" +
                        "Nome de utilizador :" + userAdded.UsernameUtilizador + "\n" +
                        "Palavra-passe    :" + userAdded.PasswordUtilizador;
@@ -56,7 +56,7 @@ namespace Karapinha.Services
                 }
                 return userAdded;
             }
-            catch (Exception ex)
+            catch (ServiceException ex)
             {
                 throw new ServiceException(ex.Message);
             }
@@ -76,7 +76,7 @@ namespace Karapinha.Services
                 }
                 return UtilizadorConverter.ToUtilizadorDTO(user);
             }
-            catch (Exception ex)
+            catch (ServiceException ex)
             {
                 throw new ServiceException(ex.Message);
             }
@@ -100,6 +100,33 @@ namespace Karapinha.Services
             catch (Exception ex)
             {
                 throw new ServiceException("Erro ao obter utilizador por ID.", ex);
+            }
+        }
+
+        public async Task<int> GetUserIdByUsername(string username)
+        {
+            try
+            {
+                var idUser = await UtilizadorRepository.GetUserIdByUsername(username);
+                if (idUser == null) { throw new NotFoundException(); }
+
+                return idUser;
+            }
+            catch (Exception ex)
+            {
+                throw new ServiceException("Erro ao obter utilizador por ID.", ex);
+            }
+        }
+
+        public async Task<UtilizadorDTO> GetUserByUsername(string username)
+        {
+            try {
+                
+                var user =  await UtilizadorRepository.GetUserByUsername(username);
+                return UtilizadorConverter.ToUtilizadorDTO(user);
+
+            } catch (Exception ex) { 
+                throw new ServiceException($"{ex.Message}", ex);
             }
         }
 
@@ -164,7 +191,7 @@ namespace Karapinha.Services
 
                 await UtilizadorRepository.UpdateUser(UtilizadorConverter.UpdateUtilizador(utilizador, user));
             }
-            catch (Exception ex)
+            catch (ServiceException ex)
             {
                 throw new ServiceException(ex.Message, ex);
             }

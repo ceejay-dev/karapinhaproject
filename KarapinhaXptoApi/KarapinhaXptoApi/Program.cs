@@ -11,9 +11,7 @@ using Microsoft.IdentityModel.Tokens;
 using System.Text;
 using Newtonsoft;
 using System.Text.Json.Serialization;
-using System.Text.Json;
 using Karapinha.Shared.IEmail;
-using Karapinha.Model;
 
 var builder = WebApplication.CreateBuilder(args);
 
