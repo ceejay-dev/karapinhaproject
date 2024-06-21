@@ -40,7 +40,7 @@ namespace Karapinha.Services
         /*public async Task<MarcacaoDTO> GetBookingById(int id)
         {
 
-        }
+        }   
         public async Task<IEnumerable<MarcacaoDTO>> GetAllBookings()
         {
 

@@ -3,20 +3,8 @@
   "WorkspaceRootPath": "D:\\karapinhaproject\\KarapinhaXptoApi\\",
   "Documents": [
     {
-      "AbsoluteMoniker": "D:0:0:{681334B5-0B5A-4554-B088-4D2AD2DCCCF5}|KarapinhaXptoApi\\KarapinhaXptoApi.csproj|d:\\karapinhaproject\\karapinhaxptoapi\\karapinhaxptoapi\\controllers\\categoriacontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
-      "RelativeMoniker": "D:0:0:{681334B5-0B5A-4554-B088-4D2AD2DCCCF5}|KarapinhaXptoApi\\KarapinhaXptoApi.csproj|solutionrelative:karapinhaxptoapi\\controllers\\categoriacontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
-    },
-    {
-      "AbsoluteMoniker": "D:0:0:{DCE2769B-6E2C-46A8-B322-CBA0585B20D5}|Karapinnha.DTO\\Karapinnha.DTO.csproj|d:\\karapinhaproject\\karapinhaxptoapi\\karapinnha.dto\\categoriadto.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
-      "RelativeMoniker": "D:0:0:{DCE2769B-6E2C-46A8-B322-CBA0585B20D5}|Karapinnha.DTO\\Karapinnha.DTO.csproj|solutionrelative:karapinnha.dto\\categoriadto.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
-    },
-    {
-      "AbsoluteMoniker": "D:0:0:{681334B5-0B5A-4554-B088-4D2AD2DCCCF5}|KarapinhaXptoApi\\KarapinhaXptoApi.csproj|d:\\karapinhaproject\\karapinhaxptoapi\\karapinhaxptoapi\\controllers\\servicocontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
-      "RelativeMoniker": "D:0:0:{681334B5-0B5A-4554-B088-4D2AD2DCCCF5}|KarapinhaXptoApi\\KarapinhaXptoApi.csproj|solutionrelative:karapinhaxptoapi\\controllers\\servicocontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
-    },
-    {
-      "AbsoluteMoniker": "D:0:0:{220243E3-9456-48C8-983E-B3D233EC0989}|Karapinha.DAL\\Karapinha.DAL.csproj|d:\\karapinhaproject\\karapinhaxptoapi\\karapinha.dal\\converters\\categoriaconverter.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
-      "RelativeMoniker": "D:0:0:{220243E3-9456-48C8-983E-B3D233EC0989}|Karapinha.DAL\\Karapinha.DAL.csproj|solutionrelative:karapinha.dal\\converters\\categoriaconverter.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+      "AbsoluteMoniker": "D:0:0:{F33CC080-53F0-4BBD-9619-219BA2C6F0E7}|Karapinha.Services\\Karapinha.Services.csproj|d:\\karapinhaproject\\karapinhaxptoapi\\karapinha.services\\marcacaoservice.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{F33CC080-53F0-4BBD-9619-219BA2C6F0E7}|Karapinha.Services\\Karapinha.Services.csproj|solutionrelative:karapinha.services\\marcacaoservice.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
     }
   ],
   "DocumentGroupContainers": [
@@ -26,7 +14,7 @@
       "DocumentGroups": [
         {
           "DockedWidth": 200,
-          "SelectedChildIndex": 2,
+          "SelectedChildIndex": 1,
           "Children": [
             {
               "$type": "Bookmark",
@@ -34,52 +22,16 @@
             },
             {
               "$type": "Document",
-              "DocumentIndex": 2,
-              "Title": "ServicoController.cs",
-              "DocumentMoniker": "D:\\karapinhaproject\\KarapinhaXptoApi\\KarapinhaXptoApi\\Controllers\\ServicoController.cs",
-              "RelativeDocumentMoniker": "KarapinhaXptoApi\\Controllers\\ServicoController.cs",
-              "ToolTip": "D:\\karapinhaproject\\KarapinhaXptoApi\\KarapinhaXptoApi\\Controllers\\ServicoController.cs",
-              "RelativeToolTip": "KarapinhaXptoApi\\Controllers\\ServicoController.cs",
-              "ViewState": "AQIAAAgAAAAAAAAAAAAxwAAAAAAAAAAA",
-              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2024-06-19T12:54:09.356Z"
-            },
-            {
-              "$type": "Document",
               "DocumentIndex": 0,
-              "Title": "CategoriaController.cs",
-              "DocumentMoniker": "D:\\karapinhaproject\\KarapinhaXptoApi\\KarapinhaXptoApi\\Controllers\\CategoriaController.cs",
-              "RelativeDocumentMoniker": "KarapinhaXptoApi\\Controllers\\CategoriaController.cs",
-              "ToolTip": "D:\\karapinhaproject\\KarapinhaXptoApi\\KarapinhaXptoApi\\Controllers\\CategoriaController.cs",
-              "RelativeToolTip": "KarapinhaXptoApi\\Controllers\\CategoriaController.cs",
-              "ViewState": "AQIAAA0AAAAAAAAAAAAQwBoAAAAuAAAA",
+              "Title": "MarcacaoService.cs",
+              "DocumentMoniker": "D:\\karapinhaproject\\KarapinhaXptoApi\\Karapinha.Services\\MarcacaoService.cs",
+              "RelativeDocumentMoniker": "Karapinha.Services\\MarcacaoService.cs",
+              "ToolTip": "D:\\karapinhaproject\\KarapinhaXptoApi\\Karapinha.Services\\MarcacaoService.cs",
+              "RelativeToolTip": "Karapinha.Services\\MarcacaoService.cs",
+              "ViewState": "AQIAABYAAAAAAAAAAAAQwCQAAAAhAAAA",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2024-06-19T12:34:36.487Z",
+              "WhenOpened": "2024-06-20T22:39:06.616Z",
               "EditorCaption": ""
-            },
-            {
-              "$type": "Document",
-              "DocumentIndex": 3,
-              "Title": "CategoriaConverter.cs",
-              "DocumentMoniker": "D:\\karapinhaproject\\KarapinhaXptoApi\\Karapinha.DAL\\Converters\\CategoriaConverter.cs",
-              "RelativeDocumentMoniker": "Karapinha.DAL\\Converters\\CategoriaConverter.cs",
-              "ToolTip": "D:\\karapinhaproject\\KarapinhaXptoApi\\Karapinha.DAL\\Converters\\CategoriaConverter.cs",
-              "RelativeToolTip": "Karapinha.DAL\\Converters\\CategoriaConverter.cs",
-              "ViewState": "AQIAAAkAAAAAAAAAAAAAAAAAAAAAAAAA",
-              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2024-06-19T11:55:15.549Z"
-            },
-            {
-              "$type": "Document",
-              "DocumentIndex": 1,
-              "Title": "CategoriaDTO.cs",
-              "DocumentMoniker": "D:\\karapinhaproject\\KarapinhaXptoApi\\Karapinnha.DTO\\CategoriaDTO.cs",
-              "RelativeDocumentMoniker": "Karapinnha.DTO\\CategoriaDTO.cs",
-              "ToolTip": "D:\\karapinhaproject\\KarapinhaXptoApi\\Karapinnha.DTO\\CategoriaDTO.cs",
-              "RelativeToolTip": "Karapinnha.DTO\\CategoriaDTO.cs",
-              "ViewState": "AQIAAAAAAAAAAAAAAAAAAAoAAAAhAAAA",
-              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2024-06-19T11:55:00.897Z"
             }
           ]
         }

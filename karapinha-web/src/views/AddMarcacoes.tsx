@@ -3,14 +3,8 @@ import { Button as BootstrapButton, Modal } from "react-bootstrap";
 import { Button } from "../components/Button";
 import { logo, plus } from "../components/Images";
 import "../styles/marcacao.css";
-
-type servicosProps = {
-  idServico: number;
-  nomeServico: string;
-  preco: number;
-  nomeCategoria: string;
-  fkCategoria: number;
-};
+import { servicosProps } from "../@types/ServiceProps";
+import { getAllServicos } from "../services/getData";
 
 export function AddMarcacoes() {
   const [show, setShow] = useState(false);
@@ -29,24 +23,14 @@ export function AddMarcacoes() {
   const [servicos, setServicos] = useState<servicosProps[]>([]);
 
   useEffect(() => {
-    const fetchServicos = async () => {
-      try {
-        const response = await fetch(
-          "https://localhost:7209/GetAllServicosByIdCategoria"
-        );
-        if (response.ok) {
-          const data = await response.json();
-          setServicos(data);
-          console.log(data);
-        } else {
-          console.error("Failed to fetch serviços");
-        }
-      } catch (error) {
-        console.error("Error fetching serviços:", error);
-      }
-    };
-
-    fetchServicos();
+  
+    async function waitServicos () {
+      var url = `https://localhost:7209/GetAllServicosByIdCategoria`;
+      const getServicos = await getAllServicos({url});
+      setServicos(getServicos);
+  
+    }
+    waitServicos();
   }, []);
 
   return (
