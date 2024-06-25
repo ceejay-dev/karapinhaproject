@@ -10,5 +10,6 @@ namespace Karapinnha.DTO
     {
         public int IdHorario { get; set; }
         public string ? Descricao { get; set; }
+        public string Estado { get; set; }
     }
 }

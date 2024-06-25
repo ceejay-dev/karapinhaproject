@@ -16,11 +16,15 @@ namespace Karapinha.DAL.Converters
             {
                 IdProfissional = dto.IdProfissional,
                 NomeProfissional = dto.NomeProfissional,
+                FkCategoria = dto.FkCategoria,
                 EmailProfissional = dto.EmailProfissional,
-                TelemovelProfissional = dto.TelemovelProfissional,
                 FotoProfissional = dto.FotoProfissional,
                 BilheteProfissional = dto.BilheteProfissional,
-                FkCategoria = dto.FkCategoria,
+                TelemovelProfissional = dto.TelemovelProfissional,
+                Horarios = dto.Horarios.Select(h => new ProfissionalHorario
+                {
+                    IdHorario = h
+                }).ToList()
             };
         }
 
@@ -30,11 +34,12 @@ namespace Karapinha.DAL.Converters
             {
                 IdProfissional = model.IdProfissional,
                 NomeProfissional = model.NomeProfissional,
+                FkCategoria = model.FkCategoria,
                 EmailProfissional = model.EmailProfissional,
-                TelemovelProfissional = model.TelemovelProfissional,
                 FotoProfissional = model.FotoProfissional,
                 BilheteProfissional = model.BilheteProfissional,
-                FkCategoria = model.FkCategoria,
+                TelemovelProfissional = model.TelemovelProfissional,
+                Horarios = model.Horarios?.Select(h => h.IdHorario).ToList()
             };
         }
     }

@@ -1,5 +1,10 @@
 import { useEffect, useState } from "react";
-import { Button as BootstrapButton, Modal, Alert } from "react-bootstrap";
+import {
+  Button as BootstrapButton,
+  Modal,
+  Alert,
+  Table,
+} from "react-bootstrap";
 import { Button } from "../components/Button";
 import { logo, plus } from "../components/Images";
 import "../styles/marcacao.css";
@@ -145,8 +150,9 @@ export function AddAdministrativos() {
 
   return (
     <main className="container-service">
-      <div className="bg-white p-2 container-service-added">
-        <div>
+      <div className="p-2 container-service-added">
+        <h4 className="bg-white text-center pt-2 rounded-top-2 m-0">Administrativos registados</h4>
+        <div className="bg-white">
           <Button
             route="#"
             imageSrc={plus}
@@ -155,16 +161,26 @@ export function AddAdministrativos() {
           />
         </div>
 
-        {administratives.map((administrative, index) => (
-          <div className="bg-white border border-2 border-black" key={index}>
-            <div>
-              <h3>Nome : {administrative.nomeUtilizador}</h3>
-              <h5>Email: {administrative.emailUtilizador} kz</h5>
-              <h5>BI: {administrative.bilheteUtilizador}</h5>
-              <h5>Estado: {administrative.estado}</h5>
-            </div>
-          </div>
-        ))}
+        <Table striped bordered hover>
+          <thead>
+            <tr>
+              <th>Nome</th>
+              <th>Email</th>
+              <th>BI</th>
+              <th>Estado</th>
+            </tr>
+          </thead>
+          <tbody>
+            {administratives.map((administrative, index) => (
+              <tr key={index}>
+                <td>{administrative.nomeUtilizador}</td>
+                <td>{administrative.emailUtilizador}</td>
+                <td>{administrative.bilheteUtilizador}</td>
+                <td>{administrative.estado}</td>
+              </tr>
+            ))}
+          </tbody>
+        </Table>
       </div>
 
       <Modal

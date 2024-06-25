@@ -1,6 +1,11 @@
 import { useEffect, useState } from "react";
 import { useNavigate } from "react-router-dom";
-import { Alert, Button as BootstrapButton, Modal } from "react-bootstrap";
+import {
+  Alert,
+  Button as BootstrapButton,
+  Modal,
+  Table,
+} from "react-bootstrap";
 import { Button } from "../components/Button";
 import { logo, plus } from "../components/Images";
 import "../styles/marcacao.css";
@@ -112,10 +117,9 @@ export function AddCategorias() {
   }, []);
 
   return (
-    <main className="container-service">
-      <div className="bg-white p-2 container-service-added">
-        <h3 className="pt-3 text-center">Categorias</h3>
-        <div className="p-4">
+    <main className="container-service category-container">
+        <h4 className=" text-center bg-white m-0 rounded-top-2">Categorias registadas</h4>
+        <div className="bg-white m-0">
           <div className="mb-3">
             <Button
               route="#"
@@ -125,18 +129,22 @@ export function AddCategorias() {
             />
           </div>
 
-          {categorias.map((categoria, index) => (
-            <div
-              key={categoria.idCategoria || index}
-              className="bg-white border border-2 border-black"
-            >
-              <div>
-                <h3>Categoria: {categoria.nomeCategoria}</h3>
-              </div>
-            </div>
-          ))}
+          <Table striped bordered hover>
+            <thead>
+              <tr>
+                <th>Nome da categoria</th>
+              </tr>
+            </thead>
+            <tbody>
+              {categorias.map((categoria, index) => (
+                <tr key={`${categoria.idCategoria}-${index}`}>
+                  <td>{categoria.nomeCategoria}</td>
+                </tr>
+              ))}
+            </tbody>
+          </Table>
         </div>
-      </div>
+
 
       <Modal
         show={show}

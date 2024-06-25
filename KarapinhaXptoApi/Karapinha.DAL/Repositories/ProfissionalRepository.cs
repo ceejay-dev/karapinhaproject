@@ -18,7 +18,7 @@ namespace Karapinha.DAL.Repositories
             DbContext = context;
         }
 
-        public async Task<Profissional> CreateProfissional(Profissional profissional,IFormFile foto)
+        public async Task<Profissional> CreateProfissional(Profissional profissional, IFormFile foto)
         {
             string imagePath = Path.Combine(Directory.GetCurrentDirectory(), "Storage");
             string fileName = Path.GetFileName(foto.FileName);
@@ -42,7 +42,10 @@ namespace Karapinha.DAL.Repositories
 
         public async Task<IEnumerable<Profissional>> GetAllProfissionals()
         {
-            return await DbContext.Profissionais.Include(p=>p.Horarios).ThenInclude(p=>p.Horario).ToListAsync();
+            return await DbContext.Profissionais
+                .Include(p => p.Horarios)
+                .ThenInclude(ph => ph.Horario)
+                .ToListAsync();
         }
 
         public async Task<bool> DeleteProfissional(int id)
@@ -54,13 +57,14 @@ namespace Karapinha.DAL.Repositories
                 DbContext.Profissionais.Remove(profissional);
                 await DbContext.SaveChangesAsync();
                 return true;
-            } else { return false; }
+            }
+            else { return false; }
         }
 
         public async Task UpdateProfissional(Profissional profissional)
         {
-             DbContext.Profissionais.Update(profissional);
-             await DbContext.SaveChangesAsync();
+            DbContext.Profissionais.Update(profissional);
+            await DbContext.SaveChangesAsync();
         }
 
         public IEnumerable<dynamic> GetAllProfissionaisByIdCategoria()

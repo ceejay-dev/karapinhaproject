@@ -2,7 +2,7 @@ import { useNavigate } from "react-router-dom";
 import { useEffect, useState } from "react";
 import { logo } from "../components/Images";
 import "../styles/signup.css";
-import { Button, Alert } from "react-bootstrap";
+import { Button, Alert, Form } from "react-bootstrap";
 
 type UserProps = {
   idUtilizador: number;
@@ -10,8 +10,10 @@ type UserProps = {
   emailUtilizador: string;
   telemovelUtilizador: string;
   usernameUtilizador: string;
+  bilheteUtilizador:string;
+  fotoUtilizador:string;
   passwordUtilizador: string;
-  confirmarPassword: string;
+  //confirmarPassword: string;
 };
 
 export function UpdateUser() {
@@ -29,17 +31,17 @@ export function UpdateUser() {
   const handleEditedClick = async (event: { preventDefault: () => void }) => {
     event.preventDefault();
 
-    if (!user?.confirmarPassword) {
-      setAlertMessage("Deve confirmar a palavra-passe para efeitos de segurança e protecção dos seus dados.");
-      setAlertVariant("danger");
-      return;
-    }
+    // if (!user?.confirmarPassword) {
+    //   setAlertMessage("Deve confirmar a palavra-passe para efeitos de segurança e protecção dos seus dados.");
+    //   setAlertVariant("danger");
+    //   return;
+    // }
 
-    if (user.passwordUtilizador !== user.confirmarPassword) {
-      setAlertMessage("As senhas não coincidem. Por favor, verifique novamente.");
-      setAlertVariant("danger");
-      return;
-    }
+    // if (user.passwordUtilizador !== user.confirmarPassword) {
+    //   setAlertMessage("As senhas não coincidem. Por favor, verifique novamente.");
+    //   setAlertVariant("danger");
+    //   return;
+    // }
     try {
       const response = await fetch("https://localhost:7209/UpdateUser", {
         method: "PUT",
@@ -131,8 +133,15 @@ export function UpdateUser() {
                 className="m-1"
                 value={user?.telemovelUtilizador || ""}
                 onChange={handleChange}
+              /> 
+              <input
+                type="text"
+                name="bilheteUtilizador"
+                placeholder="Telemóvel"
+                className="m-1"
+                value={user?.bilheteUtilizador || ""}
+                onChange={handleChange}
               />
-              {/* <input type="file" placeholder="Foto" className="m-1" /> */}
             </div>
 
             <div className="input-container2">
@@ -144,6 +153,9 @@ export function UpdateUser() {
                 value={user?.usernameUtilizador || ""}
                 onChange={handleChange}
               />
+
+              <Form.Control type="file" className="input" />
+
               <input
                 type="password"
                 name="passwordUtilizador"
@@ -152,14 +164,14 @@ export function UpdateUser() {
                 value={user?.passwordUtilizador || ""}
                 onChange={handleChange}
               />
-              <input
+              {/* <input
                 type="password"
                 name="confirmarPassword"
                 placeholder="Confirmar password"
                 className="m-1"
                 value={user?.confirmarPassword || ""}
                 onChange={handleChange}
-              />
+              /> */}
             </div>
           </div>
 

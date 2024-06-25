@@ -1,5 +1,5 @@
 import { useState, useEffect } from "react";
-import { Button as BootstrapButton } from "react-bootstrap";
+import { Button as BootstrapButton, Table } from "react-bootstrap";
 import "../styles/marcacao.css";
 
 type clientesProps = {
@@ -25,7 +25,7 @@ export function ClientsList() {
         if (response.ok) {
           const data = await response.json();
           setClientes(data);
-          console.log("Clientes:", data); // Verifica se os clientes foram carregados corretamente
+          console.log("Clientes:", data); 
         } else {
           console.error("Failed to fetch clientes");
         }
@@ -37,22 +37,30 @@ export function ClientsList() {
     fetchClientes();
   }, []);
 
-  const handleActivation = async (cliente: clientesProps, activate: boolean) => {
+  const handleActivation = async (
+    cliente: clientesProps,
+    activate: boolean
+  ) => {
     try {
-      console.log("Activando cliente:", cliente); // Verifique se o cliente tem idUtilizador
-      console.log("Ativar:", activate); // Verifique se a função de ativação é chamada corretamente
+      console.log("Activando cliente:", cliente); 
+      console.log("Ativar:", activate); 
 
-      const response = await fetch(`https://localhost:7209/ActivateOrDesactivate?id=${cliente.idUtilizador}`, {
-        method: "PUT",
-        headers: {
-          "Content-Type": "application/json",
-        },
-        body: JSON.stringify({ activate }), // Corrigido para enviar um objeto JSON válido
-      });
+      const response = await fetch(
+        `https://localhost:7209/ActivateOrDesactivate?id=${cliente.idUtilizador}`,
+        {
+          method: "PUT",
+          headers: {
+            "Content-Type": "application/json",
+          },
+          body: JSON.stringify({ activate }),
+        }
+      );
 
       if (response.ok) {
         const updatedClientes = clientes.map((c) =>
-          c.idUtilizador === cliente.idUtilizador ? { ...c, estado: activate ? "activo" : "inactivo" } : c
+          c.idUtilizador === cliente.idUtilizador
+            ? { ...c, estado: activate ? "activo" : "inactivo" }
+            : c
         );
         setClientes(updatedClientes);
         console.log("Clientes atualizados:", updatedClientes); // Verifica se o estado dos clientes é atualizado corretamente
@@ -66,37 +74,49 @@ export function ClientsList() {
 
   return (
     <main className="container-service">
-      <h4 className="text-center text-info">Clientes</h4>
-      {clientes.map((cliente, index) => (
-        <div key={`${cliente.idUtilizador}-${index}`} className="bg-white border border-2 border-black">
-          <div>
-            <h3>Nome: {cliente.nomeUtilizador}</h3>
-            <h5>Email: {cliente.emailUtilizador} </h5>
-            <h5>BI: {cliente.bilheteUtilizador}</h5>
-            <h5>Telemóvel: {cliente.telemovelUtilizador}</h5>
-            <h5>Username: {cliente.usernameUtilizador}</h5>
-            <h5>Estado: {cliente.estado}</h5>
-          </div>
-  
-          <div className="m-1">
-            <BootstrapButton
-              variant="info"
-              onClick={() => handleActivation(cliente, true)}
-              className="me-2"
-              disabled={cliente.estado === "activo"}
-            >
-              Activar
-            </BootstrapButton>
-            <BootstrapButton
-              variant="info"
-              onClick={() => handleActivation(cliente, false)}
-              disabled={cliente.estado === "inactivo"}
-            >
-              Desactivar
-            </BootstrapButton>
-          </div>
-        </div>
-      ))}
+      <h4 className="text-center bg-white m-0 p-3 rounded-top-2">Clientes registados</h4>
+        <Table striped bordered hover className="rounded-bottom-2">
+          <thead>
+            <tr>
+              <th>Nome</th>
+              <th>Email</th>
+              <th>BI</th>
+              <th>Telemóvel</th>
+              <th>Username</th>
+              <th>Estado</th>
+              <th>Acções</th>
+            </tr>
+          </thead>
+          <tbody>
+            {clientes.map((cliente, index) => (
+              <tr key={`${cliente.idUtilizador}-${index}`}>
+                <td>{cliente.nomeUtilizador}</td>
+                <td>{cliente.emailUtilizador}</td>
+                <td>{cliente.bilheteUtilizador}</td>
+                <td>{cliente.telemovelUtilizador}</td>
+                <td>{cliente.usernameUtilizador}</td>
+                <td>{cliente.estado}</td>
+                <td>
+                  <BootstrapButton
+                    variant="success"
+                    onClick={() => handleActivation(cliente, true)}
+                    className="me-2"
+                    disabled={cliente.estado === "activo"}
+                  >
+                    Activar
+                  </BootstrapButton>
+                  <BootstrapButton
+                    variant="danger"
+                    onClick={() => handleActivation(cliente, false)}
+                    disabled={cliente.estado === "inactivo"}
+                  >
+                    Desactivar
+                  </BootstrapButton>
+                </td>
+              </tr>
+            ))}
+          </tbody>
+        </Table>
     </main>
-  );  
+  );
 }

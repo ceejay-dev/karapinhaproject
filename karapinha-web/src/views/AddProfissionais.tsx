@@ -1,5 +1,11 @@
 import { useEffect, useState } from "react";
-import { Button as BootstrapButton, Modal, Form, Alert } from "react-bootstrap";
+import {
+  Button as BootstrapButton,
+  Modal,
+  Form,
+  Alert,
+  Table,
+} from "react-bootstrap";
 import { Button } from "../components/Button";
 import { logo, plus } from "../components/Images";
 import "../styles/marcacao.css";
@@ -54,7 +60,7 @@ export function AddProfissionais() {
       if ((event.target as HTMLInputElement).files) {
         setFormData((prevData) => ({
           ...prevData,
-          [name]: (event.target as HTMLInputElement).files![0], 
+          [name]: (event.target as HTMLInputElement).files![0],
         }));
       }
     } else {
@@ -85,7 +91,7 @@ export function AddProfissionais() {
       setShowAlert(true);
       return;
     }
-
+    console.log(formData);
     const url = `https://localhost:7209/CreateProfissional`;
 
     try {
@@ -207,9 +213,9 @@ export function AddProfissionais() {
         method: "DELETE",
       });
       if (response.ok) {
-        setAlertMessage("Profissional apagado com sucesso!");
-        setAlertVariant("success");
-        setShowAlert(true);
+        //setAlertMessage("Profissional apagado com sucesso!");
+        //setAlertVariant("success");
+        //setShowAlert(true);
         // Remover o profissional da lista
         setProfissionais((prevProfissionais) =>
           prevProfissionais.filter((prof) => prof.idProfissional !== id)
@@ -228,12 +234,12 @@ export function AddProfissionais() {
       setShowAlert(true);
     }
   };
-  
 
   return (
     <main className="container-service">
-      <div className="bg-white p-2 container-service-added">
-        <div>
+      <div className="p-2 container-service-added">
+        <h4 className="bg-white text-center m-0 pt-2 rounded-top-2">Profissionais registados</h4>
+        <div className="bg-white">
           <Button
             route="#"
             imageSrc={plus}
@@ -242,26 +248,36 @@ export function AddProfissionais() {
           />
         </div>
 
-        {profissionais.map((profissional, index) => (
-          <div key={index} className="bg-white border border-2 border-black">
-            <div>
-              <h3>Nome do profissional: {profissional.nomeProfissional}</h3>
-              <h5>Email: {profissional.emailProfissional}</h5>
-              <h5>Categoria: {profissional.nomeCategoria}</h5>
-              <h5>Telemóvel: {profissional.telemovelProfissional}</h5>
-            </div>
-
-            <div className="m-1">
-              <BootstrapButton
-                variant="danger"
-                className="me-2"
-                onClick={() => handleDelete(profissional.idProfissional)} 
-              >
-                Apagar
-              </BootstrapButton>
-            </div>
-          </div>
-        ))}
+        <Table striped bordered hover>
+          <thead>
+            <tr>
+              <th>Nome do Profissional</th>
+              <th>Email</th>
+              <th>Categoria</th>
+              <th>Telemóvel</th>
+              <th>Acções</th>
+            </tr>
+          </thead>
+          <tbody>
+            {profissionais.map((profissional, index) => (
+              <tr key={index}>
+                <td>{profissional.nomeProfissional}</td>
+                <td>{profissional.emailProfissional}</td>
+                <td>{profissional.nomeCategoria}</td>
+                <td>{profissional.telemovelProfissional}</td>
+                <td>
+                  <BootstrapButton
+                    variant="danger"
+                    className="me-2"
+                    onClick={() => handleDelete(profissional.idProfissional)}
+                  >
+                    Apagar
+                  </BootstrapButton>
+                </td>
+              </tr>
+            ))}
+          </tbody>
+        </Table>
       </div>
 
       <Modal

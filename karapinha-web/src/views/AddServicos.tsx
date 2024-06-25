@@ -1,6 +1,12 @@
 import { useEffect, useState } from "react";
 import { useNavigate } from "react-router-dom";
-import { Alert, Button as BootstrapButton, Form, Modal } from "react-bootstrap";
+import {
+  Alert,
+  Button as BootstrapButton,
+  Form,
+  Modal,
+  Table,
+} from "react-bootstrap";
 import { Button } from "../components/Button";
 import { logo, plus } from "../components/Images";
 import "../styles/marcacao.css";
@@ -39,7 +45,7 @@ export function AddServicos() {
       setIsEditMode(true);
     } else {
       setFormData({
-        idServico:0,
+        idServico: 0,
         fkCategoria: "0",
         nomeServico: "",
         preco: "",
@@ -51,7 +57,7 @@ export function AddServicos() {
   };
 
   const [formData, setFormData] = useState({
-    idServico:0,
+    idServico: 0,
     fkCategoria: "0",
     nomeServico: "",
     preco: "",
@@ -99,7 +105,11 @@ export function AddServicos() {
     event.preventDefault();
 
     // Valide os dados antes de enviar
-    if (!formData.nomeServico || !formData.preco || (formData.fkCategoria === "0" && !isEditMode)) {
+    if (
+      !formData.nomeServico ||
+      !formData.preco ||
+      (formData.fkCategoria === "0" && !isEditMode)
+    ) {
       setAlertMessage("Por favor, preencha todos os campos.");
       setAlertVariant("danger");
       setShowAlert(true);
@@ -116,7 +126,11 @@ export function AddServicos() {
       });
 
       if (response.ok) {
-        setAlertMessage(isEditMode ? "Serviço atualizado com sucesso!" : "Serviço criado com sucesso!");
+        setAlertMessage(
+          isEditMode
+            ? "Serviço atualizado com sucesso!"
+            : "Serviço criado com sucesso!"
+        );
         setAlertVariant("success");
         setShowAlert(true);
         setTimeout(() => {
@@ -125,14 +139,26 @@ export function AddServicos() {
         }, 3000);
       } else {
         const errorData = await response.json();
-        console.error(isEditMode ? "Falha ao atualizar serviço" : "Falha ao criar serviço", errorData);
-        setAlertMessage(isEditMode ? "Falha ao atualizar o serviço." : "Falha ao criar o serviço.");
+        console.error(
+          isEditMode ? "Falha ao atualizar serviço" : "Falha ao criar serviço",
+          errorData
+        );
+        setAlertMessage(
+          isEditMode
+            ? "Falha ao atualizar o serviço."
+            : "Falha ao criar o serviço."
+        );
         setAlertVariant("danger");
         setShowAlert(true);
       }
     } catch (error) {
-      console.error(isEditMode ? "Error updating service:" : "Error creating service:", error);
-      setAlertMessage(isEditMode ? "Erro ao atualizar o serviço." : "Erro ao criar o serviço.");
+      console.error(
+        isEditMode ? "Error updating service:" : "Error creating service:",
+        error
+      );
+      setAlertMessage(
+        isEditMode ? "Erro ao atualizar o serviço." : "Erro ao criar o serviço."
+      );
       setAlertVariant("danger");
       setShowAlert(true);
     }
@@ -140,7 +166,9 @@ export function AddServicos() {
 
   const handleEdit = async (id: number) => {
     try {
-      const response = await fetch(`https://localhost:7209/GetTreatmentById?id=${id}`);
+      const response = await fetch(
+        `https://localhost:7209/GetTreatmentById?id=${id}`
+      );
       if (response.ok) {
         const servico: servicosProps = await response.json();
         handleShow(servico);
@@ -190,7 +218,7 @@ export function AddServicos() {
           console.error("Failed to fetch categorias");
         }
       } catch (error) {
-        console.error("Error fetching categorias:", error);
+        console.error("Error fetcing categorias:", error);
       }
     };
 
@@ -199,10 +227,9 @@ export function AddServicos() {
 
   return (
     <main className="container-service">
-      <div className="bg-white p-2 container-service-added">
-        <h3 className="pt-3 text-center">Serviços</h3>
-        <div className="p-4">
-          <div className="mb-3">
+      <div className="p-2 container-service-added">
+        <h3 className="pt-2 text-center bg-white m-0 rounded-top-2">Serviços registados</h3>
+          <div className="bg-white">
             <Button
               route="#"
               imageSrc={plus}
@@ -210,36 +237,40 @@ export function AddServicos() {
               onClick={() => handleShow()}
             />
           </div>
-
-          {servicos.map((servico, index) => (
-            <div
-              key={servico.idServico || index}
-              className="bg-white border border-2 border-black"
-            >
-              <div>
-                <h3>Descrição: {servico.nomeServico}</h3>
-                <h5>Preço: {servico.preco} kz</h5>
-                <h5>Categoria: {servico.nomeCategoria}</h5>
-              </div>
-
-              <div className="m-1">
-                <BootstrapButton
-                  variant="danger"
-                  className="m-2"
-                  onClick={() => handleDelete(servico.idServico)}
-                >
-                  Apagar
-                </BootstrapButton>
-                <BootstrapButton
-                  variant="info"
-                  onClick={() => handleEdit(servico.idServico)}
-                >
-                  Alterar
-                </BootstrapButton>
-              </div>
-            </div>
-          ))}
-        </div>
+          <Table striped bordered hover className="m-0">
+            <thead>
+              <tr>
+                <th>Descrição</th>
+                <th>Preço (kz)</th>
+                <th>Categoria</th>
+                <th>Acções</th>
+              </tr>
+            </thead>
+            <tbody>
+              {servicos.map((servico, index) => (
+                <tr key={servico.idServico || index}>
+                  <td>{servico.nomeServico}</td>
+                  <td>{servico.preco} kz</td>
+                  <td>{servico.nomeCategoria}</td>
+                  <td>
+                    <BootstrapButton
+                      variant="danger"
+                      className="m-2"
+                      onClick={() => handleDelete(servico.idServico)}
+                    >
+                      Apagar
+                    </BootstrapButton>
+                    <BootstrapButton
+                      variant="info"
+                      onClick={() => handleEdit(servico.idServico)}
+                    >
+                      Alterar
+                    </BootstrapButton>
+                  </td>
+                </tr>
+              ))}
+            </tbody>
+          </Table>
       </div>
 
       <Modal
@@ -248,7 +279,9 @@ export function AddServicos() {
         dialogClassName="custom-modal-width"
       >
         <Modal.Header closeButton>
-          <Modal.Title>{isEditMode ? "Editar Serviço" : "Registo de Serviços"}</Modal.Title>
+          <Modal.Title>
+            {isEditMode ? "Editar Serviço" : "Registo de Serviços"}
+          </Modal.Title>
         </Modal.Header>
         <Modal.Body>
           <div className="modal-content-container">

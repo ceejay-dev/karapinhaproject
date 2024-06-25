@@ -45,10 +45,10 @@ namespace Karapinha.Services
                 }
                 else if (userRole == "administrativo")
                 {
-                    string assunto = "Criação de nova conta administradpra";
+                    string assunto = "Criação de uma nova conta de administrativo";
                     //Enviando email para o administrativos com as suas credenciais
-                    string mensagem = "Bem-vindo ao Coração do Ceejay" +
-                       "Acabou de ser registrada como administradora do mesmo." +
+                    string mensagem = "Bem-vindo ao Karapinha Dura XPTO" +
+                       "Acabou de ser registrado(a) como administrador(a) do mesmo. " +
                        "Eis os dados as credenciais de acesso:" +
                        "Nome de utilizador :" + userAdded.UsernameUtilizador + "\n" +
                        "Palavra-passe    :" + userAdded.PasswordUtilizador;

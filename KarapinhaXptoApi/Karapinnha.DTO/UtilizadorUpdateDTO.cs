@@ -13,7 +13,7 @@ namespace Karapinnha.DTO
         public string? EmailUtilizador { get; set; }
         public string? BilheteUtilizador { get; set; }
         public string? TelemovelUtilizador { get; set; }
-        //public string? FotoUtilizador { get; set; }
+        public string? FotoUtilizador { get; set; }
         public string? UsernameUtilizador { get; set; }
         public string? PasswordUtilizador { get; set; }
     }

@@ -29,25 +29,25 @@ namespace Karapinha.Services
         {
             try
             {
-                var profissionalAdded = ProfissionalConverter.ToProfissionalDTO(await Repository.CreateProfissional(ProfissionalConverter.ToProfissional(dto), foto));
-
+                var profissional = ProfissionalConverter.ToProfissional(dto);
+                var profissionalAdded = await Repository.CreateProfissional(profissional, foto);
 
                 foreach (var horarioId in dto.Horarios)
                 {
                     var horarioProfissional = new ProfissionalHorario
                     {
-                        IdHorario = horarioId,
                         IdProfissional = profissionalAdded.IdProfissional,
+                        IdHorario = horarioId
                     };
                     await HorarioRepository.CreateProfissionalHorario(horarioProfissional);
                 }
 
-                return profissionalAdded;
+                return ProfissionalConverter.ToProfissionalDTO(profissionalAdded);
             }
-            catch (Exception ex) { 
+            catch (Exception ex)
+            {
                 throw new ServiceException(ex.Message);
             }
-            
         }
 
         public async Task<ProfissionalDTO> GetProfissionalById(int id)
