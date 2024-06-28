@@ -21,17 +21,17 @@ namespace Karapinha.DAL.Repositories
             dbContext = context;
         }
 
-        public async Task<Utilizador> CreateUser(Utilizador Utilizador, IFormFile foto)
+        public async Task<Utilizador> CreateUser(Utilizador Utilizador)
         {
-            string imagePath = Path.Combine(Directory.GetCurrentDirectory(), "Storage");
-            string fileName = Path.GetFileName(foto.FileName);
-            string filePath = Path.Combine(imagePath, fileName);
+            //string imagePath = Path.Combine(Directory.GetCurrentDirectory(), "Storage");
+            //string fileName = Path.GetFileName(foto.FileName);
+            //string filePath = Path.Combine(imagePath, fileName);
 
-            using (var fileStream = new FileStream(filePath, FileMode.Create))
-            {
-                await foto.CopyToAsync(fileStream);
-            }
-            Utilizador.FotoUtilizador = fileName;
+            //using (var fileStream = new FileStream(filePath, FileMode.Create))
+            //{
+            //    await foto.CopyToAsync(fileStream);
+            //}
+            //Utilizador.FotoUtilizador = filePath;
 
             var user = await dbContext.AddAsync(Utilizador);
             await dbContext.SaveChangesAsync();

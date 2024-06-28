@@ -33,15 +33,35 @@ namespace Karapinha.Services
         {
             try
             {
-                var utilizador = UtilizadorConverter.ToUtilizador(Utilizador);
-                utilizador.EncriptarPassword(Utilizador.PasswordUtilizador);
+                //Armazenamento da fotografia do utilizador
+                string photoPath = null;
 
-                var userAdded = UtilizadorConverter.ToUtilizadorDTO(await UtilizadorRepository.CreateUser(UtilizadorConverter.ToUtilizador(Utilizador), foto));
+                if (foto != null)
+                {
+                    var uploadsFolder = Path.Combine("wwwroot", "storage");
+                    if (!Directory.Exists(uploadsFolder))
+                    {
+                        Directory.CreateDirectory(uploadsFolder);
+                    }
+                    photoPath = Path.Combine(uploadsFolder, Guid.NewGuid() + Path.GetExtension(foto.FileName));
+                    using (var fileStream = new FileStream(photoPath, FileMode.Create))
+                    {
+                        await foto.CopyToAsync(fileStream);
+                    }
+                    photoPath = "/" + photoPath.Replace("wwwroot\\", string.Empty).Replace("\\", "/");
+                    
+                }
+
+                var userAdded = Utilizador;
+                userAdded.FotoUtilizador = photoPath;
+                userAdded  = UtilizadorConverter.ToUtilizadorDTO(await UtilizadorRepository.CreateUser(UtilizadorConverter.ToUtilizador(userAdded)));
                 var userRole = await UtilizadorRepository.GetUserRole(Utilizador.UsernameUtilizador);
+
+                //Envios de emails
                 if (userRole == "cliente")
                 {
                     //Enviando email para o admin ativar conta
-                    emailReceiver.SendEmailAdmin(userAdded.EmailUtilizador);
+                    emailReceiver.SendEmailAdmin(Utilizador.EmailUtilizador);
                 }
                 else if (userRole == "administrativo")
                 {
@@ -52,7 +72,7 @@ namespace Karapinha.Services
                        "Eis os dados as credenciais de acesso:" +
                        "Nome de utilizador :" + userAdded.UsernameUtilizador + "\n" +
                        "Palavra-passe    :" + userAdded.PasswordUtilizador;
-                    emailService.SendEmailAdminOrCliente(mensagem, assunto,userAdded);
+                    emailService.SendEmailAdminOrCliente(mensagem, assunto, userAdded);
                 }
                 return userAdded;
             }
@@ -70,7 +90,8 @@ namespace Karapinha.Services
                 if (user == null || !user.VerificarPassword(login.passwordUtilizador))
                 {
                     throw new NotFoundException();
-                } else if (user.TipoPerfil=="cliente" && !UtilizadorRepository.VerifyStatus(user))
+                }
+                else if (user.TipoPerfil == "cliente" && !UtilizadorRepository.VerifyStatus(user))
                 {
                     throw new Exception();
                 }
@@ -114,19 +135,22 @@ namespace Karapinha.Services
             }
             catch (Exception ex)
             {
-                throw new ServiceException("Erro ao obter utilizador por ID.", ex);
+                throw new ServiceException("Utilizador não foi encontrado.", ex);
             }
         }
 
         public async Task<UtilizadorDTO> GetUserByUsername(string username)
         {
-            try {
-                
-                var user =  await UtilizadorRepository.GetUserByUsername(username);
+            try
+            {
+
+                var user = await UtilizadorRepository.GetUserByUsername(username);
                 return UtilizadorConverter.ToUtilizadorDTO(user);
 
-            } catch (Exception ex) { 
-                throw new ServiceException($"{ex.Message}", ex);
+            }
+            catch (Exception ex)
+            {
+                throw new ServiceException("Utilizador não foi encontrado.", ex);
             }
         }
 
@@ -212,13 +236,14 @@ namespace Karapinha.Services
                 {
                     subject = "Activação de conta";
                     mensagem = "A sua conta foi activada com sucesso";
-                } else if (userFound.Estado == "inactivo")
+                }
+                else if (userFound.Estado == "inactivo")
                 {
                     subject = "Desactivação de conta";
                     mensagem = "A sua conta foi desactivada. Aguarde a activação do administrador.";
                 }
 
-                emailService.SendEmailAdminOrCliente(mensagem, subject,UtilizadorConverter.ToUtilizadorDTO(userFound));
+                emailService.SendEmailAdminOrCliente(mensagem, subject, UtilizadorConverter.ToUtilizadorDTO(userFound));
                 await UtilizadorRepository.UpdateUser(userFound);
             }
             catch (Exception ex)
@@ -233,7 +258,8 @@ namespace Karapinha.Services
             {
                 return (await UtilizadorRepository.VerifyAdministrativeStatus(UtilizadorConverter.ToUtilizador(dto)));
             }
-            catch (Exception ex) {
+            catch (Exception ex)
+            {
                 throw new ServiceException(ex.Message);
             }
         }
@@ -250,7 +276,8 @@ namespace Karapinha.Services
 
                 await UtilizadorRepository.UpdateUser(userFound);
             }
-            catch (Exception ex) { 
+            catch (Exception ex)
+            {
                 throw new ServiceException(ex.Message);
             }
 

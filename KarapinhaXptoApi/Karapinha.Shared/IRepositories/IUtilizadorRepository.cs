@@ -11,7 +11,7 @@ namespace Karapinha.Shared.IRepositories
 {
     public interface IUtilizadorRepository
     {
-        Task<Utilizador> CreateUser(Utilizador Utilizador, IFormFile foto);
+        Task<Utilizador> CreateUser(Utilizador Utilizador);
         Task<Utilizador> GetUserById(int id);
         Task<List<Utilizador>> GetAllUsers();
         Task<List<Utilizador>> GetAllClientes();
