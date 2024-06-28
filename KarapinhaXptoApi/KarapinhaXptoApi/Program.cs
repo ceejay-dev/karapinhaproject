@@ -95,6 +95,7 @@ builder.Services.AddCors(options =>
                    .AllowAnyMethod();
         });
 });
+
 var app = builder.Build();
 
 //Habilitando o consumo
@@ -110,7 +111,7 @@ if (app.Environment.IsDevelopment())
     app.UseSwagger();
     app.UseSwaggerUI();
 }
-
+app.UseStaticFiles();
 app.UseHttpsRedirection();
 
 app.UseAuthentication();

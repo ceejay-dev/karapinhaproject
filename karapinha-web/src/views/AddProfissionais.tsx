@@ -48,7 +48,7 @@ export function AddProfissionais() {
     fotoProfissional: null as File | null,
     bilheteProfissional: "",
     telemovelProfissional: "",
-    horarios: [] as number[],
+    horarios: "0",
   });
 
   const handleChange = (
@@ -84,7 +84,7 @@ export function AddProfissionais() {
       !formData.fotoProfissional ||
       !formData.nomeProfissional ||
       !formData.telemovelProfissional ||
-      formData.horarios.length === 0
+      formData.horarios === "0"
     ) {
       setAlertMessage("Por favor, preencha todos os campos.");
       setAlertVariant("danger");
@@ -365,19 +365,11 @@ export function AddProfissionais() {
                     />
                     <Form.Select
                       name="horarios"
-                      value={formData.horarios.map(String)}
-                      onChange={(event) => {
-                        const value = Array.from(
-                          event.target.selectedOptions,
-                          (option) => parseInt(option.value)
-                        );
-                        setFormData((prevData) => ({
-                          ...prevData,
-                          horarios: value,
-                        }));
-                      }}
+                      value={formData.horarios}
+                      onChange={handleChange}
                       className="select"
                     >
+                      
                       <option value="0">Selecione o horário:</option>
                       {horarios.map((horario) => (
                         <option

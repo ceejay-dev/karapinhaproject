@@ -167,3 +167,4 @@ D:\karapinhaproject\KarapinhaXptoApi\KarapinhaXptoApi\obj\Debug\net8.0\ref\Karap
 D:\karapinhaproject\KarapinhaXptoApi\KarapinhaXptoApi\bin\Debug\net8.0\System.Net.Http.Formatting.dll
 D:\karapinhaproject\KarapinhaXptoApi\KarapinhaXptoApi\bin\Debug\net8.0\System.Web.Http.dll
 D:\karapinhaproject\KarapinhaXptoApi\KarapinhaXptoApi\bin\Debug\net8.0\Newtonsoft.Json.Bson.dll
+D:\karapinhaproject\KarapinhaXptoApi\KarapinhaXptoApi\bin\Debug\net8.0\KarapinhaXptoApi.staticwebassets.runtime.json

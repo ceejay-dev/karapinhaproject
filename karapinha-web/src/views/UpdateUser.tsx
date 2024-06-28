@@ -105,7 +105,7 @@ export function UpdateUser() {
 
       <div className="container-form">
         <div className="d-flex justify-content-center">
-          <img className="image-icon" src={logo} alt="Logo" />
+          <img className="image-icon" src={`https://localhost:7209/${user?.fotoUtilizador}`} alt="UserFoto" />
         </div>
         <form action="" className="d-flex justify-content-center formulario">
           <div className="d-flex flex-row">
