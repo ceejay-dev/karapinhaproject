@@ -15,7 +15,7 @@ namespace KarapinhaXptoApi.Controllers
 
         [HttpPost]
         [Route("/CreateCategory")]
-        public async Task<ActionResult> CreateCategory([FromBody] CategoriaDTO dto)
+        public async Task<ActionResult> CreateCategory(CategoriaDTO dto)
         {
             try
             {

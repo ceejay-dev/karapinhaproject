@@ -1,5 +1,4 @@
 import { useEffect, useState } from "react";
-import { useNavigate } from "react-router-dom";
 import {
   Alert,
   Button as BootstrapButton,
@@ -16,7 +15,6 @@ type categoriaProps = {
 };
 
 export function AddCategorias() {
-  const navigate = useNavigate();
   const [showAlert, setShowAlert] = useState(false);
   const [alertMessage, setAlertMessage] = useState("");
   const [alertVariant, setAlertVariant] = useState("success");
@@ -55,18 +53,15 @@ export function AddCategorias() {
       return;
     }
 
-    const url = `https://localhost:7209/AddCategory`;
-    const requestData = {
-      nomeCategoria: formData.nomeCategoria,
-    };
-
+    // Criando uma categoria
+    const url = `https://localhost:7209/CreateCategory?NomeCategoria=${formData.nomeCategoria}`;
     try {
       const response = await fetch(url, {
         method: "POST",
         headers: {
           "Content-Type": "application/json",
         },
-        body: JSON.stringify(requestData),
+        body: JSON.stringify({ nomeCategoria: formData.nomeCategoria }),
       });
 
       if (response.ok) {
@@ -75,10 +70,6 @@ export function AddCategorias() {
         setAlertMessage("Categoria criada com sucesso!");
         setAlertVariant("success");
         setShowAlert(true);
-        setTimeout(() => {
-          setShow(false);
-          navigate("/GestorHome");
-        }, 3000);
       } else {
         const errorData = await response.json();
         console.error("Falha ao criar categoria", errorData);
@@ -87,10 +78,40 @@ export function AddCategorias() {
         setShowAlert(true);
       }
     } catch (error) {
-      console.error("Error creating category:", error);
+      console.error("Erro ao criar categoria:", error);
       setAlertMessage("Erro ao criar a categoria.");
       setAlertVariant("danger");
       setShowAlert(true);
+    }
+  };
+
+  //Apagando uma categoria
+  const handleDelete = async (idCategoria: number) => {
+    const url = `https://localhost:7209/DeleteCategory?id=${idCategoria}`;
+    try {
+      const response = await fetch(url, {
+        method: "DELETE",
+      });
+
+      if (response.ok) {
+        setCategorias(categorias.filter(categoria => categoria.idCategoria !== idCategoria));
+        alert("Categoria apagada com sucesso!");
+        console.log("Categoria apagada com sucesso!");
+        // setAlertMessage("Categoria apagada com sucesso!");
+        // setAlertVariant("success");
+        // setShowAlert(true);
+      } else {
+        const errorData = await response.json();
+        console.error("Falha ao apagar categoria", errorData);
+        // setAlertMessage("Falha ao apagar a categoria.");
+        // setAlertVariant("danger");
+        // setShowAlert(true);
+      }
+    } catch (error) {
+      console.error("Erro ao apagar categoria:", error);
+      // setAlertMessage("Erro ao apagar a categoria.");
+      // setAlertVariant("danger");
+      // setShowAlert(true);
     }
   };
 
@@ -118,33 +139,43 @@ export function AddCategorias() {
 
   return (
     <main className="container-service category-container">
-        <h4 className=" text-center bg-white m-0 rounded-top-2">Categorias registadas</h4>
-        <div className="bg-white m-0">
-          <div className="mb-3">
-            <Button
-              route="#"
-              imageSrc={plus}
-              className="link-signup pb-5"
-              onClick={handleShow}
-            />
-          </div>
-
-          <Table striped bordered hover>
-            <thead>
-              <tr>
-                <th>Nome da categoria</th>
-              </tr>
-            </thead>
-            <tbody>
-              {categorias.map((categoria, index) => (
-                <tr key={`${categoria.idCategoria}-${index}`}>
-                  <td>{categoria.nomeCategoria}</td>
-                </tr>
-              ))}
-            </tbody>
-          </Table>
+      <h4 className=" text-center bg-white m-0 rounded-top-2">
+        Categorias registadas
+      </h4>
+      <div className="bg-white m-0">
+        <div className="mb-3">
+          <Button
+            route="#"
+            imageSrc={plus}
+            className="link-signup pb-5"
+            onClick={handleShow}
+          />
         </div>
 
+        <Table striped bordered hover>
+          <thead>
+            <tr>
+              <th>Nome da categoria</th>
+              <th>Acções</th>
+            </tr>
+          </thead>
+          <tbody>
+            {categorias.map((categoria, index) => (
+              <tr key={`${categoria.idCategoria}-${index}`}>
+                <td>{categoria.nomeCategoria}</td>
+                <td>
+                  <BootstrapButton 
+                    variant="danger"
+                    onClick={() => handleDelete(categoria.idCategoria)}
+                  >
+                    Apagar
+                  </BootstrapButton>
+                </td>
+              </tr>
+            ))}
+          </tbody>
+        </Table>
+      </div>
 
       <Modal
         show={show}

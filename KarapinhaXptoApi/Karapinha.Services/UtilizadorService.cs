@@ -13,7 +13,7 @@ using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
-using System.Web.Http.ModelBinding;
+
 
 namespace Karapinha.Services
 {
@@ -39,18 +39,23 @@ namespace Karapinha.Services
                 if (foto != null)
                 {
                     var uploadsFolder = Path.Combine("wwwroot", "storage");
+                    // Verifica se o diretório existe e cria se necessário
                     if (!Directory.Exists(uploadsFolder))
                     {
                         Directory.CreateDirectory(uploadsFolder);
                     }
+
+                    // Gera o caminho completo para o arquivo
                     photoPath = Path.Combine(uploadsFolder, Guid.NewGuid() + Path.GetExtension(foto.FileName));
+                    // Salva o arquivo no caminho especificado
                     using (var fileStream = new FileStream(photoPath, FileMode.Create))
                     {
                         await foto.CopyToAsync(fileStream);
                     }
+                    // Ajusta o caminho para ser usado em URLs
                     photoPath = "/" + photoPath.Replace("wwwroot\\", string.Empty).Replace("\\", "/");
-                    
                 }
+
 
                 var userAdded = Utilizador;
                 userAdded.FotoUtilizador = photoPath;
