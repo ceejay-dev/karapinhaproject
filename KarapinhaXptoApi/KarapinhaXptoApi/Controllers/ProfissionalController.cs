@@ -60,6 +60,20 @@ namespace KarapinhaXptoApi.Controllers
                 throw new Exception(ex.Message);
             }
         }
+        
+        [HttpGet]
+        [Route("/GetProfissionalByIdCategoria")]
+        public async Task<ProfissionalDTO> GetProfissionalByIdCategoria(int id)
+        {
+            try
+            {
+                return await Service.GetProfissionalByIdCategoria(id);
+            }
+            catch (Exception ex)
+            {
+                throw new Exception(ex.Message);
+            }
+        }
 
         [HttpDelete]
         [Route("/DeleteProfissional")]
@@ -78,11 +92,11 @@ namespace KarapinhaXptoApi.Controllers
 
         [HttpGet]
         [Route("/GetProfissinalsByIdCategoria")]
-        public IEnumerable<dynamic> GetAllProfissionaisByIdCategoria()
+        public Task<IEnumerable<dynamic>> GetAllProfissionaisByIdCategoria(int id)
         {
             try
             {
-                return Service.GetAllProfissionaisByIdCategoria();
+                return Service.GetAllProfissionaisByIdCategoria(id);
             }
             catch (Exception ex)
             {

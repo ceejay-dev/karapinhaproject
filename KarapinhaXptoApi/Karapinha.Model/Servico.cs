@@ -20,5 +20,6 @@ namespace Karapinha.Model
         public int FkCategoria { get; set; }
         [ForeignKey(nameof(FkCategoria))]
         public Categoria? Categoria { get; set; }
+        public int Contador {  get; set; }
     }
 }

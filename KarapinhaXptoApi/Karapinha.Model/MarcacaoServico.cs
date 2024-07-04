@@ -24,6 +24,6 @@ namespace Karapinha.Model
         public Servico ? Service { get; set; }
         [ForeignKey(nameof(FkProfissional))]
         public int FkProfissional { get; set; }
-        public Profissional ? Profissionals { get; set; }
+        public Profissional ? Profissional { get; set; }
     }
 }

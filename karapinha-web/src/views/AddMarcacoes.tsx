@@ -4,7 +4,8 @@ import { Button } from "../components/Button";
 import { logo, plus } from "../components/Images";
 import "../styles/marcacao.css";
 import { servicosProps } from "../@types/ServiceProps";
-import { getAllServicos } from "../services/getData";
+import { getAllData } from "../services/getData";
+// import { profissionaisProps } from "../@types/ProfissionaisProps";
 
 export function AddMarcacoes() {
   const [show, setShow] = useState(false);
@@ -26,12 +27,26 @@ export function AddMarcacoes() {
   
     async function waitServicos () {
       var url = `https://localhost:7209/GetAllServicosByIdCategoria`;
-      const getServicos = await getAllServicos({url});
+      const getServicos = await getAllData({url});
       setServicos(getServicos);
   
     }
     waitServicos();
   }, []);
+
+  // const [profissionais, setProfissionais] = useState<profissionaisProps[]>([]);
+
+  // useEffect(() => {
+  
+  //   async function waitProfissionais () {
+  //     var url = `https://localhost:7209/GetProfissinalsWithIdCategoria`;
+  //     const getProfissionais = await getAllData({url});
+  //     setProfissionais(getProfissionais);
+  
+  //   }
+  //   waitProfissionais();
+  // }, []);
+
 
   return (
     <main className="container-service">
@@ -52,6 +67,13 @@ export function AddMarcacoes() {
                 <h3>Descrição: {servico.nomeServico}</h3>
                 <h5>Preço: {servico.preco} kz</h5>
                 <h5>Categoria: {servico.nomeCategoria}</h5>
+                <BootstrapButton
+                  variant="info"
+                  
+                  className=""
+                >
+                  Adicionar
+                </BootstrapButton>
               </div>
             </div>
           </div>

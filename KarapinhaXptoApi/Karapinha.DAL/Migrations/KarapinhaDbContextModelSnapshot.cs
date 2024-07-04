@@ -74,11 +74,11 @@ namespace Karapinha.DAL.Migrations
                     b.Property<string>("Estado")
                         .HasColumnType("nvarchar(max)");
 
-                    b.Property<int>("FkHorario")
-                        .HasColumnType("int");
-
                     b.Property<int>("FkUtilizador")
                         .HasColumnType("int");
+
+                    b.Property<TimeOnly>("HoraMarcacao")
+                        .HasColumnType("time");
 
                     b.Property<double>("PrecoMarcacao")
                         .HasColumnType("float");
@@ -116,7 +116,7 @@ namespace Karapinha.DAL.Migrations
                     b.Property<int>("FkServico")
                         .HasColumnType("int");
 
-                    b.Property<int?>("ProfissionalsIdProfissional")
+                    b.Property<int?>("ProfissionalIdProfissional")
                         .HasColumnType("int");
 
                     b.Property<int?>("ServiceIdServico")
@@ -128,7 +128,7 @@ namespace Karapinha.DAL.Migrations
 
                     b.HasIndex("CategoryIdCategoria");
 
-                    b.HasIndex("ProfissionalsIdProfissional");
+                    b.HasIndex("ProfissionalIdProfissional");
 
                     b.HasIndex("ServiceIdServico");
 
@@ -200,6 +200,9 @@ namespace Karapinha.DAL.Migrations
                         .HasColumnType("int");
 
                     SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("IdServico"));
+
+                    b.Property<int>("Contador")
+                        .HasColumnType("int");
 
                     b.Property<int>("FkCategoria")
                         .HasColumnType("int");
@@ -478,9 +481,9 @@ namespace Karapinha.DAL.Migrations
                         .WithMany()
                         .HasForeignKey("CategoryIdCategoria");
 
-                    b.HasOne("Karapinha.Model.Profissional", "Profissionals")
+                    b.HasOne("Karapinha.Model.Profissional", "Profissional")
                         .WithMany()
-                        .HasForeignKey("ProfissionalsIdProfissional");
+                        .HasForeignKey("ProfissionalIdProfissional");
 
                     b.HasOne("Karapinha.Model.Servico", "Service")
                         .WithMany()
@@ -490,7 +493,7 @@ namespace Karapinha.DAL.Migrations
 
                     b.Navigation("Category");
 
-                    b.Navigation("Profissionals");
+                    b.Navigation("Profissional");
 
                     b.Navigation("Service");
                 });

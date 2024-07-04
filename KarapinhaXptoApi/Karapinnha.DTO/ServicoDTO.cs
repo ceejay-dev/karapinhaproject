@@ -14,5 +14,6 @@ namespace Karapinnha.DTO
         public string? NomeServico { get; set; }
         public double Preco { get; set; }
         public int FkCategoria { get; set; }
+        public int Contador { get; set; }
     }
 }

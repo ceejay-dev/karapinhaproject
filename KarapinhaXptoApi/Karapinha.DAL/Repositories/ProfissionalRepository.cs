@@ -40,6 +40,12 @@ namespace Karapinha.DAL.Repositories
             return await DbContext.Profissionais.FindAsync(id);
         }
 
+        public async Task<Profissional> GetProfissionalByIdCategoria(int idCategoria)
+        {
+            return await DbContext.Profissionais
+                                      .FirstOrDefaultAsync(p => p.FkCategoria == idCategoria);
+        }
+
         public async Task<IEnumerable<Profissional>> GetAllProfissionals()
         {
             return await DbContext.Profissionais
@@ -67,7 +73,7 @@ namespace Karapinha.DAL.Repositories
             await DbContext.SaveChangesAsync();
         }
 
-        public IEnumerable<dynamic> GetAllProfissionaisByIdCategoria()
+        public IEnumerable<dynamic> GetAllProfissionaisWithCategoria()
         {
             var result = from profissional in DbContext.Profissionais
                          join categoria in DbContext.Categorias
@@ -83,5 +89,27 @@ namespace Karapinha.DAL.Repositories
 
             return result.ToList();
         }
+
+        public async Task<IEnumerable<dynamic>> GetAllProfissionaisByIdCategoria(int idCategoria)
+        {
+
+            var resultado = await (from p in DbContext.Profissionais
+                                   join c in DbContext.Categorias on p.FkCategoria equals c.IdCategoria
+                                   where p.FkCategoria == idCategoria
+                                   select new
+                                   {
+                                       IdProfissional = p.IdProfissional,
+                                       NomeProfissional = p.NomeProfissional,
+                                       FkCategoria = p.FkCategoria,
+                                       EmailProfissional = p.EmailProfissional,
+                                       FotoProfissional = p.FotoProfissional,
+                                       BilheteProfissional = p.BilheteProfissional,
+                                       TelemovelProfissional = p.TelemovelProfissional
+                                   })
+                                   .ToListAsync();
+
+            return resultado.Select(p => (dynamic)p);
+        }
     }
+
 }

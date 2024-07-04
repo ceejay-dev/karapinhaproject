@@ -9,6 +9,6 @@ namespace Karapinha.Shared.IRepositories
 {
     public interface IMarcacaoServicosRepository
     {
-        Task<MarcacaoServico> CreateProfissionalHorario(MarcacaoServico marcacaoServico);
+        Task<MarcacaoServico> CreateMarcacaoServico(MarcacaoServico marcacaoServico);
     }
 }

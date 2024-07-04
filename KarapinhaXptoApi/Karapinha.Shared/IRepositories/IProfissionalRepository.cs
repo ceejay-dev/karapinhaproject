@@ -12,9 +12,11 @@ namespace Karapinha.Shared.IRepositories
     {
         Task <Profissional> CreateProfissional (Profissional profissional, IFormFile foto);
         Task<Profissional> GetProfissionalById(int id);
+        Task<Profissional> GetProfissionalByIdCategoria(int id);
         Task<IEnumerable<Profissional>> GetAllProfissionals();
         Task<bool> DeleteProfissional(int id);
         Task UpdateProfissional(Profissional profissional);
-        IEnumerable<dynamic> GetAllProfissionaisByIdCategoria();
+        IEnumerable<dynamic> GetAllProfissionaisWithCategoria();
+        Task<IEnumerable<dynamic>> GetAllProfissionaisByIdCategoria(int idCategoria);
     }
 }

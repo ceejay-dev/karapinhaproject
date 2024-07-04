@@ -18,7 +18,7 @@ namespace Karapinha.DAL.Converters
                 DataMarcacao = dto.DataMarcacao,
                 Estado = dto.Estado,
                 FkUtilizador = dto.FkUtilizador,
-                FkHorario = dto.FkHorario,
+                HoraMarcacao = dto.HoraMarcacao,
                 PrecoMarcacao = dto.PrecoMarcacao,
             };
         }
@@ -31,7 +31,7 @@ namespace Karapinha.DAL.Converters
                 DataMarcacao = model.DataMarcacao,
                 Estado = model.Estado,
                 FkUtilizador = model.FkUtilizador,
-                FkHorario = model.FkHorario,
+                HoraMarcacao = model.HoraMarcacao,
                 PrecoMarcacao = model.PrecoMarcacao,
             };
         }

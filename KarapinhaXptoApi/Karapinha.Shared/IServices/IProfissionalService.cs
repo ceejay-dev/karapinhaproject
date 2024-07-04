@@ -13,8 +13,10 @@ namespace Karapinha.Shared.IServices
     {
         Task<ProfissionalDTO> CreateProfissional(ProfissionalDTO dto, IFormFile foto);
         Task<ProfissionalDTO> GetProfissionalById(int id);
+        Task<ProfissionalDTO> GetProfissionalByIdCategoria(int id);
         Task<IEnumerable<ProfissionalDTO>> GetAllProfissionals();
         Task<bool> DeleteProfissional(int id);
-        IEnumerable<dynamic> GetAllProfissionaisByIdCategoria();
+        IEnumerable<dynamic> GetAllProfissionaisWithCategoria();
+        Task<IEnumerable<dynamic>> GetAllProfissionaisByIdCategoria(int idCategoria);
     }
 }

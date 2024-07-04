@@ -1,8 +1,8 @@
-interface getAllServicosProps {
+interface getAllDataProps {
     url : string;
 }
 
-export async function getAllServicos({url}:getAllServicosProps){
+export async function getAllData({url}:getAllDataProps){
     try {
         const response = await fetch(
         `${url}`);
@@ -11,9 +11,9 @@ export async function getAllServicos({url}:getAllServicosProps){
           console.log(data);
           return data;
         } else {
-          console.error("Failed to fetch serviços");
+          console.error("Failed to fetch data");
         }
       } catch (error) {
-        console.error("Error fetching serviços:", error);
+        console.error("Error fetching data:", error);
       }
 }

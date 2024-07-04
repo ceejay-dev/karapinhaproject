@@ -16,7 +16,7 @@ namespace Karapinnha.DTO
         public string? EmailProfissional { get; set; }
         public string? FotoProfissional { get; set; }
         public string? BilheteProfissional { get; set; }
-        public string? TelemovelProfissional { get; set; }
+        public string? TelemovelProfissional { get; set; }  
         public List<int> Horarios { get; set; }
     }
 }

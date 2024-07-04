@@ -18,7 +18,7 @@ namespace Karapinha.DAL.Repositories
             Context = context;
         }
 
-        public async Task<MarcacaoServico> CreateProfissionalHorario(MarcacaoServico marcacaoServico)
+        public async Task<MarcacaoServico> CreateMarcacaoServico(MarcacaoServico marcacaoServico)
         {
             var profHorario = await Context.AddAsync(marcacaoServico);
             await Context.SaveChangesAsync();

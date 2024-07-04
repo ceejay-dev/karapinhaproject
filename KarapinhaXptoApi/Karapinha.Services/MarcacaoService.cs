@@ -32,7 +32,7 @@ namespace Karapinha.Services
                 FkServico = bookingService.FkServico,
                 FkProfissional = bookingService.FkProfissional,
             };
-            await servicoRepository.CreateProfissionalHorario(marcacaoServico);
+            await servicoRepository.CreateMarcacaoServico(marcacaoServico);
 
             return marcacaoAdded;
 

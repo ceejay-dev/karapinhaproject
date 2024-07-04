@@ -62,6 +62,18 @@ namespace Karapinha.Services
             }
         }
 
+        public async Task<ProfissionalDTO> GetProfissionalByIdCategoria(int id)
+        {
+            try
+            {
+                return ProfissionalConverter.ToProfissionalDTO(await Repository.GetProfissionalByIdCategoria(id));
+            }
+            catch (Exception ex)
+            {
+                throw new ServiceException(ex.Message);
+            }
+        }
+
         public async Task<IEnumerable<ProfissionalDTO>> GetAllProfissionals()
         {
             try
@@ -75,11 +87,23 @@ namespace Karapinha.Services
             }
         }
 
-        public IEnumerable<dynamic> GetAllProfissionaisByIdCategoria()
+        public Task<IEnumerable<dynamic>> GetAllProfissionaisByIdCategoria(int idCategoria)
         {
             try
             {
-                return Repository.GetAllProfissionaisByIdCategoria();
+                return Repository.GetAllProfissionaisByIdCategoria(idCategoria);
+            }
+            catch (Exception ex)
+            {
+                throw new ServiceException(ex);
+            }
+        }
+
+        public IEnumerable<dynamic> GetAllProfissionaisWithCategoria()
+        {
+            try
+            {
+                return Repository.GetAllProfissionaisWithCategoria();
             }
             catch (Exception ex)
             {
@@ -93,15 +117,17 @@ namespace Karapinha.Services
             {
                 var prof = await GetProfissionalById(id);
                 var profHorario = await HorarioRepository.GetProfissionalById(id);
-                if (prof != null && profHorario!=null) {
+                if (prof != null && profHorario != null)
+                {
                     await HorarioRepository.DeleteProfissionalHorario(id);
                     await Repository.DeleteProfissional(id);
                     return true;
                 }
                 return false;
             }
-            catch (Exception ex) {
-            
+            catch (Exception ex)
+            {
+
                 throw new ServiceException(ex.Message);
             }
         }

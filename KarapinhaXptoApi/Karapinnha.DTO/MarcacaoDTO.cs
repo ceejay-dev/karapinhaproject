@@ -12,7 +12,7 @@ namespace Karapinnha.DTO
         public int IdMarcacao { get; set; }
         public double PrecoMarcacao { get; set; }
         public DateOnly DataMarcacao { get; set; }
-        public int FkHorario {  get; set; }
+        public TimeOnly HoraMarcacao {  get; set; }
         public string? Estado { get; set; }
         public int FkUtilizador { get; set; }
     }
