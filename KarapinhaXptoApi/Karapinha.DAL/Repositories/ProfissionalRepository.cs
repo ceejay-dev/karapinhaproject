@@ -18,22 +18,22 @@ namespace Karapinha.DAL.Repositories
             DbContext = context;
         }
 
-        public async Task<Profissional> CreateProfissional(Profissional profissional, IFormFile foto)
+        public async Task<Profissional> CreateProfissional(Profissional profissional)
         {
-            string imagePath = Path.Combine(Directory.GetCurrentDirectory(), "Storage");
-            string fileName = Path.GetFileName(foto.FileName);
-            string filePath = Path.Combine(imagePath, fileName);
-
-            using (var fileStream = new FileStream(filePath, FileMode.Create))
+            try
             {
-                await foto.CopyToAsync(fileStream);
+                var employee = await DbContext.AddAsync(profissional);
+                await DbContext.SaveChangesAsync();
+                return employee.Entity;
             }
-            profissional.FotoProfissional = fileName;
-
-            var employee = await DbContext.AddAsync(profissional);
-            await DbContext.SaveChangesAsync();
-            return employee.Entity;
+            catch (Exception ex)
+            {
+                // Loga a exceção completa
+                Console.WriteLine(ex.ToString());
+                throw;
+            }
         }
+
 
         public async Task<Profissional> GetProfissionalById(int id)
         {
@@ -56,16 +56,47 @@ namespace Karapinha.DAL.Repositories
 
         public async Task<bool> DeleteProfissional(int id)
         {
-            var profissional = await GetProfissionalById(id);
-
-            if (profissional != null)
+            try
             {
-                DbContext.Profissionais.Remove(profissional);
-                await DbContext.SaveChangesAsync();
-                return true;
+                var profissional = await GetProfissionalById(id);
+
+                if (profissional != null)
+                {
+                    // Verifica se o contexto está rastreando o objeto
+                    var entry = DbContext.Entry(profissional);
+                    if (entry.State == EntityState.Detached)
+                    {
+                        DbContext.Profissionais.Attach(profissional);
+                    }
+                    DbContext.Profissionais.Remove(profissional);
+                    // Salva as alterações no banco de dados
+                    var result = await DbContext.SaveChangesAsync();
+                    if (result > 0)
+                    {
+                        Console.WriteLine("Profissional removido com sucesso.");
+                        return true;
+                    }
+                    else
+                    {
+                        Console.WriteLine("Nenhuma alteração foi salva no banco de dados.");
+                    }
+                }
+                else
+                {
+                    Console.WriteLine("Profissional não encontrado.");
+                }
             }
-            else { return false; }
+            catch (DbUpdateException dbEx)
+            {
+                Console.WriteLine($"Erro de banco de dados ao remover profissional: {dbEx.Message}");
+                if (dbEx.InnerException != null)
+                {
+                    Console.WriteLine($"Erro interno: {dbEx.InnerException.Message}");
+                }
+            }
+            return false;
         }
+
 
         public async Task UpdateProfissional(Profissional profissional)
         {
@@ -84,6 +115,7 @@ namespace Karapinha.DAL.Repositories
                              NomeProfissional = profissional.NomeProfissional,
                              EmailProfissional = profissional.EmailProfissional,
                              NomeCategoria = categoria.NomeCategoria,
+                             FkCategoria = profissional.FkCategoria,
                              TelemovelProfissional = profissional.TelemovelProfissional
                          };
 
@@ -93,22 +125,22 @@ namespace Karapinha.DAL.Repositories
         public async Task<IEnumerable<dynamic>> GetAllProfissionaisByIdCategoria(int idCategoria)
         {
 
-            var resultado = await (from p in DbContext.Profissionais
-                                   join c in DbContext.Categorias on p.FkCategoria equals c.IdCategoria
-                                   where p.FkCategoria == idCategoria
-                                   select new
-                                   {
-                                       IdProfissional = p.IdProfissional,
-                                       NomeProfissional = p.NomeProfissional,
-                                       FkCategoria = p.FkCategoria,
-                                       EmailProfissional = p.EmailProfissional,
-                                       FotoProfissional = p.FotoProfissional,
-                                       BilheteProfissional = p.BilheteProfissional,
-                                       TelemovelProfissional = p.TelemovelProfissional
-                                   })
-                                   .ToListAsync();
+            var resultado = from p in DbContext.Profissionais
+                            join c in DbContext.Categorias on p.FkCategoria equals c.IdCategoria
+                            where p.FkCategoria == idCategoria
+                            select new
+                            {
+                                IdProfissional = p.IdProfissional,
+                                NomeProfissional = p.NomeProfissional,
+                                FkCategoria = p.FkCategoria,
+                                EmailProfissional = p.EmailProfissional,
+                                FotoProfissional = p.FotoProfissional,
+                                BilheteProfissional = p.BilheteProfissional,
+                                TelemovelProfissional = p.TelemovelProfissional
+                            };
+                                   
 
-            return resultado.Select(p => (dynamic)p);
+            return await resultado.ToListAsync();
         }
     }
 

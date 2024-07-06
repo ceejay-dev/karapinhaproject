@@ -1,6 +1,6 @@
 {
   "Version": 1,
-  "Hash": "TqfHeX6TVfYaSUErY0nNZfuK4HiP7a+b7pu12izb378=",
+  "Hash": "/yCTIck/QUxU1Dhrq8v0aDYKnEYIc6K18vDjQbhVZxs=",
   "Source": "KarapinhaXptoApi",
   "BasePath": "_content/KarapinhaXptoApi",
   "Mode": "Default",
@@ -15,82 +15,5 @@
       "Pattern": "**"
     }
   ],
-  "Assets": [
-    {
-      "Identity": "D:\\karapinhaproject\\KarapinhaXptoApi\\KarapinhaXptoApi\\wwwroot\\storage\\190bac64-399d-4341-8402-56c9e01eb555.jpg",
-      "SourceId": "KarapinhaXptoApi",
-      "SourceType": "Discovered",
-      "ContentRoot": "D:\\karapinhaproject\\KarapinhaXptoApi\\KarapinhaXptoApi\\wwwroot\\",
-      "BasePath": "_content/KarapinhaXptoApi",
-      "RelativePath": "storage/190bac64-399d-4341-8402-56c9e01eb555.jpg",
-      "AssetKind": "All",
-      "AssetMode": "All",
-      "AssetRole": "Primary",
-      "AssetMergeBehavior": "PreferTarget",
-      "AssetMergeSource": "",
-      "RelatedAsset": "",
-      "AssetTraitName": "",
-      "AssetTraitValue": "",
-      "CopyToOutputDirectory": "Never",
-      "CopyToPublishDirectory": "PreserveNewest",
-      "OriginalItemSpec": "wwwroot\\storage\\190bac64-399d-4341-8402-56c9e01eb555.jpg"
-    },
-    {
-      "Identity": "D:\\karapinhaproject\\KarapinhaXptoApi\\KarapinhaXptoApi\\wwwroot\\storage\\54ee0794-67b5-4490-b43c-1f87a3714e74.jpg",
-      "SourceId": "KarapinhaXptoApi",
-      "SourceType": "Discovered",
-      "ContentRoot": "D:\\karapinhaproject\\KarapinhaXptoApi\\KarapinhaXptoApi\\wwwroot\\",
-      "BasePath": "_content/KarapinhaXptoApi",
-      "RelativePath": "storage/54ee0794-67b5-4490-b43c-1f87a3714e74.jpg",
-      "AssetKind": "All",
-      "AssetMode": "All",
-      "AssetRole": "Primary",
-      "AssetMergeBehavior": "PreferTarget",
-      "AssetMergeSource": "",
-      "RelatedAsset": "",
-      "AssetTraitName": "",
-      "AssetTraitValue": "",
-      "CopyToOutputDirectory": "Never",
-      "CopyToPublishDirectory": "PreserveNewest",
-      "OriginalItemSpec": "wwwroot\\storage\\54ee0794-67b5-4490-b43c-1f87a3714e74.jpg"
-    },
-    {
-      "Identity": "D:\\karapinhaproject\\KarapinhaXptoApi\\KarapinhaXptoApi\\wwwroot\\storage\\88974cc5-f29e-454e-8b5e-15cc72df34e1.jpg",
-      "SourceId": "KarapinhaXptoApi",
-      "SourceType": "Discovered",
-      "ContentRoot": "D:\\karapinhaproject\\KarapinhaXptoApi\\KarapinhaXptoApi\\wwwroot\\",
-      "BasePath": "_content/KarapinhaXptoApi",
-      "RelativePath": "storage/88974cc5-f29e-454e-8b5e-15cc72df34e1.jpg",
-      "AssetKind": "All",
-      "AssetMode": "All",
-      "AssetRole": "Primary",
-      "AssetMergeBehavior": "PreferTarget",
-      "AssetMergeSource": "",
-      "RelatedAsset": "",
-      "AssetTraitName": "",
-      "AssetTraitValue": "",
-      "CopyToOutputDirectory": "Never",
-      "CopyToPublishDirectory": "PreserveNewest",
-      "OriginalItemSpec": "wwwroot\\storage\\88974cc5-f29e-454e-8b5e-15cc72df34e1.jpg"
-    },
-    {
-      "Identity": "D:\\karapinhaproject\\KarapinhaXptoApi\\KarapinhaXptoApi\\wwwroot\\storage\\9fabc229-f76c-4ba8-94b5-0e478be1794b.jpg",
-      "SourceId": "KarapinhaXptoApi",
-      "SourceType": "Discovered",
-      "ContentRoot": "D:\\karapinhaproject\\KarapinhaXptoApi\\KarapinhaXptoApi\\wwwroot\\",
-      "BasePath": "_content/KarapinhaXptoApi",
-      "RelativePath": "storage/9fabc229-f76c-4ba8-94b5-0e478be1794b.jpg",
-      "AssetKind": "All",
-      "AssetMode": "All",
-      "AssetRole": "Primary",
-      "AssetMergeBehavior": "PreferTarget",
-      "AssetMergeSource": "",
-      "RelatedAsset": "",
-      "AssetTraitName": "",
-      "AssetTraitValue": "",
-      "CopyToOutputDirectory": "Never",
-      "CopyToPublishDirectory": "PreserveNewest",
-      "OriginalItemSpec": "wwwroot\\storage\\9fabc229-f76c-4ba8-94b5-0e478be1794b.jpg"
-    }
-  ]
+  "Assets": []
 }

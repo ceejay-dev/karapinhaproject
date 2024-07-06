@@ -3,10 +3,25 @@ import { Button as BootstrapButton, Modal } from "react-bootstrap";
 import { Button } from "../components/Button";
 import { logo, plus } from "../components/Images";
 import "../styles/marcacao.css";
-import { servicosProps } from "../@types/ServiceProps";
 import { getAllData } from "../services/getData";
-// import { profissionaisProps } from "../@types/ProfissionaisProps";
 
+type servicosProps = {
+  idServico: number;
+  nomeServico: string;
+  preco: number;
+  nomeCategoria: string;
+  fkCategoria: number;
+};
+
+type profissionaisProps = {
+  idProfissional: number;
+  nomeProfissional: string;
+  fkCategoria: number;
+  emailProfissional: string;
+  fotoProfissional: string;
+  bilheteProfissional: string;
+  telemovelProfissional: string;
+};
 export function AddMarcacoes() {
   const [show, setShow] = useState(false);
 
@@ -21,32 +36,29 @@ export function AddMarcacoes() {
     // Adicione a lógica de registro aqui
   };
 
+  const handleAddedClick = (idCategoria: number) => {
+    
+    useEffect(() => {
+      async function waitProfissionais() {
+        var url = `https://localhost:7209/GetAllProfissinalsByIdCategoria?id=${idCategoria}`;
+        const getProfissionais = await getAllData({ url });
+        setProfissionais(getProfissionais);
+      }
+      waitProfissionais();
+    }, []);
+  };
+
+  const [profissionais, setProfissionais] = useState<profissionaisProps[]>([]);
   const [servicos, setServicos] = useState<servicosProps[]>([]);
 
   useEffect(() => {
-  
-    async function waitServicos () {
+    async function waitServicos() {
       var url = `https://localhost:7209/GetAllServicosByIdCategoria`;
-      const getServicos = await getAllData({url});
+      const getServicos = await getAllData({ url });
       setServicos(getServicos);
-  
     }
     waitServicos();
   }, []);
-
-  // const [profissionais, setProfissionais] = useState<profissionaisProps[]>([]);
-
-  // useEffect(() => {
-  
-  //   async function waitProfissionais () {
-  //     var url = `https://localhost:7209/GetProfissinalsWithIdCategoria`;
-  //     const getProfissionais = await getAllData({url});
-  //     setProfissionais(getProfissionais);
-  
-  //   }
-  //   waitProfissionais();
-  // }, []);
-
 
   return (
     <main className="container-service">
@@ -67,6 +79,7 @@ export function AddMarcacoes() {
                 <h3>Descrição: {servico.nomeServico}</h3>
                 <h5>Preço: {servico.preco} kz</h5>
                 <h5>Categoria: {servico.nomeCategoria}</h5>
+                <p>idCategoria: {servico.fkCategoria}</p>
                 <BootstrapButton
                   variant="info"
                   

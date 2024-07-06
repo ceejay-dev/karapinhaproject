@@ -63,8 +63,7 @@ namespace Karapinha.Services
         {
             try
             {
-                await Repository.DeleteTreatment(id);
-                return true;
+                return await Repository.DeleteTreatment(id);
             }
             catch (Exception ex)
             {

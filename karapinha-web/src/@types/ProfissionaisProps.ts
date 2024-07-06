@@ -1,7 +1,9 @@
 export type profissionaisProps = {
     idProfissional: number,
     nomeProfissional: string,
+    fkCategoria: number,
     emailProfissional: string,
-    nomeCategoria: string,
+    fotoProfissional: string,
+    bilheteProfissional: string,
     telemovelProfissional: string
 }

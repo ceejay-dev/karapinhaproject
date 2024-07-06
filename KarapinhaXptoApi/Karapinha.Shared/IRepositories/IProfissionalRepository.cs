@@ -10,7 +10,7 @@ namespace Karapinha.Shared.IRepositories
 {
     public interface IProfissionalRepository
     {
-        Task <Profissional> CreateProfissional (Profissional profissional, IFormFile foto);
+        Task <Profissional> CreateProfissional (Profissional profissional);
         Task<Profissional> GetProfissionalById(int id);
         Task<Profissional> GetProfissionalByIdCategoria(int id);
         Task<IEnumerable<Profissional>> GetAllProfissionals();

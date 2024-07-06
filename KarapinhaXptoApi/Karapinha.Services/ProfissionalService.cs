@@ -29,8 +29,33 @@ namespace Karapinha.Services
         {
             try
             {
-                var profissional = ProfissionalConverter.ToProfissional(dto);
-                var profissionalAdded = await Repository.CreateProfissional(profissional, foto);
+                //Armazenamento da fotografia do profissional
+                string photoPath = null;
+
+                if (foto != null)
+                {
+                    var uploadsFolder = Path.Combine("wwwroot", "storage");
+                    // Verifica se o diretório existe e cria se necessário
+                    if (!Directory.Exists(uploadsFolder))
+                    {
+                        Console.WriteLine("");
+                        Directory.CreateDirectory(uploadsFolder);
+                    }
+
+                    // Gera o caminho completo para o arquivo
+                    photoPath = Path.Combine(uploadsFolder, Guid.NewGuid() + Path.GetExtension(foto.FileName));
+                    // Salva o arquivo no caminho especificado
+                    using (var fileStream = new FileStream(photoPath, FileMode.Create))
+                    {
+                        await foto.CopyToAsync(fileStream);
+                    }
+                    // Ajusta o caminho para ser usado em URLs
+                    photoPath = "/" + photoPath.Replace("wwwroot\\", string.Empty).Replace("\\", "/");
+                }
+
+                var profissionalAdded = dto;
+                profissionalAdded.FotoProfissional = photoPath;
+                profissionalAdded = ProfissionalConverter.ToProfissionalDTO(await Repository.CreateProfissional(ProfissionalConverter.ToProfissional(profissionalAdded)));
 
                 foreach (var horarioId in dto.Horarios)
                 {
@@ -42,10 +67,11 @@ namespace Karapinha.Services
                     await HorarioRepository.CreateProfissionalHorario(horarioProfissional);
                 }
 
-                return ProfissionalConverter.ToProfissionalDTO(profissionalAdded);
+                return profissionalAdded;
             }
             catch (Exception ex)
             {
+                Console.WriteLine(ex.ToString());
                 throw new ServiceException(ex.Message);
             }
         }
@@ -115,19 +141,10 @@ namespace Karapinha.Services
         {
             try
             {
-                var prof = await GetProfissionalById(id);
-                var profHorario = await HorarioRepository.GetProfissionalById(id);
-                if (prof != null && profHorario != null)
-                {
-                    await HorarioRepository.DeleteProfissionalHorario(id);
-                    await Repository.DeleteProfissional(id);
-                    return true;
-                }
-                return false;
+                return await Repository.DeleteProfissional(id);
             }
             catch (Exception ex)
             {
-
                 throw new ServiceException(ex.Message);
             }
         }

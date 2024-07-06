@@ -44,7 +44,6 @@ namespace Karapinha.Services
                     {
                         Directory.CreateDirectory(uploadsFolder);
                     }
-
                     // Gera o caminho completo para o arquivo
                     photoPath = Path.Combine(uploadsFolder, Guid.NewGuid() + Path.GetExtension(foto.FileName));
                     // Salva o arquivo no caminho especificado

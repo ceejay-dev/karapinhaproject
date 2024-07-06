@@ -14,7 +14,7 @@ export function Signup() {
     NomeUtilizador: '',
     EmailUtilizador: '',
     TelemovelUtilizador: '',
-    FotoUtilizador: null,
+    FotoUtilizador: null as File | null,
     BilheteUtilizador: '',
     UsernameUtilizador: '',
     PasswordUtilizador: '',
@@ -34,6 +34,7 @@ export function Signup() {
       ...prevData,
       FotoUtilizador: event.target.files[0],
     }));
+    console.log (formData.FotoUtilizador)
   };
 
   const handleLoginClick = (event:any) => {
@@ -51,6 +52,7 @@ export function Signup() {
       !formData.TelemovelUtilizador ||
       !formData.BilheteUtilizador ||
       !formData.UsernameUtilizador ||
+      !formData.FotoUtilizador ||
       !formData.PasswordUtilizador ||
       !formData.ConfirmPasswordUtilizador
     ) {

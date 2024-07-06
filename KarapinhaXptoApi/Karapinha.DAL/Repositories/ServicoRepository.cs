@@ -64,6 +64,7 @@ namespace Karapinha.DAL.Repositories
                              IdServico = servico.IdServico,
                              NomeServico = servico.NomeServico,
                              Preco = servico.Preco,
+                             FkCategoria = servico.FkCategoria,
                              NomeCategoria = categoria.NomeCategoria
                          };
 

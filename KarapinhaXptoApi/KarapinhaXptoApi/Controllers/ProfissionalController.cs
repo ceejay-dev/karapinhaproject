@@ -18,7 +18,7 @@ namespace KarapinhaXptoApi.Controllers
 
         [HttpPost]
         [Route("/CreateProfissional")]
-        public async Task<ActionResult> CreateProfissional([FromForm] ProfissionalDTO dto, IFormFile foto)
+        public async Task<ActionResult> CreateProfissional([FromForm]ProfissionalDTO dto, IFormFile foto)
         {
             try
             {
@@ -27,9 +27,8 @@ namespace KarapinhaXptoApi.Controllers
             }
             catch (Exception ex)
             {
-                Console.WriteLine(ex.Message);
-                throw new Exception(ex.Message);
-                //return StatusCode(500, "Error adicionando o profissional.");
+                Console.WriteLine(ex.ToString());
+                return StatusCode(500, "An error occurred while saving the entity changes.");
             }
         }
 
@@ -91,7 +90,7 @@ namespace KarapinhaXptoApi.Controllers
         }
 
         [HttpGet]
-        [Route("/GetProfissinalsByIdCategoria")]
+        [Route("/GetAllProfissinalsByIdCategoria")]
         public Task<IEnumerable<dynamic>> GetAllProfissionaisByIdCategoria(int id)
         {
             try
@@ -100,6 +99,19 @@ namespace KarapinhaXptoApi.Controllers
             }
             catch (Exception ex)
             {
+                throw new Exception(ex.Message);
+            }
+        }
+
+        [HttpGet]
+        [Route("GetAllProfissionaisWithCategories")]
+        public IEnumerable<dynamic> GetAllProfissionaisWithCategoria()
+        {
+            try
+            {
+                return Service.GetAllProfissionaisWithCategoria();
+            }
+            catch (Exception ex) {
                 throw new Exception(ex.Message);
             }
         }

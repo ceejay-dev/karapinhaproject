@@ -8,6 +8,7 @@ import {
 import { Button } from "../components/Button";
 import { logo, plus } from "../components/Images";
 import "../styles/marcacao.css";
+import { useNavigate } from "react-router-dom";
 
 type categoriaProps = {
   idCategoria: number;
@@ -15,6 +16,7 @@ type categoriaProps = {
 };
 
 export function AddCategorias() {
+  const navigate = useNavigate();
   const [showAlert, setShowAlert] = useState(false);
   const [alertMessage, setAlertMessage] = useState("");
   const [alertVariant, setAlertVariant] = useState("success");
@@ -70,6 +72,10 @@ export function AddCategorias() {
         setAlertMessage("Categoria criada com sucesso!");
         setAlertVariant("success");
         setShowAlert(true);
+        setTimeout(() => {
+          setShow(false);
+          navigate("/categorias");
+        }, 3000);
       } else {
         const errorData = await response.json();
         console.error("Falha ao criar categoria", errorData);

@@ -48,21 +48,22 @@ export function AddProfissionais() {
     fotoProfissional: null as File | null,
     bilheteProfissional: "",
     telemovelProfissional: "",
-    horarios: "0",
+    horarios: [] as number[], 
   });
+  
 
   const handleChange = (
     event: React.ChangeEvent<HTMLInputElement | HTMLSelectElement>
   ) => {
-    const { name, value, type } = event.target;
-
-    if (type === "file") {
-      if ((event.target as HTMLInputElement).files) {
-        setFormData((prevData) => ({
-          ...prevData,
-          [name]: (event.target as HTMLInputElement).files![0],
-        }));
-      }
+    const { name, value } = event.target;
+  
+     if (event.target instanceof HTMLSelectElement && name === "horarios") {
+      const selectedOptions = event.target.selectedOptions;
+      const selectedValues = Array.from(selectedOptions, (option) => Number(option.value));
+      setFormData((prevData) => ({
+        ...prevData,
+        horarios: selectedValues,
+      }));
     } else {
       setFormData((prevData) => ({
         ...prevData,
@@ -70,7 +71,15 @@ export function AddProfissionais() {
       }));
     }
   };
-
+  
+  const handleFileChange = (event:any) => {
+    setFormData((prevData) => ({
+      ...prevData,
+      fotoProfissional: event.target.files[0],
+    }));
+    console.log (formData.fotoProfissional)
+  };
+  
   const handleConfirmedClick = async (
     event: React.FormEvent<HTMLFormElement>
   ) => {
@@ -84,14 +93,14 @@ export function AddProfissionais() {
       !formData.fotoProfissional ||
       !formData.nomeProfissional ||
       !formData.telemovelProfissional ||
-      formData.horarios === "0"
+      formData.horarios.length === 0
     ) {
       setAlertMessage("Por favor, preencha todos os campos.");
       setAlertVariant("danger");
       setShowAlert(true);
       return;
     }
-    console.log(formData);
+    console.log(formData.fotoProfissional);
     const url = `https://localhost:7209/CreateProfissional`;
 
     try {
@@ -100,10 +109,6 @@ export function AddProfissionais() {
       formDataToSend.append("FkCategoria", formData.fkCategoria);
       formDataToSend.append("EmailProfissional", formData.emailProfissional);
       formDataToSend.append(
-        "FotoProfissional",
-        formData.fotoProfissional as File
-      );
-      formDataToSend.append(
         "BilheteProfissional",
         formData.bilheteProfissional
       );
@@ -111,6 +116,9 @@ export function AddProfissionais() {
         "TelemovelProfissional",
         formData.telemovelProfissional
       );
+      if (formData.fotoProfissional !== null) {
+        formDataToSend.append('foto', formData.fotoProfissional);
+      }   
       formDataToSend.append("Horarios", JSON.stringify(formData.horarios));
 
       const response = await fetch(url, {
@@ -124,8 +132,8 @@ export function AddProfissionais() {
         setShowAlert(true);
         setTimeout(() => {
           setShow(false);
-          navigate("/GestorHome");
-        }, 3000);
+          navigate("/profissionais");
+        }, 1000);
       } else {
         const errorData = await response.json();
         console.error("Falha ao criar profissional", errorData);
@@ -168,7 +176,7 @@ export function AddProfissionais() {
     const fetchProfissionais = async () => {
       try {
         const response = await fetch(
-          "https://localhost:7209/GetProfissinalsByIdCategoria"
+          "https://localhost:7209/GetAllProfissionaisWithCategories"
         );
         if (response.ok) {
           const data = await response.json();
@@ -330,8 +338,8 @@ export function AddProfissionais() {
                     />
 
                     <input
-                      name="fotoProfissional"
-                      onChange={handleChange}
+                      name="foto"
+                      onChange={handleFileChange}
                       type="file"
                       className="m-1"
                       required
@@ -365,9 +373,10 @@ export function AddProfissionais() {
                     />
                     <Form.Select
                       name="horarios"
-                      value={formData.horarios}
+                      value={formData.horarios.map((horario) => horario.toString())}
                       onChange={handleChange}
                       className="select"
+                      multiple
                     >
                       
                       <option value="0">Selecione o horário:</option>
