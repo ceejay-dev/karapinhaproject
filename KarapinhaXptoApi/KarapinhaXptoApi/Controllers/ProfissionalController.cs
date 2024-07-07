@@ -2,7 +2,7 @@
 using Karapinha.Model;
 using Karapinha.Services;
 using Karapinha.Shared.IServices;
-using Karapinnha.DTO;
+using Karapinnha.DTO.Profissional;
 using Microsoft.AspNetCore.Mvc;
 
 namespace KarapinhaXptoApi.Controllers
@@ -28,7 +28,7 @@ namespace KarapinhaXptoApi.Controllers
             catch (Exception ex)
             {
                 Console.WriteLine(ex.ToString());
-                return StatusCode(500, "An error occurred while saving the entity changes.");
+                return StatusCode(500, "Erro ao adicionar profissional");
             }
         }
 

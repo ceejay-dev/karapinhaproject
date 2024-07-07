@@ -1,5 +1,5 @@
 ﻿using Karapinha.Model;
-using Karapinnha.DTO;
+using Karapinnha.DTO.Utilizador;
 using Microsoft.AspNetCore.Http;
 using System;
 using System.Collections.Generic;

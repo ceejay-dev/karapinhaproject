@@ -1,5 +1,5 @@
 ﻿using Karapinha.Shared.IEmail;
-using Karapinnha.DTO;
+using Karapinnha.DTO.Utilizador;
 using MailKit.Net.Smtp;
 using Microsoft.Extensions.Options;
 using MimeKit;

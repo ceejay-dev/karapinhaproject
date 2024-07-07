@@ -3,7 +3,7 @@ using Karapinha.DAL.Converters;
 using Karapinha.Model;
 using Karapinha.Shared.IRepositories;
 using Karapinha.Shared.IServices;
-using Karapinnha.DTO;
+using Karapinnha.DTO.Profissional;
 using Microsoft.AspNetCore.Http;
 using ServiceStack;
 using System;
@@ -56,16 +56,6 @@ namespace Karapinha.Services
                 var profissionalAdded = dto;
                 profissionalAdded.FotoProfissional = photoPath;
                 profissionalAdded = ProfissionalConverter.ToProfissionalDTO(await Repository.CreateProfissional(ProfissionalConverter.ToProfissional(profissionalAdded)));
-
-                foreach (var horarioId in dto.Horarios)
-                {
-                    var horarioProfissional = new ProfissionalHorario
-                    {
-                        IdProfissional = profissionalAdded.IdProfissional,
-                        IdHorario = horarioId
-                    };
-                    await HorarioRepository.CreateProfissionalHorario(horarioProfissional);
-                }
 
                 return profissionalAdded;
             }

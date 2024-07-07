@@ -1,9 +1,18 @@
 import { useEffect, useState } from "react";
-import { Button as BootstrapButton, Modal } from "react-bootstrap";
-import { Button } from "../components/Button";
-import { logo, plus } from "../components/Images";
+import {
+  Button as BootstrapButton,
+  Card,
+  Col,
+  Container,
+  Modal,
+  Row,
+} from "react-bootstrap";
+import { logo } from "../components/Images";
 import "../styles/marcacao.css";
 import { getAllData } from "../services/getData";
+import DatePicker from "react-datepicker";
+import "react-datepicker/dist/react-datepicker.css";
+import "react-time-picker/dist/TimePicker.css";
 
 type servicosProps = {
   idServico: number;
@@ -22,34 +31,56 @@ type profissionaisProps = {
   bilheteProfissional: string;
   telemovelProfissional: string;
 };
+
 export function AddMarcacoes() {
   const [show, setShow] = useState(false);
+  const [selectedServicos, setSelectedServicos] = useState<servicosProps[]>([]);
+  
+  const [servicos, setServicos] = useState<servicosProps[]>([]);
+  const [profissionaisByServico, setProfissionaisByServico] = useState<{
+    [key: number]: profissionaisProps[];
+  }>({});
+  const [selectedDate, setSelectedDate] = useState<Date | null>(null);
+  const [cartCount, setCartCount] = useState(0); // Estado para armazenar a contagem do carrinho
 
   const handleClose = () => setShow(false);
   const handleShow = () => setShow(true);
 
   const handleCanceledClick = () => {
-    handleClose;
-  };
+    handleClose();
+  };  
 
   const handleConfirmedClick = () => {
     // Adicione a lógica de registro aqui
   };
 
-  const handleAddedClick = (idCategoria: number) => {
-    
-    useEffect(() => {
-      async function waitProfissionais() {
-        var url = `https://localhost:7209/GetAllProfissinalsByIdCategoria?id=${idCategoria}`;
-        const getProfissionais = await getAllData({ url });
-        setProfissionais(getProfissionais);
-      }
-      waitProfissionais();
-    }, []);
+  const handleAddedClick = async (servico: servicosProps) => {
+    if (!selectedServicos.some((s) => s.idServico === servico.idServico)) {
+      setSelectedServicos([...selectedServicos, servico]);
+      await fetchProfissionaisByServico(servico.fkCategoria, servico.idServico);
+      setCartCount(cartCount + 1); // Atualiza a contagem do carrinho
+    }
   };
 
-  const [profissionais, setProfissionais] = useState<profissionaisProps[]>([]);
-  const [servicos, setServicos] = useState<servicosProps[]>([]);
+  const handleRemoveClick = (idServico: number) => {
+    const updatedServicos = selectedServicos.filter(
+      (servico) => servico.idServico !== idServico
+    );
+    setSelectedServicos(updatedServicos);
+    setCartCount(cartCount - 1); // Decrementa a contagem do carrinho
+  };
+
+  const fetchProfissionaisByServico = async (
+    idCategoria: number,
+    idServico: number
+  ) => {
+    var url = `https://localhost:7209/GetAllProfissinalsByIdCategoria?id=${idCategoria}`;
+    const getProfissionais = await getAllData({ url });
+    setProfissionaisByServico((prevState) => ({
+      ...prevState,
+      [idServico]: getProfissionais,
+    }));
+  };
 
   useEffect(() => {
     async function waitServicos() {
@@ -63,34 +94,40 @@ export function AddMarcacoes() {
   return (
     <main className="container-service">
       <div className="bg-white p-2 container-service-added">
-        <div>
-          <Button
-            route="#"
-            imageSrc={plus}
-            className="link-signup"
+        <div className="pb-2">
+          <BootstrapButton
+            type="button"
+            className="pe-2 btn btn-dark position-relative"
             onClick={handleShow}
-          />
+          >
+            Carrinho
+            <span className="position-absolute top-0 start-100 translate-middle badge rounded-pill bg-danger">
+              {cartCount}
+              <span className="visually-hidden">unread messages</span>
+            </span>
+          </BootstrapButton>
         </div>
 
-        {servicos.map((servico) => (
-          <div className="pt-4 bg-white border border-3 border-black">
-            <div>
-              <div>
-                <h3>Descrição: {servico.nomeServico}</h3>
-                <h5>Preço: {servico.preco} kz</h5>
-                <h5>Categoria: {servico.nomeCategoria}</h5>
-                <p>idCategoria: {servico.fkCategoria}</p>
-                <BootstrapButton
-                  variant="info"
-                  
-                  className=""
-                >
-                  Adicionar
-                </BootstrapButton>
-              </div>
-            </div>
-          </div>
-        ))}
+        <Container>
+          <Row>
+            {servicos.map((servico) => (
+              <Col md={3} key={servico.idServico} className="mb-3">
+                <Card style={{ width: "18rem" }}>
+                  <Card.Body>
+                    <Card.Title>{servico.nomeServico}</Card.Title>
+                    <Card.Text>Preço: {servico.preco} kz</Card.Text>
+                    <BootstrapButton
+                      variant="info"
+                      onClick={() => handleAddedClick(servico)}
+                    >
+                      Adicionar
+                    </BootstrapButton>
+                  </Card.Body>
+                </Card>
+              </Col>
+            ))}
+          </Row>
+        </Container>
       </div>
 
       <Modal
@@ -99,9 +136,9 @@ export function AddMarcacoes() {
         dialogClassName="custom-modal-width"
       >
         <Modal.Header closeButton>
-          <Modal.Title>Solicitação de serviços</Modal.Title>
+          <Modal.Title>Finalização da Marcação</Modal.Title>
         </Modal.Header>
-        <Modal.Body>
+        <Modal.Body style={{ maxHeight: "70vh", overflowY: "auto" }}>
           <div className="modal-content-container">
             <div className="container-imagem"></div>
             <div className="container-form">
@@ -112,24 +149,55 @@ export function AddMarcacoes() {
                 action=""
                 className="d-flex justify-content-center formulario"
               >
+                {selectedServicos.map((servico) => (
+                  <div key={servico.idServico} className="mb-3">
+                    <Card>
+                      <div className="d-flex justify-content-end m-3">
+                        <svg
+                          xmlns="http://www.w3.org/2000/svg"
+                          width="16"
+                          height="16"
+                          fill="currentColor"
+                          className="bi bi-x-lg"
+                          viewBox="0 0 16 16"
+                          onClick={() => handleRemoveClick(servico.idServico)}
+                        >
+                          <path d="M2.146 2.854a.5.5 0 1 1 .708-.708L8 7.293l5.146-5.147a.5.5 0 0 1 .708.708L8.707 8l5.147 5.146a.5.5 0 0 1-.708.708L8 8.707l-5.146 5.147a.5.5 0 0 1-.708-.708L7.293 8z" />
+                        </svg>
+                      </div>
+                      <Card.Body>
+                        <Card.Title>{servico.nomeServico}</Card.Title>
+                        <Card.Text>Preço: {servico.preco} kz</Card.Text>
+                        <select
+                          className="form-select"
+                          aria-label="Selecione o Profissional"
+                        >
+                          {profissionaisByServico[servico.idServico]?.map(
+                            (profissional) => (
+                              <option
+                                key={profissional.idProfissional}
+                                value={profissional.idProfissional}
+                              >
+                                {profissional.nomeProfissional}
+                              </option>
+                            )
+                          )}
+                        </select>
+                      </Card.Body>
+                    </Card>
+                  </div>
+                ))}
                 <div className="d-flex flex-row">
                   <div className="input-container1">
-                    <input
-                      type="text"
-                      placeholder="Categoria"
-                      className="m-1"
-                    />
-                    <input
-                      type="text"
-                      placeholder="Profissional"
-                      className="m-1"
+                    <DatePicker
+                      selected={selectedDate}
+                      onChange={(date: Date | null) => setSelectedDate(date)}
+                      dateFormat="dd/MM/yyyy"
+                      className="form-control me-5"
+                      placeholderText="Data"
                     />
                   </div>
-                  <div className="input-container2">
-                    <input type="text" placeholder="Serviços" className="m-1" />
-                    <input type="text" placeholder="Hora" className="m-1" />
-                    <input type="text" placeholder="Data" className="m-1" />
-                  </div>
+                  <div className="input-container2"></div>
                 </div>
                 <div className="d-flex justify-content-center">
                   <div className="m-1">
@@ -147,7 +215,7 @@ export function AddMarcacoes() {
                       onClick={handleConfirmedClick}
                       className=""
                     >
-                      Confirmar
+                      Finalizar
                     </BootstrapButton>
                   </div>
                 </div>

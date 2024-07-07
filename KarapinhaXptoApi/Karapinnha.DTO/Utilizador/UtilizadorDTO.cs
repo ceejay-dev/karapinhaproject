@@ -1,12 +1,13 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.ComponentModel.DataAnnotations;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace Karapinnha.DTO
+namespace Karapinnha.DTO.Utilizador
 {
-    public class UtilizadorUpdateDTO
+    public class UtilizadorDTO
     {
         public int IdUtilizador { get; set; }
         public string? NomeUtilizador { get; set; }
@@ -16,5 +17,7 @@ namespace Karapinnha.DTO
         public string? FotoUtilizador { get; set; }
         public string? UsernameUtilizador { get; set; }
         public string? PasswordUtilizador { get; set; }
+        public string? Estado { get; set; }
+        public string? TipoPerfil { get; set; }
     }
 }

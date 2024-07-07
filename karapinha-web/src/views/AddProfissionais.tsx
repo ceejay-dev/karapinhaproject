@@ -9,7 +9,6 @@ import {
 import { Button } from "../components/Button";
 import { logo, plus } from "../components/Images";
 import "../styles/marcacao.css";
-import { useNavigate } from "react-router-dom";
 
 // preparando as listas que virão de cada requisição GET
 type profissionaisProps = {
@@ -31,7 +30,6 @@ type horariosProps = {
 };
 
 export function AddProfissionais() {
-  const navigate = useNavigate();
   const [showAlert, setShowAlert] = useState(false);
   const [alertMessage, setAlertMessage] = useState("");
   const [alertVariant, setAlertVariant] = useState("success");
@@ -119,8 +117,9 @@ export function AddProfissionais() {
       if (formData.fotoProfissional !== null) {
         formDataToSend.append('foto', formData.fotoProfissional);
       }   
-      formDataToSend.append("Horarios", JSON.stringify(formData.horarios));
-
+      formData.horarios.forEach((horario) => {
+        formDataToSend.append("Horarios", horario.toString());
+      });
       const response = await fetch(url, {
         method: "POST",
         body: formDataToSend,
@@ -132,8 +131,9 @@ export function AddProfissionais() {
         setShowAlert(true);
         setTimeout(() => {
           setShow(false);
-          navigate("/profissionais");
-        }, 1000);
+          // Recarregar a página após a criação bem-sucedida
+          window.location.reload();
+        }, 3000);
       } else {
         const errorData = await response.json();
         console.error("Falha ao criar profissional", errorData);

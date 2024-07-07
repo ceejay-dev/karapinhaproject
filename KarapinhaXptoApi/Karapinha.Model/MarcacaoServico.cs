@@ -16,14 +16,15 @@ namespace Karapinha.Model
         [ForeignKey(nameof(FkMarcacao))]
         public int FkMarcacao { get; set; }
         public Marcacao ? Booking { get; set; }
-        [ForeignKey(nameof(FkCategoria))]
-        public int FkCategoria { get; set; }
-        public Categoria ? Category { get; set; }
         [ForeignKey(nameof(FkServico))]
         public int FkServico { get; set; }
         public Servico ? Service { get; set; }
         [ForeignKey(nameof(FkProfissional))]
         public int FkProfissional { get; set; }
         public Profissional ? Profissional { get; set; }
+        [ForeignKey(nameof(HoraMarcacao))]
+        public int HoraMarcacao { get; set; }
+        public Horario ? Horario { get; set; }
+        public DateTime DataMarcacao { get; set; }
     }
 }

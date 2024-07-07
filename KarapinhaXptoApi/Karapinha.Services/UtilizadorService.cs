@@ -5,7 +5,7 @@ using Karapinha.Model;
 using Karapinha.Shared.IEmail;
 using Karapinha.Shared.IRepositories;
 using Karapinha.Shared.IServices;
-using Karapinnha.DTO;
+using Karapinnha.DTO.Utilizador;
 using Microsoft.AspNetCore.Http;
 using MimeKit;
 using OpenQA.Selenium;

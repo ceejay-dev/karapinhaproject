@@ -4,7 +4,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace Karapinnha.DTO
+namespace Karapinnha.DTO.Servico
 {
     public class ServicoUpdateDTO
     {

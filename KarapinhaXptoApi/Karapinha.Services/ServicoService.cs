@@ -3,7 +3,7 @@ using Karapinha.DAL.Converters;
 using Karapinha.Model;
 using Karapinha.Shared.IRepositories;
 using Karapinha.Shared.IServices;
-using Karapinnha.DTO;
+using Karapinnha.DTO.Servico;
 using OpenQA.Selenium;
 using System;
 using System.Collections.Generic;

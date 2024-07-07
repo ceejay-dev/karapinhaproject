@@ -32,4 +32,8 @@
     <ProjectReference Include="..\Karapinnha.DTO\Karapinnha.DTO.csproj" />
   </ItemGroup>
 
+  <ItemGroup>
+    <Folder Include="NewFolder\" />
+  </ItemGroup>
+
 </Project>

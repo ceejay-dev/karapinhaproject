@@ -1,5 +1,5 @@
 ﻿using Karapinha.Shared.IServices;
-using Karapinnha.DTO;
+using Karapinnha.DTO.Categoria;
 using Microsoft.AspNetCore.Mvc;
 
 namespace KarapinhaXptoApi.Controllers

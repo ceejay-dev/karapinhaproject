@@ -5,14 +5,13 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace Karapinnha.DTO
+namespace Karapinnha.DTO.Marcacao
 {
     public class MarcacaoServicoDTO
     {
-        public int Id { get; set; }
-        public int FkMarcacao { get; set; }
-        public int FkCategoria { get; set; }
+        public int FkHorario { get; set; }
         public int FkServico { get; set; }
         public int FkProfissional { get; set; }
+        public DateTime DataMarcacao { get; set; }
     }
 }

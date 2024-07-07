@@ -1,4 +1,4 @@
-﻿using Karapinnha.DTO;
+﻿using Karapinnha.DTO.Horario;
 using System;
 using System.Collections.Generic;
 using System.Linq;

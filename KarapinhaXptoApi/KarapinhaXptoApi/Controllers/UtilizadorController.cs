@@ -3,7 +3,7 @@ using Karapinha.Model;
 using Karapinha.Services;
 using Karapinha.Shared.IEmail;
 using Karapinha.Shared.IServices;
-using Karapinnha.DTO;
+using Karapinnha.DTO.Utilizador;
 using Microsoft.AspNetCore.Identity;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.IdentityModel.Tokens;

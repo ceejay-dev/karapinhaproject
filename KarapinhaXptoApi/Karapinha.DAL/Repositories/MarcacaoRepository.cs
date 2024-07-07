@@ -28,13 +28,31 @@ namespace Karapinha.DAL.Repositories
 
         public async Task<Marcacao> GetBookingById(int id)
         {
-            return await DbContext.Marcacoes.FindAsync(id);
+            return await DbContext.Marcacoes
+                .Include(m => m.Utilizador)
+                .Include(m => m.Servicos)
+                    .ThenInclude(s => s.Service)
+                .Include(m => m.Servicos)
+                    .ThenInclude(s => s.Horario)
+                .Include(m => m.Servicos)
+                    .ThenInclude(s => s.Profissional)
+                .FirstOrDefaultAsync(m => m.IdMarcacao == id);
         }
 
-        public async Task<IEnumerable<Marcacao>> GetAllBookings()
+
+        public IEnumerable<Marcacao> GetAllBookings()
         {
-            return await DbContext.Marcacoes.ToListAsync();
+            return DbContext.Marcacoes
+                .Include(m => m.Utilizador)
+                .Include(m => m.Servicos)
+                    .ThenInclude(s => s.Service)
+                .Include(m => m.Servicos)
+                    .ThenInclude(s => s.Horario)
+                .Include(m => m.Servicos)
+                    .ThenInclude(s => s.Profissional)
+                .ToList();
         }
+
 
         public async Task<bool> DeleteBooking(int id)
         {

@@ -1,5 +1,5 @@
 ﻿using Karapinha.Shared.IServices;
-using Karapinnha.DTO;
+using Karapinnha.DTO.Servico;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore.Metadata.Internal;
 using OpenQA.Selenium;

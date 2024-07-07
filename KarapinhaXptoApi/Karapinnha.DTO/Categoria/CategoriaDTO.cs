@@ -4,11 +4,11 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace Karapinnha.DTO
+namespace Karapinnha.DTO.Categoria
 {
-    public class CategoriaUpdateDTO
+    public class CategoriaDTO
     {
         public int IdCategoria { get; set; }
-        public string NomeCategoria { get; set; }
+        public string? NomeCategoria { get; set; }
     }
 }

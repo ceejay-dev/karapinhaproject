@@ -73,6 +73,7 @@ builder.Services.AddScoped<IMarcacaoService, MarcacaoService>();
 
 builder.Services.AddScoped<IMarcacaoServicosRepository, MarcacaoServicosRepository>();
 
+//Tratamento 
 builder.Services.AddControllers().AddJsonOptions(options =>
 {
     options.JsonSerializerOptions.ReferenceHandler = ReferenceHandler.IgnoreCycles;

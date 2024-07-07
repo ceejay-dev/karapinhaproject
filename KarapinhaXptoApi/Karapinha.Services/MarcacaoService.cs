@@ -1,8 +1,9 @@
-﻿using Karapinha.DAL.Converters;
+﻿using Amazon.Lambda.Model;
+using Karapinha.DAL.Converters;
 using Karapinha.Model;
 using Karapinha.Shared.IRepositories;
 using Karapinha.Shared.IServices;
-using Karapinnha.DTO;
+using Karapinnha.DTO.Marcacao;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -14,38 +15,46 @@ namespace Karapinha.Services
     public class MarcacaoService : IMarcacaoService
     {
         private readonly IMarcacaoRepository repository;
-        private readonly IMarcacaoServicosRepository servicoRepository;
 
         public MarcacaoService(IMarcacaoRepository repos)
         {
             repository = repos;
         }
 
-        public async Task<MarcacaoDTO> CreateBooking(MarcacaoDTO booking, MarcacaoServicoDTO bookingService)
+        public async Task<MarcacaoDTO> CreateBooking(MarcacaoDTO booking)
         {
-            var marcacaoAdded = MarcacaoConverter.ToMarcacaoDTO(await repository.CreateBooking(MarcacaoConverter.ToMarcacao(booking)));
-
-            var marcacaoServico = new MarcacaoServico()
+            try
             {
-                FkMarcacao = booking.IdMarcacao,
-                FkCategoria = bookingService.FkCategoria,
-                FkServico = bookingService.FkServico,
-                FkProfissional = bookingService.FkProfissional,
-            };
-            await servicoRepository.CreateMarcacaoServico(marcacaoServico);
-
-            return marcacaoAdded;
+                var marcacaoAdded = MarcacaoConverter.ToMarcacaoDTO(await repository.CreateBooking(MarcacaoConverter.ToMarcacao(booking)));
+                return marcacaoAdded;
+            }
+            catch (ServiceException ex) { 
+                throw new ServiceException(ex);
+            }
 
         }
-        /*public async Task<MarcacaoDTO> GetBookingById(int id)
+        public async Task<MarcacaoGetDTO> GetBookingById(int id)
         {
-
+            try
+            {
+                return MarcacaoConverter.ToMarcacaoGetDTO(await repository.GetBookingById(id));
+            }
+            catch (ServiceException ex) {
+                throw new ServiceException($"Marcação não foi encontrada {ex.Message}");
+            }
         }   
-        public async Task<IEnumerable<MarcacaoDTO>> GetAllBookings()
+        public IEnumerable<MarcacaoGetDTO> GetAllBookings()
         {
-
+            try
+            {
+                var allBookings =  repository.GetAllBookings();
+                return allBookings.Select(MarcacaoConverter.ToMarcacaoGetDTO);
+            }
+            catch (ServiceException ex) {
+                throw new ServiceException($"Marcações não foram encontradas {ex.Message}");
+            }
         }
-        public async Task<bool> DeleteBooking(int id)
+        /*public async Task<bool> DeleteBooking(int id)
         {
 
         }

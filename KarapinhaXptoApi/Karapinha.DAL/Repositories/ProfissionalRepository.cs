@@ -28,12 +28,10 @@ namespace Karapinha.DAL.Repositories
             }
             catch (Exception ex)
             {
-                // Loga a exceção completa
                 Console.WriteLine(ex.ToString());
                 throw;
             }
         }
-
 
         public async Task<Profissional> GetProfissionalById(int id)
         {

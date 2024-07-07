@@ -1,5 +1,5 @@
 ﻿using Karapinha.Shared.IServices;
-using Karapinnha.DTO;
+using Karapinnha.DTO.Marcacao;
 using Microsoft.AspNetCore.Mvc;
 
 namespace KarapinhaXptoApi.Controllers
@@ -15,16 +15,45 @@ namespace KarapinhaXptoApi.Controllers
 
         [HttpPost]
         [Route("/CreateBooking")]
-        public async Task<ActionResult> CreateBooking(MarcacaoDTO marcacao, MarcacaoServicoDTO marcacaoServico)
+        public async Task<ActionResult> CreateBooking([FromBody]MarcacaoDTO marcacao)
         {
             try
             {
-                var booking = await bookingService.CreateBooking(marcacao, marcacaoServico); 
+                var booking = await bookingService.CreateBooking(marcacao); 
                 return Ok(booking);
             }
-            catch (Exception ex) { 
-                throw new Exception(ex.Message);
+            catch  {
+                return StatusCode(500, "Erro ao criar a marcação.");
             } 
+        }
+
+        [HttpGet]
+        [Route("/GetBookingById")]
+        public async Task<ActionResult<MarcacaoDTO>> GetBookingById(int id)
+        {
+            try
+            {
+                var booking = await bookingService.GetBookingById(id);
+                return Ok(booking);
+            }
+            catch 
+            {
+                return StatusCode(404, "Marcação não foi encontrada.");   
+            }
+        }
+
+        [HttpGet]
+        [Route("/GetAllBookings")]
+        public IEnumerable<MarcacaoGetDTO> GetAllBookings()
+        {
+            try
+            {
+                return bookingService.GetAllBookings();
+            }
+            catch
+            {
+                throw new Exception("Marcações não foram encontradas.");
+            }
         }
     }
 }

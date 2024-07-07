@@ -2,7 +2,7 @@
 using Karapinha.DAL.Converters;
 using Karapinha.Shared.IRepositories;
 using Karapinha.Shared.IServices;
-using Karapinnha.DTO;
+using Karapinnha.DTO.Horario;
 using System;
 using System.Collections.Generic;
 using System.Linq;

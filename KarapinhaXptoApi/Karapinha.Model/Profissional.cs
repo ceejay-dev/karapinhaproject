@@ -29,7 +29,6 @@ namespace Karapinha.Model
         [ServiceStack.DataAnnotations.Unique]
         [Required]
         public string? TelemovelProfissional { get; set; }
-
         public List<ProfissionalHorario> Horarios { get; set; }
     }
 }

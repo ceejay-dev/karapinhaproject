@@ -1,5 +1,5 @@
 ﻿using Karapinha.Model;
-using Karapinnha.DTO;
+using Karapinnha.DTO.Categoria;
 using System;
 using System.Collections.Generic;
 using System.Linq;

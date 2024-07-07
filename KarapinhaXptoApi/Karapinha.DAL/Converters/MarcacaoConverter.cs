@@ -1,5 +1,5 @@
 ﻿using Karapinha.Model;
-using Karapinnha.DTO;
+using Karapinnha.DTO.Marcacao;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -14,12 +14,10 @@ namespace Karapinha.DAL.Converters
         {
             return new Marcacao
             {
-                IdMarcacao = dto.IdMarcacao,
-                DataMarcacao = dto.DataMarcacao,
-                Estado = dto.Estado,
+                Estado = "pendente",
                 FkUtilizador = dto.FkUtilizador,
-                HoraMarcacao = dto.HoraMarcacao,
                 PrecoMarcacao = dto.PrecoMarcacao,
+                Servicos = dto.Servicos.Select(s=> MarcacaoServicoConverter.ToMarcacaoServico(s)).ToList(),
             };
         }
 
@@ -27,12 +25,21 @@ namespace Karapinha.DAL.Converters
         {
             return new MarcacaoDTO
             {
-                IdMarcacao = model.IdMarcacao,
-                DataMarcacao = model.DataMarcacao,
-                Estado = model.Estado,
                 FkUtilizador = model.FkUtilizador,
-                HoraMarcacao = model.HoraMarcacao,
                 PrecoMarcacao = model.PrecoMarcacao,
+                Servicos = model.Servicos.Select(s => MarcacaoServicoConverter.ToMarcacaoServicoDTO(s)).ToList(),
+            };
+        }
+
+        public static MarcacaoGetDTO ToMarcacaoGetDTO(Marcacao model)
+        {
+            return new MarcacaoGetDTO
+            {
+                IdMarcacao = model.IdMarcacao,
+                Utilizador = UtilizadorConverter.ToUtilizadorDTO(model.Utilizador),
+                PrecoMarcacao = model.PrecoMarcacao,
+                Estado = model.Estado,
+                Servicos = model.Servicos.Select(s => MarcacaoServicoConverter.ToMarcacaoServicoDTO(s)).ToList(),
             };
         }
     }

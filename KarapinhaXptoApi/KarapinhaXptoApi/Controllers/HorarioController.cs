@@ -1,5 +1,5 @@
 ﻿using Karapinha.Shared.IServices;
-using Karapinnha.DTO;
+using Karapinnha.DTO.Horario;
 using Microsoft.AspNetCore.Mvc;
 using OpenQA.Selenium.DevTools.V123.Page;
 using OpenQA.Selenium.DevTools.V123.Runtime;
