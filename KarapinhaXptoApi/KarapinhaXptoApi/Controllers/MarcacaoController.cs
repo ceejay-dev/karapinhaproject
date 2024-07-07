@@ -15,7 +15,7 @@ namespace KarapinhaXptoApi.Controllers
 
         [HttpPost]
         [Route("/CreateBooking")]
-        public async Task<ActionResult> CreateBooking([FromBody]MarcacaoDTO marcacao)
+        public async Task<ActionResult<MarcacaoDTO>> CreateBooking([FromBody]MarcacaoDTO marcacao)
         {
             try
             {

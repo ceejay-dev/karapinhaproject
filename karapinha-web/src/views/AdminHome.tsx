@@ -1,7 +1,15 @@
-import { Button } from "../components/Button";
+import { Button as BootstrapButton } from "react-bootstrap";
 import "../styles/adminHome.css";
+import { Button } from "../components/Button";
+import { useNavigate } from "react-router-dom";
 
 export function AdminHome() {
+  const navigate = useNavigate();
+  const handleDeleteStorage = () => {
+    localStorage.clear();
+    navigate("/");
+  };
+
   return (
     <div className="principal-container">
       <ul className="nav">
@@ -14,7 +22,14 @@ export function AdminHome() {
         </li>
 
         <li>
-          <Button route="/" text="Sair" />
+          <BootstrapButton 
+            className="link-button" 
+            onClick={() => {
+              handleDeleteStorage();
+            }} 
+          >
+            Sair
+          </BootstrapButton>
         </li>
       </ul>
     </div>

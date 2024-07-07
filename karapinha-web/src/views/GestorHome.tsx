@@ -1,10 +1,20 @@
+import { useNavigate } from "react-router-dom";
 import { Button } from "../components/Button";
-import "../styles/adminHome.css"
+import {
+  Button as BootstrapButton,
+} from "react-bootstrap";
+import "../styles/adminHome.css";
 
-export function GestorHome (){
-    return (
-        <div className="principal-container">
-            <ul className="nav">
+export function GestorHome() {
+  const navigate = useNavigate();
+  const handleDeleteStorage = () => {
+    localStorage.clear();
+    navigate("/");
+  };
+
+  return (
+    <div className="principal-container">
+      <ul className="nav">
         <li>
           <Button route="/profissionais" text="Profissionais" />
         </li>
@@ -16,15 +26,22 @@ export function GestorHome (){
         <li>
           <Button route="/servicos" text="Serviços" />
         </li>
-        
+
         <li>
           <Button route="/marcacoes" text="Marcações" />
         </li>
 
         <li>
-          <Button route="/" text="Sair" />
+          <BootstrapButton 
+            className="link-button"
+            onClick={() => {
+              handleDeleteStorage();
+            } }
+           >
+            Sair
+          </BootstrapButton>
         </li>
       </ul>
-        </div>
-    );
+    </div>
+  );
 }

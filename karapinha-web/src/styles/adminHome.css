@@ -4,3 +4,18 @@
     background-image: url("../assets/carrosel3.jpeg");
     background-size: cover;
 }
+
+.link-button {
+    background: none;
+    border: none;
+    color: white; /* Cor padrão do link do Bootstrap */
+    text-decoration: none;
+    cursor: pointer;
+    padding: 0;
+    font: inherit;
+  }
+  
+  .link-button:hover {
+    color: wheat; 
+    background-color: transparent;
+  }

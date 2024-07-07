@@ -1,6 +1,6 @@
 import "../styles/home.css";
 import { useState } from "react";
-import { Link } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 import Carousel from "react-bootstrap/Carousel";
 import {
   carrosel4,
@@ -10,12 +10,19 @@ import {
   userLogo,
 } from "../components/Images";
 import { Button } from "../components/Button";
+import { ButtonNav } from "../components/ButtonNav";
 
 export function Home() {
+  const navigate = useNavigate();
   const [index, setIndex] = useState(0);
 
   const handleSelect = (selectedIndex: any) => {
     setIndex(selectedIndex);
+  };
+
+  const handleDeleteStorage = () => {
+    localStorage.clear();
+    navigate("/");
   };
 
   return (
@@ -27,11 +34,20 @@ export function Home() {
           </li>
 
           <li>
-            <Button route="/marcacoes" text="Serviços" />
+            <Button route="/marcacoes" text="Minhas Marcações" />
           </li>
 
           <li>
-            <Button route="/logged" text="Sobre" />
+            <Button route="/marcacoes" text="Serviços" />
+          </li>
+          
+
+          <li>
+            <Button
+              route="/logged"
+              onClick={() => handleDeleteStorage}
+              text="Sobre"
+            />
           </li>
 
           <div className="navegacao d-flex flex-row">
@@ -43,7 +59,7 @@ export function Home() {
               />
             </li>
             <li className="nav2">
-              <Button route="/" imageSrc={sair} />
+              <ButtonNav imageSrc={sair} onClick={handleDeleteStorage} className="link-button"/>
             </li>
           </div>
         </ul>
