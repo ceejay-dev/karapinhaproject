@@ -1,6 +1,5 @@
 import { useNavigate } from "react-router-dom";
 import { useEffect, useState } from "react";
-import { logo } from "../components/Images";
 import "../styles/signup.css";
 import { Button, Alert, Form } from "react-bootstrap";
 
@@ -72,7 +71,7 @@ export function UpdateUser() {
     const fetchUser = async () => {
       const usernameStorage = localStorage.getItem("usernameUtilizador");
       if (!usernameStorage) {
-        console.error("Username not found");
+        console.error("Username não foi encontrado.");
         return;
       }
 

@@ -1,5 +1,6 @@
 ﻿using Amazon.Lambda.Model;
 using Karapinha.DAL.Converters;
+using Karapinha.Model;
 using Karapinha.Shared.IRepositories;
 using Karapinha.Shared.IServices;
 using Karapinnha.DTO.Horario;
@@ -53,6 +54,19 @@ namespace Karapinha.Services
             {
                 var schedule = await HorarioRepository.GetScheduleById(id);
                 return HorarioConverter.ToHorarioDTO(schedule);
+            }
+            catch (Exception ex)
+            {
+                throw new ServiceException(ex.Message);
+            }
+        }
+
+        public async Task<IEnumerable<HorarioDTO>> GetAllSchedulesByProfissionalId(int profissionalId)
+        {
+            try
+            {
+                var schedules = await HorarioRepository.GetAllSchedulesByProfissionalId(profissionalId);
+                return schedules.Select (HorarioConverter.ToHorarioDTO);
             }
             catch (Exception ex)
             {

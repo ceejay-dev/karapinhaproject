@@ -41,11 +41,15 @@ export function Login() {
     })
       .then((res) => res.json())
       .then((data) => {
-        if (data) {
-          const { tipoPerfil, estado } = data;
+        const { tipoPerfil, estado } = data;
+        if (data) {  
           localStorage.setItem('usernameUtilizador', usernameUtilizador);
           if (tipoPerfil === "cliente") {
-            navigate("/logged");
+            if (estado == "activo"){
+              navigate("/logged");
+            } else {
+              setErrorMessage("A sua conta está inactiva. Deverá contactar o administrador para activar a sua conta.");
+            }
           } else if (tipoPerfil === "administrador") {
             navigate("/adminHome");
           } else if (tipoPerfil === "administrativo") {
@@ -63,7 +67,7 @@ export function Login() {
         }
       })
       .catch(() => {
-        setErrorMessage("Ocorreu um erro. Tente novamente.");
+        setErrorMessage("Erro no servidor. Tente novamente");
       });
   }
 

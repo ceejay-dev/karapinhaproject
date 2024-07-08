@@ -1,4 +1,5 @@
-﻿using Karapinnha.DTO.Horario;
+﻿using Karapinha.Model;
+using Karapinnha.DTO.Horario;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -12,5 +13,6 @@ namespace Karapinha.Shared.IServices
         Task<HorarioDTO> CreateSchedule(HorarioDTO dto);
         Task<IEnumerable<HorarioDTO>> GetAllSchedules();
         Task<HorarioDTO> GetScheduleById(int id);
+        Task<IEnumerable<HorarioDTO>> GetAllSchedulesByProfissionalId(int profissionalId);
     }
 }

@@ -17,12 +17,10 @@ namespace Karapinha.Services
     public class ProfissionalService : IProfissionalService
     {
         private readonly IProfissionalRepository Repository;
-        private readonly IProfissionalHorarioRepository HorarioRepository;
 
-        public ProfissionalService(IProfissionalRepository repos, IProfissionalHorarioRepository horarioRepository)
+        public ProfissionalService(IProfissionalRepository repos)
         {
             Repository = repos;
-            HorarioRepository = horarioRepository;
         }
 
         public async Task<ProfissionalDTO> CreateProfissional(ProfissionalDTO dto, IFormFile foto)

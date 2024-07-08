@@ -17,6 +17,7 @@ type profissionaisProps = {
   emailProfissional: string;
   nomeCategoria: string;
   telemovelProfissional: string;
+  horarios: horariosProps[];
 };
 
 type categoriaProps = {
@@ -46,18 +47,19 @@ export function AddProfissionais() {
     fotoProfissional: null as File | null,
     bilheteProfissional: "",
     telemovelProfissional: "",
-    horarios: [] as number[], 
+    horarios: [] as number[],
   });
-  
 
   const handleChange = (
     event: React.ChangeEvent<HTMLInputElement | HTMLSelectElement>
   ) => {
     const { name, value } = event.target;
-  
-     if (event.target instanceof HTMLSelectElement && name === "horarios") {
+
+    if (event.target instanceof HTMLSelectElement && name === "horarios") {
       const selectedOptions = event.target.selectedOptions;
-      const selectedValues = Array.from(selectedOptions, (option) => Number(option.value));
+      const selectedValues = Array.from(selectedOptions, (option) =>
+        Number(option.value)
+      );
       setFormData((prevData) => ({
         ...prevData,
         horarios: selectedValues,
@@ -69,15 +71,15 @@ export function AddProfissionais() {
       }));
     }
   };
-  
-  const handleFileChange = (event:any) => {
+
+  const handleFileChange = (event: any) => {
     setFormData((prevData) => ({
       ...prevData,
       fotoProfissional: event.target.files[0],
     }));
-    console.log (formData.fotoProfissional)
+    console.log(formData.fotoProfissional);
   };
-  
+
   const handleConfirmedClick = async (
     event: React.FormEvent<HTMLFormElement>
   ) => {
@@ -115,8 +117,8 @@ export function AddProfissionais() {
         formData.telemovelProfissional
       );
       if (formData.fotoProfissional !== null) {
-        formDataToSend.append('foto', formData.fotoProfissional);
-      }   
+        formDataToSend.append("foto", formData.fotoProfissional);
+      }
       formData.horarios.forEach((horario) => {
         formDataToSend.append("Horarios", horario.toString());
       });
@@ -154,7 +156,9 @@ export function AddProfissionais() {
   useEffect(() => {
     const fetchCategorias = async () => {
       try {
-        const response = await fetch("https://localhost:7209/GetAllCategories");
+        const response = await fetch(
+          "https://localhost:7209/GetAllCategories"
+        );
         if (response.ok) {
           const data = await response.json();
           setCategorias(data);
@@ -172,6 +176,17 @@ export function AddProfissionais() {
 
   const [profissionais, setProfissionais] = useState<profissionaisProps[]>([]);
 
+  const fetchHorariosByProfissional = async (profissionalId: number) => {
+    const url = `https://localhost:7209/GetAllSchedulesByProfissionalId?profissionalId=${profissionalId}`;
+    const response = await fetch(url);
+    if (response.ok) {
+      return await response.json();
+    } else {
+      console.error("Falha ao buscar horários do profissional");
+      return [];
+    }
+  };
+
   useEffect(() => {
     const fetchProfissionais = async () => {
       try {
@@ -180,8 +195,19 @@ export function AddProfissionais() {
         );
         if (response.ok) {
           const data = await response.json();
-          setProfissionais(data);
-          console.log(data);
+
+          // Para cada profissional, buscar os horários detalhados
+          const profissionaisWithHorarios = await Promise.all(
+            data.map(async (profissional: profissionaisProps) => {
+              const horarios = await fetchHorariosByProfissional(
+                profissional.idProfissional
+              );
+              return { ...profissional, horarios };
+            })
+          );
+
+          setProfissionais(profissionaisWithHorarios);
+          console.log(profissionaisWithHorarios);
         } else {
           console.error("Falha ao buscar profissionais");
         }
@@ -221,10 +247,6 @@ export function AddProfissionais() {
         method: "DELETE",
       });
       if (response.ok) {
-        //setAlertMessage("Profissional apagado com sucesso!");
-        //setAlertVariant("success");
-        //setShowAlert(true);
-        // Remover o profissional da lista
         setProfissionais((prevProfissionais) =>
           prevProfissionais.filter((prof) => prof.idProfissional !== id)
         );
@@ -246,7 +268,9 @@ export function AddProfissionais() {
   return (
     <main className="container-service">
       <div className="p-2 container-service-added">
-        <h4 className="bg-white text-center m-0 pt-2 rounded-top-2">Profissionais registados</h4>
+        <h4 className="bg-white text-center m-0 pt-2 rounded-top-2">
+          Profissionais registados
+        </h4>
         <div className="bg-white">
           <Button
             route="#"
@@ -263,6 +287,7 @@ export function AddProfissionais() {
               <th>Email</th>
               <th>Categoria</th>
               <th>Telemóvel</th>
+              <th>Horários</th>
               <th>Acções</th>
             </tr>
           </thead>
@@ -273,6 +298,11 @@ export function AddProfissionais() {
                 <td>{profissional.emailProfissional}</td>
                 <td>{profissional.nomeCategoria}</td>
                 <td>{profissional.telemovelProfissional}</td>
+                <td>
+                  {profissional.horarios
+                    .map((horario) => horario.descricao)
+                    .join(", ")}
+                </td>
                 <td>
                   <BootstrapButton
                     variant="danger"
@@ -373,12 +403,13 @@ export function AddProfissionais() {
                     />
                     <Form.Select
                       name="horarios"
-                      value={formData.horarios.map((horario) => horario.toString())}
+                      value={formData.horarios.map((horario) =>
+                        horario.toString()
+                      )}
                       onChange={handleChange}
                       className="select"
                       multiple
                     >
-                      
                       <option value="0">Selecione o horário:</option>
                       {horarios.map((horario) => (
                         <option

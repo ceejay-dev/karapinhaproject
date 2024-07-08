@@ -35,5 +35,21 @@ namespace Karapinha.DAL.Repositories
         {
             return await DbContext.Horarios.FindAsync(id);
         }
+
+        public async Task<IEnumerable<Horario>> GetAllSchedulesByProfissionalId(int profissionalId)
+        {
+            var horariosDisponiveis = await DbContext.ProfissionalHorarios
+                .Where(ph => ph.IdProfissional == profissionalId)
+                .Select(ph => ph.IdHorario)
+                .ToListAsync();
+
+            var horarios = await DbContext.Horarios
+                .Where(h => horariosDisponiveis.Contains(h.IdHorario))
+                .ToListAsync();
+
+            return horarios;
+        }
+
+
     }
 }

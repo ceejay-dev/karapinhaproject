@@ -15,6 +15,6 @@ namespace Karapinha.Model
         public int IdHorario { get; set; }
         [Required]
         public string? Descricao { get; set; }
-        public string Estado { get; set; }
+        public string? Estado { get; set; }
     }
 }

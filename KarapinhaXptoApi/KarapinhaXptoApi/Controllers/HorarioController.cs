@@ -1,4 +1,5 @@
-﻿using Karapinha.Shared.IServices;
+﻿using Karapinha.Model;
+using Karapinha.Shared.IServices;
 using Karapinnha.DTO.Horario;
 using Microsoft.AspNetCore.Mvc;
 using OpenQA.Selenium.DevTools.V123.Page;
@@ -52,6 +53,20 @@ namespace KarapinhaXptoApi.Controllers
             try
             {
                 return await HorarioService.GetScheduleById(id);
+            }
+            catch (Exception ex)
+            {
+                throw new Exception(ex.Message);
+            }
+        }
+
+        [HttpGet]
+        [Route("/GetAllSchedulesByProfissionalId")]
+        public async Task<IEnumerable<HorarioDTO>> GetAllSchedulesByProfissionalId(int profissionalId)
+        {
+            try
+            {
+                return await HorarioService.GetAllSchedulesByProfissionalId(profissionalId);
             }
             catch (Exception ex)
             {

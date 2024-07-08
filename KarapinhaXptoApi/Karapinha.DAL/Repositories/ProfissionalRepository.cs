@@ -122,24 +122,29 @@ namespace Karapinha.DAL.Repositories
 
         public async Task<IEnumerable<dynamic>> GetAllProfissionaisByIdCategoria(int idCategoria)
         {
+            var resultado = await (from p in DbContext.Profissionais
+                                   join c in DbContext.Categorias on p.FkCategoria equals c.IdCategoria
+                                   where p.FkCategoria == idCategoria
+                                   select new
+                                   {
+                                       IdProfissional = p.IdProfissional,
+                                       NomeProfissional = p.NomeProfissional,
+                                       FkCategoria = p.FkCategoria,
+                                       EmailProfissional = p.EmailProfissional,
+                                       FotoProfissional = p.FotoProfissional,
+                                       BilheteProfissional = p.BilheteProfissional,
+                                       TelemovelProfissional = p.TelemovelProfissional,
+                                       Horarios = p.Horarios.Select(h => new
+                                       {
+                                            IdHorario = h.Horario.IdHorario,
+                                            Descricao = h.Horario.Descricao,
+                                            Estado = h.Horario.Estado
+                                       }).ToList()
+                                   }).ToListAsync();
 
-            var resultado = from p in DbContext.Profissionais
-                            join c in DbContext.Categorias on p.FkCategoria equals c.IdCategoria
-                            where p.FkCategoria == idCategoria
-                            select new
-                            {
-                                IdProfissional = p.IdProfissional,
-                                NomeProfissional = p.NomeProfissional,
-                                FkCategoria = p.FkCategoria,
-                                EmailProfissional = p.EmailProfissional,
-                                FotoProfissional = p.FotoProfissional,
-                                BilheteProfissional = p.BilheteProfissional,
-                                TelemovelProfissional = p.TelemovelProfissional
-                            };
-                                   
-
-            return await resultado.ToListAsync();
+            return resultado;
         }
+
     }
 
 }
