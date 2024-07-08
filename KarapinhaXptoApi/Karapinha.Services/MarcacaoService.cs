@@ -42,7 +42,19 @@ namespace Karapinha.Services
             catch (ServiceException ex) {
                 throw new ServiceException($"Marcação não foi encontrada {ex.Message}");
             }
-        }   
+        }
+
+        public async Task<IEnumerable<MarcacaoGetDTO>> GetAllBookingByUserId(int idUtilizador)
+        {
+            try
+            {
+                var allBookings = await repository.GetAllBookingsByUserId(idUtilizador);
+                return allBookings.Select(MarcacaoConverter.ToMarcacaoGetDTO);
+            }
+            catch (ServiceException ex) {
+                throw new ServiceException (ex.Message);
+            }
+        }
         public IEnumerable<MarcacaoGetDTO> GetAllBookings()
         {
             try

@@ -63,15 +63,11 @@ builder.Services.AddScoped<IHorarioService, HorarioService>();
 builder.Services.AddScoped<IProfissionalRepository, ProfissionalRepository>();
 builder.Services.AddScoped<IProfissionalService, ProfissionalService>();
 
-builder.Services.AddScoped<IProfissionalHorarioRepository, ProfissionalHorarioRepository>();
-
 builder.Services.AddScoped<IServicoRepository, ServicoRepository>();
 builder.Services.AddScoped<IServicoService, ServicoService>();
 
 builder.Services.AddScoped<IMarcacaoRepository, MarcacaoRepository>();
 builder.Services.AddScoped<IMarcacaoService, MarcacaoService>();
-
-builder.Services.AddScoped<IMarcacaoServicosRepository, MarcacaoServicosRepository>();
 
 //Tratamento 
 builder.Services.AddControllers().AddJsonOptions(options =>

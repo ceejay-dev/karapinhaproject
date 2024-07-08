@@ -41,9 +41,11 @@ export function Login() {
     })
       .then((res) => res.json())
       .then((data) => {
-        const { tipoPerfil, estado } = data;
+        const {idUtilizador, tipoPerfil, estado } = data;
         if (data) {  
           localStorage.setItem('usernameUtilizador', usernameUtilizador);
+          localStorage.setItem('idUtilizador', idUtilizador);
+          
           if (tipoPerfil === "cliente") {
             if (estado == "activo"){
               navigate("/logged");

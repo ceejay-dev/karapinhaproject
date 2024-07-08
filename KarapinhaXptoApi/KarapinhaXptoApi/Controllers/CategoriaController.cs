@@ -25,7 +25,7 @@ namespace KarapinhaXptoApi.Controllers
             catch (Exception ex)
             {
                 Console.WriteLine(ex.Message);
-                return StatusCode(500, "Erro interno ao adicionar a categoria.");
+                return StatusCode(500, "{\"mensagem\":\"Erro interno ao adicionar a categoria.\"}");
             }
         }
 

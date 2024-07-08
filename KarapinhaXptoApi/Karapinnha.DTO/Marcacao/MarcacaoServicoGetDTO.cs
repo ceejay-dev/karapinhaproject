@@ -14,6 +14,5 @@ namespace Karapinnha.DTO.Marcacao
         public HorarioDTO Horario { get; set; }
         public ServicoDTO Servico { get; set; }
         public ProfissionalDTO Profissional { get; set; }
-        public DateTime DataMarcacao { get; set; }
     }
 }

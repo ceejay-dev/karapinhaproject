@@ -12,6 +12,5 @@ namespace Karapinnha.DTO.Marcacao
         public int FkHorario { get; set; }
         public int FkServico { get; set; }
         public int FkProfissional { get; set; }
-        public DateTime DataMarcacao { get; set; }
     }
 }

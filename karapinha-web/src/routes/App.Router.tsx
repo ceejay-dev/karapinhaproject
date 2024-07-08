@@ -13,6 +13,7 @@ import { ClientsList } from "../views/ClientsList";
 import { AddServicos } from "../views/AddServicos";
 import { ScheduleList } from "../views/ScheduleList";
 import { AddCategorias } from "../views/AddCategorias";
+import { MarcacoesList } from "../views/MarcacoesList";
 
 
 export function AppRoutes() {
@@ -25,6 +26,7 @@ export function AppRoutes() {
         <Route path="/signup" element={<Signup />} />
         <Route path="/editUser" element={<UpdateUser />} />
         <Route path="/marcacoes" element={<AddMarcacoes />} />
+        <Route path="/mymarcacoes" element={<MarcacoesList/>}/>
         <Route path="/adminHome" element={<AdminHome />} />
         <Route path="/gestorHome" element={<GestorHome />} />
         <Route path="/servicos" element={<AddServicos />} />

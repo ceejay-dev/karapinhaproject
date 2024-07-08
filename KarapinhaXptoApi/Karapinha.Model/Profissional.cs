@@ -19,7 +19,7 @@ namespace Karapinha.Model
         public string? NomeProfissional { get; set; }
         [ForeignKey(nameof(Categoria))]
         public int FkCategoria { get; set; }
-        [ServiceStack.DataAnnotations.Unique]
+        [EmailAddress]
         [Required] 
         public string? EmailProfissional { get; set; }
         public string? FotoProfissional { get; set; }

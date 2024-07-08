@@ -35,20 +35,19 @@ type profissionaisProps = {
   horarios: { idHorario: number; descricao: string; estado: string }[];
 };
 
+type selectedServicoProps = {
+  servico: servicosProps;
+  profissionalId: number | null;
+  horarioId: number | null;
+};
+
 export function AddMarcacoes() {
   const [show, setShow] = useState(false);
-  const [selectedServicos, setSelectedServicos] = useState<servicosProps[]>([]);
+  const [selectedServicos, setSelectedServicos] = useState<selectedServicoProps[]>([]);
   const [servicos, setServicos] = useState<servicosProps[]>([]);
   const [profissionaisByServico, setProfissionaisByServico] = useState<{
     [key: number]: profissionaisProps[];
   }>({});
-  const [idUtilizador, setIdUtilizador] = useState<number | null>(null);
-  const [selectedProfissionalId, setSelectedProfissionalId] = useState<
-    number | null
-  >(null);
-  const [selectedHorarioId, setSelectedHorarioId] = useState<number | null>(
-    null
-  );
   const [horariosProfissional, setHorariosProfissional] = useState<
     { idHorario: number; descricao: string; estado: string }[]
   >([]);
@@ -69,88 +68,84 @@ export function AddMarcacoes() {
   const handleConfirmedClick = async () => {
     const usernameStorage = localStorage.getItem("usernameUtilizador");
     if (usernameStorage !== null) {
-      try {
-        // ID do usuário
-        await fetchUserIdByUsername(usernameStorage);
-  
-        // Calcular o preço total da marcação
-        const totalPreco = selectedServicos.reduce(
-          (acc, servico) => acc + servico.preco,
-          0
-        );
-  
-        // Extrair os IDs necessários da marcação
-        const idServico = selectedServicos.map((servico) => servico.idServico)[0]; // Ajuste conforme necessário
-        const idHorario = selectedHorarioId; // Ajuste conforme necessário
-        const idProfissional = selectedProfissionalId;
-        const dataMarcacao = selectedDate?.toISOString(); // Ajuste conforme necessário
-  
-        // Verificar se o idUtilizador foi obtido com sucesso
-        if (idUtilizador === null) {
-          console.error("Não foi possível obter o ID do usuário.");
-          return;
+        try {
+            const idStorage = localStorage.getItem("idUtilizador");
+            console.log(idStorage);
+
+            const precoMarcacao = selectedServicos.reduce(
+                (acc, { servico }) => acc + servico.preco,
+                0
+            );
+
+            const servicosToSend = selectedServicos.map(({ servico, profissionalId, horarioId }) => ({
+                fkServico: servico.idServico,
+                fkProfissional: profissionalId,
+                fkHorario: horarioId,
+            }));
+
+            console.log("Serviços", servicosToSend);
+            const dataMarcacao = selectedDate?.toISOString();
+
+            if (idStorage === null) {
+                console.error("Não foi possível obter o ID do usuário.");
+                return;
+            }
+
+            if (!dataMarcacao || servicosToSend.some(s => !s.fkProfissional || !s.fkHorario)) {
+                setAlertMessage("Por favor, preencha todos os campos obrigatórios.");
+                setAlertVariant("warning");
+                setShowAlert(true);
+                return;
+            }
+
+            const formDataToSend = {
+                precoMarcacao,
+                fkUtilizador: parseInt(idStorage),
+                dataMarcacao,
+                servicos: servicosToSend,
+            };
+
+            console.log(formDataToSend);
+
+            const url = `https://localhost:7209/CreateBooking`;
+
+            const response = await fetch(url, {
+                method: "POST",
+                headers: {
+                    "Content-Type": "application/json",
+                },
+                body: JSON.stringify(formDataToSend),
+            });
+
+            if (response.ok) {
+                setAlertMessage("Marcação criada com sucesso!");
+                setAlertVariant("success");
+                setShowAlert(true);
+                setTimeout(() => {
+                    setShow(false);
+                    navigate("/mymarcacoes");
+                }, 3000);
+            } else {
+                const errorText = await response.text();
+                console.log("Falha ao criar marcação", errorText);
+                setAlertMessage("Falha ao criar a marcação.");
+                setAlertVariant("danger");
+                setShowAlert(true);
+            }
+        } catch (error) {
+            console.log("Erro ao criar marcação:", error);
+            setAlertMessage("Erro ao criar a marcação.");
+            setAlertVariant("danger");
+            setShowAlert(true);
         }
-  
-        // Validação dos campos
-        if (!idServico || !idHorario || !idProfissional || !dataMarcacao) {
-          setAlertMessage("Por favor, preencha todos os campos obrigatórios.");
-          setAlertVariant("warning");
-          setShowAlert(true);
-          return;
-        }
-  
-        // Preparar os dados a serem enviados para o endpoint
-        const formDataToSend = {
-          totalPreco,
-          idUsuario: idUtilizador,
-          idHorario,
-          idServico,
-          idProfissional,
-          dataMarcacao,
-        };
-  
-        const url = `https://localhost:7209/CreateBooking`;
-  
-        const response = await fetch(url, {
-          method: "POST",
-          headers: {
-            "Content-Type": "application/json",
-          },
-          body: JSON.stringify(formDataToSend),
-        });
-  
-        if (response.ok) {
-          // Marcação criada com sucesso
-          setAlertMessage("Marcação criada com sucesso!");
-          setAlertVariant("success");
-          setShowAlert(true);
-          setTimeout(() => {
-            setShow(false);
-            navigate("/logged");
-          }, 3000);
-        } else {
-          const errorData = await response.json();
-          console.error("Falha ao criar marcação", errorData);
-          setAlertMessage("Falha ao criar a marcação.");
-          setAlertVariant("danger");
-          setShowAlert(true);
-        }
-      } catch (error) {
-        console.error("Erro ao criar marcação:", error);
-        setAlertMessage("Erro ao criar a marcação.");
-        setAlertVariant("danger");
-        setShowAlert(true);
-      }
     } else {
-      navigate("/login");
+        navigate("/login");
     }
-  };
-  
-  
+};
 
   const handleAddedClick = async (servico: servicosProps) => {
-    if (!selectedServicos.some((s) => s.idServico === servico.idServico)) {
-      setSelectedServicos([...selectedServicos, servico]);
+    if (!selectedServicos.some((s) => s.servico.idServico === servico.idServico)) {
+      setSelectedServicos([...selectedServicos, { servico, profissionalId: null, horarioId: null }]);
       await fetchProfissionaisByServico(servico.fkCategoria, servico.idServico);
       setCartCount(cartCount + 1);
     }
@@ -158,7 +153,7 @@ export function AddMarcacoes() {
 
   const handleRemoveClick = (idServico: number) => {
     const updatedServicos = selectedServicos.filter(
-      (servico) => servico.idServico !== idServico
+      ({ servico }) => servico.idServico !== idServico
     );
     setSelectedServicos(updatedServicos);
     setCartCount(cartCount - 1);
@@ -176,8 +171,12 @@ export function AddMarcacoes() {
     }));
   };
 
-  const handleProfissionalChange = async (profissionalId: number) => {
-    setSelectedProfissionalId(profissionalId);
+  const handleProfissionalChange = async (servicoId: number, profissionalId: number) => {
+    const updatedServicos = selectedServicos.map((item) => 
+      item.servico.idServico === servicoId ? { ...item, profissionalId } : item
+    );
+    setSelectedServicos(updatedServicos);
+
     if (profissionalId) {
       await fetchHorariosByProfissional(profissionalId);
     } else {
@@ -185,30 +184,18 @@ export function AddMarcacoes() {
     }
   };
 
+  const handleHorarioChange = (servicoId: number, horarioId: number) => {
+    const updatedServicos = selectedServicos.map((item) => 
+      item.servico.idServico === servicoId ? { ...item, horarioId } : item
+    );
+    setSelectedServicos(updatedServicos);
+  };
+
   const fetchHorariosByProfissional = async (profissionalId: number) => {
     var url = `https://localhost:7209/GetAllSchedulesByProfissionalId?profissionalId=${profissionalId}`;
     const horarios = await getAllData({ url });
     setHorariosProfissional(horarios);
   };
-
-  const fetchUserIdByUsername = async (username: string) => {
-    const url = `https://localhost:7209/GetIdByUsername?username=${encodeURIComponent(username)}`;
-    
-    try {
-      const response = await fetch(url);
-      if (response.ok) {
-        const data = await response.json();
-        setIdUtilizador(data.id); // Supondo que a resposta retorna um objeto com a propriedade 'id'
-      } else {
-        console.error('Falha ao obter o ID do usuário');
-        // Lógica de tratamento de erro, se necessário
-      }
-    } catch (error) {
-      console.error('Erro ao fazer a requisição:', error);
-      // Lógica de tratamento de erro, se necessário
-    }
-  };
-  
 
   useEffect(() => {
     async function waitServicos() {
@@ -269,7 +256,11 @@ export function AddMarcacoes() {
         <Modal.Body style={{ maxHeight: "70vh", overflowY: "auto" }}>
           <div className="modal-content-container">
             {showAlert && (
-              <Alert variant={alertVariant} onClose={() => setShowAlert(false)} dismissible>
+              <Alert
+                variant={alertVariant}
+                onClose={() => setShowAlert(false)}
+                dismissible
+              >
                 {alertMessage}
               </Alert>
             )}
@@ -282,7 +273,7 @@ export function AddMarcacoes() {
                 action=""
                 className="d-flex justify-content-center formulario"
               >
-                {selectedServicos.map((servico) => (
+                {selectedServicos.map(({ servico, profissionalId, horarioId }) => (
                   <div key={servico.idServico} className="mb-3">
                     <Card>
                       <div className="d-flex justify-content-end m-3">
@@ -305,8 +296,9 @@ export function AddMarcacoes() {
                           className="form-select"
                           aria-label="Selecione o Profissional"
                           onChange={(e) =>
-                            handleProfissionalChange(parseInt(e.target.value))
+                            handleProfissionalChange(servico.idServico, parseInt(e.target.value))
                           }
+                          value={profissionalId || ""}
                         >
                           <option value="">Selecione o Profissional</option>
                           {profissionaisByServico[servico.idServico]?.map(
@@ -325,8 +317,9 @@ export function AddMarcacoes() {
                           className="form-select mt-3"
                           aria-label="Selecione o Horário"
                           onChange={(e) =>
-                            setSelectedHorarioId(parseInt(e.target.value))
+                            handleHorarioChange(servico.idServico, parseInt(e.target.value))
                           }
+                          value={horarioId || ""}
                         >
                           <option value="">Selecione o Horário</option>
                           {horariosProfissional.map((horario) => (

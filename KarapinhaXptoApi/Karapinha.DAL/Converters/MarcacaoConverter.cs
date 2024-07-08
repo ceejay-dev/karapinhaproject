@@ -17,6 +17,7 @@ namespace Karapinha.DAL.Converters
                 Estado = "pendente",
                 FkUtilizador = dto.FkUtilizador,
                 PrecoMarcacao = dto.PrecoMarcacao,
+                DataMarcacao = dto.DataMarcacao,
                 Servicos = dto.Servicos.Select(s=> MarcacaoServicoConverter.ToMarcacaoServico(s)).ToList(),
             };
         }
@@ -27,6 +28,7 @@ namespace Karapinha.DAL.Converters
             {
                 FkUtilizador = model.FkUtilizador,
                 PrecoMarcacao = model.PrecoMarcacao,
+                DataMarcacao = model.DataMarcacao,
                 Servicos = model.Servicos.Select(s => MarcacaoServicoConverter.ToMarcacaoServicoDTO(s)).ToList(),
             };
         }
@@ -38,6 +40,7 @@ namespace Karapinha.DAL.Converters
                 IdMarcacao = model.IdMarcacao,
                 Utilizador = UtilizadorConverter.ToUtilizadorDTO(model.Utilizador),
                 PrecoMarcacao = model.PrecoMarcacao,
+                DataMarcacao = model.DataMarcacao,
                 Estado = model.Estado,
                 Servicos = model.Servicos.Select(s => MarcacaoServicoConverter.ToMarcacaoServicoDTO(s)).ToList(),
             };

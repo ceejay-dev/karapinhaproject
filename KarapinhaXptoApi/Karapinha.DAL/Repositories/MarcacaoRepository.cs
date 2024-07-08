@@ -39,6 +39,21 @@ namespace Karapinha.DAL.Repositories
                 .FirstOrDefaultAsync(m => m.IdMarcacao == id);
         }
 
+        public async Task<IEnumerable<Marcacao>> GetAllBookingsByUserId(int idUtilizador)
+        {
+            return await DbContext.Marcacoes
+                .Include(m => m.Utilizador)
+                .Include(m => m.Servicos)
+                    .ThenInclude(s => s.Service)
+                .Include(m => m.Servicos)
+                    .ThenInclude(s => s.Horario)
+                .Include(m => m.Servicos)
+                    .ThenInclude(s => s.Profissional)
+                .Where(m => m.FkUtilizador == idUtilizador)
+                .ToListAsync();
+        }
+
+
 
         public IEnumerable<Marcacao> GetAllBookings()
         {

@@ -11,6 +11,7 @@ namespace Karapinha.Shared.IRepositories
     {
         Task<Marcacao> CreateBooking(Marcacao marcacao);
         Task<Marcacao> GetBookingById(int id);
+        Task<IEnumerable<Marcacao>> GetAllBookingsByUserId(int idUtilizador);
         IEnumerable<Marcacao> GetAllBookings();
         Task<bool> DeleteBooking(int id);
         Task UpdateBooking(Marcacao marcacao);

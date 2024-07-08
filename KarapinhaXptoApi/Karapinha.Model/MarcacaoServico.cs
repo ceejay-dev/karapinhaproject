@@ -25,6 +25,5 @@ namespace Karapinha.Model
         [ForeignKey(nameof(HoraMarcacao))]
         public int HoraMarcacao { get; set; }
         public Horario ? Horario { get; set; }
-        public DateTime DataMarcacao { get; set; }
     }
 }

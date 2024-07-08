@@ -15,16 +15,18 @@ namespace KarapinhaXptoApi.Controllers
 
         [HttpPost]
         [Route("/CreateBooking")]
-        public async Task<ActionResult<MarcacaoDTO>> CreateBooking([FromBody]MarcacaoDTO marcacao)
+        public async Task<ActionResult<MarcacaoDTO>> CreateBooking([FromBody] MarcacaoDTO marcacao)
         {
             try
             {
-                var booking = await bookingService.CreateBooking(marcacao); 
+                var booking = await bookingService.CreateBooking(marcacao);
                 return Ok(booking);
             }
-            catch  {
-                return StatusCode(500, "Erro ao criar a marcação.");
-            } 
+            catch (Exception ex)
+            {
+                throw new Exception(ex.Message + ex.ToString());
+                //return StatusCode(500, "{\"mensagem\":\"Erro interno ao adicionar a marcação.\"}");
+            }
         }
 
         [HttpGet]
@@ -36,9 +38,23 @@ namespace KarapinhaXptoApi.Controllers
                 var booking = await bookingService.GetBookingById(id);
                 return Ok(booking);
             }
-            catch 
+            catch
             {
-                return StatusCode(404, "Marcação não foi encontrada.");   
+                return StatusCode(404, "Marcação não foi encontrada.");
+            }
+        }
+
+        [HttpGet]
+        [Route("/GetAllBookingByUserId")]
+        public async Task<IEnumerable<MarcacaoGetDTO>> GetAllBookingByUserId(int id)
+        {
+            try
+            {
+                return await bookingService.GetAllBookingByUserId(id);
+            }
+            catch (Exception ex)
+            {
+                throw new Exception($"Marcações não foram encontradas. {ex.Message}");
             }
         }
 
@@ -50,9 +66,11 @@ namespace KarapinhaXptoApi.Controllers
             {
                 return bookingService.GetAllBookings();
             }
-            catch
+            catch (Exception ex)
             {
-                throw new Exception("Marcações não foram encontradas.");
+                {
+                    throw new Exception($"Marcações não foram encontradas. {ex.Message}");
+                }
             }
         }
     }

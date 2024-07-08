@@ -17,7 +17,6 @@ namespace Karapinha.DAL.Converters
                 FkServico = dto.FkServico,
                 FkProfissional = dto.FkProfissional,
                 HoraMarcacao = dto.FkHorario,
-                DataMarcacao = dto.DataMarcacao,
             };
         }
 
@@ -28,7 +27,6 @@ namespace Karapinha.DAL.Converters
                 FkServico = model.FkServico,
                 FkProfissional = model.FkProfissional,
                 FkHorario = model.HoraMarcacao,
-                DataMarcacao = model.DataMarcacao,
             };
         }
 
@@ -39,7 +37,6 @@ namespace Karapinha.DAL.Converters
                 Servico = ServicoConverter.ToServicoDTO(model.Service),
                 Profissional = ProfissionalConverter.ToProfissionalDTO(model.Profissional),
                 Horario = HorarioConverter.ToHorarioDTO(model.Horario),
-                DataMarcacao = model.DataMarcacao,
             };
         }
     }
