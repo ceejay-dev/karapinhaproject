@@ -80,7 +80,7 @@ export function MarcacoesList() {
           if (response.ok) {
             const data = await response.json();
 
-            // Fetch service names, professional names, and schedule descriptions
+            // Fetch nome do serviço, nome do professional, e descrição hora
             const namePromises = data.flatMap((marcacao: Marcacao) =>
               marcacao.servicos.map(async (servico: Servico) => {
                 if (!serviceNames[servico.fkServico]) {

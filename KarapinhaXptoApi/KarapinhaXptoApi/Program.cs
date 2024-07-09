@@ -76,9 +76,9 @@ builder.Services.AddControllers().AddJsonOptions(options =>
     options.JsonSerializerOptions.WriteIndented = true;
 });
 
+builder.Services.AddScoped<IEmailService, EmailService>();
 builder.Services.AddScoped<IEmailReceiver, EmailReceiver>();
 builder.Services.Configure<EmailSender>(builder.Configuration.GetSection("Email"));
-builder.Services.AddScoped<IEmailService, EmailService>();
 
 builder.Services.AddCors(options =>
 {

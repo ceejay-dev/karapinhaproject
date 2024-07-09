@@ -28,7 +28,7 @@ export function GestorHome() {
         </li>
 
         <li>
-          <Button route="/marcacoes" text="Marcações" />
+          <Button route="/confirm-marcacoes" text="Marcações" />
         </li>
 
         <li>

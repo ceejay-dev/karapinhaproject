@@ -14,6 +14,7 @@ import { getAllData } from "../services/getData";
 import DatePicker from "react-datepicker";
 import "react-datepicker/dist/react-datepicker.css";
 import { useNavigate } from "react-router-dom";
+import jsPDF from "jspdf";
 
 type servicosProps = {
   idServico: number;
@@ -66,6 +67,36 @@ export function AddMarcacoes() {
     handleClose();
   };
 
+  const generatePDF = (marcacao: any) => {
+    const doc = new jsPDF();
+
+    doc.setFontSize(12);
+    let yPos = 15; // posição inicial vertical
+
+    doc.text("FATURA DE COMPRA", 15, yPos);
+    yPos += 15; // incrementa a posição vertical para a próxima linha
+
+    // Informações da marcação
+    doc.text(
+      `Cliente: ${localStorage.getItem("usernameUtilizador")}`,
+      15,
+      yPos
+    );
+    yPos += 15;
+
+    doc.text(
+      `Data da Marcação: ${new Date(marcacao.dataMarcacao).toLocaleString()}`,
+      15,
+      yPos
+    );
+    yPos += 15;
+
+    doc.text(`Preço Total: ${marcacao.precoMarcacao} kz`, 15, yPos);
+
+    // Salvar ou exibir o PDF
+    doc.save("Marcacao.pdf");
+  };
+
   const handleConfirmedClick = async () => {
     const usernameStorage = localStorage.getItem("usernameUtilizador");
     if (usernameStorage !== null) {
@@ -87,7 +118,7 @@ export function AddMarcacoes() {
         );
 
         console.log("Serviços", servicosToSend);
-        const dataMarcacao = selectedDate?.toISOString().split('T')[0];
+        const dataMarcacao = selectedDate?.toISOString().split("T")[0];
 
         if (idStorage === null) {
           console.error("Não foi possível obter o ID do usuário.");
@@ -124,10 +155,21 @@ export function AddMarcacoes() {
         });
 
         if (response.ok) {
+          const data = await response.json();
+          const { precoMarcacao, servicos, profissional, horario } = data;
+          const marcacao = {
+            precoMarcacao,
+            servicos,
+            profissional,
+            horario,
+            dataMarcacao,
+          };
+
           setAlertMessage("Marcação criada com sucesso!");
           setAlertVariant("success");
           setShowAlert(true);
           setTimeout(() => {
+            generatePDF(marcacao);
             setShow(false);
             navigate("/mymarcacoes");
           }, 3000);
@@ -269,15 +311,6 @@ export function AddMarcacoes() {
         </Modal.Header>
         <Modal.Body style={{ maxHeight: "70vh", overflowY: "auto" }}>
           <div className="modal-content-container">
-            {showAlert && (
-              <Alert
-                variant={alertVariant}
-                onClose={() => setShowAlert(false)}
-                dismissible
-              >
-                {alertMessage}
-              </Alert>
-            )}
             <div className="container-imagem"></div>
             <div className="container-form">
               <div className="d-flex justify-content-center">
@@ -368,7 +401,7 @@ export function AddMarcacoes() {
                     />
                   </div>
                 </div>
-                <div className="d-flex justify-content-center">
+                <div className="d-flex justify-content-center mt-3">
                   <div className="m-1">
                     <BootstrapButton
                       variant="success"
@@ -388,6 +421,16 @@ export function AddMarcacoes() {
                     </BootstrapButton>
                   </div>
                 </div>
+                {showAlert && (
+                  <Alert
+                    variant={alertVariant}
+                    onClose={() => setShowAlert(false)}
+                    dismissible
+                    className="mt-3"
+                  >
+                    {alertMessage}
+                  </Alert>
+                )}
               </form>
             </div>
           </div>

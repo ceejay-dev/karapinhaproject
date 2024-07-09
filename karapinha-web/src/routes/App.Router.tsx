@@ -14,6 +14,7 @@ import { AddServicos } from "../views/AddServicos";
 import { ScheduleList } from "../views/ScheduleList";
 import { AddCategorias } from "../views/AddCategorias";
 import { MarcacoesList } from "../views/MarcacoesList";
+import { ConfirmMarcacoes } from "../views/ConfirmMarcacoes";
 
 
 export function AppRoutes() {
@@ -27,6 +28,7 @@ export function AppRoutes() {
         <Route path="/editUser" element={<UpdateUser />} />
         <Route path="/marcacoes" element={<AddMarcacoes />} />
         <Route path="/mymarcacoes" element={<MarcacoesList/>}/>
+        <Route path="/confirm-marcacoes" element={<ConfirmMarcacoes/>}/>
         <Route path="/adminHome" element={<AdminHome />} />
         <Route path="/gestorHome" element={<GestorHome />} />
         <Route path="/servicos" element={<AddServicos />} />

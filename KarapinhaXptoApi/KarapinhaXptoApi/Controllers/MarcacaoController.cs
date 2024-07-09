@@ -79,7 +79,7 @@ namespace KarapinhaXptoApi.Controllers
 
         [HttpPut]
         [Route("/ConfirmBooking")]
-        public async Task<ActionResult> ConfirmBooking(int id)
+        public async Task<IActionResult> ConfirmBooking(int id)
         {
             try
             {

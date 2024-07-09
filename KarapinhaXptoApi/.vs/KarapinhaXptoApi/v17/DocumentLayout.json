@@ -7,16 +7,24 @@
       "RelativeMoniker": "D:0:0:{681334B5-0B5A-4554-B088-4D2AD2DCCCF5}|KarapinhaXptoApi\\KarapinhaXptoApi.csproj|solutionrelative:karapinhaxptoapi\\controllers\\marcacaocontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
     },
     {
-      "AbsoluteMoniker": "D:0:0:{681334B5-0B5A-4554-B088-4D2AD2DCCCF5}|KarapinhaXptoApi\\KarapinhaXptoApi.csproj|d:\\karapinhaproject\\karapinhaxptoapi\\karapinhaxptoapi\\program.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
-      "RelativeMoniker": "D:0:0:{681334B5-0B5A-4554-B088-4D2AD2DCCCF5}|KarapinhaXptoApi\\KarapinhaXptoApi.csproj|solutionrelative:karapinhaxptoapi\\program.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
-    },
-    {
       "AbsoluteMoniker": "D:0:0:{F33CC080-53F0-4BBD-9619-219BA2C6F0E7}|Karapinha.Services\\Karapinha.Services.csproj|d:\\karapinhaproject\\karapinhaxptoapi\\karapinha.services\\marcacaoservice.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
       "RelativeMoniker": "D:0:0:{F33CC080-53F0-4BBD-9619-219BA2C6F0E7}|Karapinha.Services\\Karapinha.Services.csproj|solutionrelative:karapinha.services\\marcacaoservice.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
     },
     {
+      "AbsoluteMoniker": "D:0:0:{681334B5-0B5A-4554-B088-4D2AD2DCCCF5}|KarapinhaXptoApi\\KarapinhaXptoApi.csproj|d:\\karapinhaproject\\karapinhaxptoapi\\karapinhaxptoapi\\program.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{681334B5-0B5A-4554-B088-4D2AD2DCCCF5}|KarapinhaXptoApi\\KarapinhaXptoApi.csproj|solutionrelative:karapinhaxptoapi\\program.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{A8A0A425-5EDF-4C3D-8F0F-53C5D8684F76}|Karapinha.Shared\\Karapinha.Shared.csproj|d:\\karapinhaproject\\karapinhaxptoapi\\karapinha.shared\\iemail\\iemailservice.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{A8A0A425-5EDF-4C3D-8F0F-53C5D8684F76}|Karapinha.Shared\\Karapinha.Shared.csproj|solutionrelative:karapinha.shared\\iemail\\iemailservice.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
       "AbsoluteMoniker": "D:0:0:{220243E3-9456-48C8-983E-B3D233EC0989}|Karapinha.DAL\\Karapinha.DAL.csproj|d:\\karapinhaproject\\karapinhaxptoapi\\karapinha.dal\\repositories\\marcacaorepository.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
       "RelativeMoniker": "D:0:0:{220243E3-9456-48C8-983E-B3D233EC0989}|Karapinha.DAL\\Karapinha.DAL.csproj|solutionrelative:karapinha.dal\\repositories\\marcacaorepository.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{F33CC080-53F0-4BBD-9619-219BA2C6F0E7}|Karapinha.Services\\Karapinha.Services.csproj|d:\\karapinhaproject\\karapinhaxptoapi\\karapinha.services\\utilizadorservice.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{F33CC080-53F0-4BBD-9619-219BA2C6F0E7}|Karapinha.Services\\Karapinha.Services.csproj|solutionrelative:karapinha.services\\utilizadorservice.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
     },
     {
       "AbsoluteMoniker": "D:0:0:{220243E3-9456-48C8-983E-B3D233EC0989}|Karapinha.DAL\\Karapinha.DAL.csproj|d:\\karapinhaproject\\karapinhaxptoapi\\karapinha.dal\\converters\\marcacaoconverter.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
@@ -34,7 +42,7 @@
       "DocumentGroups": [
         {
           "DockedWidth": 200,
-          "SelectedChildIndex": 5,
+          "SelectedChildIndex": 7,
           "Children": [
             {
               "$type": "Bookmark",
@@ -42,19 +50,46 @@
             },
             {
               "$type": "Document",
-              "DocumentIndex": 1,
+              "DocumentIndex": 3,
+              "Title": "IEmailService.cs",
+              "DocumentMoniker": "D:\\karapinhaproject\\KarapinhaXptoApi\\Karapinha.Shared\\IEmail\\IEmailService.cs",
+              "RelativeDocumentMoniker": "Karapinha.Shared\\IEmail\\IEmailService.cs",
+              "ToolTip": "D:\\karapinhaproject\\KarapinhaXptoApi\\Karapinha.Shared\\IEmail\\IEmailService.cs",
+              "RelativeToolTip": "Karapinha.Shared\\IEmail\\IEmailService.cs",
+              "ViewState": "AQIAAAAAAAAAAAAAAAAAAAAAAAAAAAAA",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2024-07-09T16:27:56.058Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 5,
+              "Title": "UtilizadorService.cs",
+              "DocumentMoniker": "D:\\karapinhaproject\\KarapinhaXptoApi\\Karapinha.Services\\UtilizadorService.cs",
+              "RelativeDocumentMoniker": "Karapinha.Services\\UtilizadorService.cs",
+              "ToolTip": "D:\\karapinhaproject\\KarapinhaXptoApi\\Karapinha.Services\\UtilizadorService.cs",
+              "RelativeToolTip": "Karapinha.Services\\UtilizadorService.cs",
+              "ViewState": "AQIAAOAAAAAAAAAAAAAiwPAAAAAcAAAA",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2024-07-09T15:17:18.605Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 2,
               "Title": "Program.cs",
               "DocumentMoniker": "D:\\karapinhaproject\\KarapinhaXptoApi\\KarapinhaXptoApi\\Program.cs",
               "RelativeDocumentMoniker": "KarapinhaXptoApi\\Program.cs",
               "ToolTip": "D:\\karapinhaproject\\KarapinhaXptoApi\\KarapinhaXptoApi\\Program.cs",
               "RelativeToolTip": "KarapinhaXptoApi\\Program.cs",
-              "ViewState": "AQIAAFcAAAAAAAAAAAAAAAAAAAAAAAAA",
+              "ViewState": "AQIAAEkAAAAAAAAAAAAhwF0AAAAAAAAA",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2024-07-09T11:12:00.75Z"
+              "WhenOpened": "2024-07-09T11:12:00.75Z",
+              "EditorCaption": ""
             },
             {
               "$type": "Document",
-              "DocumentIndex": 5,
+              "DocumentIndex": 7,
               "Title": "MarcacaoServicoConverter.cs",
               "DocumentMoniker": "D:\\karapinhaproject\\KarapinhaXptoApi\\Karapinha.DAL\\Converters\\MarcacaoServicoConverter.cs",
               "RelativeDocumentMoniker": "Karapinha.DAL\\Converters\\MarcacaoServicoConverter.cs",
@@ -66,7 +101,7 @@
             },
             {
               "$type": "Document",
-              "DocumentIndex": 4,
+              "DocumentIndex": 6,
               "Title": "MarcacaoConverter.cs",
               "DocumentMoniker": "D:\\karapinhaproject\\KarapinhaXptoApi\\Karapinha.DAL\\Converters\\MarcacaoConverter.cs",
               "RelativeDocumentMoniker": "Karapinha.DAL\\Converters\\MarcacaoConverter.cs",
@@ -78,15 +113,16 @@
             },
             {
               "$type": "Document",
-              "DocumentIndex": 3,
+              "DocumentIndex": 4,
               "Title": "MarcacaoRepository.cs",
               "DocumentMoniker": "D:\\karapinhaproject\\KarapinhaXptoApi\\Karapinha.DAL\\Repositories\\MarcacaoRepository.cs",
               "RelativeDocumentMoniker": "Karapinha.DAL\\Repositories\\MarcacaoRepository.cs",
               "ToolTip": "D:\\karapinhaproject\\KarapinhaXptoApi\\Karapinha.DAL\\Repositories\\MarcacaoRepository.cs",
               "RelativeToolTip": "Karapinha.DAL\\Repositories\\MarcacaoRepository.cs",
-              "ViewState": "AQIAAAwAAAAAAAAAAIA3wBkAAAAMAAAA",
+              "ViewState": "AQIAAA0AAAAAAAAAAAAawBkAAAAMAAAA",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2024-07-09T10:18:54.644Z"
+              "WhenOpened": "2024-07-09T10:18:54.644Z",
+              "EditorCaption": ""
             },
             {
               "$type": "Document",
@@ -96,22 +132,23 @@
               "RelativeDocumentMoniker": "KarapinhaXptoApi\\Controllers\\MarcacaoController.cs",
               "ToolTip": "D:\\karapinhaproject\\KarapinhaXptoApi\\KarapinhaXptoApi\\Controllers\\MarcacaoController.cs",
               "RelativeToolTip": "KarapinhaXptoApi\\Controllers\\MarcacaoController.cs",
-              "ViewState": "AQIAADoAAAAAAAAAAAAkwEIAAAAJAAAA",
+              "ViewState": "AQIAAEgAAAAAAAAAAAAowFIAAAAJAAAA",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
               "WhenOpened": "2024-07-09T10:20:56.846Z",
               "EditorCaption": ""
             },
             {
               "$type": "Document",
-              "DocumentIndex": 2,
+              "DocumentIndex": 1,
               "Title": "MarcacaoService.cs",
               "DocumentMoniker": "D:\\karapinhaproject\\KarapinhaXptoApi\\Karapinha.Services\\MarcacaoService.cs",
               "RelativeDocumentMoniker": "Karapinha.Services\\MarcacaoService.cs",
               "ToolTip": "D:\\karapinhaproject\\KarapinhaXptoApi\\Karapinha.Services\\MarcacaoService.cs",
               "RelativeToolTip": "Karapinha.Services\\MarcacaoService.cs",
-              "ViewState": "AQIAABEAAAAAAAAAAAAAwBsAAAAQAAAA",
+              "ViewState": "AQIAAEsAAAAAAAAAAAAowEwAAAA1AAAA",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2024-07-09T10:17:33.666Z"
+              "WhenOpened": "2024-07-09T10:17:33.666Z",
+              "EditorCaption": ""
             }
           ]
         }
