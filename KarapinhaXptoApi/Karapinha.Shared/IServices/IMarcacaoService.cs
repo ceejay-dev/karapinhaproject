@@ -12,7 +12,7 @@ namespace Karapinha.Shared.IServices
     {
         Task<MarcacaoDTO> CreateBooking(MarcacaoDTO marcacao);
         Task<MarcacaoGetDTO> GetBookingById(int id);
-        Task<IEnumerable<dynamic>> GetAllBookingByUserId(int idUtilizador);
+        Task<IEnumerable<MarcacaoGetDTO>> GetAllBookingByUserId(int idUtilizador);
         IEnumerable<MarcacaoGetDTO> GetAllBookings();
         Task<bool> ConfirmBooking(int id);
         /*Task<bool> DeleteBooking(int id);

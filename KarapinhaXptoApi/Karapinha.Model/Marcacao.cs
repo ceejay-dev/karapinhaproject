@@ -16,7 +16,7 @@ namespace Karapinha.Model
         public int IdMarcacao { get; set; }
         public double PrecoMarcacao { get; set; }
         public string? Estado { get; set; }
-        public DateTime DataMarcacao { get; set; }
+        public DateOnly DataMarcacao { get; set; }
         public int FkUtilizador { get; set; }
         [ForeignKey(nameof(FkUtilizador))]
         public Utilizador? Utilizador { get; set; }

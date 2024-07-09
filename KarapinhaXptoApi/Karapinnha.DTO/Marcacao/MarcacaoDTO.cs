@@ -11,7 +11,7 @@ namespace Karapinnha.DTO.Marcacao
     {
         public double PrecoMarcacao { get; set; }
         public int FkUtilizador { get; set; }
-        public DateTime DataMarcacao { get; set; }
+        public DateOnly DataMarcacao { get; set; }
         public List<MarcacaoServicoDTO> Servicos { get; set; }
     }
 }

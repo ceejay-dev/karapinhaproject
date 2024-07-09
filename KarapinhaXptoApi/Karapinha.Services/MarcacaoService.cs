@@ -44,11 +44,12 @@ namespace Karapinha.Services
             }
         }
 
-        public async Task<IEnumerable<dynamic>> GetAllBookingByUserId(int idUtilizador)
+        public async Task<IEnumerable<MarcacaoGetDTO>> GetAllBookingByUserId(int idUtilizador)
         {
             try
             {
-                return await repository.GetAllBookingsByUserId(idUtilizador);
+                var allUserBookings = await repository.GetAllBookingsByUserId(idUtilizador);
+                return allUserBookings.Select(MarcacaoConverter.ToMarcacaoGetDTO);
             }
             catch (ServiceException ex) {
                 throw new ServiceException (ex.Message);

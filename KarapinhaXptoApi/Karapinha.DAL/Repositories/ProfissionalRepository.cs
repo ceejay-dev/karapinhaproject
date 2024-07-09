@@ -138,7 +138,6 @@ namespace Karapinha.DAL.Repositories
                                        {
                                             IdHorario = h.Horario.IdHorario,
                                             Descricao = h.Horario.Descricao,
-                                            Estado = h.Horario.Estado
                                        }).ToList()
                                    }).ToListAsync();
 

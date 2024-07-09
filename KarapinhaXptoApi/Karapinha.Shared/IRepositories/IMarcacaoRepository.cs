@@ -1,4 +1,5 @@
 ﻿using Karapinha.Model;
+using Karapinnha.DTO.Marcacao;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -11,7 +12,7 @@ namespace Karapinha.Shared.IRepositories
     {
         Task<Marcacao> CreateBooking(Marcacao marcacao);
         Task<Marcacao> GetBookingById(int id);
-        Task<IEnumerable<dynamic>> GetAllBookingsByUserId(int idUtilizador);
+        Task<IEnumerable<Marcacao>> GetAllBookingsByUserId(int idUtilizador);
         IEnumerable<Marcacao> GetAllBookings();
         Task<bool> DeleteBooking(int id);
         Task UpdateBooking(Marcacao marcacao);

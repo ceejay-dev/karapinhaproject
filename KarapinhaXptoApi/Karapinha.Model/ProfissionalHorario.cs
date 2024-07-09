@@ -8,6 +8,7 @@ using System.Threading.Tasks;
 
 namespace Karapinha.Model
 {
+    [Table("profissionalHorario")]
     public class ProfissionalHorario
     {
         [Key]

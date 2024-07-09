@@ -135,7 +135,7 @@ export function AddProfissionais() {
           setShow(false);
           // Recarregar a página após a criação bem-sucedida
           window.location.reload();
-        }, 3000);
+        }, 2500);
       } else {
         const errorData = await response.json();
         console.error("Falha ao criar profissional", errorData);

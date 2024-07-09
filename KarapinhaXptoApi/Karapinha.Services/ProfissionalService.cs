@@ -29,7 +29,6 @@ namespace Karapinha.Services
             {
                 //Armazenamento da fotografia do profissional
                 string photoPath = null;
-
                 if (foto != null)
                 {
                     var uploadsFolder = Path.Combine("wwwroot", "storage");
@@ -50,11 +49,10 @@ namespace Karapinha.Services
                     // Ajusta o caminho para ser usado em URLs
                     photoPath = "/" + photoPath.Replace("wwwroot\\", string.Empty).Replace("\\", "/");
                 }
-
                 var profissionalAdded = dto;
+                //Adição da foto submetida ao profissional
                 profissionalAdded.FotoProfissional = photoPath;
                 profissionalAdded = ProfissionalConverter.ToProfissionalDTO(await Repository.CreateProfissional(ProfissionalConverter.ToProfissional(profissionalAdded)));
-
                 return profissionalAdded;
             }
             catch (Exception ex)

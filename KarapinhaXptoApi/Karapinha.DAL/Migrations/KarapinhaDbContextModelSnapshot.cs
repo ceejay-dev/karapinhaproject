@@ -51,9 +51,6 @@ namespace Karapinha.DAL.Migrations
                         .IsRequired()
                         .HasColumnType("nvarchar(max)");
 
-                    b.Property<string>("Estado")
-                        .HasColumnType("nvarchar(max)");
-
                     b.HasKey("IdHorario");
 
                     b.ToTable("horarios");
@@ -67,8 +64,8 @@ namespace Karapinha.DAL.Migrations
 
                     SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("IdMarcacao"));
 
-                    b.Property<DateTime>("DataMarcacao")
-                        .HasColumnType("datetime2");
+                    b.Property<DateOnly>("DataMarcacao")
+                        .HasColumnType("date");
 
                     b.Property<string>("Estado")
                         .HasColumnType("nvarchar(max)");
@@ -128,7 +125,7 @@ namespace Karapinha.DAL.Migrations
 
                     b.HasIndex("ServiceIdServico");
 
-                    b.ToTable("MarcacoesServicos");
+                    b.ToTable("marcacoesServicos");
                 });
 
             modelBuilder.Entity("Karapinha.Model.Profissional", b =>
@@ -186,7 +183,7 @@ namespace Karapinha.DAL.Migrations
 
                     b.HasIndex("IdProfissional");
 
-                    b.ToTable("ProfissionalHorarios");
+                    b.ToTable("profissionalHorario");
                 });
 
             modelBuilder.Entity("Karapinha.Model.Servico", b =>

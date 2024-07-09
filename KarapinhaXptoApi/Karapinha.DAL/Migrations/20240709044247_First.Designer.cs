@@ -12,8 +12,8 @@ using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 namespace Karapinha.DAL.Migrations
 {
     [DbContext(typeof(KarapinhaDbContext))]
-    [Migration("20240610144040_profissionalUpdate")]
-    partial class profissionalUpdate
+    [Migration("20240709044247_First")]
+    partial class First
     {
         /// <inheritdoc />
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
@@ -73,9 +73,6 @@ namespace Karapinha.DAL.Migrations
                     b.Property<string>("Estado")
                         .HasColumnType("nvarchar(max)");
 
-                    b.Property<int>("FkHorario")
-                        .HasColumnType("int");
-
                     b.Property<int>("FkUtilizador")
                         .HasColumnType("int");
 
@@ -100,12 +97,6 @@ namespace Karapinha.DAL.Migrations
                     b.Property<int?>("BookingIdMarcacao")
                         .HasColumnType("int");
 
-                    b.Property<int?>("CategoryIdCategoria")
-                        .HasColumnType("int");
-
-                    b.Property<int>("FkCategoria")
-                        .HasColumnType("int");
-
                     b.Property<int>("FkMarcacao")
                         .HasColumnType("int");
 
@@ -115,7 +106,13 @@ namespace Karapinha.DAL.Migrations
                     b.Property<int>("FkServico")
                         .HasColumnType("int");
 
-                    b.Property<int?>("ProfissionalsIdProfissional")
+                    b.Property<int>("HoraMarcacao")
+                        .HasColumnType("int");
+
+                    b.Property<int?>("HorarioIdHorario")
+                        .HasColumnType("int");
+
+                    b.Property<int?>("ProfissionalIdProfissional")
                         .HasColumnType("int");
 
                     b.Property<int?>("ServiceIdServico")
@@ -125,13 +122,13 @@ namespace Karapinha.DAL.Migrations
 
                     b.HasIndex("BookingIdMarcacao");
 
-                    b.HasIndex("CategoryIdCategoria");
+                    b.HasIndex("HorarioIdHorario");
 
-                    b.HasIndex("ProfissionalsIdProfissional");
+                    b.HasIndex("ProfissionalIdProfissional");
 
                     b.HasIndex("ServiceIdServico");
 
-                    b.ToTable("MarcacoesServicos");
+                    b.ToTable("marcacoesServicos");
                 });
 
             modelBuilder.Entity("Karapinha.Model.Profissional", b =>
@@ -189,7 +186,7 @@ namespace Karapinha.DAL.Migrations
 
                     b.HasIndex("IdProfissional");
 
-                    b.ToTable("ProfissionalHorarios");
+                    b.ToTable("profissionalHorario");
                 });
 
             modelBuilder.Entity("Karapinha.Model.Servico", b =>
@@ -199,6 +196,9 @@ namespace Karapinha.DAL.Migrations
                         .HasColumnType("int");
 
                     SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("IdServico"));
+
+                    b.Property<int>("Contador")
+                        .HasColumnType("int");
 
                     b.Property<int>("FkCategoria")
                         .HasColumnType("int");
@@ -470,16 +470,16 @@ namespace Karapinha.DAL.Migrations
             modelBuilder.Entity("Karapinha.Model.MarcacaoServico", b =>
                 {
                     b.HasOne("Karapinha.Model.Marcacao", "Booking")
-                        .WithMany()
+                        .WithMany("Servicos")
                         .HasForeignKey("BookingIdMarcacao");
 
-                    b.HasOne("Karapinha.Model.Categoria", "Category")
+                    b.HasOne("Karapinha.Model.Horario", "Horario")
                         .WithMany()
-                        .HasForeignKey("CategoryIdCategoria");
+                        .HasForeignKey("HorarioIdHorario");
 
-                    b.HasOne("Karapinha.Model.Profissional", "Profissionals")
+                    b.HasOne("Karapinha.Model.Profissional", "Profissional")
                         .WithMany()
-                        .HasForeignKey("ProfissionalsIdProfissional");
+                        .HasForeignKey("ProfissionalIdProfissional");
 
                     b.HasOne("Karapinha.Model.Servico", "Service")
                         .WithMany()
@@ -487,9 +487,9 @@ namespace Karapinha.DAL.Migrations
 
                     b.Navigation("Booking");
 
-                    b.Navigation("Category");
+                    b.Navigation("Horario");
 
-                    b.Navigation("Profissionals");
+                    b.Navigation("Profissional");
 
                     b.Navigation("Service");
                 });
@@ -503,7 +503,7 @@ namespace Karapinha.DAL.Migrations
                         .IsRequired();
 
                     b.HasOne("Karapinha.Model.Profissional", "Profissional")
-                        .WithMany()
+                        .WithMany("Horarios")
                         .HasForeignKey("IdProfissional")
                         .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
@@ -578,6 +578,16 @@ namespace Karapinha.DAL.Migrations
             modelBuilder.Entity("Karapinha.Model.Categoria", b =>
                 {
                     b.Navigation("Servicos");
+                });
+
+            modelBuilder.Entity("Karapinha.Model.Marcacao", b =>
+                {
+                    b.Navigation("Servicos");
+                });
+
+            modelBuilder.Entity("Karapinha.Model.Profissional", b =>
+                {
+                    b.Navigation("Horarios");
                 });
 #pragma warning restore 612, 618
         }

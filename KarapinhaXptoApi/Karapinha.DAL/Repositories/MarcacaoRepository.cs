@@ -1,5 +1,6 @@
 ﻿using Karapinha.Model;
 using Karapinha.Shared.IRepositories;
+using Karapinnha.DTO.Marcacao;
 using Microsoft.EntityFrameworkCore;
 using System;
 using System.Collections.Generic;
@@ -39,41 +40,19 @@ namespace Karapinha.DAL.Repositories
                 .FirstOrDefaultAsync(m => m.IdMarcacao == id);
         }
 
-        public async Task<IEnumerable<dynamic>> GetAllBookingsByUserId(int idUtilizador)
+        public async Task<IEnumerable<Marcacao>> GetAllBookingsByUserId(int idUtilizador)
         {
             return await DbContext.Marcacoes
                 .Include(m => m.Utilizador)
                 .Include(m => m.Servicos)
-                    .ThenInclude(ms => ms.Service)
+                    .ThenInclude(s => s.Service)
                 .Include(m => m.Servicos)
-                    .ThenInclude(ms => ms.Horario)
+                    .ThenInclude(s => s.Horario)
                 .Include(m => m.Servicos)
-                    .ThenInclude(ms => ms.Profissional)
+                    .ThenInclude(s => s.Profissional)
                 .Where(m => m.FkUtilizador == idUtilizador)
-                .Select(m => new
-                {
-                    m.IdMarcacao,
-                    m.DataMarcacao,
-                    m.Estado,
-                    Utilizador = new
-                    {
-                        m.Utilizador.IdUtilizador,
-                        m.Utilizador.NomeUtilizador,
-                        m.Utilizador.EmailUtilizador
-                    },
-                    Servicos = m.Servicos.Select(ms => new
-                    {
-                        ms.Id,
-                        Servico = ms.Service.NomeServico,
-                        Horario = ms.Horario.Descricao,
-                        Profissional = ms.Profissional.NomeProfissional
-                    }).ToList()
-                })
                 .ToListAsync();
         }
-
-
-
 
         public IEnumerable<Marcacao> GetAllBookings()
         {

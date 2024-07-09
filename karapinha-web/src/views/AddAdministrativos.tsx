@@ -103,12 +103,13 @@ export function AddAdministrativos() {
           variant: "success",
         });
         setTimeout(() => {
-          navigate("/AdminHome");
-        }, 3000);
+          setShow(false);
+          window.location.reload();
+        }, 2500);
       } else {
         setAlert({
           show: true,
-          message: "Falha ao registar o utilizador.",
+          message: "Falha ao registar o administrativo.",
           variant: "danger",
         });
       }
@@ -116,7 +117,7 @@ export function AddAdministrativos() {
       console.error("Error:", error);
       setAlert({
         show: true,
-        message: "Erro ao registar o utilizador.",
+        message: "Erro ao registar o administrativo.",
         variant: "danger",
       });
     }

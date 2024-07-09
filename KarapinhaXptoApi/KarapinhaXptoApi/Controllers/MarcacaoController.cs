@@ -1,4 +1,5 @@
-﻿using Karapinha.Shared.IServices;
+﻿using Karapinha.Model;
+using Karapinha.Shared.IServices;
 using Karapinnha.DTO.Marcacao;
 using Microsoft.AspNetCore.Mvc;
 
@@ -19,12 +20,14 @@ namespace KarapinhaXptoApi.Controllers
         {
             try
             {
-                var booking = await bookingService.CreateBooking(marcacao);
-                return Ok(booking);
+                if (marcacao != null) {
+                    var booking = await bookingService.CreateBooking(marcacao);
+                    return Ok(booking);
+                } else { return BadRequest(); }
             }
             catch (Exception ex)
             {
-                throw new Exception(ex.Message + ex.ToString());
+                throw new Exception(ex.Message);
                 //return StatusCode(500, "{\"mensagem\":\"Erro interno ao adicionar a marcação.\"}");
             }
         }
@@ -46,10 +49,7 @@ namespace KarapinhaXptoApi.Controllers
 
         [HttpGet]
         [Route("/GetAllBookingByUserId")]
-        public async Task<IEnumerable<dynamic
-            
-            
-            >> GetAllBookingByUserId(int id)
+        public async Task<IEnumerable<MarcacaoGetDTO>> GetAllBookingByUserId(int id)
         {
             try
             {
@@ -79,15 +79,16 @@ namespace KarapinhaXptoApi.Controllers
 
         [HttpPut]
         [Route("/ConfirmBooking")]
-        public async Task<ActionResult> ConfirmBooking (int id)
+        public async Task<ActionResult> ConfirmBooking(int id)
         {
             try
             {
-                var result =  await bookingService.ConfirmBooking(id);
+                var result = await bookingService.ConfirmBooking(id);
                 return Ok(result);
             }
-            catch (Exception ex) { 
-                throw new Exception (ex.Message);
+            catch (Exception ex)
+            {
+                throw new Exception(ex.Message);
             }
         }
     }

@@ -8,7 +8,7 @@ using System.Threading.Tasks;
 
 namespace Karapinha.Model
 {
-    [Table ("MarcacoesServicos")]
+    [Table ("marcacoesServicos")]
     public class MarcacaoServico
     {
         [Key] 
