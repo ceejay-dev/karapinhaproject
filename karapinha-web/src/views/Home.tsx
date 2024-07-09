@@ -34,7 +34,7 @@ export function Home() {
           </li>
 
           <li>
-            <Button route="/marcacoes" text="Minhas Marcações" />
+            <Button route="/mymarcacoes" text="Minhas Marcações" />
           </li>
 
           <li>

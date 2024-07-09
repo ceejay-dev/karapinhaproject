@@ -44,12 +44,11 @@ namespace Karapinha.Services
             }
         }
 
-        public async Task<IEnumerable<MarcacaoGetDTO>> GetAllBookingByUserId(int idUtilizador)
+        public async Task<IEnumerable<dynamic>> GetAllBookingByUserId(int idUtilizador)
         {
             try
             {
-                var allBookings = await repository.GetAllBookingsByUserId(idUtilizador);
-                return allBookings.Select(MarcacaoConverter.ToMarcacaoGetDTO);
+                return await repository.GetAllBookingsByUserId(idUtilizador);
             }
             catch (ServiceException ex) {
                 throw new ServiceException (ex.Message);
@@ -64,6 +63,20 @@ namespace Karapinha.Services
             }
             catch (ServiceException ex) {
                 throw new ServiceException($"Marcações não foram encontradas {ex.Message}");
+            }
+        }
+
+        public async Task<bool> ConfirmBooking (int id)
+        {
+            var booking = await repository.GetBookingById(id);
+
+            if (booking == null) { 
+                return false;
+            } else
+            {
+                booking.Estado = "validado";
+                await repository.UpdateBooking(booking);
+                return true;
             }
         }
         /*public async Task<bool> DeleteBooking(int id)

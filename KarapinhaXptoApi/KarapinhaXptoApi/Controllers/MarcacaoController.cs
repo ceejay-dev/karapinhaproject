@@ -46,7 +46,10 @@ namespace KarapinhaXptoApi.Controllers
 
         [HttpGet]
         [Route("/GetAllBookingByUserId")]
-        public async Task<IEnumerable<MarcacaoGetDTO>> GetAllBookingByUserId(int id)
+        public async Task<IEnumerable<dynamic
+            
+            
+            >> GetAllBookingByUserId(int id)
         {
             try
             {
@@ -71,6 +74,20 @@ namespace KarapinhaXptoApi.Controllers
                 {
                     throw new Exception($"Marcações não foram encontradas. {ex.Message}");
                 }
+            }
+        }
+
+        [HttpPut]
+        [Route("/ConfirmBooking")]
+        public async Task<ActionResult> ConfirmBooking (int id)
+        {
+            try
+            {
+                var result =  await bookingService.ConfirmBooking(id);
+                return Ok(result);
+            }
+            catch (Exception ex) { 
+                throw new Exception (ex.Message);
             }
         }
     }
