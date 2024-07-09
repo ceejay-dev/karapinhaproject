@@ -50,8 +50,7 @@
               "RelativeToolTip": "KarapinhaXptoApi\\Program.cs",
               "ViewState": "AQIAAFcAAAAAAAAAAAAAAAAAAAAAAAAA",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2024-07-09T11:12:00.75Z",
-              "EditorCaption": ""
+              "WhenOpened": "2024-07-09T11:12:00.75Z"
             },
             {
               "$type": "Document",
@@ -63,8 +62,7 @@
               "RelativeToolTip": "Karapinha.DAL\\Converters\\MarcacaoServicoConverter.cs",
               "ViewState": "AQIAAA4AAAAAAAAAAAAuwA4AAAAMAAAA",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2024-07-09T10:31:05.012Z",
-              "EditorCaption": ""
+              "WhenOpened": "2024-07-09T10:31:05.012Z"
             },
             {
               "$type": "Document",
@@ -76,8 +74,7 @@
               "RelativeToolTip": "Karapinha.DAL\\Converters\\MarcacaoConverter.cs",
               "ViewState": "AQIAAAwAAAAAAAAAAAAqwBoAAAAMAAAA",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2024-07-09T10:18:54.629Z",
-              "EditorCaption": ""
+              "WhenOpened": "2024-07-09T10:18:54.629Z"
             },
             {
               "$type": "Document",
@@ -89,8 +86,7 @@
               "RelativeToolTip": "Karapinha.DAL\\Repositories\\MarcacaoRepository.cs",
               "ViewState": "AQIAAAwAAAAAAAAAAIA3wBkAAAAMAAAA",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2024-07-09T10:18:54.644Z",
-              "EditorCaption": ""
+              "WhenOpened": "2024-07-09T10:18:54.644Z"
             },
             {
               "$type": "Document",
@@ -115,8 +111,7 @@
               "RelativeToolTip": "Karapinha.Services\\MarcacaoService.cs",
               "ViewState": "AQIAABEAAAAAAAAAAAAAwBsAAAAQAAAA",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2024-07-09T10:17:33.666Z",
-              "EditorCaption": ""
+              "WhenOpened": "2024-07-09T10:17:33.666Z"
             }
           ]
         }

@@ -18,9 +18,60 @@ type Marcacao = {
 
 export function MarcacoesList() {
   const [marcacoes, setMarcacoes] = useState<Marcacao[]>([]);
+  const [serviceNames, setServiceNames] = useState<{ [key: number]: string }>({});
+  const [professionalNames, setProfessionalNames] = useState<{ [key: number]: string }>({});
+  const [scheduleDescriptions, setScheduleDescriptions] = useState<{ [key: number]: string }>({});
   const userId = localStorage.getItem("idUtilizador");
 
   useEffect(() => {
+    async function fetchServiceName(id: number) {
+      const url = `https://localhost:7209/GetTreatmentById?id=${id}`;
+      try {
+        const response = await fetch(url);
+        if (response.ok) {
+          const data = await response.json();
+          return data.nomeServico;
+        } else {
+          console.error("Erro ao buscar nome do serviço");
+        }
+      } catch (error) {
+        console.error("Erro ao buscar nome do serviço:", error);
+      }
+      return null;
+    }
+
+    async function fetchProfessionalName(id: number) {
+      const url = `https://localhost:7209/GetProfissionalById?id=${id}`;
+      try {
+        const response = await fetch(url);
+        if (response.ok) {
+          const data = await response.json();
+          return data.nomeProfissional;
+        } else {
+          console.error("Erro ao buscar nome do profissional");
+        }
+      } catch (error) {
+        console.error("Erro ao buscar nome do profissional:", error);
+      }
+      return null;
+    }
+
+    async function fetchScheduleDescription(id: number) {
+      const url = `https://localhost:7209/GetSchedule?id=${id}`;
+      try {
+        const response = await fetch(url);
+        if (response.ok) {
+          const data = await response.json();
+          return data.descricao;
+        } else {
+          console.error("Erro ao buscar descrição do horário");
+        }
+      } catch (error) {
+        console.error("Erro ao buscar descrição do horário:", error);
+      }
+      return null;
+    }
+
     async function fetchMarcacoes() {
       if (userId) {
         const url = `https://localhost:7209/GetAllBookingByUserId?id=${userId}`;
@@ -28,6 +79,41 @@ export function MarcacoesList() {
           const response = await fetch(url);
           if (response.ok) {
             const data = await response.json();
+
+            // Fetch service names, professional names, and schedule descriptions
+            const namePromises = data.flatMap((marcacao: Marcacao) =>
+              marcacao.servicos.map(async (servico: Servico) => {
+                if (!serviceNames[servico.fkServico]) {
+                  const nomeServico = await fetchServiceName(servico.fkServico);
+                  if (nomeServico) {
+                    setServiceNames(prevNames => ({
+                      ...prevNames,
+                      [servico.fkServico]: nomeServico
+                    }));
+                  }
+                }
+                if (!professionalNames[servico.fkProfissional]) {
+                  const nomeProfissional = await fetchProfessionalName(servico.fkProfissional);
+                  if (nomeProfissional) {
+                    setProfessionalNames(prevNames => ({
+                      ...prevNames,
+                      [servico.fkProfissional]: nomeProfissional
+                    }));
+                  }
+                }
+                if (!scheduleDescriptions[servico.fkHorario]) {
+                  const descricaoHorario = await fetchScheduleDescription(servico.fkHorario);
+                  if (descricaoHorario) {
+                    setScheduleDescriptions(prevDescriptions => ({
+                      ...prevDescriptions,
+                      [servico.fkHorario]: descricaoHorario
+                    }));
+                  }
+                }
+              })
+            );
+
+            await Promise.all(namePromises);
             setMarcacoes(data);
           } else {
             console.error("Erro ao buscar marcações");
@@ -39,7 +125,7 @@ export function MarcacoesList() {
     }
 
     fetchMarcacoes();
-  }, [userId]);
+  }, [userId, serviceNames, professionalNames, scheduleDescriptions]);
 
   return (
     <main className="container-service">
@@ -65,12 +151,12 @@ export function MarcacoesList() {
                     {marcacao.servicos.map((servico, index) => (
                       <div key={index}>
                         <Card.Text>
-                          Descrição do serviço: {servico.fkServico}
+                          Descrição do serviço: {serviceNames[servico.fkServico] || servico.fkServico}
                         </Card.Text>
                         <Card.Text>
-                          Profissional: {servico.fkProfissional}
+                          Profissional: {professionalNames[servico.fkProfissional] || servico.fkProfissional}
                         </Card.Text>
-                        <Card.Text>Horário: {servico.fkHorario}</Card.Text>
+                        <Card.Text>Horário: {scheduleDescriptions[servico.fkHorario] || servico.fkHorario}</Card.Text>
                         <span>------------------------------</span>
                       </div>
                     ))}
