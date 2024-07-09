@@ -1,5 +1,5 @@
 import { useEffect, useState } from "react";
-import { Container, Table, Button, Modal } from "react-bootstrap";
+import { Container, Table, Button, Modal, Form } from "react-bootstrap";
 import "../styles/marcacao.css";
 
 type Servico = {
@@ -36,6 +36,9 @@ export function ConfirmMarcacoes() {
   const [showModal, setShowModal] = useState(false);
   const [modalMessage, setModalMessage] = useState("");
   const [modalVariant, setModalVariant] = useState<"success" | "danger">("success");
+  const [rescheduleModalShow, setRescheduleModalShow] = useState(false);
+  const [selectedMarcacaoId, setSelectedMarcacaoId] = useState<number | null>(null);
+  const [selectedDate, setSelectedDate] = useState<string>("");
 
   useEffect(() => {
     async function fetchMarcacoes() {
@@ -77,7 +80,42 @@ export function ConfirmMarcacoes() {
       setTimeout(() => {
         setShowModal(false);
         window.location.reload();
-      }, 2500); 
+      }, 2500); // Fecha o modal após 2.5 segundos e recarrega a página
+    }
+  };
+
+  const handleOpenRescheduleModal = (idMarcacao: number) => {
+    setSelectedMarcacaoId(idMarcacao);
+    setRescheduleModalShow(true);
+  };
+
+  const handleReschedule = async () => {
+    if (!selectedDate || !selectedMarcacaoId) return;
+
+    const url = `https://localhost:7209/RescheduleBooking?id=${selectedMarcacaoId}&date=${selectedDate}`;
+    try {
+      const response = await fetch(url, { method: "PUT" });
+      if (response.ok) {
+        setModalMessage("Marcação reagendada com sucesso!");
+        setModalVariant("success");
+        setRescheduleModalShow(false);
+        setShowModal(true);
+        setTimeout(() => {
+          setShowModal(false);
+          window.location.reload();
+        }, 2500); // Fecha o modal de mensagem após 2.5 segundos e recarrega a página
+      } else {
+        setModalMessage("Erro ao reagendar marcação.");
+        setModalVariant("danger");
+        setRescheduleModalShow(false);
+        setShowModal(true);
+      }
+    } catch (error) {
+      console.error("Erro ao reagendar marcação:", error);
+      setModalMessage("Erro ao reagendar marcação.");
+      setModalVariant("danger");
+      setRescheduleModalShow(false);
+      setShowModal(true);
     }
   };
 
@@ -134,6 +172,14 @@ export function ConfirmMarcacoes() {
                     >
                       Confirmar
                     </Button>
+                    <span className="ms-2 me-2"></span>
+                    <Button
+                      variant="info"
+                      onClick={() => handleOpenRescheduleModal(marcacao.idMarcacao)}
+                    
+                    >
+                      Reagendar
+                    </Button>
                   </td>
                 </tr>
               ))}
@@ -147,6 +193,31 @@ export function ConfirmMarcacoes() {
         <Modal.Body className={`text-${modalVariant}`}>
           <p>{modalMessage}</p>
         </Modal.Body>
+      </Modal>
+
+      {/* Modal para reagendar marcação */}
+      <Modal show={rescheduleModalShow} onHide={() => setRescheduleModalShow(false)} centered>
+        <Modal.Header closeButton>
+          <Modal.Title>Reagendar Marcação</Modal.Title>
+        </Modal.Header>
+        <Modal.Body>
+          <Form.Group controlId="formDate">
+            <Form.Label>Selecione uma nova data:</Form.Label>
+            <Form.Control
+              type="date"
+              value={selectedDate}
+              onChange={(e) => setSelectedDate(e.target.value)}
+            />
+          </Form.Group>
+        </Modal.Body>
+        <Modal.Footer>
+          <Button variant="danger" onClick={() => setRescheduleModalShow(false)}>
+            Cancelar
+          </Button>
+          <Button variant="info" onClick={handleReschedule}>
+            Confirmar
+          </Button>
+        </Modal.Footer>
       </Modal>
     </main>
   );

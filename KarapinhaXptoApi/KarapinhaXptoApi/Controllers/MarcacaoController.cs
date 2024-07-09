@@ -91,5 +91,20 @@ namespace KarapinhaXptoApi.Controllers
                 throw new Exception(ex.Message);
             }
         }
+
+        [HttpPut]
+        [Route("/RescheduleBooking")]
+        public async Task<IActionResult> RescheduleBooking(int id, DateOnly date)
+        {
+            try
+            {
+                var result = await bookingService.RescheduleBooking(id, date);
+                return Ok(result);
+            }
+            catch (Exception ex)
+            {
+                throw new Exception(ex.Message);
+            }
+        }
     }
 }

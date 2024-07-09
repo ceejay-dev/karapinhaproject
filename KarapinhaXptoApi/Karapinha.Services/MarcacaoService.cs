@@ -35,7 +35,8 @@ namespace Karapinha.Services
                 var marcacaoAdded = MarcacaoConverter.ToMarcacaoDTO(await repository.CreateBooking(MarcacaoConverter.ToMarcacao(booking)));
                 return marcacaoAdded;
             }
-            catch (ServiceException ex) { 
+            catch (ServiceException ex)
+            {
                 throw new ServiceException(ex);
             }
 
@@ -46,7 +47,8 @@ namespace Karapinha.Services
             {
                 return MarcacaoConverter.ToMarcacaoGetDTO(await repository.GetBookingById(id));
             }
-            catch (ServiceException ex) {
+            catch (ServiceException ex)
+            {
                 throw new ServiceException($"Marcação não foi encontrada {ex.Message}");
             }
         }
@@ -58,18 +60,20 @@ namespace Karapinha.Services
                 var allUserBookings = await repository.GetAllBookingsByUserId(idUtilizador);
                 return allUserBookings.Select(MarcacaoConverter.ToMarcacaoGetDTO);
             }
-            catch (ServiceException ex) {
-                throw new ServiceException (ex.Message);
+            catch (ServiceException ex)
+            {
+                throw new ServiceException(ex.Message);
             }
         }
         public IEnumerable<MarcacaoGetDTO> GetAllBookings()
         {
             try
             {
-                var allBookings =  repository.GetAllBookings();
+                var allBookings = repository.GetAllBookings();
                 return allBookings.Select(MarcacaoConverter.ToMarcacaoGetDTO);
             }
-            catch (ServiceException ex) {
+            catch (ServiceException ex)
+            {
                 throw new ServiceException($"Marcações não foram encontradas {ex.Message}");
             }
         }
@@ -79,7 +83,6 @@ namespace Karapinha.Services
             try
             {
                 var booking = await repository.GetBookingById(id);
-
                 if (booking == null)
                 {
                     return false;
@@ -90,7 +93,7 @@ namespace Karapinha.Services
                     await repository.UpdateBooking(booking);
 
                     // Enviar e-mail de confirmação
-                    var user = await utilizadorRepository.GetUserById(booking.FkUtilizador); 
+                    var user = await utilizadorRepository.GetUserById(booking.FkUtilizador);
                     if (user == null) throw new NotFoundException();
 
                     string subject = "Confirmação de Marcação";
@@ -102,6 +105,37 @@ namespace Karapinha.Services
                 }
             }
             catch (Exception ex)
+            {
+                throw new ServiceException(ex.Message + ex.ToString());
+            }
+        }
+
+        public async Task<bool> RescheduleBooking(int id, DateOnly data)
+        {
+            try
+            {
+                var booking = await repository.GetBookingById(id);
+
+                if (booking == null)
+                {
+                    return false;
+                }
+                else
+                {
+                    booking.DataMarcacao = data;
+                    booking.Estado = "reagendado";
+                    await repository.UpdateBooking(booking);
+
+                    // Enviar e-mail de reagendamento
+                    var user = await utilizadorRepository.GetUserById(booking.FkUtilizador);
+                    if (user == null) throw new NotFoundException();
+
+                    string subject = "Reagendamento da Marcação";
+                    string mensagem = $"A sua marcação foi reagendada. Por favor, compareça na data {booking.DataMarcacao} para ser atendido(a).";
+                    return true;
+                }
+            }
+            catch (ServiceException ex)
             {
                 throw new ServiceException(ex.Message + ex.ToString());
             }
