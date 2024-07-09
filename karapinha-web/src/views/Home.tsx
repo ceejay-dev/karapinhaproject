@@ -42,10 +42,7 @@ export function Home() {
           </li>
 
           <li>
-            <Button
-              route="/about"
-              text="Sobre"
-            />
+            <Button route="/about" text="Sobre" />
           </li>
 
           <div className="navegacao d-flex flex-row">
@@ -57,7 +54,11 @@ export function Home() {
               />
             </li>
             <li className="nav2">
-              <ButtonNav imageSrc={sair} onClick={handleDeleteStorage} className="link-button"/>
+              <ButtonNav
+                imageSrc={sair}
+                onClick={handleDeleteStorage}
+                className="link-button"
+              />
             </li>
           </div>
         </ul>
@@ -72,7 +73,7 @@ export function Home() {
               <h3>
                 <Link to="/marcacoes">Makeup</Link>
               </h3>
-              <p>Realce sua beleza com nossa maquiagem profissional.</p>
+              <p>Realce sua beleza com nossa maquiagem profissional. </p>
             </Carousel.Caption>
           </Carousel.Item>
           <Carousel.Item>

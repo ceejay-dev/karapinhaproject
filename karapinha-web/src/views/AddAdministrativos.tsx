@@ -90,8 +90,8 @@ export function AddAdministrativos() {
 
     if (!/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(formData.EmailUtilizador)) {
       setAlertMessage("Email inválido.");
-      setAlertVariant("danger")
-      setShowAlert(true)
+      setAlertVariant("danger");
+      setShowAlert(true);
       return;
     }
 
@@ -117,7 +117,7 @@ export function AddAdministrativos() {
       });
 
       if (response.ok) {
-        setAlertMessage("Registo realizado com sucesso.");
+        setAlertMessage("Registo realizado com sucesso. ");
         setAlertVariant("success");
         setShowAlert(true);
         setTimeout(() => {

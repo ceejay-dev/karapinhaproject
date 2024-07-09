@@ -18,10 +18,12 @@ export function About() {
             acolhedor e sofisticado, o Karapinha XPTO garante uma experiência
             única e personalizada para cada cliente. Sempre à frente das
             tendências, o salão é sinônimo de inovação e qualidade no setor de
-            beleza.
+            beleza!
           </p>
 
-          <span className="text-center fst-italic fw-bold">Made by Cândido Ucuahamba &copy; </span>
+          <span className="text-center fst-italic fw-bold">
+            Made by Cândido Ucuahamba &copy;{" "}
+          </span>
         </div>
       </div>
     </div>

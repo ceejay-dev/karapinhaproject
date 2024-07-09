@@ -9,8 +9,8 @@ type UserProps = {
   emailUtilizador: string;
   telemovelUtilizador: string;
   usernameUtilizador: string;
-  bilheteUtilizador:string;
-  fotoUtilizador:string;
+  bilheteUtilizador: string;
+  fotoUtilizador: string;
   passwordUtilizador: string;
 };
 
@@ -38,7 +38,9 @@ export function UpdateUser() {
         body: JSON.stringify(user),
       });
       if (response.ok) {
-        setAlertMessage("Edição realizada com sucesso! Será redirecionado para a página principal.");
+        setAlertMessage(
+          "Edição realizada com sucesso! Será redirecionado para a página principal."
+        );
         setAlertVariant("success");
         setTimeout(() => {
           navigate("/logged");
@@ -94,7 +96,11 @@ export function UpdateUser() {
 
       <div className="container-form">
         <div className="d-flex justify-content-center">
-          <img className="image-icon rounded-circle" src={`https://localhost:7209/${user?.fotoUtilizador}`} alt="UserFoto" />
+          <img
+            className="image-icon rounded-circle"
+            src={`https://localhost:7209/${user?.fotoUtilizador}`}
+            alt="UserFoto"
+          />
         </div>
         <form action="" className="d-flex justify-content-center formulario">
           <div className="d-flex flex-row">
@@ -122,7 +128,7 @@ export function UpdateUser() {
                 className="m-1"
                 value={user?.telemovelUtilizador || ""}
                 onChange={handleChange}
-              /> 
+              />
               <input
                 type="text"
                 name="bilheteUtilizador"
@@ -153,7 +159,6 @@ export function UpdateUser() {
                 value={user?.passwordUtilizador || ""}
                 onChange={handleChange}
               />
-              
             </div>
           </div>
 

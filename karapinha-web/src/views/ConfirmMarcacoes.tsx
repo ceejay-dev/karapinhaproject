@@ -7,7 +7,7 @@ type Servico = {
   fkServico: number;
   fkProfissional: number;
   nomeServico?: string;
-  nomeProfissional?: string; 
+  nomeProfissional?: string;
   descricao?: string;
 };
 
@@ -30,9 +30,13 @@ export function ConfirmMarcacoes() {
   const [confirming, setConfirming] = useState<{ [key: number]: boolean }>({});
   const [showModal, setShowModal] = useState(false);
   const [modalMessage, setModalMessage] = useState("");
-  const [modalVariant, setModalVariant] = useState<"success" | "danger">("success");
+  const [modalVariant, setModalVariant] = useState<"success" | "danger">(
+    "success"
+  );
   const [rescheduleModalShow, setRescheduleModalShow] = useState(false);
-  const [selectedMarcacaoId, setSelectedMarcacaoId] = useState<number | null>(null);
+  const [selectedMarcacaoId, setSelectedMarcacaoId] = useState<number | null>(
+    null
+  );
   const [selectedDate, setSelectedDate] = useState<string>("");
 
   useEffect(() => {
@@ -42,13 +46,23 @@ export function ConfirmMarcacoes() {
         if (response.ok) {
           const data = await response.json();
           // Pré-carregar os nomes dos serviços, profissionais e horários
-          await Promise.all(data.map(async (marcacao: any) => {
-            await Promise.all(marcacao.servicos.map(async (servico: any) => {
-              servico.nomeServico = await fetchServiceName(servico.fkServico);
-              servico.nomeProfissional = await fetchProfissionalName(servico.fkProfissional);
-              servico.descricao = await fetchHorarioDescription(servico.fkHorario);
-            }));
-          }));
+          await Promise.all(
+            data.map(async (marcacao: any) => {
+              await Promise.all(
+                marcacao.servicos.map(async (servico: any) => {
+                  servico.nomeServico = await fetchServiceName(
+                    servico.fkServico
+                  );
+                  servico.nomeProfissional = await fetchProfissionalName(
+                    servico.fkProfissional
+                  );
+                  servico.descricao = await fetchHorarioDescription(
+                    servico.fkHorario
+                  );
+                })
+              );
+            })
+          );
           setMarcacoes(data);
         } else {
           console.error("Erro ao buscar marcações:", response.statusText);
@@ -131,7 +145,7 @@ export function ConfirmMarcacoes() {
       setTimeout(() => {
         setShowModal(false);
         window.location.reload();
-      }, 2500); 
+      }, 2500);
     }
   };
 
@@ -177,7 +191,7 @@ export function ConfirmMarcacoes() {
           <Table striped bordered hover variant="dark">
             <thead>
               <tr>
-                <th>Preço Total</th>
+                <th>Preço Total </th>
                 <th>Data</th>
                 <th>Estado</th>
                 <th>Cliente</th>
@@ -191,7 +205,9 @@ export function ConfirmMarcacoes() {
               {marcacoes.map((marcacao) => (
                 <tr key={marcacao.idMarcacao}>
                   <td>{marcacao.precoMarcacao} kz</td>
-                  <td>{new Date(marcacao.dataMarcacao).toLocaleDateString()}</td>
+                  <td>
+                    {new Date(marcacao.dataMarcacao).toLocaleDateString()}
+                  </td>
                   <td>{marcacao.estado}</td>
                   <td>{marcacao.utilizador.nomeUtilizador}</td>
                   <td>
@@ -204,14 +220,15 @@ export function ConfirmMarcacoes() {
                   <td>
                     {marcacao.servicos.map((servico, index) => (
                       <div key={index}>
-                        Profissional: {servico.nomeProfissional || "Carregando..."}
+                        Profissional:{" "}
+                        {servico.nomeProfissional || "Carregando..."}
                       </div>
                     ))}
                   </td>
                   <td>
                     {marcacao.servicos.map((servico, index) => (
                       <div key={index}>
-                         {servico.descricao || "Carregando..."}
+                        {servico.descricao || "Carregando..."}
                       </div>
                     ))}
                   </td>
@@ -219,15 +236,24 @@ export function ConfirmMarcacoes() {
                     <Button
                       variant="success"
                       onClick={() => handleConfirm(marcacao.idMarcacao)}
-                      disabled={confirming[marcacao.idMarcacao] || marcacao.estado === "validado" || marcacao.estado === "cancelado"}
+                      disabled={
+                        confirming[marcacao.idMarcacao] ||
+                        marcacao.estado === "validado" ||
+                        marcacao.estado === "cancelado"
+                      }
                     >
                       Confirmar
                     </Button>
                     <span className="ms-2 me-2"></span>
                     <Button
                       variant="info"
-                      onClick={() => handleOpenRescheduleModal(marcacao.idMarcacao)}
-                      disabled={marcacao.estado === "validado" || marcacao.estado === "cancelado"}
+                      onClick={() =>
+                        handleOpenRescheduleModal(marcacao.idMarcacao)
+                      }
+                      disabled={
+                        marcacao.estado === "validado" ||
+                        marcacao.estado === "cancelado"
+                      }
                     >
                       Reagendar
                     </Button>
@@ -247,7 +273,11 @@ export function ConfirmMarcacoes() {
       </Modal>
 
       {/* Modal para reagendar marcação */}
-      <Modal show={rescheduleModalShow} onHide={() => setRescheduleModalShow(false)} centered>
+      <Modal
+        show={rescheduleModalShow}
+        onHide={() => setRescheduleModalShow(false)}
+        centered
+      >
         <Modal.Header closeButton>
           <Modal.Title>Reagendar Marcação</Modal.Title>
         </Modal.Header>
@@ -263,7 +293,10 @@ export function ConfirmMarcacoes() {
           </Form.Group>
         </Modal.Body>
         <Modal.Footer>
-          <Button variant="danger" onClick={() => setRescheduleModalShow(false)}>
+          <Button
+            variant="danger"
+            onClick={() => setRescheduleModalShow(false)}
+          >
             Cancelar
           </Button>
           <Button variant="success" onClick={handleReschedule}>

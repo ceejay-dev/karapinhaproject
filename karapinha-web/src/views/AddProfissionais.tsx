@@ -79,8 +79,7 @@ export function AddProfissionais() {
       setTimeout(() => {
         setShowAlert(false);
       }, 1500);
-    }
-     else {
+    } else {
       setFormData((prevData) => ({
         ...prevData,
         [name]: value,
@@ -100,8 +99,6 @@ export function AddProfissionais() {
     event: React.FormEvent<HTMLFormElement>
   ) => {
     event.preventDefault();
-
-    
 
     // Validando os dados antes de enviar
     if (
@@ -153,7 +150,7 @@ export function AddProfissionais() {
       });
 
       if (response.ok) {
-        setAlertMessage("Profissional criado com sucesso!");
+        setAlertMessage("Profissional criado com sucesso! ");
         setAlertVariant("success");
         setShowAlert(true);
         setTimeout(() => {
@@ -323,8 +320,7 @@ export function AddProfissionais() {
                     alt="Foto do Profissional"
                     className="img-fluid rounded-circle"
                     style={{ width: "50px", height: "50px" }}
-                  />
-                   {" "}
+                  />{" "}
                   {profissional.nomeProfissional}
                 </td>
                 <td>{profissional.emailProfissional}</td>

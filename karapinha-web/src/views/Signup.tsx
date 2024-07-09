@@ -11,15 +11,15 @@ export function Signup() {
   const [showAlert, setShowAlert] = useState(false);
 
   const [formData, setFormData] = useState({
-    idUtilizador: '0',
-    NomeUtilizador: '',
-    EmailUtilizador: '',
-    TelemovelUtilizador: '',
+    idUtilizador: "0",
+    NomeUtilizador: "",
+    EmailUtilizador: "",
+    TelemovelUtilizador: "",
     FotoUtilizador: null as File | null,
-    BilheteUtilizador: '',
-    UsernameUtilizador: '',
-    PasswordUtilizador: '',
-    ConfirmPasswordUtilizador: ''
+    BilheteUtilizador: "",
+    UsernameUtilizador: "",
+    PasswordUtilizador: "",
+    ConfirmPasswordUtilizador: "",
   });
 
   const handleChange = (event: any) => {
@@ -39,8 +39,7 @@ export function Signup() {
       setTimeout(() => {
         setShowAlert(false);
       }, 1500);
-    }
-     else {
+    } else {
       setFormData((prevData) => ({
         ...prevData,
         [name]: value,
@@ -75,47 +74,49 @@ export function Signup() {
       !formData.ConfirmPasswordUtilizador
     ) {
       setAlertMessage("Todos os campos são obrigatórios.");
-      setAlertVariant("danger")
-      setShowAlert(true)
+      setAlertVariant("danger");
+      setShowAlert(true);
       return;
     }
 
     if (formData.PasswordUtilizador !== formData.ConfirmPasswordUtilizador) {
       setAlertMessage("As senhas não coincidem.");
-      setAlertVariant("danger")
-      setShowAlert(true)
+      setAlertVariant("danger");
+      setShowAlert(true);
       return;
     }
 
     if (!/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(formData.EmailUtilizador)) {
-      setAlertMessage("Email inválido.");
-      setAlertVariant("danger")
-      setShowAlert(true)
+      setAlertMessage("Email inválido. ");
+      setAlertVariant("danger");
+      setShowAlert(true);
       return;
     }
 
     const form = new FormData();
-    form.append('TipoPerfil', 'cliente');
+    form.append("TipoPerfil", "cliente");
     if (formData.FotoUtilizador !== null) {
-      form.append('foto', formData.FotoUtilizador);
-    }    
-    form.append('Estado', 'inactivo');
-    form.append('TelemovelUtilizador', formData.TelemovelUtilizador);
-    form.append('BilheteUtilizador', formData.BilheteUtilizador);
-    form.append('UsernameUtilizador', formData.UsernameUtilizador);
-    form.append('NomeUtilizador', formData.NomeUtilizador);
-    form.append('IdUtilizador', '');
-    form.append('PasswordUtilizador', formData.PasswordUtilizador);
-    form.append('EmailUtilizador', formData.EmailUtilizador);
+      form.append("foto", formData.FotoUtilizador);
+    }
+    form.append("Estado", "inactivo");
+    form.append("TelemovelUtilizador", formData.TelemovelUtilizador);
+    form.append("BilheteUtilizador", formData.BilheteUtilizador);
+    form.append("UsernameUtilizador", formData.UsernameUtilizador);
+    form.append("NomeUtilizador", formData.NomeUtilizador);
+    form.append("IdUtilizador", "");
+    form.append("PasswordUtilizador", formData.PasswordUtilizador);
+    form.append("EmailUtilizador", formData.EmailUtilizador);
 
     try {
-      const response = await fetch('https://localhost:7209/CreateUser', {
-        method: 'POST',
+      const response = await fetch("https://localhost:7209/CreateUser", {
+        method: "POST",
         body: form,
       });
 
       if (response.ok) {
-        setAlertMessage("Administrador precisa ativar a sua conta para fazer login.");
+        setAlertMessage(
+          "Administrador precisa ativar a sua conta para fazer login."
+        );
         setAlertVariant("info");
         setShowAlert(true);
         setTimeout(() => {

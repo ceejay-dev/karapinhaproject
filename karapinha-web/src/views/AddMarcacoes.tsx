@@ -121,10 +121,12 @@ export function AddMarcacoes() {
 
         console.log("Serviços", servicosToSend);
         const dataMarcacao = selectedDate
-        ? new Date(selectedDate.getTime() - selectedDate.getTimezoneOffset() * 60000)
-            .toISOString()
-            .split("T")[0]
-        : null;
+          ? new Date(
+              selectedDate.getTime() - selectedDate.getTimezoneOffset() * 60000
+            )
+              .toISOString()
+              .split("T")[0]
+          : null;
 
         if (idStorage === null) {
           console.error("Não foi possível obter o ID do usuário.");
@@ -280,7 +282,7 @@ export function AddMarcacoes() {
             Carrinho
             <span className="position-absolute top-0 start-100 translate-middle badge rounded-pill bg-danger">
               {cartCount}
-              <span className="visually-hidden">Numero de servicos</span>
+              <span className="visually-hidden">Número de servicos</span>
             </span>
           </BootstrapButton>
         </div>

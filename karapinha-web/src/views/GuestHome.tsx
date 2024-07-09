@@ -10,7 +10,7 @@ export function GuestHome() {
 
   const handleSelect = (selectedIndex: any) => {
     setIndex(selectedIndex);
-  };  
+  };
 
   return (
     <main>
@@ -33,7 +33,7 @@ export function GuestHome() {
               <Button route="/signup" text="Signup" className="link-signup" />
             </li>
             <li className="botao-nav2">
-            <Button route="/Login" text="Login"/>
+              <Button route="/Login" text="Login" />
             </li>
           </div>
         </ul>
@@ -48,7 +48,7 @@ export function GuestHome() {
               <h3>
                 <Link to="/marcacoes">Makeup</Link>
               </h3>
-              <p>Realce sua beleza com nossa maquiagem profissional.</p>
+              <p>Realce sua beleza com nossa maquiagem profissional. </p>
             </Carousel.Caption>
           </Carousel.Item>
           <Carousel.Item>

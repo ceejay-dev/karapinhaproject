@@ -25,7 +25,7 @@ export function ClientsList() {
         if (response.ok) {
           const data = await response.json();
           setClientes(data);
-          console.log("Clientes:", data); 
+          console.log("Clientes:", data);
         } else {
           console.error("Failed to fetch clientes");
         }
@@ -42,8 +42,8 @@ export function ClientsList() {
     activate: boolean
   ) => {
     try {
-      console.log("Activando cliente:", cliente); 
-      console.log("Ativar:", activate); 
+      console.log("Activando cliente:", cliente);
+      console.log("Ativar:", activate);
 
       const response = await fetch(
         `https://localhost:7209/ActivateOrDesactivate?id=${cliente.idUtilizador}`,
@@ -74,57 +74,59 @@ export function ClientsList() {
 
   return (
     <main className="container-service">
-      <h4 className="text-center bg-dark m-0 p-3 rounded-top-2 text-white">Clientes registados</h4>
-        <Table striped bordered hover className="rounded-bottom-2" variant="dark">
-          <thead>
-            <tr>
-              <th>Nome</th>
-              <th>Email</th>
-              <th>BI</th>
-              <th>Telemóvel</th>
-              <th>Username</th>
-              <th>Estado</th>
-              <th>Acções</th>
-            </tr>
-          </thead>
-          <tbody>
-            {clientes.map((cliente, index) => (
-              <tr key={`${cliente.idUtilizador}-${index}`}>
-                <td>
+      <h4 className="text-center bg-dark m-0 p-3 rounded-top-2 text-white">
+        Clientes registados
+      </h4>
+      <Table striped bordered hover className="rounded-bottom-2" variant="dark">
+        <thead>
+          <tr>
+            <th>Nome</th>
+            <th>Email</th>
+            <th>BI</th>
+            <th>Telemóvel</th>
+            <th>Username</th>
+            <th>Estado</th>
+            <th>Acções</th>
+          </tr>
+        </thead>
+        <tbody>
+          {clientes.map((cliente, index) => (
+            <tr key={`${cliente.idUtilizador}-${index}`}>
+              <td>
                 <img
-                    src={`https://localhost:7209/${cliente?.fotoUtilizador}`}
-                    alt="Foto do Profissional"
-                    className="img-fluid rounded-circle"
-                    style={{ width: "50px", height: "50px" }}
-                  />
-                   {" "}
-                  {cliente.nomeUtilizador}</td>
-                <td>{cliente.emailUtilizador}</td>
-                <td>{cliente.bilheteUtilizador}</td>
-                <td>{cliente.telemovelUtilizador}</td>
-                <td>{cliente.usernameUtilizador}</td>
-                <td>{cliente.estado}</td>
-                <td>
-                  <BootstrapButton
-                    variant="success"
-                    onClick={() => handleActivation(cliente, true)}
-                    className="me-2"
-                    disabled={cliente.estado === "activo"}
-                  >
-                    Activar
-                  </BootstrapButton>
-                  <BootstrapButton
-                    variant="danger"
-                    onClick={() => handleActivation(cliente, false)}
-                    disabled={cliente.estado === "inactivo"}
-                  >
-                    Desactivar
-                  </BootstrapButton>
-                </td>
-              </tr>
-            ))}
-          </tbody>
-        </Table>
+                  src={`https://localhost:7209/${cliente?.fotoUtilizador}`}
+                  alt="Foto do Profissional"
+                  className="img-fluid rounded-circle"
+                  style={{ width: "50px", height: "50px" }}
+                />{" "}
+                {cliente.nomeUtilizador}
+              </td>
+              <td>{cliente.emailUtilizador}</td>
+              <td>{cliente.bilheteUtilizador}</td>
+              <td>{cliente.telemovelUtilizador}</td>
+              <td>{cliente.usernameUtilizador}</td>
+              <td>{cliente.estado}</td>
+              <td>
+                <BootstrapButton
+                  variant="success"
+                  onClick={() => handleActivation(cliente, true)}
+                  className="me-2"
+                  disabled={cliente.estado === "activo"}
+                >
+                  Activar
+                </BootstrapButton>
+                <BootstrapButton
+                  variant="danger"
+                  onClick={() => handleActivation(cliente, false)}
+                  disabled={cliente.estado === "inactivo"}
+                >
+                  Desactivar
+                </BootstrapButton>
+              </td>
+            </tr>
+          ))}
+        </tbody>
+      </Table>
     </main>
   );
 }

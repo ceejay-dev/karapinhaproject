@@ -45,16 +45,18 @@ export function Login() {
     })
       .then((res) => res.json())
       .then((data) => {
-        const {idUtilizador, tipoPerfil, estado } = data;
-        if (data) {  
-          localStorage.setItem('usernameUtilizador', usernameUtilizador);
-          localStorage.setItem('idUtilizador', idUtilizador);
-          
+        const { idUtilizador, tipoPerfil, estado } = data;
+        if (data) {
+          localStorage.setItem("usernameUtilizador", usernameUtilizador);
+          localStorage.setItem("idUtilizador", idUtilizador);
+
           if (tipoPerfil === "cliente") {
-            if (estado == "activo"){
+            if (estado == "activo") {
               navigate("/logged");
             } else {
-              setErrorMessage("A sua conta está inactiva. Deverá contactar o administrador para activar a sua conta.");
+              setErrorMessage(
+                "A sua conta está inactiva.  Deverá contactar o administrador para activar a sua conta."
+              );
             }
           } else if (tipoPerfil === "administrador") {
             navigate("/adminHome");
@@ -66,7 +68,7 @@ export function Login() {
             }
           }
           setSuccessMessage(
-            "Login feito com sucesso, será redirecionado para a página apropriada."
+            "Login feito com sucesso, será redirecionado para a página apropriada. "
           );
         } else {
           setErrorMessage("Credenciais incorretas. Tente novamente.");
@@ -83,17 +85,22 @@ export function Login() {
       return;
     }
 
-    fetch(`https://localhost:7209/ActivateAndChangePassword?username=${usernameUtilizador}&password=${newPassword}`, {
-      headers: {
-        Accept: "application/json",
-        "Content-Type": "application/json",
-      },
-      method: "PUT",
-    })
+    fetch(
+      `https://localhost:7209/ActivateAndChangePassword?username=${usernameUtilizador}&password=${newPassword}`,
+      {
+        headers: {
+          Accept: "application/json",
+          "Content-Type": "application/json",
+        },
+        method: "PUT",
+      }
+    )
       .then((res) => {
         if (res.ok) {
           setShowModal(false);
-          setSuccessMessage("Senha alterada com sucesso. Você será redirecionado.");
+          setSuccessMessage(
+            "Senha alterada com sucesso. Você será redirecionado."
+          );
           setTimeout(() => {
             navigate("/gestorHome");
           }, 3000);
@@ -161,21 +168,21 @@ export function Login() {
       {/* Modal para trocar senha */}
       <Modal show={showModal} onHide={() => setShowModal(false)}>
         <Modal.Header closeButton>
-          <Modal.Title>Trocar Senha</Modal.Title>
+          <Modal.Title>Trocar palavra-senha</Modal.Title>
         </Modal.Header>
         <Modal.Body>
           <Form>
             <Form.Group controlId="formNewPassword">
-              <Form.Label>Nova Senha</Form.Label>
+              <Form.Label>Nova palavra-passe</Form.Label>
               <Form.Control
                 type="password"
-                placeholder="Digite a nova senha"
+                placeholder="Digite a nova palavra-passe"
                 value={newPassword}
                 onChange={(e) => setNewPassword(e.target.value)}
               />
             </Form.Group>
             <Button variant="primary" onClick={handlePasswordChange}>
-              Trocar Senha
+              Trocar palavra-passe
             </Button>
           </Form>
         </Modal.Body>
@@ -185,11 +192,6 @@ export function Login() {
 }
 
 export default Login;
-
-
-
-
-
 
 // .then((res) => {
 //   if (res.status === 200) {

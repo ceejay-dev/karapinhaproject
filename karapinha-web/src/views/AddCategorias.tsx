@@ -165,7 +165,7 @@ export function AddCategorias() {
           <Table striped bordered hover variant="dark">
             <thead>
               <tr>
-                <th>Nome da categoria</th>
+                <th>Nome da categoria </th>
                 <th>Acções</th>
               </tr>
             </thead>

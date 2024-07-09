@@ -256,7 +256,7 @@ export function AddServicos() {
         <Table striped bordered hover className="m-0" variant="dark">
           <thead>
             <tr>
-              <th>Descrição</th>
+              <th>Descrição </th>
               <th>Preço (kz)</th>
               <th>Categoria</th>
               <th>Acções</th>

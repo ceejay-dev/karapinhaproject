@@ -12,26 +12,26 @@ export function AdminHome() {
 
   return (
     <main className="back-image">
-        <ul className="nav">
-          <li>
-            <Button route="/clientes" text="Clientes" />
-          </li>
+      <ul className="nav">
+        <li>
+          <Button route="/clientes" text="Clientes " />
+        </li>
 
-          <li>
-            <Button route="/administrativos" text="Administrativos" />
-          </li>
+        <li>
+          <Button route="/administrativos" text="Administrativos " />
+        </li>
 
-          <li>
-            <BootstrapButton
-              className="link-button"
-              onClick={() => {
-                handleDeleteStorage();
-              }}
-            >
-              Sair
-            </BootstrapButton>
-          </li>
-        </ul>
+        <li>
+          <BootstrapButton
+            className="link-button"
+            onClick={() => {
+              handleDeleteStorage();
+            }}
+          >
+            Sair
+          </BootstrapButton>
+        </li>
+      </ul>
     </main>
   );
 }

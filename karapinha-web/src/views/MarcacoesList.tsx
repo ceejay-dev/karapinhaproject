@@ -1,5 +1,13 @@
 import { useEffect, useState } from "react";
-import { Container, Row, Col, Card, Button, Modal, Alert } from "react-bootstrap";
+import {
+  Container,
+  Row,
+  Col,
+  Card,
+  Button,
+  Modal,
+  Alert,
+} from "react-bootstrap";
 import "../styles/marcacao.css";
 
 type Servico = {
@@ -18,11 +26,19 @@ type Marcacao = {
 
 export function MarcacoesList() {
   const [marcacoes, setMarcacoes] = useState<Marcacao[]>([]);
-  const [serviceNames, setServiceNames] = useState<{ [key: number]: string }>({});
-  const [professionalNames, setProfessionalNames] = useState<{ [key: number]: string }>({});
-  const [scheduleDescriptions, setScheduleDescriptions] = useState<{ [key: number]: string }>({});
+  const [serviceNames, setServiceNames] = useState<{ [key: number]: string }>(
+    {}
+  );
+  const [professionalNames, setProfessionalNames] = useState<{
+    [key: number]: string;
+  }>({});
+  const [scheduleDescriptions, setScheduleDescriptions] = useState<{
+    [key: number]: string;
+  }>({});
   const [showCancelModal, setShowCancelModal] = useState(false);
-  const [selectedMarcacaoId, setSelectedMarcacaoId] = useState<number | null>(null);
+  const [selectedMarcacaoId, setSelectedMarcacaoId] = useState<number | null>(
+    null
+  );
   const [alertMessage, setAlertMessage] = useState<string | null>(null);
   const [alertVariant, setAlertVariant] = useState<string>("success");
   const [showAlert, setShowAlert] = useState<boolean>(false);
@@ -91,27 +107,31 @@ export function MarcacoesList() {
                 if (!serviceNames[servico.fkServico]) {
                   const nomeServico = await fetchServiceName(servico.fkServico);
                   if (nomeServico) {
-                    setServiceNames(prevNames => ({
+                    setServiceNames((prevNames) => ({
                       ...prevNames,
-                      [servico.fkServico]: nomeServico
+                      [servico.fkServico]: nomeServico,
                     }));
                   }
                 }
                 if (!professionalNames[servico.fkProfissional]) {
-                  const nomeProfissional = await fetchProfessionalName(servico.fkProfissional);
+                  const nomeProfissional = await fetchProfessionalName(
+                    servico.fkProfissional
+                  );
                   if (nomeProfissional) {
-                    setProfessionalNames(prevNames => ({
+                    setProfessionalNames((prevNames) => ({
                       ...prevNames,
-                      [servico.fkProfissional]: nomeProfissional
+                      [servico.fkProfissional]: nomeProfissional,
                     }));
                   }
                 }
                 if (!scheduleDescriptions[servico.fkHorario]) {
-                  const descricaoHorario = await fetchScheduleDescription(servico.fkHorario);
+                  const descricaoHorario = await fetchScheduleDescription(
+                    servico.fkHorario
+                  );
                   if (descricaoHorario) {
-                    setScheduleDescriptions(prevDescriptions => ({
+                    setScheduleDescriptions((prevDescriptions) => ({
                       ...prevDescriptions,
-                      [servico.fkHorario]: descricaoHorario
+                      [servico.fkHorario]: descricaoHorario,
                     }));
                   }
                 }
@@ -146,8 +166,10 @@ export function MarcacoesList() {
           setAlertMessage("Marcação cancelada com sucesso!");
           setAlertVariant("success");
           setShowAlert(true);
-          setMarcacoes(prevMarcacoes => 
-            prevMarcacoes.filter(marcacao => marcacao.idMarcacao !== selectedMarcacaoId)
+          setMarcacoes((prevMarcacoes) =>
+            prevMarcacoes.filter(
+              (marcacao) => marcacao.idMarcacao !== selectedMarcacaoId
+            )
           );
           setTimeout(() => {
             setShowCancelModal(false);
@@ -163,7 +185,7 @@ export function MarcacoesList() {
         setAlertMessage("Erro ao cancelar a marcação.");
         setAlertVariant("danger");
         setShowAlert(true);
-      } 
+      }
     }
   };
 
@@ -195,18 +217,43 @@ export function MarcacoesList() {
                     {marcacao.servicos.map((servico, index) => (
                       <div key={index}>
                         <Card.Text>
-                          Descrição do serviço: {serviceNames[servico.fkServico] || servico.fkServico}
+                          Descrição do serviço:{" "}
+                          {serviceNames[servico.fkServico] || servico.fkServico}
                         </Card.Text>
                         <Card.Text>
-                          Profissional: {professionalNames[servico.fkProfissional] || servico.fkProfissional}
+                          Profissional:{" "}
+                          {professionalNames[servico.fkProfissional] ||
+                            servico.fkProfissional}
                         </Card.Text>
-                        <Card.Text>Horário: {scheduleDescriptions[servico.fkHorario] || servico.fkHorario}</Card.Text>
+                        <Card.Text>
+                          Horário:{" "}
+                          {scheduleDescriptions[servico.fkHorario] ||
+                            servico.fkHorario}
+                        </Card.Text>
                         <span>------------------------------</span>
                       </div>
                     ))}
                     <div className="">
-                      <Button className="me-2" variant="danger" onClick={() => handleCancelClick(marcacao.idMarcacao)} disabled={marcacao.estado === 'validado' || marcacao.estado==='cancelado'}>Cancelar</Button>
-                      <Button variant="info" disabled={marcacao.estado === 'validado' || marcacao.estado === 'cancelado'}>Editar</Button>
+                      <Button
+                        className="me-2"
+                        variant="danger"
+                        onClick={() => handleCancelClick(marcacao.idMarcacao)}
+                        disabled={
+                          marcacao.estado === "validado" ||
+                          marcacao.estado === "cancelado"
+                        }
+                      >
+                        Cancelar
+                      </Button>
+                      <Button
+                        variant="info"
+                        disabled={
+                          marcacao.estado === "validado" ||
+                          marcacao.estado === "cancelado"
+                        }
+                      >
+                        Editar
+                      </Button>
                     </div>
                   </Card.Body>
                 </Card>
