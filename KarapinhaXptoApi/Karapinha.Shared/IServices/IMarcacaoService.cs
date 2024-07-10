@@ -16,7 +16,7 @@ namespace Karapinha.Shared.IServices
         IEnumerable<MarcacaoGetDTO> GetAllBookings();
         Task<bool> ConfirmBooking(int id);
         Task<bool> RescheduleBooking(int id, DateOnly data);
-        /*Task<bool> DeleteBooking(int id);
-        Task UpdateBooking(MarcacaoDTO marcacao);*/
+        //Task<bool> DeleteBooking(int id);
+        //Task UpdateBooking(MarcacaoDTO marcacao);
     }
 }
