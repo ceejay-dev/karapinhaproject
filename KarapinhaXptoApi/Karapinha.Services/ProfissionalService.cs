@@ -134,5 +134,18 @@ namespace Karapinha.Services
                 throw new ServiceException(ex.Message);
             }
         }
+
+        public async Task<IEnumerable<ProfissionalDTO>> GetMostRequestedProfessionals()
+        {
+            try
+            {
+                var result = await Repository.GetMostRequestedProfessionals();
+                return result.Select(ProfissionalConverter.ToProfissionalDTO);
+            }
+            catch (Exception ex)
+            {
+                throw new ServiceException (ex.Message);
+            }
+        }
     }
 }

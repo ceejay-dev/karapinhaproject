@@ -106,5 +106,21 @@ namespace KarapinhaXptoApi.Controllers
                 throw new Exception(ex.Message);
             }
         }
+
+        [HttpGet]
+        [Route("/GetBookingsByMonth")]
+        public async Task<IEnumerable<MarcacaoGetDTO>> GetBookingsByMonth()
+        {
+            try
+            {
+                return await bookingService.GetBookingsByMonth();
+            }
+            catch (Exception ex)
+            {
+                {
+                    throw new Exception($"Marcações não foram encontradas. {ex.Message}");
+                }
+            }
+        }
     }
 }

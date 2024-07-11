@@ -18,5 +18,6 @@ namespace Karapinnha.DTO.Profissional
         public string? BilheteProfissional { get; set; }
         public string? TelemovelProfissional { get; set; }
         public List<int> Horarios { get; set; }
+        public int Contador { get; set; }
     }
 }

@@ -70,5 +70,35 @@ namespace Karapinha.DAL.Repositories
 
             return result.ToList();
         }
+
+        public async Task<IEnumerable<Servico>> GetMostRequestedTreatments()
+        {
+            var mostRequestedServices = await DbContext.MarcacaoServicos
+                .GroupBy(ms => ms.FkServico)
+                .Select(g => new
+                {
+                    FkServico = g.Key,
+                    TotalSolicitacoes = g.Count()
+                })
+                .ToListAsync();
+
+            var servicesWithCounts = mostRequestedServices
+                .Join(
+                    DbContext.Servicos,
+                    ms => ms.FkServico,
+                    s => s.IdServico,
+                    (ms, s) => new Servico
+                    {
+                        NomeServico = s.NomeServico,
+                        Contador = ms.TotalSolicitacoes
+                    }
+                )
+                .OrderByDescending(x => x.Contador)
+                .ToList();
+
+            return servicesWithCounts;
+        }
+
+
     }
 }

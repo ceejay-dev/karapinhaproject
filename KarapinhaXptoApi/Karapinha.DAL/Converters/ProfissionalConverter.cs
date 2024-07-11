@@ -21,6 +21,7 @@ namespace Karapinha.DAL.Converters
                 FotoProfissional = dto.FotoProfissional,
                 BilheteProfissional = dto.BilheteProfissional,
                 TelemovelProfissional = dto.TelemovelProfissional,
+                Contator = dto.Contador,
                 Horarios = dto.Horarios.Select(h => new ProfissionalHorario
                 {
                     IdHorario = h
@@ -39,6 +40,7 @@ namespace Karapinha.DAL.Converters
                 FotoProfissional = model.FotoProfissional,
                 BilheteProfissional = model.BilheteProfissional,
                 TelemovelProfissional = model.TelemovelProfissional,
+                Contador = model.Contator,
                 Horarios = model.Horarios?.Select(h => h.IdHorario).ToList()
             };
         }

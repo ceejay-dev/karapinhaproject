@@ -1,5 +1,6 @@
 ﻿using Karapinha.Model;
 using Karapinha.Shared.IRepositories;
+using Karapinnha.DTO.Profissional;
 using Microsoft.AspNetCore.Http;
 using Microsoft.EntityFrameworkCore;
 using System;
@@ -140,9 +141,37 @@ namespace Karapinha.DAL.Repositories
                                             Descricao = h.Horario.Descricao,
                                        }).ToList()
                                    }).ToListAsync();
-
             return resultado;
         }
+
+        public async Task<IEnumerable<Profissional>> GetMostRequestedProfessionals()
+        {
+            var mostRequestedProfessionals = await DbContext.MarcacaoServicos
+                .GroupBy(ms => ms.FkProfissional)
+                .Select(g => new
+                {
+                    FkProfissional = g.Key,
+                    TotalSolicitacoes = g.Count()
+                })
+                .ToListAsync();
+
+            var professionalsWithCounts = mostRequestedProfessionals
+                .Join(
+                    DbContext.Profissionais,
+                    ms => ms.FkProfissional,
+            p => p.IdProfissional,
+                    (ms, p) => new Profissional
+                    {
+                        NomeProfissional = p.NomeProfissional,
+                        Contator = ms.TotalSolicitacoes
+                    }
+                )
+                .OrderByDescending(x => x.Contator)
+                .ToList();
+
+            return professionalsWithCounts;
+        }
+
 
     }
 

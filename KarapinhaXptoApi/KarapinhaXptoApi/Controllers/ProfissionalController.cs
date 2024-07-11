@@ -104,7 +104,7 @@ namespace KarapinhaXptoApi.Controllers
         }
 
         [HttpGet]
-        [Route("GetAllProfissionaisWithCategories")]
+        [Route("/GetAllProfissionaisWithCategories")]
         public IEnumerable<dynamic> GetAllProfissionaisWithCategoria()
         {
             try
@@ -112,6 +112,20 @@ namespace KarapinhaXptoApi.Controllers
                 return Service.GetAllProfissionaisWithCategoria();
             }
             catch (Exception ex) {
+                throw new Exception(ex.Message);
+            }
+        }
+
+        [HttpGet]
+        [Route("/GetMostResquestedProfissional")]
+        public async Task<IEnumerable<ProfissionalDTO>> GetMostRequestedProfessionals()
+        {
+            try
+            {
+                return await Service.GetMostRequestedProfessionals();
+            }
+            catch (Exception ex)
+            {
                 throw new Exception(ex.Message);
             }
         }

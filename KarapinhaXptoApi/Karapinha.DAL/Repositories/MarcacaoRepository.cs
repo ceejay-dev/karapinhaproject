@@ -1,6 +1,7 @@
 ﻿using Karapinha.Model;
 using Karapinha.Shared.IRepositories;
 using Karapinnha.DTO.Marcacao;
+using Karapinnha.DTO.Servico;
 using Microsoft.EntityFrameworkCore;
 using System;
 using System.Collections.Generic;
@@ -67,24 +68,24 @@ namespace Karapinha.DAL.Repositories
                 .ToList();
         }
 
-
-        public async Task<bool> DeleteBooking(int id)
-        {
-            var booking = await GetBookingById(id);
-
-            if (booking != null)
-            {
-                DbContext.Marcacoes.Remove(booking);
-                await DbContext.SaveChangesAsync();
-                return true;
-            }
-            return false;
-        }
         public async Task UpdateBooking(Marcacao marcacao)
         {
             DbContext.Marcacoes.Update(marcacao);
             await DbContext.SaveChangesAsync();
         }
+
+        public async Task<IEnumerable<Marcacao>> GetBookingsByMonth()
+        {
+            var currentMonth = DateTime.Today.Month;
+            var currentYear = DateTime.Today.Year;
+
+            var appointments = await DbContext.Marcacoes
+                .Where(m => m.DataMarcacao.Month == currentMonth && m.DataMarcacao.Year == currentYear)
+                .ToListAsync();
+
+            return appointments;
+        }
+
 
     }
 }

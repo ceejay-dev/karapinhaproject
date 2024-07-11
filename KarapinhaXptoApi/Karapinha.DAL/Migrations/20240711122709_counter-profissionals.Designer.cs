@@ -4,6 +4,7 @@ using Karapinha.DAL;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
 using Microsoft.EntityFrameworkCore.Metadata;
+using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 
 #nullable disable
@@ -11,9 +12,11 @@ using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 namespace Karapinha.DAL.Migrations
 {
     [DbContext(typeof(KarapinhaDbContext))]
-    partial class KarapinhaDbContextModelSnapshot : ModelSnapshot
+    [Migration("20240711122709_counter-profissionals")]
+    partial class counterprofissionals
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        /// <inheritdoc />
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder

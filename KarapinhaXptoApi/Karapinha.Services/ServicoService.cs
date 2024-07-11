@@ -98,5 +98,17 @@ namespace Karapinha.Services
             }
 
         }
+
+        public async Task<IEnumerable<ServicoDTO>> GetMostRequestedTreatments()
+        {
+            try
+            {
+                var result = await Repository.GetMostRequestedTreatments();
+                return result.Select(ServicoConverter.ToServicoDTO);
+            }
+            catch (Exception ex) { 
+                throw new ServiceException(ex.Message);
+            }
+        }
     }
 }

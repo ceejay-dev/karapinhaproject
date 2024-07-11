@@ -16,5 +16,6 @@ namespace Karapinha.Shared.IServices
         Task<bool> DeleteTreatment(int id);
         Task UpdateTreatment(ServicoUpdateDTO servico);
         IEnumerable<dynamic> GetAllServicosByIdCategoria();
+        Task<IEnumerable<ServicoDTO>> GetMostRequestedTreatments();
     }
 }

@@ -1,9 +1,17 @@
+*{
+  padding: 0;
+  margin: 0;
+  box-sizing: border-box;
+}
+
 .principal-container{
     height: 100vh;
     width: 100%;
     background-image: url("../assets/carrosel3.jpeg");
     background-size: cover;
+    position: relative;
 }
+
 
 .link-button {
     background: none;
@@ -18,4 +26,21 @@
   .link-button:hover {
     color: wheat; 
     background-color: transparent;
+  }
+
+  .small-card{
+    width: 270px;
+  }
+  .dashboard{
+    width: 100%;
+    display: grid;
+
+  }
+
+  .cartao {
+    margin-top: 100px;
+  }
+
+  .allcartoes {
+    margin-left: 200px;
   }

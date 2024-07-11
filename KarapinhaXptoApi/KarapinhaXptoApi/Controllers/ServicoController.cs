@@ -101,5 +101,19 @@ namespace KarapinhaXptoApi.Controllers
                 throw new Exception("Ocorreu um erro recuperando um determinado serviço." + ex.Message);
             }
         }
+
+        [HttpGet]
+        [Route("/GetMostResquestedTreatments")]
+        public async Task<IEnumerable<ServicoDTO>> GetMostRequestedTreatments()
+        {
+            try
+            {
+                return await Servico.GetMostRequestedTreatments();
+            }
+            catch (Exception ex)
+            {
+                throw new Exception(ex.Message);
+            }
+        }
     }
 }

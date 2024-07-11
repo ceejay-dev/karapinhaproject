@@ -141,13 +141,17 @@ namespace Karapinha.Services
             }
         }
 
-        /*public async Task<bool> DeleteBooking(int id)
+        public async Task<IEnumerable<MarcacaoGetDTO>> GetBookingsByMonth()
         {
-
+            try
+            {
+                var result = await repository.GetBookingsByMonth();
+                return result.Select(MarcacaoConverter.ToMarcacaoGetDTO);
+            }
+            catch (ServiceException ex) {
+                throw new ServiceException (ex.Message + ex.ToString());
+            }
         }
-        public async Task UpdateBooking(MarcacaoDTO marcacao)
-        {
 
-        }*/
     }
 }

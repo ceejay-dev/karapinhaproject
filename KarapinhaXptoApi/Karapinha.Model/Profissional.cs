@@ -30,5 +30,6 @@ namespace Karapinha.Model
         [Required]
         public string? TelemovelProfissional { get; set; }
         public List<ProfissionalHorario> Horarios { get; set; }
+        public int Contator { get; set; }
     }
 }

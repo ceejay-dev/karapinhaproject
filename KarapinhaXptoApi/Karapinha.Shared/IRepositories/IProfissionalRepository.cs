@@ -18,5 +18,6 @@ namespace Karapinha.Shared.IRepositories
         Task UpdateProfissional(Profissional profissional);
         IEnumerable<dynamic> GetAllProfissionaisWithCategoria();
         Task<IEnumerable<dynamic>> GetAllProfissionaisByIdCategoria(int idCategoria);
+        Task<IEnumerable<Profissional>> GetMostRequestedProfessionals();
     }
 }
