@@ -24,7 +24,9 @@ namespace Karapinha.Services
         {
             try
             {
-                var category = CategoriaConverter.ToCategoriaDTO(await _categoriaRepository.CreateCategory(CategoriaConverter.ToCategoria(dto)));
+                var category = dto;
+                category.Estado = true;
+                category = CategoriaConverter.ToCategoriaDTO(await _categoriaRepository.CreateCategory(CategoriaConverter.ToCategoria(dto)));
                 return category;
             }
             catch (Exception ex)

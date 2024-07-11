@@ -1,5 +1,5 @@
 import { useEffect, useState } from "react";
-import { useNavigate } from "react-router-dom";
+// import { useNavigate } from "react-router-dom";
 import {
   Alert,
   Button as BootstrapButton,
@@ -25,7 +25,7 @@ type categoriaProps = {
 };
 
 export function AddServicos() {
-  const navigate = useNavigate();
+  // const navigate = useNavigate();
   const [showAlert, setShowAlert] = useState(false);
   const [alertMessage, setAlertMessage] = useState("");
   const [alertVariant, setAlertVariant] = useState("success");
@@ -64,12 +64,28 @@ export function AddServicos() {
     nomeCategoria: "",
   });
 
-  const handleChange = (event: any) => {
+  const handleChange = (
+    event: React.ChangeEvent<HTMLInputElement | HTMLSelectElement>
+  ) => {
     const { name, value } = event.target;
-    setFormData((prevData) => ({
-      ...prevData,
-      [name]: value,
-    }));
+
+    // Validar o campo de preço para não aceitar números negativos
+    if (name === "preco" && parseFloat(value) < 0) {
+      setTimeout(() => {
+        setAlertMessage("O preço do serviço deve ser positivo.");
+        setAlertVariant("danger");
+        setShowAlert(true);
+      }, 500);
+      // setFormData(prevData => ({
+      //   ...prevData,
+      //   [name]: '',
+      // }));
+    } else {
+      setFormData((prevData) => ({
+        ...prevData,
+        [name]: value,
+      }));
+    }
   };
 
   const handleDelete = async (id: number) => {
@@ -135,8 +151,8 @@ export function AddServicos() {
         setShowAlert(true);
         setTimeout(() => {
           setShow(false);
-          navigate("/GestorHome");
-        }, 3000);
+          window.location.reload();
+        }, 2500);
       } else {
         const errorData = await response.json();
         console.error(
@@ -200,7 +216,6 @@ export function AddServicos() {
         console.error("Error fetching serviços:", error);
       }
     };
-
     fetchServicos();
   }, []);
 
@@ -228,49 +243,51 @@ export function AddServicos() {
   return (
     <main className="container-service">
       <div className="p-2 container-service-added">
-        <h3 className="pt-2 text-center bg-white m-0 rounded-top-2">Serviços registados</h3>
-          <div className="bg-white">
-            <Button
-              route="#"
-              imageSrc={plus}
-              className="link-signup pb-5"
-              onClick={() => handleShow()}
-            />
-          </div>
-          <Table striped bordered hover className="m-0">
-            <thead>
-              <tr>
-                <th>Descrição</th>
-                <th>Preço (kz)</th>
-                <th>Categoria</th>
-                <th>Acções</th>
+        <h3 className="pt-2 text-center bg-white m-0 rounded-top-2">
+          Serviços registados
+        </h3>
+        <div className="bg-white">
+          <Button
+            route="#"
+            imageSrc={plus}
+            className="link-signup pb-5"
+            onClick={() => handleShow()}
+          />
+        </div>
+        <Table striped bordered hover className="m-0">
+          <thead>
+            <tr>
+              <th>Descrição</th>
+              <th>Preço (kz)</th>
+              <th>Categoria</th>
+              <th>Acções</th>
+            </tr>
+          </thead>
+          <tbody>
+            {servicos.map((servico, index) => (
+              <tr key={servico.idServico || index}>
+                <td>{servico.nomeServico}</td>
+                <td>{servico.preco} kz</td>
+                <td>{servico.nomeCategoria}</td>
+                <td>
+                  <BootstrapButton
+                    variant="danger"
+                    className="m-2"
+                    onClick={() => handleDelete(servico.idServico)}
+                  >
+                    Apagar
+                  </BootstrapButton>
+                  <BootstrapButton
+                    variant="info"
+                    onClick={() => handleEdit(servico.idServico)}
+                  >
+                    Alterar
+                  </BootstrapButton>
+                </td>
               </tr>
-            </thead>
-            <tbody>
-              {servicos.map((servico, index) => (
-                <tr key={servico.idServico || index}>
-                  <td>{servico.nomeServico}</td>
-                  <td>{servico.preco} kz</td>
-                  <td>{servico.nomeCategoria}</td>
-                  <td>
-                    <BootstrapButton
-                      variant="danger"
-                      className="m-2"
-                      onClick={() => handleDelete(servico.idServico)}
-                    >
-                      Apagar
-                    </BootstrapButton>
-                    <BootstrapButton
-                      variant="info"
-                      onClick={() => handleEdit(servico.idServico)}
-                    >
-                      Alterar
-                    </BootstrapButton>
-                  </td>
-                </tr>
-              ))}
-            </tbody>
-          </Table>
+            ))}
+          </tbody>
+        </Table>
       </div>
 
       <Modal
@@ -297,7 +314,7 @@ export function AddServicos() {
                 <div className="d-flex flex-row">
                   <div className="input-container1">
                     {isEditMode ? (
-                      <input
+                      <Form.Control
                         value={formData.nomeCategoria}
                         disabled
                         className="form-control m-1"

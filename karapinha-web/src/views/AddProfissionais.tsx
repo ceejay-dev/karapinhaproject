@@ -64,6 +64,20 @@ export function AddProfissionais() {
         ...prevData,
         horarios: selectedValues,
       }));
+    } else if (name === "telemovelProfissional" && value.length > 9) {
+      setAlertMessage("O telemóvel deve possuir 9 dígitos.");
+      setAlertVariant("danger");
+      setShowAlert(true);
+      setTimeout(() => {
+        setShowAlert(false);
+      }, 1500);
+    }else if (name === "bilheteProfissional" && value.length > 14) {
+      setAlertMessage("O bilhete de identidade possui apenas 14 caracterés.");
+      setAlertVariant("danger");
+      setShowAlert(true);
+      setTimeout(() => {
+        setShowAlert(false);
+      }, 1500);
     } else {
       setFormData((prevData) => ({
         ...prevData,

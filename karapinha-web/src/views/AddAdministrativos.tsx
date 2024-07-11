@@ -10,7 +10,7 @@ import { logo, plus } from "../components/Images";
 import "../styles/marcacao.css";
 import { useNavigate } from "react-router-dom";
 
-type administrativesProps = {
+type AdministrativesProps = {
   nomeUtilizador: string;
   emailUtilizador: string;
   bilheteUtilizador: string;
@@ -28,32 +28,47 @@ export function AddAdministrativos() {
     navigate("/adminHome");
   };
 
-  // variavel de estado para adicionar o administrativo
+  // Variável de estado para adicionar o administrativo
   const [formData, setFormData] = useState({
     idUtilizador: "0",
     NomeUtilizador: "",
     EmailUtilizador: "",
     TelemovelUtilizador: "",
-    FotoUtilizador: null,
+    FotoUtilizador: null as File | null,
     BilheteUtilizador: "",
     UsernameUtilizador: "",
     PasswordUtilizador: "",
     ConfirmarPassword: "",
   });
 
-  //variavel de estado para mensagens de alerta
-  const [alert, setAlert] = useState({
-    show: false,
-    message: "",
-    variant: "",
-  });
+  // Variáveis de estado para mensagens de alerta
+  const [alertMessage, setAlertMessage] = useState("");
+  const [alertVariant, setAlertVariant] = useState("success");
+  const [showAlert, setShowAlert] = useState(false);
 
   const handleChange = (event: any) => {
     const { name, value } = event.target;
-    setFormData((prevData) => ({
-      ...prevData,
-      [name]: value,
-    }));
+    if (name === "TelemovelUtilizador" && value.length > 9) {
+      setAlertMessage("O telemóvel deve possuir 9 dígitos.");
+      setAlertVariant("danger");
+      setShowAlert(true);
+      setTimeout(() => {
+        setShowAlert(false);
+      }, 1500);
+    }else if (name === "BilheteUtilizador" && value.length > 14) {
+      setAlertMessage("O bilhete de identidade possui apenas 14 caracterés.");
+      setAlertVariant("danger");
+      setShowAlert(true);
+      setTimeout(() => {
+        setShowAlert(false);
+      }, 1500);
+  }
+    else {
+      setFormData((prevData) => ({
+        ...prevData,
+        [name]: value,
+      }));
+    }
   };
 
   const handleFileChange = (event: any) => {
@@ -67,11 +82,9 @@ export function AddAdministrativos() {
     event.preventDefault();
 
     if (formData.PasswordUtilizador !== formData.ConfirmarPassword) {
-      setAlert({
-        show: true,
-        message: "Password e Confirmar Password não são iguais.",
-        variant: "danger",
-      });
+      setAlertMessage("Password e Confirmar Password não são iguais.");
+      setAlertVariant("danger");
+      setShowAlert(true);
       return;
     }
 
@@ -97,35 +110,29 @@ export function AddAdministrativos() {
       });
 
       if (response.ok) {
-        setAlert({
-          show: true,
-          message: "Registo realizado com sucesso.",
-          variant: "success",
-        });
+        setAlertMessage("Registo realizado com sucesso.");
+        setAlertVariant("success");
+        setShowAlert(true);
         setTimeout(() => {
           setShow(false);
           window.location.reload();
         }, 2500);
       } else {
-        setAlert({
-          show: true,
-          message: "Falha ao registar o administrativo.",
-          variant: "danger",
-        });
+        setAlertMessage("Falha ao registar o administrativo.");
+        setAlertVariant("danger");
+        setShowAlert(true);
       }
     } catch (error) {
       console.error("Error:", error);
-      setAlert({
-        show: true,
-        message: "Erro ao registar o administrativo.",
-        variant: "danger",
-      });
+      setAlertMessage("Erro ao registar o administrativo.");
+      setAlertVariant("danger");
+      setShowAlert(true);
     }
   };
 
-  // variavel de estado para vector de administrativos
+  // Variável de estado para vetor de administrativos
   const [administratives, setAdministratives] = useState<
-    administrativesProps[]
+    AdministrativesProps[]
   >([]);
 
   useEffect(() => {
@@ -152,7 +159,9 @@ export function AddAdministrativos() {
   return (
     <main className="container-service">
       <div className="p-2 container-service-added">
-        <h4 className="bg-white text-center pt-2 rounded-top-2 m-0">Administrativos registados</h4>
+        <h4 className="bg-white text-center pt-2 rounded-top-2 m-0">
+          Administrativos registados
+        </h4>
         <div className="bg-white">
           <Button
             route="#"
@@ -295,9 +304,9 @@ export function AddAdministrativos() {
                 </div>
 
                 <div className="d-flex justify-content-center w-100">
-                  {alert.show && (
-                    <Alert variant={alert.variant} className="mt-3 w-100">
-                      {alert.message}
+                  {showAlert && (
+                    <Alert variant={alertVariant} className="mt-3 w-100">
+                      {alertMessage}
                     </Alert>
                   )}
                 </div>

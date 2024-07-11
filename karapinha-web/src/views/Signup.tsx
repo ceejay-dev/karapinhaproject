@@ -6,9 +6,11 @@ import { Button, Alert } from "react-bootstrap";
 
 export function Signup() {
   const navigate = useNavigate();
-  const [showAlert, setShowAlert] = useState({ success: false, failure: false });
+  const [alertMessage, setAlertMessage] = useState("");
+  const [alertVariant, setAlertVariant] = useState("success");
+  const [showAlert, setShowAlert] = useState(false);
   const [validationError, setValidationError] = useState("");
-  
+
   const [formData, setFormData] = useState({
     idUtilizador: '0',
     NomeUtilizador: '',
@@ -21,31 +23,48 @@ export function Signup() {
     ConfirmPasswordUtilizador: ''
   });
 
-  const handleChange = (event:any) => {
+  const handleChange = (event: any) => {
     const { name, value } = event.target;
-    setFormData((prevData) => ({
-      ...prevData,
-      [name]: value,
-    }));
+
+    if (name === "TelemovelUtilizador" && value.length > 9) {
+      setAlertMessage("O telemóvel deve possuir 9 dígitos.");
+      setAlertVariant("danger");
+      setShowAlert(true);
+      setTimeout(() => {
+        setShowAlert(false);
+      }, 1500);
+    }else if (name === "BilheteUtilizador" && value.length > 14) {
+      setAlertMessage("O bilhete de identidade possui apenas 14 dígitos.");
+      setAlertVariant("danger");
+      setShowAlert(true);
+      setTimeout(() => {
+        setShowAlert(false);
+      }, 1500);
+    }
+     else {
+      setFormData((prevData) => ({
+        ...prevData,
+        [name]: value,
+      }));
+    }
   };
 
-  const handleFileChange = (event:any) => {
+  const handleFileChange = (event: any) => {
     setFormData((prevData) => ({
       ...prevData,
       FotoUtilizador: event.target.files[0],
     }));
-    console.log (formData.FotoUtilizador)
   };
 
-  const handleLoginClick = (event:any) => {
+  const handleLoginClick = (event: any) => {
     event.preventDefault();
     navigate("/login");
   };
 
-  const handleRegisterClick = async (event:any) => {
+  const handleRegisterClick = async (event: any) => {
     event.preventDefault();
-    
-    // Validation
+
+    // Validação geral dos campos
     if (
       !formData.NomeUtilizador ||
       !formData.EmailUtilizador ||
@@ -84,18 +103,23 @@ export function Signup() {
         method: 'POST',
         body: form,
       });
-      
+
       if (response.ok) {
-        setShowAlert({ success: true, failure: false });
+        setAlertMessage("Administrador precisa ativar a sua conta para fazer login.");
+        setAlertVariant("info");
+        setShowAlert(true);
         setTimeout(() => {
           navigate("/");
         }, 2000);
       } else {
-        setShowAlert({ success: false, failure: true });
-        console.error("Falha ao registar utilizador.");
+        setAlertMessage("Falha ao registar o utilizador.");
+        setAlertVariant("danger");
+        setShowAlert(true);
       }
     } catch (error) {
-      setShowAlert({ success: false, failure: true });
+      setAlertMessage("Erro ao registar o utilizador.");
+      setAlertVariant("danger");
+      setShowAlert(true);
       console.error("Error:", error);
     }
   };
@@ -201,14 +225,9 @@ export function Signup() {
             {validationError}
           </Alert>
         )}
-        {showAlert.success && (
-          <Alert variant="info" className="mt-3">
-            Administrador precisa ativar a sua conta para fazer login.
-          </Alert>
-        )}
-        {showAlert.failure && (
-          <Alert variant="danger" className="mt-3">
-            Falha ao registar o utilizador.
+        {showAlert && (
+          <Alert variant={alertVariant} className="mt-3">
+            {alertMessage}
           </Alert>
         )}
       </div>

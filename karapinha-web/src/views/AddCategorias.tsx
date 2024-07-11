@@ -96,12 +96,11 @@ export function AddCategorias() {
     const url = `https://localhost:7209/DeleteCategory?id=${idCategoria}`;
     try {
       const response = await fetch(url, {
-        method: "DELETE",
+        method: "PUT",
       });
 
       if (response.ok) {
         setCategorias(categorias.filter(categoria => categoria.idCategoria !== idCategoria));
-        alert("Categoria apagada com sucesso!");
         console.log("Categoria apagada com sucesso!");
         // setAlertMessage("Categoria apagada com sucesso!");
         // setAlertVariant("success");

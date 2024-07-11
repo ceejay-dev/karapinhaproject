@@ -12,7 +12,6 @@ type UserProps = {
   bilheteUtilizador:string;
   fotoUtilizador:string;
   passwordUtilizador: string;
-  //confirmarPassword: string;
 };
 
 export function UpdateUser() {
@@ -30,17 +29,6 @@ export function UpdateUser() {
   const handleEditedClick = async (event: { preventDefault: () => void }) => {
     event.preventDefault();
 
-    // if (!user?.confirmarPassword) {
-    //   setAlertMessage("Deve confirmar a palavra-passe para efeitos de segurança e protecção dos seus dados.");
-    //   setAlertVariant("danger");
-    //   return;
-    // }
-
-    // if (user.passwordUtilizador !== user.confirmarPassword) {
-    //   setAlertMessage("As senhas não coincidem. Por favor, verifique novamente.");
-    //   setAlertVariant("danger");
-    //   return;
-    // }
     try {
       const response = await fetch("https://localhost:7209/UpdateUser", {
         method: "PUT",
@@ -95,6 +83,8 @@ export function UpdateUser() {
 
   const handleChange = (e: React.ChangeEvent<HTMLInputElement>) => {
     const { name, value } = e.target;
+    // const numero = typeof value === 'string' ? parseInt(value, 10) : value;
+
     setUser((prevUser) => (prevUser ? { ...prevUser, [name]: value } : null));
   };
 
@@ -104,7 +94,7 @@ export function UpdateUser() {
 
       <div className="container-form">
         <div className="d-flex justify-content-center">
-          <img className="image-icon" src={`https://localhost:7209/${user?.fotoUtilizador}`} alt="UserFoto" />
+          <img className="image-icon rounded-circle" src={`https://localhost:7209/${user?.fotoUtilizador}`} alt="UserFoto" />
         </div>
         <form action="" className="d-flex justify-content-center formulario">
           <div className="d-flex flex-row">
@@ -126,7 +116,7 @@ export function UpdateUser() {
                 onChange={handleChange}
               />
               <input
-                type="text"
+                type="number"
                 name="telemovelUtilizador"
                 placeholder="Telemóvel"
                 className="m-1"
@@ -163,14 +153,7 @@ export function UpdateUser() {
                 value={user?.passwordUtilizador || ""}
                 onChange={handleChange}
               />
-              {/* <input
-                type="password"
-                name="confirmarPassword"
-                placeholder="Confirmar password"
-                className="m-1"
-                value={user?.confirmarPassword || ""}
-                onChange={handleChange}
-              /> */}
+              
             </div>
           </div>
 

@@ -1,6 +1,6 @@
 {
   "Version": 1,
-  "Hash": "ZsgHfC+S3yCQq9hDAn14jKnL7jItw6v0DSYF2PQRiCM=",
+  "Hash": "GrZACo5I4ao0V8LSjyxt/XaKpfC0J1VlfEOvwy0mHx8=",
   "Source": "KarapinhaXptoApi",
   "BasePath": "_content/KarapinhaXptoApi",
   "Mode": "Default",
@@ -224,6 +224,25 @@
       "CopyToOutputDirectory": "Never",
       "CopyToPublishDirectory": "PreserveNewest",
       "OriginalItemSpec": "wwwroot\\storage\\9ef91437-8327-4100-a31e-64baf61c8e56.jpg"
+    },
+    {
+      "Identity": "D:\\karapinhaproject\\KarapinhaXptoApi\\KarapinhaXptoApi\\wwwroot\\storage\\c82db88d-993f-49fd-a41b-6eebbf869b47.jpeg",
+      "SourceId": "KarapinhaXptoApi",
+      "SourceType": "Discovered",
+      "ContentRoot": "D:\\karapinhaproject\\KarapinhaXptoApi\\KarapinhaXptoApi\\wwwroot\\",
+      "BasePath": "_content/KarapinhaXptoApi",
+      "RelativePath": "storage/c82db88d-993f-49fd-a41b-6eebbf869b47.jpeg",
+      "AssetKind": "All",
+      "AssetMode": "All",
+      "AssetRole": "Primary",
+      "AssetMergeBehavior": "PreferTarget",
+      "AssetMergeSource": "",
+      "RelatedAsset": "",
+      "AssetTraitName": "",
+      "AssetTraitValue": "",
+      "CopyToOutputDirectory": "Never",
+      "CopyToPublishDirectory": "PreserveNewest",
+      "OriginalItemSpec": "wwwroot\\storage\\c82db88d-993f-49fd-a41b-6eebbf869b47.jpeg"
     },
     {
       "Identity": "D:\\karapinhaproject\\KarapinhaXptoApi\\KarapinhaXptoApi\\wwwroot\\storage\\d16bce7b-765e-460e-bf0e-944f809cd585.jpg",

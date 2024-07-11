@@ -59,7 +59,7 @@ namespace KarapinhaXptoApi.Controllers
             }
         }
 
-        [HttpDelete]
+        [HttpPut]
         [Route("/DeleteCategory")]
         public async Task<ActionResult> DeleteCategory(int id)
         {

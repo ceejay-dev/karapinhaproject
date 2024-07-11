@@ -6,19 +6,14 @@ type Servico = {
   fkHorario: number;
   fkServico: number;
   fkProfissional: number;
+  nomeServico?: string;
+  nomeProfissional?: string; 
+  descricao?: string;
 };
 
 type Utilizador = {
   idUtilizador: number;
   nomeUtilizador: string;
-  emailUtilizador: string;
-  bilheteUtilizador: string;
-  telemovelUtilizador: string;
-  fotoUtilizador: string;
-  usernameUtilizador: string;
-  passwordUtilizador: string;
-  estado: string;
-  tipoPerfil: string;
 };
 
 type Marcacao = {
@@ -46,6 +41,14 @@ export function ConfirmMarcacoes() {
         const response = await fetch("https://localhost:7209/GetAllBookings");
         if (response.ok) {
           const data = await response.json();
+          // Pré-carregar os nomes dos serviços, profissionais e horários
+          await Promise.all(data.map(async (marcacao: any) => {
+            await Promise.all(marcacao.servicos.map(async (servico: any) => {
+              servico.nomeServico = await fetchServiceName(servico.fkServico);
+              servico.nomeProfissional = await fetchProfissionalName(servico.fkProfissional);
+              servico.descricao = await fetchHorarioDescription(servico.fkHorario);
+            }));
+          }));
           setMarcacoes(data);
         } else {
           console.error("Erro ao buscar marcações:", response.statusText);
@@ -57,6 +60,54 @@ export function ConfirmMarcacoes() {
 
     fetchMarcacoes();
   }, []);
+
+  const fetchServiceName = async (id: number) => {
+    const url = `https://localhost:7209/GetTreatmentById?id=${id}`;
+    try {
+      const response = await fetch(url);
+      if (response.ok) {
+        const data = await response.json();
+        return data.nomeServico;
+      } else {
+        console.error("Erro ao buscar nome do serviço");
+      }
+    } catch (error) {
+      console.error("Erro ao buscar nome do serviço:", error);
+    }
+    return null;
+  };
+
+  const fetchProfissionalName = async (id: number) => {
+    const url = `https://localhost:7209/GetProfissionalById?id=${id}`;
+    try {
+      const response = await fetch(url);
+      if (response.ok) {
+        const data = await response.json();
+        return data.nomeProfissional;
+      } else {
+        console.error("Erro ao buscar nome do profissional");
+      }
+    } catch (error) {
+      console.error("Erro ao buscar nome do profissional:", error);
+    }
+    return null;
+  };
+
+  const fetchHorarioDescription = async (id: number) => {
+    const url = `https://localhost:7209/GetSchedule?id=${id}`;
+    try {
+      const response = await fetch(url);
+      if (response.ok) {
+        const data = await response.json();
+        return data.descricao;
+      } else {
+        console.error("Erro ao buscar nome do horário");
+      }
+    } catch (error) {
+      console.error("Erro ao buscar nome do horário:", error);
+    }
+    return null;
+  };
 
   const handleConfirm = async (idMarcacao: number) => {
     setConfirming((prev) => ({ ...prev, [idMarcacao]: true }));
@@ -80,7 +131,7 @@ export function ConfirmMarcacoes() {
       setTimeout(() => {
         setShowModal(false);
         window.location.reload();
-      }, 2500); // Fecha o modal após 2.5 segundos e recarrega a página
+      }, 2500); 
     }
   };
 
@@ -146,21 +197,21 @@ export function ConfirmMarcacoes() {
                   <td>
                     {marcacao.servicos.map((servico, index) => (
                       <div key={index}>
-                        Serviço {index + 1}: {servico.fkServico}
+                        Serviço: {servico.nomeServico || "Carregando..."}
                       </div>
                     ))}
                   </td>
                   <td>
                     {marcacao.servicos.map((servico, index) => (
                       <div key={index}>
-                        Profissional {index + 1}: {servico.fkProfissional}
+                        Profissional: {servico.nomeProfissional || "Carregando..."}
                       </div>
                     ))}
                   </td>
                   <td>
                     {marcacao.servicos.map((servico, index) => (
                       <div key={index}>
-                        Horário {index + 1}: {servico.fkHorario}
+                         {servico.descricao || "Carregando..."}
                       </div>
                     ))}
                   </td>
@@ -176,7 +227,6 @@ export function ConfirmMarcacoes() {
                     <Button
                       variant="info"
                       onClick={() => handleOpenRescheduleModal(marcacao.idMarcacao)}
-                    
                     >
                       Reagendar
                     </Button>
@@ -207,6 +257,7 @@ export function ConfirmMarcacoes() {
               type="date"
               value={selectedDate}
               onChange={(e) => setSelectedDate(e.target.value)}
+              min={new Date().toISOString().split("T")[0]}
             />
           </Form.Group>
         </Modal.Body>
@@ -214,7 +265,7 @@ export function ConfirmMarcacoes() {
           <Button variant="danger" onClick={() => setRescheduleModalShow(false)}>
             Cancelar
           </Button>
-          <Button variant="info" onClick={handleReschedule}>
+          <Button variant="success" onClick={handleReschedule}>
             Confirmar
           </Button>
         </Modal.Footer>

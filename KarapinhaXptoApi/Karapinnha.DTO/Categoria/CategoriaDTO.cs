@@ -10,5 +10,6 @@ namespace Karapinnha.DTO.Categoria
     {
         public int IdCategoria { get; set; }
         public string? NomeCategoria { get; set; }
+        public bool Estado { get; set; }
     }
 }
