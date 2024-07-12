@@ -1,5 +1,5 @@
 import { Button as BootstrapButton } from "react-bootstrap";
-import "../styles/adminHome.css";
+import "../styles/administradorHome.css";
 import { Button } from "../components/Button";
 import { useNavigate } from "react-router-dom";
 
@@ -11,27 +11,29 @@ export function AdminHome() {
   };
 
   return (
-    <div className="principal-container">
-      <ul className="nav">
-        <li>
-          <Button route="/clientes" text="Clientes" />
-        </li>
+    <main className="back-image">
+      <div className="">
+        <ul className="nav">
+          <li>
+            <Button route="/clientes" text="Clientes" />
+          </li>
 
-        <li>
-          <Button route="/administrativos" text="Administrativos" />
-        </li>
+          <li>
+            <Button route="/administrativos" text="Administrativos" />
+          </li>
 
-        <li>
-          <BootstrapButton 
-            className="link-button" 
-            onClick={() => {
-              handleDeleteStorage();
-            }} 
-          >
-            Sair
-          </BootstrapButton>
-        </li>
-      </ul>
-    </div>
+          <li>
+            <BootstrapButton
+              className="link-button"
+              onClick={() => {
+                handleDeleteStorage();
+              }}
+            >
+              Sair
+            </BootstrapButton>
+          </li>
+        </ul>
+      </div>
+    </main>
   );
 }

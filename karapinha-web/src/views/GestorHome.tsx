@@ -3,6 +3,7 @@ import { useNavigate } from "react-router-dom";
 import { Button as BootstrapButton, Card, OverlayTrigger, Tooltip, Table } from "react-bootstrap";
 import { FaArrowUp, FaArrowDown } from "react-icons/fa";
 import { Button } from "../components/Button";
+import "../styles/adminHome.css";
 
 type ServiceProps = {
   fkHorario: number;
