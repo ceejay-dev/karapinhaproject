@@ -17,5 +17,9 @@ namespace Karapinha.Shared.IServices
         Task<bool> ConfirmBooking(int id);
         Task<bool> RescheduleBooking(int id, DateOnly data);
         Task<IEnumerable<MarcacaoGetDTO>> GetBookingsByMonth();
+        public double GetTotalAmountToday();
+        public double GetTotalAmountYesterday();
+        public double GetTotalAmountCurrentMonth();
+        public double GetTotalAmountPastMonth();
     }
 }

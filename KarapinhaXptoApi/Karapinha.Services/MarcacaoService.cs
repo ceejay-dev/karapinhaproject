@@ -153,5 +153,22 @@ namespace Karapinha.Services
             }
         }
 
+        public double GetTotalAmountToday()
+        {
+            return repository.GetTotalAmountToday();
+        }
+        public double GetTotalAmountYesterday()
+        {
+            return repository.GetTotalAmountYesterday();
+        }
+        public double GetTotalAmountCurrentMonth()
+        {
+            return repository.GetTotalAmountCurrentMonth();
+        }
+        public double GetTotalAmountPastMonth()
+        {
+            return repository.GetTotalAmountPastMonth();
+        }
+
     }
 }

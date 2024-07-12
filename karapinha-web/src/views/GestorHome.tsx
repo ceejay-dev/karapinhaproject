@@ -5,10 +5,12 @@ import { FaArrowUp, FaArrowDown } from "react-icons/fa";
 import { Button } from "../components/Button";
 
 type ServiceProps = {
-  nomeServico: string;
-  descricao: string;
-  quantidade: number;
-  preco: number;
+  fkHorario: number;
+  fkServico: number;
+  fkProfissional: number;
+  nomeServico?: string;
+  nomeProfissional?: string;
+  descricao?: string;
 };
 
 type ProfissionalProps = {
@@ -24,11 +26,7 @@ type Marcacao = {
   utilizador: {
     nomeUtilizador: string;
   };
-  servicos: {
-    nomeServico?: string;
-    nomeProfissional?: string;
-    descricao?: string;
-  }[];
+  servicos: ServiceProps[]; // Alterado para ServiceProps
 };
 
 export function GestorHome() {
@@ -36,6 +34,10 @@ export function GestorHome() {
   const [mostRequestedServices, setMostRequestedServices] = useState<ServiceProps[]>([]);
   const [mostRequestedProfessionals, setMostRequestedProfessionals] = useState<ProfissionalProps[]>([]);
   const [monthlyBookings, setMonthlyBookings] = useState<Marcacao[]>([]);
+  const [totalAmountToday, setTotalAmountToday] = useState<number | null>(null);
+  const [totalAmountYesterday, setTotalAmountYesterday] = useState<number | null>(null);
+  const [totalAmountCurrentMonth, setTotalAmountCurrentMonth] = useState<number | null>(null);
+  const [totalAmountPastMonth, setTotalAmountPastMonth] = useState<number | null>(null);
 
   useEffect(() => {
     async function fetchMostRequestedServices() {
@@ -71,7 +73,46 @@ export function GestorHome() {
         const response = await fetch("https://localhost:7209/GetBookingsByMonth");
         if (response.ok) {
           const data = await response.json();
-          setMonthlyBookings(data);
+
+          // Transformando as marcações para incluir nome do serviço, nome do profissional e descrição do horário
+          const updatedBookings = await Promise.all(data.map(async (marcacao: Marcacao) => {
+            const updatedServicos = await Promise.all(marcacao.servicos.map(async (servico) => {
+              try {
+                const serviceResponse = await fetch(`https://localhost:7209/GetTreatmentById?id=${servico.fkServico}`);
+                if (serviceResponse.ok) {
+                  const serviceData = await serviceResponse.json();
+                  servico.nomeServico = serviceData.nomeServico;
+                } else {
+                  console.error("Erro ao buscar o serviço:", serviceResponse.statusText);
+                }
+
+                const professionalResponse = await fetch(`https://localhost:7209/GetProfissionalById?id=${servico.fkProfissional}`);
+                if (professionalResponse.ok) {
+                  const professionalData = await professionalResponse.json();
+                  servico.nomeProfissional = professionalData.nomeProfissional;
+                } else {
+                  console.error("Erro ao buscar o profissional:", professionalResponse.statusText);
+                }
+
+                const scheduleResponse = await fetch(`https://localhost:7209/GetSchedule?id=${servico.fkHorario}`);
+                if (scheduleResponse.ok) {
+                  const scheduleData = await scheduleResponse.json();
+                  servico.descricao = scheduleData.descricao;
+                } else {
+                  console.error("Erro ao buscar o horário:", scheduleResponse.statusText);
+                }
+              } catch (error) {
+                console.error("Erro ao processar a requisição:", error);
+              }
+
+              return servico;
+            }));
+
+            marcacao.servicos = updatedServicos;
+            return marcacao;
+          }));
+
+          setMonthlyBookings(updatedBookings);
         } else {
           console.error("Erro ao buscar as marcações mensais:", response.statusText);
         }
@@ -80,9 +121,69 @@ export function GestorHome() {
       }
     }
 
+    async function fetchTotalAmountToday() {
+      try {
+        const response = await fetch("https://localhost:7209/GetTotalAmountToday");
+        if (response.ok) {
+          const data = await response.json();
+          setTotalAmountToday(data);
+        } else {
+          console.error("Erro ao buscar o total faturado hoje:", response.statusText);
+        }
+      } catch (error) {
+        console.error("Erro ao buscar o total faturado hoje:", error);
+      }
+    }
+
+    async function fetchTotalAmountYesterday() {
+      try {
+        const response = await fetch("https://localhost:7209/GetTotalAmountYesterday");
+        if (response.ok) {
+          const data = await response.json();
+          setTotalAmountYesterday(data);
+        } else {
+          console.error("Erro ao buscar o total faturado ontem:", response.statusText);
+        }
+      } catch (error) {
+        console.error("Erro ao buscar o total faturado ontem:", error);
+      }
+    }
+
+    async function fetchTotalAmountCurrentMonth() {
+      try {
+        const response = await fetch("https://localhost:7209/GetTotalAmountCurrentMonth");
+        if (response.ok) {
+          const data = await response.json();
+          setTotalAmountCurrentMonth(data);
+        } else {
+          console.error("Erro ao buscar o total faturado no mês atual:", response.statusText);
+        }
+      } catch (error) {
+        console.error("Erro ao buscar o total faturado no mês atual:", error);
+      }
+    }
+
+    async function fetchTotalAmountPastMonth() {
+      try {
+        const response = await fetch("https://localhost:7209/GetTotalAmountPastMonth");
+        if (response.ok) {
+          const data = await response.json();
+          setTotalAmountPastMonth(data);
+        } else {
+          console.error("Erro ao buscar o total faturado no mês passado:", response.statusText);
+        }
+      } catch (error) {
+        console.error("Erro ao buscar o total faturado no mês passado:", error);
+      }
+    }
+
     fetchMostRequestedServices();
     fetchMostRequestedProfessionals();
     fetchMonthlyBookings();
+    fetchTotalAmountToday();
+    fetchTotalAmountYesterday();
+    fetchTotalAmountCurrentMonth();
+    fetchTotalAmountPastMonth();
   }, []);
 
   const handleDeleteStorage = () => {
@@ -143,7 +244,7 @@ export function GestorHome() {
                 <td>
                   {marcacao.servicos.map((servico, index) => (
                     <div key={index}>
-                       {servico.nomeProfissional || "Carregando..."}
+                      {servico.nomeProfissional || "Carregando..."}
                     </div>
                   ))}
                 </td>
@@ -164,22 +265,16 @@ export function GestorHome() {
             <Card.Header className="custom-card-header">Serviços Mais Solicitados</Card.Header>
             <Card.Body className="custom-card-body">
               {mostRequestedServices.map((service, index) => (
-                <Card.Text key={service.nomeServico} className="d-flex justify-content-between align-items-center">
+                <Card.Text key={index} className="d-flex justify-content-between align-items-center">
                   {service.nomeServico}
                   {index === 0 && (
-                    <OverlayTrigger
-                      placement="top"
-                      overlay={<Tooltip>Serviço mais solicitado</Tooltip>}
-                    >
-                      <FaArrowUp style={{ color: 'green' }} />
+                    <OverlayTrigger placement="top" overlay={<Tooltip>Serviço mais solicitado</Tooltip>}>
+                      <FaArrowUp style={{ color: "green" }} />
                     </OverlayTrigger>
                   )}
                   {index === mostRequestedServices.length - 1 && (
-                    <OverlayTrigger
-                      placement="top"
-                      overlay={<Tooltip>Serviço menos solicitado</Tooltip>}
-                    >
-                      <FaArrowDown style={{ color: 'red' }} />
+                    <OverlayTrigger placement="top" overlay={<Tooltip>Serviço menos solicitado</Tooltip>}>
+                      <FaArrowDown style={{ color: "red" }} />
                     </OverlayTrigger>
                   )}
                 </Card.Text>
@@ -190,11 +285,21 @@ export function GestorHome() {
           <Card className="custom-card bg-dark text-white">
             <Card.Header className="custom-card-header">Profissionais Mais Solicitados</Card.Header>
             <Card.Body className="custom-card-body">
-              {mostRequestedProfessionals.map((professional) => (
-                <Card.Text key={professional.nomeProfissional}>
+              {mostRequestedProfessionals.map((professional, index) => (
+                <Card.Text key={index}>
                   {professional.nomeProfissional} - Solicitações: {professional.contador}
                 </Card.Text>
               ))}
+            </Card.Body>
+          </Card>
+
+          <Card className="custom-card bg-dark text-white">
+            <Card.Header className="custom-card-header">Tabela de Facturação</Card.Header>
+            <Card.Body className="custom-card-body">
+              <Card.Text>Hoje: {totalAmountToday !== null ? `${totalAmountToday} kz` : "Carregando..."}</Card.Text>
+              <Card.Text>Ontem: {totalAmountYesterday !== null ? `${totalAmountYesterday} kz` : "Carregando..."}</Card.Text>
+              <Card.Text>Mês actual: {totalAmountCurrentMonth !== null ? `${totalAmountCurrentMonth} kz` : "Carregando..."}</Card.Text>
+              <Card.Text>Mês Passado: {totalAmountPastMonth !== null ? `${totalAmountPastMonth} kz` : "Carregando..."}</Card.Text>
             </Card.Body>
           </Card>
         </div>

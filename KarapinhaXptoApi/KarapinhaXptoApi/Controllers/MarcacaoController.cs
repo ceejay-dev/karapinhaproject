@@ -122,5 +122,33 @@ namespace KarapinhaXptoApi.Controllers
                 }
             }
         }
+
+        [HttpGet]
+        [Route("/GetTotalAmountToday")]
+        public double GetTotalAmountToday()
+        {
+            return bookingService.GetTotalAmountToday();
+        }
+
+        [HttpGet]
+        [Route("/GetTotalAmountYesterday")]
+        public double GetTotalAmountYesterday()
+        {
+            return bookingService.GetTotalAmountYesterday();
+        }
+
+        [HttpGet]
+        [Route("/GetTotalAmountCurrentMonth")]
+        public double GetTotalAmountCurrentMonth()
+        {
+            return bookingService.GetTotalAmountCurrentMonth();
+        }
+
+        [HttpGet]
+        [Route("/GetTotalAmountPastMonth")]
+        public double GetTotalAmountPastMonth()
+        {
+            return bookingService.GetTotalAmountPastMonth();
+        }
     }
 }

@@ -16,6 +16,10 @@ namespace Karapinha.Shared.IRepositories
         IEnumerable<Marcacao> GetAllBookings();
         Task<IEnumerable<Marcacao>> GetBookingsByMonth();
         Task UpdateBooking(Marcacao marcacao);
+        public double GetTotalAmountToday();
+        public double GetTotalAmountYesterday();
+        public double GetTotalAmountCurrentMonth();
+        public double GetTotalAmountPastMonth();
 
     }
 }

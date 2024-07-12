@@ -95,6 +95,47 @@ namespace Karapinha.DAL.Repositories
             return monthlyBookings;
         }
 
+        public double GetTotalAmountToday()
+        {
+            var amountToday = DbContext.Marcacoes
+                .Where(m => m.DataMarcacao == DateOnly.FromDateTime(DateTime.UtcNow))
+                .Sum(m => m.PrecoMarcacao);
+
+            return amountToday;
+        }
+       
+        public double GetTotalAmountYesterday()
+        {
+            var amountYesterday = DbContext.Marcacoes
+                .Where(m => m.DataMarcacao == DateOnly.FromDateTime(DateTime.UtcNow.AddDays(-1)))
+                .Sum(m => m.PrecoMarcacao);
+
+            return amountYesterday;
+        }
+
+        public double GetTotalAmountCurrentMonth()
+        {
+            var amountCurrentMonth = DbContext.Marcacoes
+                .Where(m => m.DataMarcacao.Year == DateOnly.FromDateTime(DateTime.UtcNow).Year
+                         && m.DataMarcacao.Month == DateOnly.FromDateTime(DateTime.UtcNow).Month)
+                .Sum(m => m.PrecoMarcacao);
+
+            return amountCurrentMonth;
+        }
+
+
+        public double GetTotalAmountPastMonth()
+        {
+            var pastMonth = DateOnly.FromDateTime(DateTime.UtcNow).AddMonths(-1);
+
+            var amountPastMont = DbContext.Marcacoes
+                .Where(m => m.DataMarcacao.Year == pastMonth.Year
+                         && m.DataMarcacao.Month == pastMonth.Month)
+                .Sum(m => m.PrecoMarcacao);
+
+            return amountPastMont;
+        }
+
 
     }
 }
