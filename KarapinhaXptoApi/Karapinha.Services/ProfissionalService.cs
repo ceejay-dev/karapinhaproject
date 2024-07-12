@@ -5,6 +5,7 @@ using Karapinha.Shared.IRepositories;
 using Karapinha.Shared.IServices;
 using Karapinnha.DTO.Profissional;
 using Microsoft.AspNetCore.Http;
+using Microsoft.EntityFrameworkCore;
 using ServiceStack;
 using System;
 using System.Collections.Generic;
@@ -55,7 +56,7 @@ namespace Karapinha.Services
                 profissionalAdded = ProfissionalConverter.ToProfissionalDTO(await Repository.CreateProfissional(ProfissionalConverter.ToProfissional(profissionalAdded)));
                 return profissionalAdded;
             }
-            catch (Exception ex)
+            catch (ServiceException ex)
             {
                 Console.WriteLine(ex.ToString());
                 throw new ServiceException(ex.Message);
@@ -127,7 +128,23 @@ namespace Karapinha.Services
         {
             try
             {
-                return await Repository.DeleteProfissional(id);
+                var profissional = await Repository.GetProfissionalById(id);
+
+                if (profissional != null)
+                {
+                    // Define o estado do profissional como falso
+                    profissional.Estado = false;
+
+                    // Salva as alterações no banco de dados
+                    await Repository.UpdateProfissional(profissional);
+                    Console.WriteLine("Profissional removido com sucesso.");
+                    return true;
+                }
+                else
+                {
+                    Console.WriteLine("Profissional não encontrado.");
+                    return false;
+                }
             }
             catch (Exception ex)
             {
@@ -144,7 +161,7 @@ namespace Karapinha.Services
             }
             catch (Exception ex)
             {
-                throw new ServiceException (ex.Message);
+                throw new ServiceException(ex.Message);
             }
         }
     }

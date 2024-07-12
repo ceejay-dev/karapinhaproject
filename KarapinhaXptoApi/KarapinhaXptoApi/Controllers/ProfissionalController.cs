@@ -74,9 +74,9 @@ namespace KarapinhaXptoApi.Controllers
             }
         }
 
-        [HttpDelete]
+        [HttpPut]
         [Route("/DeleteProfissional")]
-        public async Task<ActionResult> DeleteProfissional(int id)
+        public async Task<IActionResult> DeleteProfissional(int id)
         {
             try
             {

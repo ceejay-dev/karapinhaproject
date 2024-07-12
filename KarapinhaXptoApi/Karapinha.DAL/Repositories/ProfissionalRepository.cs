@@ -42,59 +42,60 @@ namespace Karapinha.DAL.Repositories
         public async Task<Profissional> GetProfissionalByIdCategoria(int idCategoria)
         {
             return await DbContext.Profissionais
-                                      .FirstOrDefaultAsync(p => p.FkCategoria == idCategoria);
+                .Where(p => p.Estado == true && p.FkCategoria == idCategoria)
+                .FirstOrDefaultAsync();
         }
+
 
         public async Task<IEnumerable<Profissional>> GetAllProfissionals()
         {
             return await DbContext.Profissionais
+                .Where(p => p.Estado == true)
                 .Include(p => p.Horarios)
                 .ThenInclude(ph => ph.Horario)
                 .ToListAsync();
         }
 
-        public async Task<bool> DeleteProfissional(int id)
-        {
-            try
-            {
-                var profissional = await GetProfissionalById(id);
 
-                if (profissional != null)
-                {
-                    // Verifica se o contexto está rastreando o objeto
-                    var entry = DbContext.Entry(profissional);
-                    if (entry.State == EntityState.Detached)
-                    {
-                        DbContext.Profissionais.Attach(profissional);
-                    }
-                    DbContext.Profissionais.Remove(profissional);
-                    // Salva as alterações no banco de dados
-                    var result = await DbContext.SaveChangesAsync();
-                    if (result > 0)
-                    {
-                        Console.WriteLine("Profissional removido com sucesso.");
-                        return true;
-                    }
-                    else
-                    {
-                        Console.WriteLine("Nenhuma alteração foi salva no banco de dados.");
-                    }
-                }
-                else
-                {
-                    Console.WriteLine("Profissional não encontrado.");
-                }
-            }
-            catch (DbUpdateException dbEx)
-            {
-                Console.WriteLine($"Erro de banco de dados ao remover profissional: {dbEx.Message}");
-                if (dbEx.InnerException != null)
-                {
-                    Console.WriteLine($"Erro interno: {dbEx.InnerException.Message}");
-                }
-            }
-            return false;
-        }
+        //public async Task<bool> DeleteProfissional(int id)
+        //{
+        //    try
+        //    {
+        //        var profissional = await GetProfissionalById(id);
+
+        //        if (profissional != null)
+        //        {
+        //            // Define o estado do profissional como falso
+        //            profissional.Estado = false;
+
+        //            // Salva as alterações no banco de dados
+        //            var result = await DbContext.SaveChangesAsync();
+        //            if (result > 0)
+        //            {
+        //                Console.WriteLine("Profissional removido com sucesso.");
+        //                return true;
+        //            }
+        //            else
+        //            {
+        //                Console.WriteLine("Nenhuma alteração foi salva no banco de dados.");
+        //            }
+        //        }
+        //        else
+        //        {
+        //            Console.WriteLine("Profissional não encontrado.");
+        //        }
+        //    }
+        //    catch (DbUpdateException dbEx)
+        //    {
+        //        Console.WriteLine($"Erro de banco de dados ao alterar estado do profissional: {dbEx.Message}");
+        //        if (dbEx.InnerException != null)
+        //        {
+        //            Console.WriteLine($"Erro interno: {dbEx.InnerException.Message}");
+        //        }
+        //    }
+        //    return false;
+        //}
+
 
 
         public async Task UpdateProfissional(Profissional profissional)
@@ -108,6 +109,7 @@ namespace Karapinha.DAL.Repositories
             var result = from profissional in DbContext.Profissionais
                          join categoria in DbContext.Categorias
                          on profissional.FkCategoria equals categoria.IdCategoria
+                         where profissional.Estado == true
                          select new
                          {
                              IdProfissional = profissional.IdProfissional,
@@ -121,11 +123,12 @@ namespace Karapinha.DAL.Repositories
             return result.ToList();
         }
 
+
         public async Task<IEnumerable<dynamic>> GetAllProfissionaisByIdCategoria(int idCategoria)
         {
             var resultado = await (from p in DbContext.Profissionais
                                    join c in DbContext.Categorias on p.FkCategoria equals c.IdCategoria
-                                   where p.FkCategoria == idCategoria
+                                   where (p.FkCategoria == idCategoria && p.Estado==true)
                                    select new
                                    {
                                        IdProfissional = p.IdProfissional,

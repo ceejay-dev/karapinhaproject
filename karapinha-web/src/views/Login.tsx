@@ -17,6 +17,10 @@ export function Login() {
 
   const handleLoginClick = (event: any) => {
     event.preventDefault();
+    if (!usernameUtilizador || !passwordUtilizador) {
+      setErrorMessage("Deve preencher todos os campos.");
+      return;
+    }
     verifyLogin();
   };
 
@@ -69,7 +73,7 @@ export function Login() {
         }
       })
       .catch(() => {
-        setErrorMessage("Erro no servidor. Tente novamente");
+        setErrorMessage("Credenciais incorretas. Tente novamente.");
       });
   }
 
@@ -115,12 +119,14 @@ export function Login() {
               placeholder="Username"
               value={usernameUtilizador}
               onChange={(e) => setUsername(e.target.value)}
+              required
             />
             <input
               type="password"
               placeholder="Password"
               value={passwordUtilizador}
               onChange={(e) => setPassword(e.target.value)}
+              required
             />
 
             <div className="button-container">

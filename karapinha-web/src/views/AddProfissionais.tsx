@@ -258,7 +258,7 @@ export function AddProfissionais() {
     const url = `https://localhost:7209/DeleteProfissional?id=${id}`;
     try {
       const response = await fetch(url, {
-        method: "DELETE",
+        method: "PUT",
       });
       if (response.ok) {
         setProfissionais((prevProfissionais) =>

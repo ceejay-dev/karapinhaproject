@@ -64,6 +64,8 @@ export function AddMarcacoes() {
   const handleShow = () => setShow(true);
 
   const handleCanceledClick = () => {
+    setSelectedServicos([]);
+    setCartCount(0);
     handleClose();
   };
 
@@ -291,7 +293,7 @@ export function AddMarcacoes() {
                       variant="info"
                       onClick={() => handleAddedClick(servico)}
                     >
-                      Adicionar
+                      Adicionar ao carrinho
                     </BootstrapButton>
                   </Card.Body>
                 </Card>
@@ -396,6 +398,7 @@ export function AddMarcacoes() {
                       selected={selectedDate}
                       onChange={(date: Date | null) => setSelectedDate(date)}
                       dateFormat="dd/MM/yyyy"
+                      minDate={new Date()}
                       className="form-control me-5"
                       placeholderText="Data da Marcação"
                     />

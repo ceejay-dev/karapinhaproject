@@ -18,7 +18,7 @@ namespace Karapinha.DAL.Converters
                 FkUtilizador = dto.FkUtilizador,
                 PrecoMarcacao = dto.PrecoMarcacao,
                 DataMarcacao = dto.DataMarcacao,
-                Servicos = dto.Servicos.Select(s=> MarcacaoServicoConverter.ToMarcacaoServico(s)).ToList(),
+                Servicos = dto.Servicos.Select(s => MarcacaoServicoConverter.ToMarcacaoServico(s)).ToList(),
             };
         }
 
@@ -45,5 +45,6 @@ namespace Karapinha.DAL.Converters
                 Servicos = model.Servicos.Select(s => MarcacaoServicoConverter.ToMarcacaoServicoDTO(s)).ToList(),
             };
         }
+
     }
 }
