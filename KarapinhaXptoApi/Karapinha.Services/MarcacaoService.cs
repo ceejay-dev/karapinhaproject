@@ -170,5 +170,27 @@ namespace Karapinha.Services
             return repository.GetTotalAmountPastMonth();
         }
 
+        public async Task<bool> CancelBooking(int id)
+        {
+            try
+            {
+                var booking = await repository.GetBookingById(id);
+
+                if (booking == null)
+                {
+                    return false;
+                } else
+                {
+                    booking.Estado = "cancelado";
+                    await repository.UpdateBooking(booking);
+                    return true;
+                }
+            }
+            catch (Exception ex)
+            {
+                throw new NotFoundException(ex.Message);
+            }
+        }
+
     }
 }

@@ -27,7 +27,6 @@ namespace Karapinha.DAL.Repositories
             return booking.Entity;
         }
 
-
         public async Task<Marcacao> GetBookingById(int id)
         {
             return await DbContext.Marcacoes
@@ -51,7 +50,7 @@ namespace Karapinha.DAL.Repositories
                     .ThenInclude(s => s.Horario)
                 .Include(m => m.Servicos)
                     .ThenInclude(s => s.Profissional)
-                .Where(m => m.FkUtilizador == idUtilizador)
+                .Where(m => m.FkUtilizador == idUtilizador && m.Estado!="cancelado")
                 .ToListAsync();
         }
 
@@ -123,7 +122,6 @@ namespace Karapinha.DAL.Repositories
             return amountCurrentMonth;
         }
 
-
         public double GetTotalAmountPastMonth()
         {
             var pastMonth = DateOnly.FromDateTime(DateTime.UtcNow).AddMonths(-1);
@@ -135,7 +133,5 @@ namespace Karapinha.DAL.Repositories
 
             return amountPastMont;
         }
-
-
     }
 }

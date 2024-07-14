@@ -1,5 +1,5 @@
 import { useEffect, useState } from "react";
-import { Container, Row, Col, Card } from "react-bootstrap";
+import { Container, Row, Col, Card, Button, Modal, Alert } from "react-bootstrap";
 import "../styles/marcacao.css";
 
 type Servico = {
@@ -21,6 +21,11 @@ export function MarcacoesList() {
   const [serviceNames, setServiceNames] = useState<{ [key: number]: string }>({});
   const [professionalNames, setProfessionalNames] = useState<{ [key: number]: string }>({});
   const [scheduleDescriptions, setScheduleDescriptions] = useState<{ [key: number]: string }>({});
+  const [showCancelModal, setShowCancelModal] = useState(false);
+  const [selectedMarcacaoId, setSelectedMarcacaoId] = useState<number | null>(null);
+  const [alertMessage, setAlertMessage] = useState<string | null>(null);
+  const [alertVariant, setAlertVariant] = useState<string>("success");
+  const [showAlert, setShowAlert] = useState<boolean>(false);
   const userId = localStorage.getItem("idUtilizador");
 
   useEffect(() => {
@@ -127,6 +132,45 @@ export function MarcacoesList() {
     fetchMarcacoes();
   }, [userId, serviceNames, professionalNames, scheduleDescriptions]);
 
+  const handleCancelClick = (idMarcacao: number) => {
+    setSelectedMarcacaoId(idMarcacao);
+    setShowCancelModal(true);
+  };
+
+  const handleConfirmCancel = async () => {
+    if (selectedMarcacaoId !== null) {
+      const url = `https://localhost:7209/CancelBooking?id=${selectedMarcacaoId}`;
+      try {
+        const response = await fetch(url, { method: "PUT" });
+        if (response.ok) {
+          setAlertMessage("Marcação cancelada com sucesso!");
+          setAlertVariant("success");
+          setShowAlert(true);
+          setMarcacoes(prevMarcacoes => 
+            prevMarcacoes.filter(marcacao => marcacao.idMarcacao !== selectedMarcacaoId)
+          );
+          setTimeout(() => {
+            setShowCancelModal(false);
+            setShowAlert(false);
+            window.location.reload();
+          }, 2500);
+        } else {
+          setAlertMessage("Falha ao cancelar a marcação.");
+          setAlertVariant("danger");
+          setShowAlert(true);
+        }
+      } catch (error) {
+        setAlertMessage("Erro ao cancelar a marcação.");
+        setAlertVariant("danger");
+        setShowAlert(true);
+      } 
+    }
+  };
+
+  const handleCloseCancelModal = () => {
+    setShowCancelModal(false);
+  };
+
   return (
     <main className="container-service">
       <div className="bg-white m-2 p-3">
@@ -160,6 +204,10 @@ export function MarcacoesList() {
                         <span>------------------------------</span>
                       </div>
                     ))}
+                    <div className="">
+                      <Button className="me-2" variant="danger" onClick={() => handleCancelClick(marcacao.idMarcacao)} disabled={marcacao.estado === 'validado'}>Cancelar</Button>
+                      <Button variant="info" disabled={marcacao.estado === 'validado'}>Editar</Button>
+                    </div>
                   </Card.Body>
                 </Card>
               </Col>
@@ -167,6 +215,31 @@ export function MarcacoesList() {
           </Row>
         </Container>
       </div>
+
+      <Modal show={showCancelModal} onHide={handleCloseCancelModal}>
+        <Modal.Header closeButton>
+          <Modal.Title>Confirmar Cancelamento</Modal.Title>
+        </Modal.Header>
+        <Modal.Body>Tem certeza que deseja cancelar esta marcação?</Modal.Body>
+        <Modal.Footer>
+          <Button variant="secondary" onClick={handleCloseCancelModal}>
+            Não
+          </Button>
+          <Button variant="danger" onClick={handleConfirmCancel}>
+            Sim, Cancelar
+          </Button>
+        </Modal.Footer>
+        {showAlert && (
+          <Alert
+            variant={alertVariant}
+            onClose={() => setShowAlert(false)}
+            dismissible
+            className="custom-alert"
+          >
+            {alertMessage}
+          </Alert>
+        )}
+      </Modal>
     </main>
   );
 }

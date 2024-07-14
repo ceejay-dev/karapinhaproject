@@ -150,5 +150,19 @@ namespace KarapinhaXptoApi.Controllers
         {
             return bookingService.GetTotalAmountPastMonth();
         }
+
+        [HttpPut]
+        [Route("/CancelBooking")]
+        public async Task<ActionResult<bool>> CancelBooking(int id)
+        {
+            try
+            {
+                var result = await bookingService.CancelBooking(id);
+                return Ok(result);
+            }
+            catch (Exception ex) {
+                throw new Exception(ex.Message + ex.ToString());
+            }
+        }
     }
 }

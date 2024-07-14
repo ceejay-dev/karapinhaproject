@@ -21,5 +21,6 @@ namespace Karapinha.Shared.IServices
         public double GetTotalAmountYesterday();
         public double GetTotalAmountCurrentMonth();
         public double GetTotalAmountPastMonth();
+        Task<bool> CancelBooking(int id);
     }
 }
