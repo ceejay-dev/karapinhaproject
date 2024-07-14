@@ -4,3 +4,13 @@
     background-image: url("../assets/carrosel3.jpeg");
     background-size: cover;
 }
+
+.nav {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 50px;
+    background-color: rgba(0, 0, 0, 0);
+    position: fixed;
+    top: 0;
+  }

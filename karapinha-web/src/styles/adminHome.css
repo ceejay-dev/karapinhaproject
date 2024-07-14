@@ -14,13 +14,12 @@
 
 .nav {
   display: flex;
-  justify-content: space-around;
+  justify-content: center;
   align-items: center;
   height: 50px;
   background-color: rgba(0, 0, 0, 0);
   position: fixed;
   top: 0;
-  width: 100%;
 }
 
 .nav li {

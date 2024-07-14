@@ -12,7 +12,6 @@ export function AdminHome() {
 
   return (
     <main className="back-image">
-      <div className="">
         <ul className="nav">
           <li>
             <Button route="/clientes" text="Clientes" />
@@ -33,7 +32,6 @@ export function AdminHome() {
             </BootstrapButton>
           </li>
         </ul>
-      </div>
     </main>
   );
 }

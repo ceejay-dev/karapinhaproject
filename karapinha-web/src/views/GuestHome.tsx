@@ -30,7 +30,7 @@ export function GuestHome() {
 
           <div className="login-container d-flex flex-row">
             <li className="botao-nav">
-              <Button route="/signup" text="Signup" className="link-signup"/>
+              <Button route="/signup" text="Signup" className="link-signup" />
             </li>
             <li className="botao-nav2">
             <Button route="/Login" text="Login"/>

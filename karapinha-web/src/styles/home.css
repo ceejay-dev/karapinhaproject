@@ -75,6 +75,7 @@ a:hover{
 }
 
 .login-container{
+    margin-top: 12px;
     border: 1px solid white;
     border-radius: 25px;
     right: 7%;
@@ -91,6 +92,7 @@ a:hover{
 
 /*This styles are being applied in home page when the user is logged */
 .navegacao {
+    margin-top: 15px;
     border: 1px solid white;
     border-radius: 25px;
     right: 7%;

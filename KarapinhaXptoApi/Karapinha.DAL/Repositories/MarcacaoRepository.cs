@@ -98,7 +98,7 @@ namespace Karapinha.DAL.Repositories
         public double GetTotalAmountToday()
         {
             var amountToday = DbContext.Marcacoes
-                .Where(m => m.DataMarcacao == DateOnly.FromDateTime(DateTime.UtcNow))
+                .Where(m => m.DataMarcacao == DateOnly.FromDateTime(DateTime.UtcNow) && m.Estado == "validado")
                 .Sum(m => m.PrecoMarcacao);
 
             return amountToday;
@@ -107,7 +107,7 @@ namespace Karapinha.DAL.Repositories
         public double GetTotalAmountYesterday()
         {
             var amountYesterday = DbContext.Marcacoes
-                .Where(m => m.DataMarcacao == DateOnly.FromDateTime(DateTime.UtcNow.AddDays(-1)))
+                .Where(m => m.DataMarcacao == DateOnly.FromDateTime(DateTime.UtcNow.AddDays(-1)) && m.Estado == "validado")
                 .Sum(m => m.PrecoMarcacao);
 
             return amountYesterday;
@@ -117,7 +117,7 @@ namespace Karapinha.DAL.Repositories
         {
             var amountCurrentMonth = DbContext.Marcacoes
                 .Where(m => m.DataMarcacao.Year == DateOnly.FromDateTime(DateTime.UtcNow).Year
-                         && m.DataMarcacao.Month == DateOnly.FromDateTime(DateTime.UtcNow).Month)
+                         && m.DataMarcacao.Month == DateOnly.FromDateTime(DateTime.UtcNow).Month && m.Estado == "validado")
                 .Sum(m => m.PrecoMarcacao);
 
             return amountCurrentMonth;
@@ -130,7 +130,7 @@ namespace Karapinha.DAL.Repositories
 
             var amountPastMont = DbContext.Marcacoes
                 .Where(m => m.DataMarcacao.Year == pastMonth.Year
-                         && m.DataMarcacao.Month == pastMonth.Month)
+                         && m.DataMarcacao.Month == pastMonth.Month && m.Estado=="validado")
                 .Sum(m => m.PrecoMarcacao);
 
             return amountPastMont;

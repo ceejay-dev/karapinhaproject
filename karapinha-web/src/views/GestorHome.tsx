@@ -27,7 +27,7 @@ type Marcacao = {
   utilizador: {
     nomeUtilizador: string;
   };
-  servicos: ServiceProps[]; // Alterado para ServiceProps
+  servicos: ServiceProps[]; 
 };
 
 export function GestorHome() {
@@ -194,7 +194,7 @@ export function GestorHome() {
 
   return (
     <section className="principal-container">
-      <nav className="nav">
+      <ul className="nav">
         <li>
           <Button route="/profissionais" text="Profissionais" />
         </li>
@@ -212,7 +212,7 @@ export function GestorHome() {
             Sair
           </BootstrapButton>
         </li>
-      </nav>
+      </ul>
 
       <div className="dashboard">
         <h4 className="text-white text-center m-0 bg-dark desc">Agenda Mensal</h4>

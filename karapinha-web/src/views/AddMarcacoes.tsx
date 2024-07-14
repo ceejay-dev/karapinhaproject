@@ -120,7 +120,11 @@ export function AddMarcacoes() {
         );
 
         console.log("Serviços", servicosToSend);
-        const dataMarcacao = selectedDate?.toISOString().split("T")[0];
+        const dataMarcacao = selectedDate
+        ? new Date(selectedDate.getTime() - selectedDate.getTimezoneOffset() * 60000)
+            .toISOString()
+            .split("T")[0]
+        : null;
 
         if (idStorage === null) {
           console.error("Não foi possível obter o ID do usuário.");
