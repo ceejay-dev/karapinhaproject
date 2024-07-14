@@ -59,6 +59,7 @@ a:hover{
 
 .botao-nav2:hover{
     background-color: white;
+    color: black !important;
     border-top-right-radius: 25px;
     border-bottom-right-radius: 25px;
 }
@@ -84,10 +85,11 @@ a:hover{
 
 .login-container:hover{
     background-color: white;
+    color: black !;
 }
 
 .login-container a:hover{
-    color: black;
+    color: black !important;
 }
 
 /*This styles are being applied in home page when the user is logged */
