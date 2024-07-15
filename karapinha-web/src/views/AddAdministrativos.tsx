@@ -16,6 +16,7 @@ type AdministrativesProps = {
   bilheteUtilizador: string;
   usernameUtilizador: string;
   estado: string;
+  fotoUtilizador: string;
 };
 
 export function AddAdministrativos() {
@@ -62,7 +63,7 @@ export function AddAdministrativos() {
       setTimeout(() => {
         setShowAlert(false);
       }, 1500);
-  }
+  } 
     else {
       setFormData((prevData) => ({
         ...prevData,
@@ -183,7 +184,15 @@ export function AddAdministrativos() {
           <tbody>
             {administratives.map((administrative, index) => (
               <tr key={index}>
-                <td>{administrative.nomeUtilizador}</td>
+                <td>
+                <img
+                    src={`https://localhost:7209/${administrative?.fotoUtilizador}`}
+                    alt="Foto do Profissional"
+                    className="img-fluid rounded-circle"
+                    style={{ width: "50px", height: "50px" }}
+                  />
+                   {" "}
+                  {administrative.nomeUtilizador}</td>
                 <td>{administrative.emailUtilizador}</td>
                 <td>{administrative.bilheteUtilizador}</td>
                 <td>{administrative.estado}</td>

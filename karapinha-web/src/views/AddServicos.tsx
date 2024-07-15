@@ -1,5 +1,4 @@
 import { useEffect, useState } from "react";
-// import { useNavigate } from "react-router-dom";
 import {
   Alert,
   Button as BootstrapButton,
@@ -243,10 +242,10 @@ export function AddServicos() {
   return (
     <main className="container-service">
       <div className="p-2 container-service-added">
-        <h3 className="pt-2 text-center bg-white m-0 rounded-top-2">
+        <h3 className="pt-2 text-center bg-dark m-0 rounded-top-2 text-white">
           Serviços registados
         </h3>
-        <div className="bg-white">
+        <div className="bg-dark">
           <Button
             route="#"
             imageSrc={plus}
@@ -254,7 +253,7 @@ export function AddServicos() {
             onClick={() => handleShow()}
           />
         </div>
-        <Table striped bordered hover className="m-0">
+        <Table striped bordered hover className="m-0" variant="dark">
           <thead>
             <tr>
               <th>Descrição</th>

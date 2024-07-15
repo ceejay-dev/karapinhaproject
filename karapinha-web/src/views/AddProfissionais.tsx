@@ -16,6 +16,7 @@ type profissionaisProps = {
   nomeProfissional: string;
   emailProfissional: string;
   nomeCategoria: string;
+  fotoProfissional: string;
   telemovelProfissional: string;
   horarios: horariosProps[];
 };
@@ -71,7 +72,7 @@ export function AddProfissionais() {
       setTimeout(() => {
         setShowAlert(false);
       }, 1500);
-    }else if (name === "bilheteProfissional" && value.length > 14) {
+    } else if (name === "bilheteProfissional" && value.length > 14) {
       setAlertMessage("O bilhete de identidade possui apenas 14 caracterés.");
       setAlertVariant("danger");
       setShowAlert(true);
@@ -170,9 +171,7 @@ export function AddProfissionais() {
   useEffect(() => {
     const fetchCategorias = async () => {
       try {
-        const response = await fetch(
-          "https://localhost:7209/GetAllCategories"
-        );
+        const response = await fetch("https://localhost:7209/GetAllCategories");
         if (response.ok) {
           const data = await response.json();
           setCategorias(data);
@@ -281,11 +280,11 @@ export function AddProfissionais() {
 
   return (
     <main className="container-service">
-      <div className="p-2 container-service-added">
-        <h4 className="bg-white text-center m-0 pt-2 rounded-top-2">
+      <div className="p-2 container-service-added bg-dark rounded-2">
+        <h4 className="bg-dark text-center m-0 pt-2 rounded-top-2 text-white">
           Profissionais registados
         </h4>
-        <div className="bg-white">
+        <div className="bg-dark">
           <Button
             route="#"
             imageSrc={plus}
@@ -294,7 +293,7 @@ export function AddProfissionais() {
           />
         </div>
 
-        <Table striped bordered hover>
+        <Table striped bordered hover variant="dark">
           <thead>
             <tr>
               <th>Nome do Profissional</th>
@@ -308,7 +307,16 @@ export function AddProfissionais() {
           <tbody>
             {profissionais.map((profissional, index) => (
               <tr key={index}>
-                <td>{profissional.nomeProfissional}</td>
+                <td>
+                  <img
+                    src={`https://localhost:7209/${profissional?.fotoProfissional}`}
+                    alt="Foto do Profissional"
+                    className="img-fluid rounded-circle"
+                    style={{ width: "50px", height: "50px" }}
+                  />
+                   {" "}
+                  {profissional.nomeProfissional}
+                </td>
                 <td>{profissional.emailProfissional}</td>
                 <td>{profissional.nomeCategoria}</td>
                 <td>{profissional.telemovelProfissional}</td>

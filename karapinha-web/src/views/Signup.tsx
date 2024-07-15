@@ -40,7 +40,7 @@ export function Signup() {
       setTimeout(() => {
         setShowAlert(false);
       }, 1500);
-    }
+    } 
      else {
       setFormData((prevData) => ({
         ...prevData,
@@ -110,7 +110,7 @@ export function Signup() {
         setShowAlert(true);
         setTimeout(() => {
           navigate("/");
-        }, 2000);
+        }, 2500);
       } else {
         setAlertMessage("Falha ao registar o utilizador.");
         setAlertVariant("danger");

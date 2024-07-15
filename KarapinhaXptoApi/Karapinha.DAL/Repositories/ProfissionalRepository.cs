@@ -56,48 +56,6 @@ namespace Karapinha.DAL.Repositories
                 .ToListAsync();
         }
 
-
-        //public async Task<bool> DeleteProfissional(int id)
-        //{
-        //    try
-        //    {
-        //        var profissional = await GetProfissionalById(id);
-
-        //        if (profissional != null)
-        //        {
-        //            // Define o estado do profissional como falso
-        //            profissional.Estado = false;
-
-        //            // Salva as alterações no banco de dados
-        //            var result = await DbContext.SaveChangesAsync();
-        //            if (result > 0)
-        //            {
-        //                Console.WriteLine("Profissional removido com sucesso.");
-        //                return true;
-        //            }
-        //            else
-        //            {
-        //                Console.WriteLine("Nenhuma alteração foi salva no banco de dados.");
-        //            }
-        //        }
-        //        else
-        //        {
-        //            Console.WriteLine("Profissional não encontrado.");
-        //        }
-        //    }
-        //    catch (DbUpdateException dbEx)
-        //    {
-        //        Console.WriteLine($"Erro de banco de dados ao alterar estado do profissional: {dbEx.Message}");
-        //        if (dbEx.InnerException != null)
-        //        {
-        //            Console.WriteLine($"Erro interno: {dbEx.InnerException.Message}");
-        //        }
-        //    }
-        //    return false;
-        //}
-
-
-
         public async Task UpdateProfissional(Profissional profissional)
         {
             DbContext.Profissionais.Update(profissional);
@@ -117,7 +75,8 @@ namespace Karapinha.DAL.Repositories
                              EmailProfissional = profissional.EmailProfissional,
                              NomeCategoria = categoria.NomeCategoria,
                              FkCategoria = profissional.FkCategoria,
-                             TelemovelProfissional = profissional.TelemovelProfissional
+                             TelemovelProfissional = profissional.TelemovelProfissional,
+                             FotoProfissional = profissional.FotoProfissional
                          };
 
             return result.ToList();

@@ -90,7 +90,15 @@ export function ClientsList() {
           <tbody>
             {clientes.map((cliente, index) => (
               <tr key={`${cliente.idUtilizador}-${index}`}>
-                <td>{cliente.nomeUtilizador}</td>
+                <td>
+                <img
+                    src={`https://localhost:7209/${cliente?.fotoUtilizador}`}
+                    alt="Foto do Profissional"
+                    className="img-fluid rounded-circle"
+                    style={{ width: "50px", height: "50px" }}
+                  />
+                   {" "}
+                  {cliente.nomeUtilizador}</td>
                 <td>{cliente.emailUtilizador}</td>
                 <td>{cliente.bilheteUtilizador}</td>
                 <td>{cliente.telemovelUtilizador}</td>

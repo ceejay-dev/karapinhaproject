@@ -100,7 +100,11 @@ export function AddCategorias() {
       });
 
       if (response.ok) {
-        setCategorias(categorias.filter(categoria => categoria.idCategoria !== idCategoria));
+        setCategorias(
+          categorias.filter(
+            (categoria) => categoria.idCategoria !== idCategoria
+          )
+        );
         console.log("Categoria apagada com sucesso!");
         // setAlertMessage("Categoria apagada com sucesso!");
         // setAlertVariant("success");
@@ -144,42 +148,44 @@ export function AddCategorias() {
 
   return (
     <main className="container-service category-container">
-      <h4 className=" text-center bg-white m-0 rounded-top-2">
-        Categorias registadas
-      </h4>
-      <div className="bg-white m-0">
-        <div className="mb-3">
-          <Button
-            route="#"
-            imageSrc={plus}
-            className="link-signup pb-5"
-            onClick={handleShow}
-          />
-        </div>
+      <div className="bg-dark">
+        <h4 className=" text-center bg-dark text-white m-0 rounded-top-2">
+          Categorias registadas
+        </h4>
+        <div className="bg-dark m-0">
+          <div className="mb-3">
+            <Button
+              route="#"
+              imageSrc={plus}
+              className="link-signup pb-5"
+              onClick={handleShow}
+            />
+          </div>
 
-        <Table striped bordered hover>
-          <thead>
-            <tr>
-              <th>Nome da categoria</th>
-              <th>Acções</th>
-            </tr>
-          </thead>
-          <tbody>
-            {categorias.map((categoria, index) => (
-              <tr key={`${categoria.idCategoria}-${index}`}>
-                <td>{categoria.nomeCategoria}</td>
-                <td>
-                  <BootstrapButton 
-                    variant="danger"
-                    onClick={() => handleDelete(categoria.idCategoria)}
-                  >
-                    Apagar
-                  </BootstrapButton>
-                </td>
+          <Table striped bordered hover variant="dark">
+            <thead>
+              <tr>
+                <th>Nome da categoria</th>
+                <th>Acções</th>
               </tr>
-            ))}
-          </tbody>
-        </Table>
+            </thead>
+            <tbody>
+              {categorias.map((categoria, index) => (
+                <tr key={`${categoria.idCategoria}-${index}`}>
+                  <td>{categoria.nomeCategoria}</td>
+                  <td>
+                    <BootstrapButton
+                      variant="danger"
+                      onClick={() => handleDelete(categoria.idCategoria)}
+                    >
+                      Apagar
+                    </BootstrapButton>
+                  </td>
+                </tr>
+              ))}
+            </tbody>
+          </Table>
+        </div>
       </div>
 
       <Modal

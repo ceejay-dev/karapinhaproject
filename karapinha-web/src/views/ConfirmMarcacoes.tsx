@@ -172,9 +172,9 @@ export function ConfirmMarcacoes() {
 
   return (
     <main className="container-service">
-      <div className="bg-white m-2 p-3">
+      <div className="bg-dark m-2 p-3 rounded-4">
         <Container>
-          <Table striped bordered hover>
+          <Table striped bordered hover variant="dark">
             <thead>
               <tr>
                 <th>Preço Total</th>
@@ -219,7 +219,7 @@ export function ConfirmMarcacoes() {
                     <Button
                       variant="success"
                       onClick={() => handleConfirm(marcacao.idMarcacao)}
-                      disabled={confirming[marcacao.idMarcacao] || marcacao.estado === "validado"}
+                      disabled={confirming[marcacao.idMarcacao] || marcacao.estado === "validado" || marcacao.estado === "cancelado"}
                     >
                       Confirmar
                     </Button>
@@ -227,6 +227,7 @@ export function ConfirmMarcacoes() {
                     <Button
                       variant="info"
                       onClick={() => handleOpenRescheduleModal(marcacao.idMarcacao)}
+                      disabled={marcacao.estado === "validado" || marcacao.estado === "cancelado"}
                     >
                       Reagendar
                     </Button>
