@@ -74,8 +74,8 @@ export function ClientsList() {
 
   return (
     <main className="container-service">
-      <h4 className="text-center bg-white m-0 p-3 rounded-top-2">Clientes registados</h4>
-        <Table striped bordered hover className="rounded-bottom-2">
+      <h4 className="text-center bg-dark m-0 p-3 rounded-top-2 text-white">Clientes registados</h4>
+        <Table striped bordered hover className="rounded-bottom-2" variant="dark">
           <thead>
             <tr>
               <th>Nome</th>

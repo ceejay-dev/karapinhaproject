@@ -160,10 +160,10 @@ export function AddAdministrativos() {
   return (
     <main className="container-service">
       <div className="p-2 container-service-added">
-        <h4 className="bg-white text-center pt-2 rounded-top-2 m-0">
+        <h4 className="bg-dark text-center text-white pt-2 rounded-top-2 m-0">
           Administrativos registados
         </h4>
-        <div className="bg-white">
+        <div className="bg-dark">
           <Button
             route="#"
             imageSrc={plus}
@@ -172,7 +172,7 @@ export function AddAdministrativos() {
           />
         </div>
 
-        <Table striped bordered hover>
+        <Table striped bordered hover variant="dark">
           <thead>
             <tr>
               <th>Nome</th>

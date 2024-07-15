@@ -25,7 +25,7 @@ export function GuestHome() {
           </li>
 
           <li>
-            <Button route="/" text="Sobre" />
+            <Button route="/about" text="Sobre" />
           </li>
 
           <div className="login-container d-flex flex-row">

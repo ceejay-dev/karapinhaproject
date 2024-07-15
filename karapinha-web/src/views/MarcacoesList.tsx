@@ -173,7 +173,7 @@ export function MarcacoesList() {
 
   return (
     <main className="container-service">
-      <div className="bg-white m-2 p-3">
+      <div className="bg-white m-2 p-3 rounded-3">
         <Container>
           <Row>
             {marcacoes.map((marcacao) => (
@@ -205,8 +205,8 @@ export function MarcacoesList() {
                       </div>
                     ))}
                     <div className="">
-                      <Button className="me-2" variant="danger" onClick={() => handleCancelClick(marcacao.idMarcacao)} disabled={marcacao.estado === 'validado'}>Cancelar</Button>
-                      <Button variant="info" disabled={marcacao.estado === 'validado'}>Editar</Button>
+                      <Button className="me-2" variant="danger" onClick={() => handleCancelClick(marcacao.idMarcacao)} disabled={marcacao.estado === 'validado' || marcacao.estado==='cancelado'}>Cancelar</Button>
+                      <Button variant="info" disabled={marcacao.estado === 'validado' || marcacao.estado === 'cancelado'}>Editar</Button>
                     </div>
                   </Card.Body>
                 </Card>

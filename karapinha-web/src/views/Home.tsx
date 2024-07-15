@@ -40,12 +40,10 @@ export function Home() {
           <li>
             <Button route="/marcacoes" text="Serviços" />
           </li>
-          
 
           <li>
             <Button
-              route="/logged"
-              onClick={() => handleDeleteStorage}
+              route="/about"
               text="Sobre"
             />
           </li>

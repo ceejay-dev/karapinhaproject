@@ -15,6 +15,7 @@ import { ScheduleList } from "../views/ScheduleList";
 import { AddCategorias } from "../views/AddCategorias";
 import { MarcacoesList } from "../views/MarcacoesList";
 import { ConfirmMarcacoes } from "../views/ConfirmMarcacoes";
+import About from "../views/About";
 
 
 export function AppRoutes() {
@@ -34,6 +35,7 @@ export function AppRoutes() {
         <Route path="/servicos" element={<AddServicos />} />
         <Route path="/profissionais" element={<AddProfissionais />} />
         <Route path="/administrativos" element={<AddAdministrativos />} />
+        <Route path="/about" element={<About />} />
         <Route path="/categorias" element={<AddCategorias />} />
         <Route path="/clientes" element={<ClientsList />} />
         <Route path="/consulta-marcacoes" element={<ScheduleList />} />

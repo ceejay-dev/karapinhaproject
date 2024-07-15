@@ -270,7 +270,7 @@ export function AddMarcacoes() {
 
   return (
     <main className="container-service">
-      <div className="bg-white p-2 container-service-added">
+      <div className="bg-white p-2 container-service-added rounded-2">
         <div className="pb-2">
           <BootstrapButton
             type="button"
