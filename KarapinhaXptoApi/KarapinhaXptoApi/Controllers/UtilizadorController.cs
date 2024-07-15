@@ -59,7 +59,9 @@ namespace KarapinhaXptoApi.Controllers
             }
             catch (NotFoundException ex)
             {
-                throw new NotFoundException("Utilizador não encontrado || Credenciais Erradas", ex);
+                throw new NotFoundException("Utilizador não encontrado" + ex.Message);
+            } catch (UnauthorizedAccessException ex) {
+                throw new UnauthorizedAccessException("Credenciais erradas" + ex.Message);
             }
         }
 

@@ -185,3 +185,17 @@ export function Login() {
 }
 
 export default Login;
+
+
+
+
+
+
+// .then((res) => {
+//   if (res.status === 200) {
+//     return res.json();
+//   } else if (res.status === 401) {
+//     setErrorMessage("Credencias incorretas.");
+//     return;
+//   }
+// })
