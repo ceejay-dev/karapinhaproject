@@ -9,7 +9,6 @@ export function Signup() {
   const [alertMessage, setAlertMessage] = useState("");
   const [alertVariant, setAlertVariant] = useState("success");
   const [showAlert, setShowAlert] = useState(false);
-  const [validationError, setValidationError] = useState("");
 
   const [formData, setFormData] = useState({
     idUtilizador: '0',
@@ -33,14 +32,14 @@ export function Signup() {
       setTimeout(() => {
         setShowAlert(false);
       }, 1500);
-    }else if (name === "BilheteUtilizador" && value.length > 14) {
+    } else if (name === "BilheteUtilizador" && value.length > 14) {
       setAlertMessage("O bilhete de identidade possui apenas 14 dígitos.");
       setAlertVariant("danger");
       setShowAlert(true);
       setTimeout(() => {
         setShowAlert(false);
       }, 1500);
-    } 
+    }
      else {
       setFormData((prevData) => ({
         ...prevData,
@@ -75,12 +74,23 @@ export function Signup() {
       !formData.PasswordUtilizador ||
       !formData.ConfirmPasswordUtilizador
     ) {
-      setValidationError("Todos os campos são obrigatórios.");
+      setAlertMessage("Todos os campos são obrigatórios.");
+      setAlertVariant("danger")
+      setShowAlert(true)
       return;
     }
 
     if (formData.PasswordUtilizador !== formData.ConfirmPasswordUtilizador) {
-      setValidationError("As senhas não coincidem.");
+      setAlertMessage("As senhas não coincidem.");
+      setAlertVariant("danger")
+      setShowAlert(true)
+      return;
+    }
+
+    if (!/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(formData.EmailUtilizador)) {
+      setAlertMessage("Email inválido.");
+      setAlertVariant("danger")
+      setShowAlert(true)
       return;
     }
 
@@ -220,11 +230,6 @@ export function Signup() {
             </div>
           </div>
         </form>
-        {validationError && (
-          <Alert variant="danger" className="mt-3">
-            {validationError}
-          </Alert>
-        )}
         {showAlert && (
           <Alert variant={alertVariant} className="mt-3">
             {alertMessage}

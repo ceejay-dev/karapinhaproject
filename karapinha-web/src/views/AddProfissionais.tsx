@@ -79,7 +79,8 @@ export function AddProfissionais() {
       setTimeout(() => {
         setShowAlert(false);
       }, 1500);
-    } else {
+    }
+     else {
       setFormData((prevData) => ({
         ...prevData,
         [name]: value,
@@ -100,6 +101,8 @@ export function AddProfissionais() {
   ) => {
     event.preventDefault();
 
+    
+
     // Validando os dados antes de enviar
     if (
       formData.fkCategoria === "0" ||
@@ -111,6 +114,13 @@ export function AddProfissionais() {
       formData.horarios.length === 0
     ) {
       setAlertMessage("Por favor, preencha todos os campos.");
+      setAlertVariant("danger");
+      setShowAlert(true);
+      return;
+    }
+
+    if (!/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(formData.emailProfissional)) {
+      setAlertMessage("Email inválido.");
       setAlertVariant("danger");
       setShowAlert(true);
       return;

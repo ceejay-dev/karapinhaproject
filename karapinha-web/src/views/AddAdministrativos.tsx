@@ -56,15 +56,14 @@ export function AddAdministrativos() {
       setTimeout(() => {
         setShowAlert(false);
       }, 1500);
-    }else if (name === "BilheteUtilizador" && value.length > 14) {
+    } else if (name === "BilheteUtilizador" && value.length > 14) {
       setAlertMessage("O bilhete de identidade possui apenas 14 caracterés.");
       setAlertVariant("danger");
       setShowAlert(true);
       setTimeout(() => {
         setShowAlert(false);
       }, 1500);
-  } 
-    else {
+    } else {
       setFormData((prevData) => ({
         ...prevData,
         [name]: value,
@@ -86,6 +85,13 @@ export function AddAdministrativos() {
       setAlertMessage("Password e Confirmar Password não são iguais.");
       setAlertVariant("danger");
       setShowAlert(true);
+      return;
+    }
+
+    if (!/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(formData.EmailUtilizador)) {
+      setAlertMessage("Email inválido.");
+      setAlertVariant("danger")
+      setShowAlert(true)
       return;
     }
 
@@ -185,14 +191,14 @@ export function AddAdministrativos() {
             {administratives.map((administrative, index) => (
               <tr key={index}>
                 <td>
-                <img
+                  <img
                     src={`https://localhost:7209/${administrative?.fotoUtilizador}`}
                     alt="Foto do Profissional"
                     className="img-fluid rounded-circle"
                     style={{ width: "50px", height: "50px" }}
-                  />
-                   {" "}
-                  {administrative.nomeUtilizador}</td>
+                  />{" "}
+                  {administrative.nomeUtilizador}
+                </td>
                 <td>{administrative.emailUtilizador}</td>
                 <td>{administrative.bilheteUtilizador}</td>
                 <td>{administrative.estado}</td>
