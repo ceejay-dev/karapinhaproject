@@ -35,6 +35,7 @@ export function Login() {
   };
 
   function verifyLogin() {
+    var serverCode = 0;
     fetch("https://localhost:7209/Login", {
       headers: {
         Accept: "application/json",
@@ -43,7 +44,15 @@ export function Login() {
       method: "POST",
       body: JSON.stringify({ usernameUtilizador, passwordUtilizador }),
     })
-      .then((res) => res.json())
+      .then((res) => {
+        if (res.status === 200) {
+          return res.json();
+        } else if (res.status === 401) {
+          serverCode=res.status;
+          setErrorMessage("A sua conta se encontra inactiva.");
+          return;
+        }
+      })
       .then((data) => {
         const { idUtilizador, tipoPerfil, estado } = data;
         if (data) {
@@ -71,7 +80,11 @@ export function Login() {
             "Login feito com sucesso, será redirecionado para a página apropriada. "
           );
         } else {
-          setErrorMessage("Credenciais incorretas. Tente novamente.");
+          if (serverCode===401){
+            setErrorMessage("A sua conta se encontra inactiva.");
+          } else {
+            setErrorMessage("Credenciais incorretas. Tente novamente.");
+          }
         }
       })
       .catch(() => {
@@ -192,12 +205,3 @@ export function Login() {
 }
 
 export default Login;
-
-// .then((res) => {
-//   if (res.status === 200) {
-//     return res.json();
-//   } else if (res.status === 401) {
-//     setErrorMessage("Credencias incorretas.");
-//     return;
-//   }
-// })

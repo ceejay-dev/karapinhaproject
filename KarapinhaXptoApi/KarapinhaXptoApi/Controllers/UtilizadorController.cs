@@ -9,6 +9,7 @@ using Microsoft.AspNetCore.Mvc;
 using Microsoft.IdentityModel.Tokens;
 using OpenQA.Selenium;
 using System.IdentityModel.Tokens.Jwt;
+using System.Net;
 using System.Security.Claims;
 using System.Text;
 
@@ -56,13 +57,13 @@ namespace KarapinhaXptoApi.Controllers
             {
                 var user = await _UtilizadorService.Login(loginDto);
                 return Ok(user);
+
             }
-            catch (NotFoundException ex)
+            catch
             {
-                throw new NotFoundException("Utilizador não encontrado" + ex.Message);
-            } catch (UnauthorizedAccessException ex) {
-                throw new UnauthorizedAccessException("Credenciais erradas" + ex.Message);
+                return StatusCode(401, "Credenciais incorrectas");
             }
+           
         }
 
         [HttpGet]
